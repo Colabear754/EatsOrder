@@ -25,7 +25,7 @@ public class CouponDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 사이트 관리자가 유효쿠폰 추가
 	public int insertValidCoupon(String coupon_id, String coupon_name, String coupon_info, int available_price,
 			int discount_amount, Date expiration_date) {
@@ -35,15 +35,17 @@ public class CouponDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("insert into valid_coupon values('" + coupon_id + "', '" + coupon_name
-					+ "', '" + coupon_info + "', " + available_price + ", " + discount_amount + ", '" + expiration_date + "')");
-			connection.setAutoCommit(false);
+			pStatement = connection.prepareStatement("insert into valid_coupon values(?, ?, ?, ?, ?, ?)");
+			pStatement.setString(1, coupon_id);
+			pStatement.setString(2, coupon_name);
+			pStatement.setString(3, coupon_info);
+			pStatement.setInt(4, available_price);
+			pStatement.setInt(5, discount_amount);
+			pStatement.setDate(6, expiration_date);
+
 			result = pStatement.executeUpdate();
 
-			if (result > 0) {
-				System.out.println("새로운 유효쿠폰 추가 성공");
-				connection.commit();
-			}
+			System.out.println("유효쿠폰 추가 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -55,27 +57,19 @@ public class CouponDAO {
 
 	// 고객이 사용자쿠폰 등록
 	public int registUserCoupon(String coupon_id, String owner_id, int available_count) {
-		// result = -1 : 유효하지 않은 쿠폰, 0 : 쿠폰 등록 실패, 1 : 쿠폰 등록 성공
+		// result가 0보다 크면 쿠폰 등록 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement(
-					"select * from owned_coupon where coupon_id='" + coupon_id + "' and owner_id='" + owner_id + "'");
-			resultSet = pStatement.executeQuery();
+			pStatement = connection.prepareStatement("insert into owned_coupon values(?, ?, ?)");
+			pStatement.setString(1, coupon_id);
+			pStatement.setString(2, owner_id);
+			pStatement.setInt(3, available_count);
 
-			if (resultSet.next()) {
-				System.out.println("이미 등록된 쿠폰");
-			} else {
-				connection.setAutoCommit(false);
-				pStatement = connection.prepareStatement(
-						"insert into owned_coupon values('" + coupon_id + "', '" + owner_id + "', " + available_count + ")");
-				result = pStatement.executeUpdate();
-				if (result > 0) {
-					System.out.println("사용자 쿠폰 등록 성공");
-					connection.commit();
-				}
-			}
+			result = pStatement.executeUpdate();
+
+			System.out.println("사용자 쿠폰 등록 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -87,19 +81,25 @@ public class CouponDAO {
 
 	// 쿠폰 사용
 	public int useCoupon(String coupon_id, String owner_id) {
-		// result = -1 : 쿠폰 찾기 실패, 0 : 쿠폰 사용 실패, 그 외 값 : 할인 금액
+		// result = -1 : 쿠폰 조회 실패 또는 사용 완료된 쿠폰, 0 : 쿠폰 사용 실패, 그 외 값 : 할인 금액
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
 			connection.setAutoCommit(false);
 			pStatement = connection.prepareStatement("select v.* from valid_coupon v, owned_coupon o where "
-					+ "v.coupon_id=o.coupon_id and o.coupon_id='" + coupon_id + "' and owner_id='" + owner_id + "'");
+					+ "v.coupon_id=o.coupon_id and o.coupon_id=? and owner_id=? and available_count > 0");
+			pStatement.setString(1, coupon_id);
+			pStatement.setString(2, owner_id);
+			
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
 				pStatement = connection.prepareStatement("update owned_coupon set available_count=available_count - 1 "
-						+ "where coupon_id='" + coupon_id + "' and owner_id='" + owner_id + "' and available_count > 0");
+						+ "where coupon_id=? and owner_id=?");
+				pStatement.setString(1, coupon_id);
+				pStatement.setString(2, owner_id);
+				
 				result = pStatement.executeUpdate();
 
 				if (result > 0) {
@@ -135,12 +135,12 @@ public class CouponDAO {
 
 			while (resultSet.next()) {
 				couponList.add(new ValidCouponDTO(resultSet.getString("coupon_id"), resultSet.getString("coupon_name"),
-								resultSet.getString("coupon_info"), resultSet.getInt("available_price"),
-								resultSet.getInt("discount_amount"), resultSet.getDate("expiration_date")));
+						resultSet.getString("coupon_info"), resultSet.getInt("available_price"),
+						resultSet.getInt("discount_amount"), resultSet.getDate("expiration_date")));
 				countList.add(resultSet.getInt("available_count"));
 			}
-			
-			if (!couponList.isEmpty() && countList.size() == countList.size()) {
+
+			if (!couponList.isEmpty() && couponList.size() == countList.size()) {
 				result.put("coupons", couponList);
 				result.put("counts", countList);
 			}
