@@ -39,7 +39,7 @@ public class MenuAndOptionDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
-					"insert into menu_category values(mc_index_seq.nextval" + rst_id + ", '" + category_name + "')");
+					"insert into menu_category values(mc_index_seq.nextval, '" + category_name + "', " + rst_id + ")");
 			result = pStatement.executeUpdate();
 
 			System.out.println(rst_id + "번 매장에 " + category_name + " 카테고리 추가 성공 여부 : " + result);
@@ -59,7 +59,7 @@ public class MenuAndOptionDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select * from menu_cateogry where rst_id=" + rst_id);
+			pStatement = connection.prepareStatement("select * from menu_category where rst_id=" + rst_id);
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -134,15 +134,19 @@ public class MenuAndOptionDAO {
 		String sql;
 
 		if (menu_info.isBlank() && menu_photo.isBlank()) {
+			// 메뉴 정보와 사진 모두 없는 메뉴
 			sql = "insert into menu(menu_id, category_id, menu_name, price, enable) values(menu_index_seq.nextval, "
 					+ category_id + ", '" + menu_name + "', " + price + ", " + enable + ")";
 		} else if (menu_info.isBlank()) {
+			// 메뉴 정보는 없지만 사진은 있는 메뉴
 			sql = "insert into menu(menu_id, category_id, menu_name, menu_photo, price, enable) values(menu_index_seq.nextval, "
 					+ category_id + ", '" + menu_name + "', '" + menu_photo + "', " + price + ", " + enable + ")";
 		} else if (menu_photo.isBlank()) {
+			// 메뉴 사진은 없지만 정보는 있는 메뉴
 			sql = "insert into menu(menu_id, category_id, menu_name, menu_info, price, enable) values(menu_index_seq.nextval, "
 					+ category_id + ", '" + menu_name + "', '" + menu_info + "', " + price + ", " + enable + ")";
 		} else {
+			// 메뉴 정보와 사진 모두 있는 메뉴
 			sql = "insert into menu values(menu_index_seq.nextval, " + category_id + ", '" + menu_name + "', '" + menu_info
 					+ "', '" + menu_photo + "', " + price + ", " + enable + ")";
 		}
@@ -220,28 +224,6 @@ public class MenuAndOptionDAO {
 
 		return result;
 	}
-	
-	public int setMenuOptionGroup(int menu_id, int group_id) {
-		// result가 0보다 크면 메뉴와 옵션 그룹 연결 성공
-		int result = -1;
-		
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("insert into menu_option values(?, ?)");
-			pStatement.setInt(1, menu_id);
-			pStatement.setInt(2, group_id);
-			
-			result = pStatement.executeUpdate();
-			
-			System.out.println("메뉴와 옵션 그룹 연결 성공 여부 : " + result);
-		} catch (Exception e) {
-			 e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement);
-		}
-		
-		return result;
-	}
 
 	public int deleteMenu(int rst_id, int menu_id) {
 		// result가 0보다 크면 메뉴 카테고리 삭제 성공
@@ -255,7 +237,7 @@ public class MenuAndOptionDAO {
 			connection.setAutoCommit(false);
 
 			if (resultSet.next()) {
-				if (rst_id == resultSet.getInt("rst_id")) {
+				if (rst_id == resultSet.getInt(1)) {
 					pStatement = connection.prepareStatement("delete from menu where menu_id=" + menu_id);
 					result = pStatement.executeUpdate();
 				}
@@ -266,6 +248,28 @@ public class MenuAndOptionDAO {
 			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	public int setMenuOptionGroup(int menu_id, int group_id) {
+		// result가 0보다 크면 메뉴와 옵션 그룹 연결 성공
+		int result = -1;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("insert into menu_option values(?, ?)");
+			pStatement.setInt(1, menu_id);
+			pStatement.setInt(2, group_id);
+
+			result = pStatement.executeUpdate();
+
+			System.out.println("메뉴와 옵션 그룹 연결 성공 여부 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement);
 		}
 
 		return result;
@@ -379,7 +383,7 @@ public class MenuAndOptionDAO {
 			connection.setAutoCommit(false);
 
 			if (resultSet.next()) {
-				if (rst_id == resultSet.getInt("rst_id")) {
+				if (rst_id == resultSet.getInt(1)) {
 					pStatement = connection.prepareStatement("delete from option_group where group_id=" + group_id);
 					result = pStatement.executeUpdate();
 
@@ -403,7 +407,7 @@ public class MenuAndOptionDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("insert into option_info values(option_index_seq.nextval, ?, ?, ?, ?");
+			pStatement = connection.prepareStatement("insert into option_info values(option_index_seq.nextval, ?, ?, ?, ?)");
 			pStatement.setInt(1, group_id);
 			pStatement.setString(2, option_name);
 			pStatement.setInt(3, price);
@@ -483,7 +487,7 @@ public class MenuAndOptionDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select rst_id from option_info o, option_group og "
-					+ "where o.group_id=og.group_id and rst_id=" + rst_id);
+					+ "where option_id=" + option_id + " and o.group_id=og.group_id and rst_id=" + rst_id);
 			resultSet = pStatement.executeQuery();
 			connection.setAutoCommit(false);
 
