@@ -5,7 +5,7 @@ public class OptionInfoDTO {
 	private int group_id;
 	private String option_name;
 	private int price;
-	private int enable;
+	private int enable;	// 0:품절, 1:선택가능
 
 	public OptionInfoDTO() {
 		super();

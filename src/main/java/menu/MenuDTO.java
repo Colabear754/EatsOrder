@@ -7,7 +7,7 @@ public class MenuDTO {
 	private String menu_info;
 	private String menu_photo;
 	private int price;
-	private int enable;
+	private int enable;	// 0:품절, 1:주문가능
 
 	public MenuDTO() {
 		super();
