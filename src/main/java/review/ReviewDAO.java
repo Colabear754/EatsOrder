@@ -34,14 +34,14 @@ public class ReviewDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("insert into review(review_number, order_number, content, rating) "
-					+ "values(review_index_seq.nextval, " + order_number + ", '" + content + "', " + rating + ")");
+					+ "values(review_index_seq.nextval, ?, ?, ?)");
+			pStatement.setInt(1, order_number);
+			pStatement.setString(2, content);
+			pStatement.setInt(3, rating);
+
 			result = pStatement.executeUpdate();
 
-			if (result > 0) {
-				System.out.println("리뷰 작성 성공");
-			} else {
-				System.out.println("리뷰 작성 실패");
-			}
+			System.out.println("리뷰 작성 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -59,15 +59,16 @@ public class ReviewDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("insert into review("
-					+ "review_number, order_number, photo1, content, rating) values(review_index_seq.nextval, "
-					+ order_number + ", '" + photo1 + "', '" + content + "', " + rating + ")");
+					+ "review_number, order_number, photo1, content, rating) values(review_index_seq.nextval, ?, ?, ?, ?)");
+
+			pStatement.setInt(1, order_number);
+			pStatement.setString(2, content);
+			pStatement.setString(3, photo1);
+			pStatement.setInt(4, rating);
+
 			result = pStatement.executeUpdate();
 
-			if (result > 0) {
-				System.out.println("리뷰 작성 성공");
-			} else {
-				System.out.println("리뷰 작성 실패");
-			}
+			System.out.println("리뷰 작성 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -84,16 +85,18 @@ public class ReviewDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("insert into review("
-					+ "review_number, order_number, photo1, photo2, content, rating) values(review_index_seq.nextval, "
-					+ order_number + ", '" + photo1 + "', '" + photo2 + "', '" + content + "', " + rating + ")");
+			pStatement = connection.prepareStatement("insert into review(review_number, order_number, photo1, photo2, "
+					+ "content, rating) values(review_index_seq.nextval, ?, ?, ?, ?, ?)");
+
+			pStatement.setInt(1, order_number);
+			pStatement.setString(2, content);
+			pStatement.setString(3, photo1);
+			pStatement.setString(4, photo2);
+			pStatement.setInt(5, rating);
+
 			result = pStatement.executeUpdate();
 
-			if (result > 0) {
-				System.out.println("리뷰 작성 성공");
-			} else {
-				System.out.println("리뷰 작성 실패");
-			}
+			System.out.println("리뷰 작성 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -112,15 +115,18 @@ public class ReviewDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
 					"insert into review(review_number, order_number, photo1, photo2, photo3, content, rating) "
-							+ "values(review_index_seq.nextval, " + order_number + ", '" + photo1 + "', '" + photo2 + "', '"
-							+ photo3 + "', '" + content + "', " + rating + ")");
+							+ "values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?)");
+
+			pStatement.setInt(1, order_number);
+			pStatement.setString(2, content);
+			pStatement.setString(3, photo1);
+			pStatement.setString(4, photo2);
+			pStatement.setString(5, photo3);
+			pStatement.setInt(6, rating);
+
 			result = pStatement.executeUpdate();
 
-			if (result > 0) {
-				System.out.println("리뷰 작성 성공");
-			} else {
-				System.out.println("리뷰 작성 실패");
-			}
+			System.out.println("리뷰 작성 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -140,15 +146,19 @@ public class ReviewDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
 					"insert into review(review_number, order_number, photo1, photo2, photo3, photo4, content, rating) "
-							+ "values(review_index_seq.nextval, " + order_number + ", '" + photo1 + "', '" + photo2 + "', '"
-							+ photo3 + "', '" + photo4 + "', '" + content + "', " + rating + ")");
+							+ "values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?, ?)");
+
+			pStatement.setInt(1, order_number);
+			pStatement.setString(2, content);
+			pStatement.setString(3, photo1);
+			pStatement.setString(4, photo2);
+			pStatement.setString(5, photo3);
+			pStatement.setString(6, photo4);
+			pStatement.setInt(7, rating);
+
 			result = pStatement.executeUpdate();
 
-			if (result > 0) {
-				System.out.println("리뷰 작성 성공");
-			} else {
-				System.out.println("리뷰 작성 실패");
-			}
+			System.out.println("리뷰 작성 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -166,17 +176,21 @@ public class ReviewDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("insert into review("
-					+ "review_number, order_number, photo1, photo2, photo3, photo4, photo5, content, rating) "
-					+ "values(review_index_seq.nextval, " + order_number + ", '" + photo1 + "', '" + photo2 + "', '" + photo3
-					+ "', '" + photo4 + "', '" + photo5 + "', '" + content + "', " + rating + ")");
+			pStatement = connection
+					.prepareStatement("insert into review values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+			pStatement.setInt(1, order_number);
+			pStatement.setString(2, content);
+			pStatement.setString(3, photo1);
+			pStatement.setString(4, photo2);
+			pStatement.setString(5, photo3);
+			pStatement.setString(6, photo4);
+			pStatement.setString(7, photo5);
+			pStatement.setInt(8, rating);
+
 			result = pStatement.executeUpdate();
 
-			if (result > 0) {
-				System.out.println("리뷰 작성 성공");
-			} else {
-				System.out.println("리뷰 작성 실패");
-			}
+			System.out.println("리뷰 작성 성공 여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -186,21 +200,24 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 리뷰 수정
 	public int updateReview(int review_number, String content, String email) {
 		// result가 0보다 크면 리뷰 수정 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select review.*, order_history.orderer from review, order_history "
-					+ "where review_number=" + review_number + " and sysdate-regist_date < 7");
+			pStatement = connection
+					.prepareStatement("select orderer from review r, order_history oh" + "where review_number="
+							+ review_number + " and r.order_number=oh.order_number and sysdate-regist_date < 7");
 			connection.setAutoCommit(false);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				if (email.equals(resultSet.getString("orderer"))) {
-					pStatement = connection.prepareStatement(
-							"update review set content='" + content + "' where review_number=" + review_number);
+				if (email.equals(resultSet.getString(1))) {
+					pStatement = connection.prepareStatement("update review set content=? where review_number=?");
+					pStatement.setString(1, content);
+					pStatement.setInt(2, review_number);
 					result = pStatement.executeUpdate();
 
 					if (result > 0) {
@@ -218,19 +235,20 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 리뷰 삭제
 	public int deleteReview(int review_number, String email) {
 		// result가 1보다 크면 리뷰 삭제 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select review.*, order_history.orderer from review, order_history "
-					+ "where review_number=" + review_number);
+			pStatement = connection.prepareStatement("select orderer from review r, order_history oh"
+					+ "where review_number=" + review_number + " and r.order_number=oh.order_number");
 			connection.setAutoCommit(false);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				if (email.equals(resultSet.getString("orderer"))) {
+				if (email.equals(resultSet.getString(1))) {
 					pStatement = connection.prepareStatement("delete from review where review_number=" + review_number);
 					result = pStatement.executeUpdate();
 
@@ -255,6 +273,7 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 리뷰 좋아요
 	public int likeReview(int review_number, String email) {
 		// result가 0보다 크면 좋아요 처리 성공
 		int result = -1;
@@ -270,8 +289,10 @@ public class ReviewDAO {
 				resultSet = pStatement.executeQuery();
 
 				if (resultSet.next()) {
-					pStatement = connection
-							.prepareStatement("insert into review_like values(" + review_number + ", '" + email + "')");
+					pStatement = connection.prepareStatement("insert into review_like values(?, ?)");
+					pStatement.setInt(1, review_number);
+					pStatement.setString(2, email);
+
 					result = pStatement.executeUpdate();
 
 					if (result > 0) {
@@ -288,6 +309,7 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 리뷰 좋아요 개수 조회
 	public int getLikeCount(int review_number) {
 		// 리뷰에 등록된 좋아요 개수 반환
 		// 조회에 실패하면 -1 반환
@@ -295,8 +317,8 @@ public class ReviewDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection
-					.prepareStatement("select count(*) from review_like where review_number=" + review_number);
+			pStatement = connection.prepareStatement(
+					"select count(*) from review_like where review_number=" + review_number);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -312,6 +334,7 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 댓글 작성
 	public int insertReply(int review_number, int rst_id, String content) {
 		// result가 0보다 크면 리뷰에 댓글 작성 성공
 		int result = -1;
@@ -323,7 +346,10 @@ public class ReviewDAO {
 
 			if (resultSet.next()) {
 				pStatement = connection.prepareStatement("insert into reply(reply_number, review_number, content) "
-						+ "values(reply_index_seq.nextval, " + review_number + ", '" + content + "')");
+						+ "values(reply_index_seq.nextval, ?, ?)");
+				pStatement.setInt(1, review_number);
+				pStatement.setString(2, content);
+
 				result = pStatement.executeUpdate();
 
 				if (result > 0) {
@@ -339,25 +365,33 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 댓글 수정
 	public int updateReply(int reply_number, int rst_id, String content) {
 		// result가 0보다 크면 댓글 수정 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select rp.reply_number from reply rp, v_review_to_rst rv "
-					+ "where rst_id=" + rst_id + " and rp.review_number=rv.review_number");
+			pStatement = connection.prepareStatement("select rp.reply_number, rst_id from reply rp, v_review_to_rst rv "
+					+ "where rst_id=? and rp.review_number=rv.review_number and reply_number=?");
+			pStatement.setInt(1, rst_id);
+			pStatement.setInt(2, reply_number);
+			
 			connection.setAutoCommit(false);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				pStatement = connection.prepareStatement(
-						"update reply set content='" + content + "' where" + " reply_number=" + reply_number);
-				result = pStatement.executeUpdate();
+				if (rst_id == resultSet.getInt(1)) {
+					pStatement = connection.prepareStatement("update reply set content=? where reply_number=?");
+					pStatement.setString(1, content);
+					pStatement.setInt(2, reply_number);
 
-				if (result > 0) {
-					System.out.println("댓글 수정 성공");
-					connection.commit();
+					result = pStatement.executeUpdate();
+
+					if (result > 0) {
+						System.out.println("댓글 수정 성공");
+						connection.commit();
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -369,6 +403,7 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 댓글 삭제
 	public int deleteReply(int reply_number, int rst_id) {
 		// result가 0보다 크면 댓글 수정 성공
 		int result = -1;
@@ -376,12 +411,15 @@ public class ReviewDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select rp.reply_number, rst_id from reply rp, v_review_to_rst rv "
-					+ "where rst_id=" + rst_id + " and rp.review_number=rv.review_number and reply_number=" + reply_number);
+					+ "where rst_id=? and rp.review_number=rv.review_number and reply_number=?");
+			pStatement.setInt(1, rst_id);
+			pStatement.setInt(2, reply_number);
+
 			connection.setAutoCommit(false);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				if (resultSet.getInt("rst_id") == rst_id) {
+				if (resultSet.getInt(1) == rst_id) {
 					pStatement = connection.prepareStatement("delete from reply where reply_number=" + reply_number);
 					result = pStatement.executeUpdate();
 
@@ -404,6 +442,7 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 리뷰 목록 조회
 	public ArrayList<ReviewDTO> getReviews(int rst_id, boolean onlyPhotoReview) {
 		// 리뷰 목록 조회
 
@@ -440,8 +479,8 @@ public class ReviewDAO {
 		return resultList;
 	}
 
+	// 리뷰 번호에 해당하는 댓글 조회	
 	public ReplyDTO getReply(int review_number) {
-		// 리뷰 번호에 해당하는 댓글 조회
 		// 조회에 실패하거나 댓글이 없을 경우 null 반환
 		ReplyDTO result = null;
 
@@ -463,9 +502,8 @@ public class ReviewDAO {
 		return result;
 	}
 
-
+	// 자신의 리뷰를 조회
 	public ArrayList<ReviewDTO> getMyReviews(String email) {
-		// 자신의 리뷰를 조회
 		ArrayList<ReviewDTO> resultList = new ArrayList<>();
 
 		try {
