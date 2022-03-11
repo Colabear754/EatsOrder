@@ -443,7 +443,7 @@ public class ReviewDAO {
 	}
 
 	// 리뷰 목록 조회
-	public ArrayList<ReviewDTO> getReviews(int rst_id, boolean onlyPhotoReview) {
+	public ArrayList<ReviewDTO> getReviews(int rst_id, boolean onlyPhotoReview, int start, int end) {
 		// 리뷰 목록 조회
 
 		ArrayList<ReviewDTO> resultList = new ArrayList<>();
@@ -451,17 +451,22 @@ public class ReviewDAO {
 
 		if (onlyPhotoReview) {
 			// 사진이 포함된 리뷰만 조회
-			sql = "select * from review where photo1 is not null and review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=" + rst_id + ") order by regist_date desc";
+			sql = "select * from (select rownum r, review.* from review where photo1 is not null and review_number in "
+					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
+					+ "where r>=? and r<=?";
 		} else {
 			// 모든 리뷰 조회
-			sql = "select * from review where review_number in (select review_number from v_review_to_rst where rst_id="
-					+ rst_id + ") order by regist_date desc";
+			sql = "select * from (select rownum r, review.* from review where review_number in "
+					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
+					+ "where r>=? and r<=?";
 		}
 
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(sql);
+			pStatement.setInt(1, rst_id);
+			pStatement.setInt(2, start);
+			pStatement.setInt(3, end);
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -503,13 +508,17 @@ public class ReviewDAO {
 	}
 
 	// 자신의 리뷰를 조회
-	public ArrayList<ReviewDTO> getMyReviews(String email) {
+	public ArrayList<ReviewDTO> getMyReviews(String email, int start, int end) {
 		ArrayList<ReviewDTO> resultList = new ArrayList<>();
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select review.* from review, order_history oh "
-					+ "where review.order_number=oh.order_number and oh.orderer='" + email + "'");
+			pStatement = connection.prepareStatement("select * from ("
+					+ "select rownum rn, rv.* from review rv, order_history oh where rv.order_number=oh.order_number "
+					+ "and oh.orderer=? order by rv.review_number desc) where rn>=? and rn<=?");
+			pStatement.setString(1, email);
+			pStatement.setInt(2, start);
+			pStatement.setInt(3, end);
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {

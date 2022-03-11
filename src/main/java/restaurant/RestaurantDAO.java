@@ -97,7 +97,8 @@ public class RestaurantDAO {
 	}
 
 	// 매장 목록 조회
-	public ArrayList<RestaurantDTO> getRestaurants(int category_id, int orderBy, String sido, String sigungu, String bname) {
+	public ArrayList<RestaurantDTO> getRestaurants(int category_id, int orderBy, String sido, String sigungu, String bname,
+			int start, int end) {
 		// 현재 시/도, 시/군/구, 동/리에 해당하는 매장 분류 및 정렬 기준별 매장 목록을 조회하여 리스트에 추가 후 반환
 		// category_id = 0일 경우 전체 매장 목록 조회
 		// orderBy 값에 따라 정렬 기준 변경
@@ -107,27 +108,28 @@ public class RestaurantDAO {
 		switch (orderBy) {
 		case 1:
 			// 기본 정렬
-			sql = "select rst.* from restaurant rst, delivery_zone dz "
-					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=?";
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz "
+					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=?) where r>=? and r<=?";
 			break;
 		case 2:
 			// 별점순
-			sql = "select rst.* from restaurant rst, delivery_zone dz, v_rst_rating vrr "
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz, v_rst_rating vrr "
 					+ "where rst.rst_id=vrr.rst_id and rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? "
-					+ "order by avg_rating desc";
+					+ "order by avg_rating desc) where r>=? and r<=?";
 			break;
 		case 3:
 			// 리뷰 많은 순
-			sql = "select rst.* from restaurant rst, delivery_zone dz, v_rst_review_count vrrc "
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz, v_rst_review_count vrrc "
 					+ "where rst.rst_id=vrrc.rst_id and rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? "
-					+ "order by review_count desc";
+					+ "order by review_count desc) where r>=? and r<=?";
 			break;
 		case 4:
 			// 최소 주문 금액 순
-			sql = "select rst.* from restaurant rst, delivery_zone dz "
-					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? order by min_order asc";
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz "
+					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? order by min_order asc) where r>=? and r<=?";
 		default:
-			sql = "";
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz "
+					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=?) where r>=? and r<=?";
 			break;
 		}
 
@@ -137,7 +139,6 @@ public class RestaurantDAO {
 
 			strBuffer.insert(sql.indexOf("order"), "and category_id=? ");
 			sql = strBuffer.toString();
-
 		}
 
 		try {
@@ -146,9 +147,16 @@ public class RestaurantDAO {
 			pStatement.setString(1, sido);
 			pStatement.setString(2, sigungu);
 			pStatement.setString(3, bname);
+			
 			if (sql.indexOf("category_id") > 0) {
 				pStatement.setInt(4, category_id);
+				pStatement.setInt(5, start);
+				pStatement.setInt(6, end);
+			} else {
+				pStatement.setInt(4, start);
+				pStatement.setInt(5, end);
 			}
+			
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -171,7 +179,7 @@ public class RestaurantDAO {
 
 	// 매장 목록 검색
 	public ArrayList<RestaurantDTO> getRestaurants(int category_id, int orderBy, String sido, String sigungu, String bname,
-			String searchText) {
+			int start, int end, String searchText) {
 		// 현재 시/도, 시/군/구, 동/리 및 검색어에 해당하는 매장 분류 및 정렬 기준별 매장 목록을 조회하여 리스트에 추가 후 반환
 		// category_id = 0일 경우 전체 매장 목록 조회
 		// orderBy 값에 따라 정렬 기준 변경
@@ -181,26 +189,26 @@ public class RestaurantDAO {
 		switch (orderBy) {
 		case 1:
 			// 기본 정렬
-			sql = "select rst.* from restaurant rst, delivery_zone dz "
-					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? and rst_name like ?";
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz "
+					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? and rst_name like ?) where r>=? and r<=?";
 			break;
 		case 2:
 			// 별점순
-			sql = "select rst.* from restaurant rst, delivery_zone dz, v_rst_rating vrr "
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz, v_rst_rating vrr "
 					+ "where rst.rst_id=vrr.rst_id and rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? and rst_name like ? "
-					+ "order by avg_rating desc";
+					+ "order by avg_rating desc) where r>=? and r<=?";
 			break;
 		case 3:
 			// 리뷰 많은 순
-			sql = "select rst.* from restaurant rst, delivery_zone dz, v_rst_review_count vrrc "
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz, v_rst_review_count vrrc "
 					+ "where rst.rst_id=vrrc.rst_id and rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? and rst_name like ? "
-					+ "order by review_count desc";
+					+ "order by review_count desc) where r>=? and r<=?";
 			break;
 		case 4:
 			// 최소 주문 금액 순
-			sql = "select rst.* from restaurant rst, delivery_zone dz "
+			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz "
 					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? and rst_name like ? "
-					+ "order by min_order asc";
+					+ "order by min_order asc) where r>=? and r<=?";
 		default:
 			sql = "";
 			break;
@@ -212,7 +220,6 @@ public class RestaurantDAO {
 
 			strBuffer.insert(sql.indexOf("order"), "and category_id=? ");
 			sql = strBuffer.toString();
-
 		}
 
 		try {
@@ -222,9 +229,16 @@ public class RestaurantDAO {
 			pStatement.setString(2, sigungu);
 			pStatement.setString(3, bname);
 			pStatement.setString(4, "%" + searchText + "%");
+			
 			if (sql.indexOf("category_id") > 0) {
 				pStatement.setInt(5, category_id);
+				pStatement.setInt(6, start);
+				pStatement.setInt(7, end);
+			} else {
+				pStatement.setInt(5, start);
+				pStatement.setInt(6, end);
 			}
+			
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
