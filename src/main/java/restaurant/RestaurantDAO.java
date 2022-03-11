@@ -411,14 +411,17 @@ public class RestaurantDAO {
 	}
 
 	// 찜한 매장 조회
-	public ArrayList<RestaurantDTO> getFavoriteRestaurants(String email) {
+	public ArrayList<RestaurantDTO> getFavoriteRestaurants(String email, int start, int end) {
 		ArrayList<RestaurantDTO> resultList = new ArrayList<>();
 
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
-					"select rst.* from restaurant rst, favorite_restaurant fr " + "where email=? and rst.rst_id=fr.rst_id");
+					"select * from (select rownum r, rst.* from restaurant rst, favorite_restaurant fr "
+					+ "where email=? and rst.rst_id=fr.rst_id) where r>=? and r<=?");
 			pStatement.setString(1, email);
+			pStatement.setInt(2, start);
+			pStatement.setInt(3, end);
 
 			resultSet = pStatement.executeQuery();
 
