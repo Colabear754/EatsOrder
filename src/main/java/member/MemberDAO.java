@@ -48,20 +48,20 @@ public class MemberDAO {
 	}
 
 	// 중복값 체크
-	public boolean checkMemberInfo(String data, int type) {
+	public boolean checkMemberInfo(String data, String type) {
 		// type = 1: 이메일, 2: 전화번호, 3: 닉네임 중복값 체크
 		boolean result = false;
-		String checkType = "";
+		String sql = "";
 
 		switch (type) {
-		case 1:
-			checkType = "email";
+		case "email":
+			sql = "select email from member_info where email=?";
 			break;
-		case 2:
-			checkType = "phone";
+		case "phone":
+			sql = "select phone from member_info where phone=?";
 			break;
-		case 3:
-			checkType = "nickname";
+		case "nickname":
+			sql = "select nickname from member_info where nickname=?";
 			break;
 		default:
 			break;
@@ -69,16 +69,14 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select ? from member_info where ?=?");
-			pStatement.setString(1, checkType);
-			pStatement.setString(2, checkType);
-			pStatement.setString(3, data);
+			pStatement = connection.prepareStatement(sql);
+			pStatement.setString(1, data);
 
 			resultSet = pStatement.executeQuery();
 
 			result = resultSet.next();
 
-			System.out.println(checkType + " 중복여부 : " + result);
+			System.out.println(type + " 중복여부 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -178,33 +176,35 @@ public class MemberDAO {
 	}
 
 	// 회원수정
-	public int updateMember(String email, String password, String phone, String nickname, int receive_marketing) {
+	public int updateMember(String email, String password, String newPassword, String phone, String nickname, int receive_marketing) {
 		// result가 0보다 크면 회원수정 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select password from member_login where email='" + email + "'");
+			pStatement = connection.prepareStatement("select password from member_login where email=?");
+			pStatement.setString(1, email);
 			resultSet = pStatement.executeQuery();
 
 			connection.setAutoCommit(false);
 			if (resultSet.next()) {
 				if (resultSet.getString(1).equals(password)) {
 					pStatement = connection.prepareStatement(
-							"update member_info set phone=?, nickname=?, receive_marketing=? where email='?");
+							"update member_info set phone=?, nickname=?, receive_marketing=? where email=?");
 					pStatement.setString(1, phone);
 					pStatement.setString(2, nickname);
 					pStatement.setInt(3, receive_marketing);
 					pStatement.setString(4, email);
 
 					result = pStatement.executeUpdate();
-				}
-				if (result > 0 && !password.isBlank()) {
-					pStatement = connection.prepareStatement("update member_login set password=? where email=?");
-					pStatement.setString(1, password);
-					pStatement.setString(2, email);
+					
+					if (result > 0 && !password.isBlank()) {
+						pStatement = connection.prepareStatement("update member_login set password=? where email=?");
+						pStatement.setString(1, newPassword);
+						pStatement.setString(2, email);
 
-					result = pStatement.executeUpdate();
+						result = pStatement.executeUpdate();
+					}
 				}
 
 				if (result > 0) {
@@ -252,7 +252,8 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select * from member_info where email='" + email + "'");
+			pStatement = connection.prepareStatement("select * from member_info where email=?");
+			pStatement.setString(1, email);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
