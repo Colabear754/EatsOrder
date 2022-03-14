@@ -24,13 +24,13 @@ public class MemberDAO {
 		}
 	}
 
-	// 로그인
-	public boolean login(String email, String password) {
+	// 회원 로그인
+	public boolean memberLogin(String email, String password) {
 		boolean result = false;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select * from member_login where email=? and password=?");
+			pStatement = connection.prepareStatement("select email from member_login where email=? and password=?");
 			pStatement.setString(1, email);
 			pStatement.setString(2, password);
 
@@ -44,6 +44,48 @@ public class MemberDAO {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
+		return result;
+	}
+	
+	// 비회원 로그인
+	public boolean nonmemberLogin(String phone, String password) {
+		// 이미 저장된 정보가 있으면 바로 로그인하고 없으면 새로운 레코드를 저장 후 로그인
+		// 저장된 정보가 있지만 비밀번호를 틀릴 경우엔 로그인 실패
+		boolean result = false;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select phone from nonmember where phone=?");
+			pStatement.setString(1, phone);
+			
+			resultSet = pStatement.executeQuery();
+			
+			result = resultSet.next();
+			
+			if (result) {
+				result = false;
+				pStatement = connection.prepareStatement("select phone from nonmember where phone=? and password=?");
+				pStatement.setString(1, phone);
+				pStatement.setString(2, password);
+				
+				resultSet = pStatement.executeQuery();
+				
+				result = resultSet.next();
+			} else {
+				pStatement = connection.prepareStatement("insert into nonmember values(?, ?)");
+				pStatement.setString(1, phone);
+				pStatement.setString(2, password);
+				
+				if (pStatement.executeUpdate() > 0) {
+					result = true;
+				}
+			}
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
 		return result;
 	}
 
