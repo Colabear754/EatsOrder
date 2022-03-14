@@ -1,15 +1,15 @@
 package order;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class OrderHistoryDTO {
-	private int order_number;
+	private String order_number;
 	private String orderer;
 	private String destination;
 	private String coupon_id;
 	private int used_point;
 	private String payment_method;
-	private Date pay_date;
+	private Timestamp pay_date;
 	private String order_request;
 	private int payment_status;
 	private String reason_cancellation;
@@ -18,8 +18,8 @@ public class OrderHistoryDTO {
 		super();
 	}
 
-	public OrderHistoryDTO(int order_number, String orderer, String destination, String coupon_id, int used_point,
-			String payment_method, Date pay_date, String order_request, int payment_status, String reason_cancellation) {
+	public OrderHistoryDTO(String order_number, String orderer, String destination, String coupon_id, int used_point,
+			String payment_method, Timestamp pay_date, String order_request, int payment_status, String reason_cancellation) {
 		this.order_number = order_number;
 		this.orderer = orderer;
 		this.destination = destination;
@@ -32,11 +32,11 @@ public class OrderHistoryDTO {
 		this.reason_cancellation = reason_cancellation;
 	}
 
-	public int getOrder_number() {
+	public String getOrder_number() {
 		return order_number;
 	}
 
-	public void setOrder_number(int order_number) {
+	public void setOrder_number(String order_number) {
 		this.order_number = order_number;
 	}
 
@@ -80,11 +80,11 @@ public class OrderHistoryDTO {
 		this.payment_method = payment_method;
 	}
 
-	public Date getPay_date() {
+	public Timestamp getPay_date() {
 		return pay_date;
 	}
 
-	public void setPay_date(Date pay_date) {
+	public void setPay_date(Timestamp pay_date) {
 		this.pay_date = pay_date;
 	}
 
@@ -96,7 +96,7 @@ public class OrderHistoryDTO {
 		this.order_request = order_request;
 	}
 
-	public int isPayment_status() {
+	public int getPayment_status() {
 		return payment_status;
 	}
 

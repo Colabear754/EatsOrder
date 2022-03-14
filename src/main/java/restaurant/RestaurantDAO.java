@@ -73,7 +73,7 @@ public class RestaurantDAO {
 			pStatement.setString(13, data.getEstimated_time());
 			pStatement.setString(14, data.getRst_photo());
 			pStatement.setString(15, data.getRst_logo());
-			pStatement.setInt(16, data.is_enable());
+			pStatement.setInt(16, data.getEnable());
 
 			result = pStatement.executeUpdate();
 
@@ -292,7 +292,7 @@ public class RestaurantDAO {
 				pStatement.setString(13, data.getEstimated_time());
 				pStatement.setString(14, data.getRst_photo());
 				pStatement.setString(15, data.getRst_logo());
-				pStatement.setInt(16, data.is_enable());
+				pStatement.setInt(16, data.getEnable());
 				pStatement.setInt(17, data.getRst_id());
 
 				result = pStatement.executeUpdate();

@@ -71,11 +71,11 @@ public class MenuDTO {
 		this.price = price;
 	}
 
-	public int is_enable() {
+	public int getEnable() {
 		return enable;
 	}
 
-	public void set_enable(int enable) {
+	public void setEnable(int enable) {
 		this.enable = enable;
 	}
 }

@@ -91,15 +91,15 @@ public class CouponDAO {
 					+ "v.coupon_id=o.coupon_id and o.coupon_id=? and owner_id=? and available_count > 0");
 			pStatement.setString(1, coupon_id);
 			pStatement.setString(2, owner_id);
-			
+
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				pStatement = connection.prepareStatement("update owned_coupon set available_count=available_count - 1 "
-						+ "where coupon_id=? and owner_id=?");
+				pStatement = connection.prepareStatement(
+						"update owned_coupon set available_count=available_count - 1 " + "where coupon_id=? and owner_id=?");
 				pStatement.setString(1, coupon_id);
 				pStatement.setString(2, owner_id);
-				
+
 				result = pStatement.executeUpdate();
 
 				if (result > 0) {
@@ -154,25 +154,26 @@ public class CouponDAO {
 	}
 
 	// 유효기간이 만료된 쿠폰 삭제
-	public int deleteExpiredCoupon() {
-		// result가 0보다 크면 만료쿠폰 삭제 성공
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("delete from valid_coupon where expiration_date < trunc(sysdate)");
-			connection.setAutoCommit(false);
-			result = pStatement.executeUpdate();
-			if (result > 0) {
-				System.out.println("삭제된 유효기간이 만료된 쿠폰 : " + result);
-				connection.commit();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement);
-		}
-
-		return result;
-	}
+	// 쿠폰 유효기간이 만료된 후 주문 내역을 조회할 경우를 대비하여 메소드 비활성화
+	//	public int deleteExpiredCoupon() {
+	//		// result가 0보다 크면 만료쿠폰 삭제 성공
+	//		int result = -1;
+	//
+	//		try {
+	//			connection = connectionMgr.getConnection();
+	//			pStatement = connection.prepareStatement("delete from valid_coupon where expiration_date < trunc(sysdate)");
+	//			connection.setAutoCommit(false);
+	//			result = pStatement.executeUpdate();
+	//			if (result > 0) {
+	//				System.out.println("삭제된 유효기간이 만료된 쿠폰 : " + result);
+	//				connection.commit();
+	//			}
+	//		} catch (Exception e) {
+	//			e.printStackTrace();
+	//		} finally {
+	//			connectionMgr.freeConnection(connection, pStatement);
+	//		}
+	//
+	//		return result;
+	//	}
 }
