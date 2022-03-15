@@ -484,19 +484,19 @@ public class ReviewDAO {
 		return resultList;
 	}
 
-	// 리뷰 번호에 해당하는 댓글 조회	
-	public ReplyDTO getReply(int review_number) {
-		// 조회에 실패하거나 댓글이 없을 경우 null 반환
-		ReplyDTO result = null;
+	// 매장ID에 해당하는 리뷰 댓글 리스트 조회	
+	public ArrayList<ReplyDTO> getReply(int rst_id) {
+		ArrayList<ReplyDTO> resultList = new ArrayList<>();;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select * from reply where review_number=" + review_number);
+			pStatement = connection.prepareStatement("select r.* from reply r, v_review_to_rst vrr where r.review_number=vrr.review_number and rst_id=?");
+			pStatement.setInt(1, rst_id);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				result = new ReplyDTO(resultSet.getInt("reply_number"), resultSet.getInt("review_number"),
-						resultSet.getDate("regist_date"), resultSet.getString("content"));
+				resultList.add(new ReplyDTO(resultSet.getInt("reply_number"), resultSet.getInt("review_number"),
+						resultSet.getDate("regist_date"), resultSet.getString("content")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -504,7 +504,7 @@ public class ReviewDAO {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
-		return result;
+		return resultList;
 	}
 
 	// 자신의 리뷰를 조회
