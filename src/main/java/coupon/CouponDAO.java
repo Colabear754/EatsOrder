@@ -130,7 +130,8 @@ public class CouponDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection
 					.prepareStatement("select v.*, o.available_count from valid_coupon v, owned_coupon o where "
-							+ "v.coupon_id=o.coupon_id and o.owner_id='" + owner_id + "' and o.available_count > 0");
+							+ "v.coupon_id=o.coupon_id and o.owner_id=? and o.available_count > 0");
+			pStatement.setString(1, owner_id);
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -144,6 +145,32 @@ public class CouponDAO {
 				result.put("coupons", couponList);
 				result.put("counts", countList);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 쿠폰 개수 조회
+	public int getCouponCount(String owner_id) {
+		// 매개변수로 받은 사용자가 보유한 쿠폰 개수를 반환
+		int result = -1;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection
+					.prepareStatement("select count(*) from owned_coupon where owner_id=? and available_count > 0");
+			pStatement.setString(1, owner_id);
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = resultSet.getInt(1);
+			}
+			
+			System.out.println("보유한 쿠폰 개수 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
