@@ -9,7 +9,7 @@ import connectionMgr.DBConnectionMgr;
  * 구현된 기능
  * 사장님 로그인, 매장 분류별 매장 목록 조회, 매장 검색, 매장 정보 수정, 사장님 정보 수정, 매장 삭제, 
  * 매장 찜하기, 찜한 매장 조회, 배달지역 추가, 배달지역 삭제,
- * 매장ID 찾기
+ * 매장ID 찾기, 매장 평점 조회
 */
 
 public class RestaurantDAO {
@@ -530,5 +530,31 @@ public class RestaurantDAO {
 		}
 
 		return resultList;
+	}
+	
+	// 매장 평점 조회
+	public double getRating(int rst_id) {
+		// 매장 평점을 반환
+		// 조회에 실패하면 -1을 반환
+		double result = -1;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select avg_rating from v_rst_rating where rst_id=?");
+			pStatement.setInt(1, rst_id);
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = resultSet.getDouble(1);
+			}
+			
+			System.out.println("매장 평점 : " + result);
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
+		return result;
 	}
 }
