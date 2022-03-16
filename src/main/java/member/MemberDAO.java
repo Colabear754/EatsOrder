@@ -30,7 +30,8 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select email from member_login where email=? and password=?");
+			pStatement = connection
+					.prepareStatement("select email from member_login where email=? and password=pkg_crypto.encrypt(?)");
 			pStatement.setString(1, email);
 			pStatement.setString(2, password);
 
@@ -46,46 +47,47 @@ public class MemberDAO {
 
 		return result;
 	}
-	
+
 	// 비회원 로그인
 	public boolean nonmemberLogin(String phone, String password) {
 		// 이미 저장된 정보가 있으면 바로 로그인하고 없으면 새로운 레코드를 저장 후 로그인
 		// 저장된 정보가 있지만 비밀번호를 틀릴 경우엔 로그인 실패
 		boolean result = false;
-		
+
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select phone from nonmember where phone=?");
 			pStatement.setString(1, phone);
-			
+
 			resultSet = pStatement.executeQuery();
-			
+
 			result = resultSet.next();
-			
+
 			if (result) {
 				result = false;
-				pStatement = connection.prepareStatement("select phone from nonmember where phone=? and password=?");
+				pStatement = connection
+						.prepareStatement("select phone from nonmember where phone=? and password=pkg_crypto.encrypt(?)");
 				pStatement.setString(1, phone);
 				pStatement.setString(2, password);
-				
+
 				resultSet = pStatement.executeQuery();
-				
+
 				result = resultSet.next();
 			} else {
-				pStatement = connection.prepareStatement("insert into nonmember values(?, ?)");
+				pStatement = connection.prepareStatement("insert into nonmember values(?, pkg_crypto.encrypt(?))");
 				pStatement.setString(1, phone);
 				pStatement.setString(2, password);
-				
+
 				if (pStatement.executeUpdate() > 0) {
 					result = true;
 				}
 			}
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
-		
+
 		return result;
 	}
 
@@ -148,7 +150,7 @@ public class MemberDAO {
 
 			if (result > 0) {
 				connection.commit();
-				pStatement = connection.prepareStatement("insert into member_login values(?, ?)");
+				pStatement = connection.prepareStatement("insert into member_login values(?, pkg_crypto.encrypt(?))");
 				pStatement.setString(1, email);
 				pStatement.setString(2, password);
 
@@ -176,34 +178,38 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select password from member_login where email='" + email + "'");
+			pStatement = connection
+					.prepareStatement("select email from member_login where email=? and password=pkg_crypto.encrypt(?)");
+			pStatement.setString(1, email);
+			pStatement.setString(2, password);
 			resultSet = pStatement.executeQuery();
 
 			connection.setAutoCommit(false);
 			if (resultSet.next()) {
-				if (password.equals(resultSet.getString("password"))) {
-					if (password.equals(resultSet.getString("password"))) {
-						pStatement = connection.prepareStatement("delete from member_login where email='" + email + "'");
+				pStatement = connection.prepareStatement("delete from member_login where email=?");
+				pStatement.setString(1, email);
+				result = pStatement.executeUpdate();
+				if (result > 0) {
+					System.out.println("로그인 정보 삭제 성공");
+					pStatement = connection.prepareStatement("update member_info set withdraw_date=sysdate where email=?");
+					pStatement.setString(1, email);
+					result = pStatement.executeUpdate();
+					if (result > 0) {
+						System.out.println("회원탈퇴일 수정 성공");
+						pStatement = connection.prepareStatement(
+								"insert into withdraw_member values(member_index_seq.nextval, ?, sysdate, ?)");
+						pStatement.setString(1, email);
+						pStatement.setString(2, reason_withdraw);
 						result = pStatement.executeUpdate();
+
 						if (result > 0) {
-							System.out.println("로그인 정보 삭제 성공");
-							pStatement = connection.prepareStatement(
-									"update member_info set withdraw_date=sysdate where email='" + email + "'");
-							result = pStatement.executeUpdate();
-							if (result > 0) {
-								System.out.println("회원탈퇴일 수정 성공");
-								pStatement = connection
-										.prepareStatement("insert into withdraw_member values(member_index_seq.nextval, '"
-												+ email + "', sysdate, '" + reason_withdraw + "')");
-								result = pStatement.executeUpdate();
-							}
+							connection.commit();
 						}
 					}
 				}
 			}
 
 			if (result > 0) {
-				connection.commit();
 				System.out.println("회원탈퇴 성공");
 			} else {
 				System.out.println("회원탈퇴 실패");
@@ -218,35 +224,37 @@ public class MemberDAO {
 	}
 
 	// 회원수정
-	public int updateMember(String email, String password, String newPassword, String phone, String nickname, int receive_marketing) {
+	public int updateMember(String email, String password, String newPassword, String phone, String nickname,
+			int receive_marketing) {
 		// result가 0보다 크면 회원수정 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select password from member_login where email=?");
+			pStatement = connection
+					.prepareStatement("select email from member_login where email=? and password=pkg_crypto.encrypt(?)");
 			pStatement.setString(1, email);
+			pStatement.setString(2, password);
 			resultSet = pStatement.executeQuery();
 
 			connection.setAutoCommit(false);
 			if (resultSet.next()) {
-				if (resultSet.getString(1).equals(password)) {
-					pStatement = connection.prepareStatement(
-							"update member_info set phone=?, nickname=?, receive_marketing=? where email=?");
-					pStatement.setString(1, phone);
-					pStatement.setString(2, nickname);
-					pStatement.setInt(3, receive_marketing);
-					pStatement.setString(4, email);
+				pStatement = connection
+						.prepareStatement("update member_info set phone=?, nickname=?, receive_marketing=? where email=?");
+				pStatement.setString(1, phone);
+				pStatement.setString(2, nickname);
+				pStatement.setInt(3, receive_marketing);
+				pStatement.setString(4, email);
+
+				result = pStatement.executeUpdate();
+
+				if (result > 0 && !newPassword.isBlank()) {
+					pStatement = connection
+							.prepareStatement("update member_login set password=pkg_crypto.encrypt(?) where email=?");
+					pStatement.setString(1, newPassword);
+					pStatement.setString(2, email);
 
 					result = pStatement.executeUpdate();
-					
-					if (result > 0 && !password.isBlank()) {
-						pStatement = connection.prepareStatement("update member_login set password=? where email=?");
-						pStatement.setString(1, newPassword);
-						pStatement.setString(2, email);
-
-						result = pStatement.executeUpdate();
-					}
 				}
 
 				if (result > 0) {
@@ -320,8 +328,9 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement(
-					"select email from member_info where phone='" + phone + "' and " + "withdraw_date is null");
+			pStatement = connection
+					.prepareStatement("select email from member_info where phone=? and withdraw_date is null");
+			pStatement.setString(1, phone);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -367,13 +376,13 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("update member_login set password=? where email=?");
+			pStatement = connection.prepareStatement("update member_login set password=pkg_crypto.encrypt(?) where email=?");
 			pStatement.setString(1, password);
 			pStatement.setString(2, email);
-			
+
 			result = pStatement.executeUpdate();
-			
-			System.out.println("비밀번호 재설정 성공 여부 : " + result);
+
+			System.out.println("비밀번호 재설정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

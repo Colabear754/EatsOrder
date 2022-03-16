@@ -34,12 +34,15 @@ public class RestaurantDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select * from restaurant_manager where rst_id=? and password=?");
+			pStatement = connection
+					.prepareStatement("select * from restaurant_manager where rst_id=? and password=pkg_crypto.encrypt(?)");
 			pStatement.setInt(1, rst_id);
 			pStatement.setString(2, password);
 			resultSet = pStatement.executeQuery();
 
 			result = resultSet.next();
+			
+			System.out.println("로그인 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -56,6 +59,7 @@ public class RestaurantDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
+			connection.setAutoCommit(false);
 			pStatement = connection.prepareStatement("insert into restaurant "
 					+ "values(rst_id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			pStatement.setInt(1, data.getCategory_id());
@@ -79,11 +83,16 @@ public class RestaurantDAO {
 
 			if (result > 0) {
 				// 매장 정보 추가에 성공했으면 사장님 로그인 정보 추가
-				pStatement = connection.prepareStatement("insert into restaurant_manager values(rst_id_seq.currval, ?, ?)");
+				pStatement = connection.prepareStatement(
+						"insert into restaurant_manager values(rst_id_seq.currval, pkg_crypto.encrypt(?), ?)");
 				pStatement.setString(1, password);
 				pStatement.setString(2, phone);
 
 				result = pStatement.executeUpdate();
+
+				if (result > 0) {
+					connection.commit();
+				}
 			}
 
 			System.out.println("신규 매장 추가 결과 : " + result);
@@ -147,7 +156,7 @@ public class RestaurantDAO {
 			pStatement.setString(1, sido);
 			pStatement.setString(2, sigungu);
 			pStatement.setString(3, bname);
-			
+
 			if (sql.indexOf("category_id") > 0) {
 				pStatement.setInt(4, category_id);
 				pStatement.setInt(5, start);
@@ -156,7 +165,7 @@ public class RestaurantDAO {
 				pStatement.setInt(4, start);
 				pStatement.setInt(5, end);
 			}
-			
+
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -229,7 +238,7 @@ public class RestaurantDAO {
 			pStatement.setString(2, sigungu);
 			pStatement.setString(3, bname);
 			pStatement.setString(4, "%" + searchText + "%");
-			
+
 			if (sql.indexOf("category_id") > 0) {
 				pStatement.setInt(5, category_id);
 				pStatement.setInt(6, start);
@@ -238,7 +247,7 @@ public class RestaurantDAO {
 				pStatement.setInt(5, start);
 				pStatement.setInt(6, end);
 			}
-			
+
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -315,19 +324,20 @@ public class RestaurantDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select rst_id from restaurant_manager where rst_id=? and password=?");
+			pStatement = connection.prepareStatement(
+					"select rst_id from restaurant_manager " + "where rst_id=? and password=pkg_crypto.encrypt(?)");
 			pStatement.setInt(1, rst_id);
 			pStatement.setString(2, password);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				if (phone.isBlank()) {
-					pStatement = connection.prepareStatement("update restaurant_manager set password=? where rst_id=?");
-					pStatement.setString(1, newPassword);
+				if (newPassword.isBlank()) {
+					pStatement = connection.prepareStatement("update restaurant_manager set phone=? where rst_id=?");
+					pStatement.setString(1, phone);
 					pStatement.setInt(2, rst_id);
 				} else {
-					pStatement = connection
-							.prepareStatement("update restaurant_manager set password=?, phone=? where rst_id=?");
+					pStatement = connection.prepareStatement(
+							"update restaurant_manager set password=pkg_crypto.encrypt(?), phone=? where rst_id=?");
 					pStatement.setString(1, newPassword);
 					pStatement.setString(2, phone);
 					pStatement.setInt(3, rst_id);
@@ -354,7 +364,8 @@ public class RestaurantDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select rst_id from restaurant_manager where rst_id=? and password=?");
+			pStatement = connection.prepareStatement(
+					"select rst_id from restaurant_manager where rst_id=? and password=pkg_crypto.encrypt(?)");
 			pStatement.setInt(1, rst_id);
 			pStatement.setString(2, password);
 			resultSet = pStatement.executeQuery();
@@ -416,9 +427,9 @@ public class RestaurantDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement(
-					"select * from (select rownum r, rst.* from restaurant rst, favorite_restaurant fr "
-					+ "where email=? and rst.rst_id=fr.rst_id) where r>=? and r<=?");
+			pStatement = connection
+					.prepareStatement("select * from (select rownum r, rst.* from restaurant rst, favorite_restaurant fr "
+							+ "where email=? and rst.rst_id=fr.rst_id) where r>=? and r<=?");
 			pStatement.setString(1, email);
 			pStatement.setInt(2, start);
 			pStatement.setInt(3, end);
@@ -476,7 +487,7 @@ public class RestaurantDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select dz.rst_id from restaurant_manager rm, delivery_zone dz "
-					+ "where rm.rst_id=dz.rst_id and rm.rst_id=? and password=?");
+					+ "where rm.rst_id=dz.rst_id and rm.rst_id=? and password=pkg_crypto.encrypt(?)");
 			pStatement.setInt(1, rst_id);
 			pStatement.setString(2, password);
 
