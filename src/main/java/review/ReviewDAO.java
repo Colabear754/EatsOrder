@@ -7,7 +7,8 @@ import connectionMgr.DBConnectionMgr;
 
 /*
  * 구현한 기능
- * 리뷰작성, 리뷰수정, 리뷰삭제, 좋아요, 좋아요개수 조회, 리뷰조회, 댓글작성, 댓글조회, 댓글수정, 댓글삭제
+ * 리뷰작성, 리뷰수정, 리뷰삭제, 좋아요, 좋아요개수 조회, 리뷰조회, 리뷰개수 조회
+ * 댓글작성, 댓글조회, 댓글수정, 댓글삭제, 댓글개수 조회
 */
 
 public class ReviewDAO {
@@ -483,6 +484,54 @@ public class ReviewDAO {
 
 		return resultList;
 	}
+	
+	// 리뷰 개수 조회
+	public int getReviewCount(int rst_id) {
+		// 매장ID에 해당하는 리뷰의 개수를 조회
+		int result = -1;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select count(review_number) from review where review_number in "
+										+ "(select review_number from v_review_to_rst where rst_id=?)");
+			pStatement.setInt(1, rst_id);
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
+		return result;
+	}
+	
+	// 댓글 개수 조회
+		public int getReplyCount(int rst_id) {
+			// 매장ID에 해당하는 리뷰의 개수를 조회
+			int result = -1;
+			
+			try {
+				connection = connectionMgr.getConnection();
+				pStatement = connection.prepareStatement("select count(reply_number) from reply where review_number in "
+											+ "(select review_number from v_review_to_rst where rst_id=?)");
+				pStatement.setInt(1, rst_id);
+				resultSet = pStatement.executeQuery();
+				
+				if (resultSet.next()) {
+					result = resultSet.getInt(1);
+				}
+			} catch (Exception e) {
+				 e.printStackTrace();
+			} finally {
+				connectionMgr.freeConnection(connection, pStatement, resultSet);
+			}
+			
+			return result;
+		}
 
 	// 매장ID에 해당하는 리뷰 댓글 리스트 조회	
 	public ArrayList<ReplyDTO> getReply(int rst_id) {
@@ -490,7 +539,8 @@ public class ReviewDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select r.* from reply r, v_review_to_rst vrr where r.review_number=vrr.review_number and rst_id=?");
+			pStatement = connection.prepareStatement("select * from reply where review_number in "
+					+ "(select review_number from v_review_to_rst where rst_id=?)");
 			pStatement.setInt(1, rst_id);
 			resultSet = pStatement.executeQuery();
 
