@@ -10,6 +10,7 @@ import connectionMgr.DBConnectionMgr;
  * 구현된 기능
  * 장바구니에 메뉴 추가, 장바구니 조회, 장바구니에서 메뉴 삭제, 장바구니 메뉴 수량 변경, 장바구니 비우기
  * 주문하기, 주문취소, 주문 상세 조회, 주문 내역 조회
+ * 포인트 사용
 */
 
 public class OrderDAO {
@@ -251,6 +252,7 @@ public class OrderDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
+			connection.setAutoCommit(false);
 			pStatement = connection
 					.prepareStatement("insert into order_history values(?, ?, ?, ?, ?, ?, systimestamp, ?, ?, ?)");
 			pStatement.setString(1, order_number);
@@ -267,32 +269,48 @@ public class OrderDAO {
 
 			if (result > 0) {
 				// 주문정보 추가에 성공하면 장바구니에서 정보를 얻어와서 주문 상세정보에 추가
+				result = 0;
 				pStatement = connection.prepareStatement("select * from cart where orderer=?");
 				pStatement.setString(1, orderer);
 				resultSet = pStatement.executeQuery();
 
-				if (resultSet.next())
-					pStatement = connection.prepareStatement("insert into order_detail values(?, ?, ?, ?)");
+				pStatement = connection.prepareStatement("insert into order_detail values(?, ?, ?, ?)");
 
-				do {
+				while (resultSet.next()) {
 					pStatement.setString(1, order_number);
 					pStatement.setInt(2, resultSet.getInt("menu_id"));
 					pStatement.setInt(3, resultSet.getInt("option_id"));
 					pStatement.setInt(4, resultSet.getInt("quantity"));
 					pStatement.addBatch();
 					pStatement.clearParameters();
-				} while (resultSet.next());
+				}
 
 				temp = pStatement.executeBatch();
 
 				for (int n : temp) {
 					if (n == Statement.SUCCESS_NO_INFO) {
-						// excuteBatch()가 성공했을 때 -2를 반환하는 에러가 있어서 대체한 구문
+						// excuteBatch()가 성공했을 때 -2만 반환하는 에러가 있어서 result값을 1씩 증가시키도록 함
 						result++;
+					} else if (n == Statement.EXECUTE_FAILED) {
+						// excuteBatch()가 실패하면 result를 -3으로 변경하고 반복 종료
+						result = Statement.EXECUTE_FAILED;
+						break;
 					}
+				}
+				
+				if (result > 0 && used_point > 0) {
+					// 사용 포인트가 있다면 포인트를 차감
+					pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
+					pStatement.setInt(1, used_point);
+					pStatement.setString(2, orderer);
+					result += pStatement.executeUpdate();
 				}
 			}
 
+			if (result > 0) {
+				connection.commit();
+			}
+			
 			System.out.println("주문 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
