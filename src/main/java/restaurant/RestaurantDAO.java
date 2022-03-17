@@ -7,7 +7,7 @@ import connectionMgr.DBConnectionMgr;
 
 /*
  * 구현된 기능
- * 사장님 로그인, 매장 분류별 매장 목록 조회, 매장 검색, 매장 정보 수정, 사장님 정보 수정, 매장 삭제, 
+ * 사장님 로그인, 매장 정보 조회, 매장 추가, 매장 분류별 매장 목록 조회, 매장 검색, 매장 정보 수정, 사장님 정보 수정, 매장 삭제, 
  * 매장 찜하기, 찜한 매장 조회, 배달지역 추가, 배달지역 삭제,
  * 매장ID 찾기, 매장 평점 조회
 */
@@ -102,6 +102,38 @@ public class RestaurantDAO {
 			connectionMgr.freeConnection(connection, pStatement);
 		}
 
+		return result;
+	}
+	
+	// 매장 정보 조회
+	public RestaurantDTO getRestaurant(int rst_id) {
+		// 매장ID에 해당하는 매장 정보를 가진 매장 객체를 반환
+		// 해당하는 정보가 없으면 null 객체를 반환
+		RestaurantDTO result = null;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from restaurant where rst_id=?");
+			pStatement.setInt(1, rst_id);
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = new RestaurantDTO(resultSet.getInt("rst_id"), resultSet.getInt("category_id"),
+						resultSet.getString("rst_name"), resultSet.getString("phone"), resultSet.getString("address"),
+						resultSet.getInt("min_order"), resultSet.getString("origin"), resultSet.getString("hours"),
+						resultSet.getString("bussiness_number"), resultSet.getString("bussiness_name"),
+						resultSet.getString("payments"), resultSet.getInt("delivery_tip"), resultSet.getString("rst_notice"),
+						resultSet.getString("estimated_time"), resultSet.getString("rst_photo"),
+						resultSet.getString("rst_logo"), resultSet.getInt("enable"));
+			}
+			
+			System.out.println("조회 결과 : " + result);
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
 		return result;
 	}
 
