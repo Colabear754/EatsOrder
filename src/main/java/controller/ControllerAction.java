@@ -18,7 +18,7 @@ public class ControllerAction extends HttpServlet {
 
 		//경로에 맞는 CommandPro.properties파일을 불러옴
 		String props = config.getInitParameter("propertyConfig");
-		String path = this.getClass().getResource("/").getPath();
+		String path = this.getClass().getResource("/").getPath();	// 상대경로를 사용하기 위해 실제 경로를 저장하는 문자열
 		path = path.replaceAll("%20", " ");
 		path = path.replace("/classes/", "");
 		System.out.println("불러온경로 : " + path + props);
