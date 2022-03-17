@@ -7,7 +7,7 @@ import connectionMgr.DBConnectionMgr;
 
 /*
  * 구현한 기능
- * 리뷰작성, 리뷰수정, 리뷰삭제, 좋아요, 좋아요개수 조회, 리뷰조회, 리뷰개수 조회
+ * 리뷰작성, 리뷰수정, 리뷰삭제, 좋아요, 좋아요개수 조회, 리뷰조회, 리뷰개수 조회, 자신의 리뷰 조회, 리뷰 작성자 조회
  * 댓글작성, 댓글조회, 댓글수정, 댓글삭제, 댓글개수 조회
 */
 
@@ -318,8 +318,8 @@ public class ReviewDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement(
-					"select count(*) from review_like where review_number=" + review_number);
+			pStatement = connection
+					.prepareStatement("select count(*) from review_like where review_number=" + review_number);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -377,7 +377,7 @@ public class ReviewDAO {
 					+ "where rst_id=? and rp.review_number=rv.review_number and reply_number=?");
 			pStatement.setInt(1, rst_id);
 			pStatement.setInt(2, reply_number);
-			
+
 			connection.setAutoCommit(false);
 			resultSet = pStatement.executeQuery();
 
@@ -484,58 +484,59 @@ public class ReviewDAO {
 
 		return resultList;
 	}
-	
+
 	// 리뷰 개수 조회
 	public int getReviewCount(int rst_id) {
 		// 매장ID에 해당하는 리뷰의 개수를 조회
 		int result = -1;
-		
+
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select count(review_number) from review where review_number in "
-										+ "(select review_number from v_review_to_rst where rst_id=?)");
+					+ "(select review_number from v_review_to_rst where rst_id=?)");
 			pStatement.setInt(1, rst_id);
 			resultSet = pStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				result = resultSet.getInt(1);
 			}
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
-		
+
 		return result;
 	}
-	
+
 	// 댓글 개수 조회
-		public int getReplyCount(int rst_id) {
-			// 매장ID에 해당하는 리뷰의 개수를 조회
-			int result = -1;
-			
-			try {
-				connection = connectionMgr.getConnection();
-				pStatement = connection.prepareStatement("select count(reply_number) from reply where review_number in "
-											+ "(select review_number from v_review_to_rst where rst_id=?)");
-				pStatement.setInt(1, rst_id);
-				resultSet = pStatement.executeQuery();
-				
-				if (resultSet.next()) {
-					result = resultSet.getInt(1);
-				}
-			} catch (Exception e) {
-				 e.printStackTrace();
-			} finally {
-				connectionMgr.freeConnection(connection, pStatement, resultSet);
+	public int getReplyCount(int rst_id) {
+		// 매장ID에 해당하는 리뷰의 개수를 조회
+		int result = -1;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select count(reply_number) from reply where review_number in "
+					+ "(select review_number from v_review_to_rst where rst_id=?)");
+			pStatement.setInt(1, rst_id);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = resultSet.getInt(1);
 			}
-			
-			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
+
+		return result;
+	}
 
 	// 매장ID에 해당하는 리뷰 댓글 리스트 조회	
 	public ArrayList<ReplyDTO> getReply(int rst_id) {
-		ArrayList<ReplyDTO> resultList = new ArrayList<>();;
+		ArrayList<ReplyDTO> resultList = new ArrayList<>();
+		;
 
 		try {
 			connection = connectionMgr.getConnection();
@@ -584,5 +585,31 @@ public class ReviewDAO {
 		}
 
 		return resultList;
+	}
+
+	// 리뷰 작성자의 이메일을 조회
+	public String getReviewWriter(int review_number) {
+		// 조회 성공 시 이메일을, 실패 시 null을 반환
+		String result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select orderer from review r, order_history oh "
+					+ "where review_number=? and r.order_number=oh.order_number");
+			pStatement.setInt(1, review_number);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = resultSet.getString(1);
+			}
+
+			System.out.println("리뷰 작성사 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
 	}
 }
