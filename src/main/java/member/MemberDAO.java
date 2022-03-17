@@ -6,7 +6,7 @@ import connectionMgr.DBConnectionMgr;
 
 /*
  * 구현된 기능
- * 로그인, 중복값 체크, 회원가입, 회원탈퇴, 회원수정, 탈퇴한지 30일 지난 회원정보 제거, 회원조회, 아이디/비밀번호 찾기
+ * 로그인, 중복값 체크, 회원가입, 회원탈퇴, 회원수정, 탈퇴한지 30일 지난 회원정보 제거, 회원조회, 닉네임조회, 아이디/비밀번호 찾기
 */
 
 public class MemberDAO {
@@ -318,6 +318,31 @@ public class MemberDAO {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
+		return result;
+	}
+	
+	// 닉네임만 조회
+	public String getNickname(String email) {
+		// 이메일에 해당하는 레코드가 없으면 null을 반환
+		String result = null;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select nickname from member_info where email=?");
+			pStatement.setString(1, email);
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = resultSet.getString(1);
+			}
+			
+			System.out.println("조회한 닉네임 : " + result);
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
 		return result;
 	}
 
