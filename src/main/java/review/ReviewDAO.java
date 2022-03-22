@@ -335,31 +335,33 @@ public class ReviewDAO {
 		return result;
 	}
 
-	// 리뷰 좋아요
+	// 리뷰 좋아요 등록 또는 취소
 	public int likeReview(int review_number, String email) {
 		// result가 0보다 크면 좋아요 처리 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection
-					.prepareStatement("select review_number from review where review_number=" + review_number);
+			pStatement = connection.prepareStatement("select * from review_like where review_number=? and email=?");
+			pStatement.setInt(1, review_number);
+			pStatement.setString(2, email);
 			resultSet = pStatement.executeQuery();
 
-			if (resultSet.next()) {
-				pStatement = connection.prepareStatement("select email from member_info where email='" + email + "'");
-				resultSet = pStatement.executeQuery();
-
-				if (resultSet.next()) {
-					pStatement = connection.prepareStatement("insert into review_like values(?, ?)");
-					pStatement.setInt(1, review_number);
-					pStatement.setString(2, email);
-
-					result = pStatement.executeUpdate();
-				}
+			if (resultSet.next()) {	// 좋아요가 이미 등록되어 있으면 좋아요를 취소, 없다면 좋아요 등록
+				pStatement = connection.prepareStatement("delete from review_like where review_number=? and email=?");
+				pStatement.setInt(1, review_number);
+				pStatement.setString(2, email);
+				System.out.print("좋아요 취소 ");
+			} else {
+				pStatement = connection.prepareStatement("insert into review_like values(?, ?)");
+				pStatement.setInt(1, review_number);
+				pStatement.setString(2, email);
+				System.out.print("좋아요 등록 ");
 			}
+			
+			result = pStatement.executeUpdate();
 
-			System.out.println("좋아요 처리 결과 : " + result);
+			System.out.println("결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
