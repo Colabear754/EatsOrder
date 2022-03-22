@@ -1,0 +1,27 @@
+package action.member;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import action.CommandAction;
+import member.MemberDAO;
+
+public class ResetMemberPasswordAction implements CommandAction {
+
+	@Override
+	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		// 비밀번호를 재설정하기 위한 액션클래스
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		MemberDAO memberProcess = new MemberDAO();
+		boolean result = false;
+		
+		if (memberProcess.resetPassword(email, password) > 0) {
+			result = true;
+		}
+		
+		request.setAttribute("result", result);
+		
+		return "/resetMemberPassword.jsp";
+	}
+}
