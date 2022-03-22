@@ -27,7 +27,7 @@ public class ReviewDAO {
 	}
 
 	// 리뷰 작성 메소드는 첨부하는 사진의 개수에 따라 6개의 메소드로 오버로딩함
-	public int insertReivew(int order_number, String content, int rating) {
+	public int insertReivew(String order_number, String content, int rating) {
 		// result가 0보다 크면 리뷰 작성 성공
 		// 사진을 첨부하지 않은 경우
 		int result = -1;
@@ -36,7 +36,7 @@ public class ReviewDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("insert into review(review_number, order_number, content, rating) "
 					+ "values(review_index_seq.nextval, ?, ?, ?)");
-			pStatement.setInt(1, order_number);
+			pStatement.setString(1, order_number);
 			pStatement.setString(2, content);
 			pStatement.setInt(3, rating);
 
@@ -52,7 +52,7 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int insertReivew(int order_number, String content, String photo1, int rating) {
+	public int insertReivew(String order_number, String content, String photo1, int rating) {
 		// result가 0보다 크면 리뷰 작성 성공
 		// 사진 1장을 첨부했을 경우
 		int result = -1;
@@ -62,7 +62,7 @@ public class ReviewDAO {
 			pStatement = connection.prepareStatement("insert into review("
 					+ "review_number, order_number, photo1, content, rating) values(review_index_seq.nextval, ?, ?, ?, ?)");
 
-			pStatement.setInt(1, order_number);
+			pStatement.setString(1, order_number);
 			pStatement.setString(2, content);
 			pStatement.setString(3, photo1);
 			pStatement.setInt(4, rating);
@@ -79,7 +79,7 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int insertReivew(int order_number, String content, String photo1, String photo2, int rating) {
+	public int insertReivew(String order_number, String content, String photo1, String photo2, int rating) {
 		// result가 0보다 크면 리뷰 작성 성공
 		// 사진 2장을 첨부했을 경우
 		int result = -1;
@@ -89,7 +89,7 @@ public class ReviewDAO {
 			pStatement = connection.prepareStatement("insert into review(review_number, order_number, photo1, photo2, "
 					+ "content, rating) values(review_index_seq.nextval, ?, ?, ?, ?, ?)");
 
-			pStatement.setInt(1, order_number);
+			pStatement.setString(1, order_number);
 			pStatement.setString(2, content);
 			pStatement.setString(3, photo1);
 			pStatement.setString(4, photo2);
@@ -107,7 +107,7 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int insertReivew(int order_number, String content, String photo1, String photo2, String photo3, int rating) {
+	public int insertReivew(String order_number, String content, String photo1, String photo2, String photo3, int rating) {
 		// result가 0보다 크면 리뷰 작성 성공
 		// 사진 3장을 첨부했을 경우
 		int result = -1;
@@ -118,7 +118,7 @@ public class ReviewDAO {
 					"insert into review(review_number, order_number, photo1, photo2, photo3, content, rating) "
 							+ "values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?)");
 
-			pStatement.setInt(1, order_number);
+			pStatement.setString(1, order_number);
 			pStatement.setString(2, content);
 			pStatement.setString(3, photo1);
 			pStatement.setString(4, photo2);
@@ -137,7 +137,7 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int insertReivew(int order_number, String content, String photo1, String photo2, String photo3, String photo4,
+	public int insertReivew(String order_number, String content, String photo1, String photo2, String photo3, String photo4,
 			int rating) {
 		// result가 0보다 크면 리뷰 작성 성공
 		// 사진 4장을 첨부했을 경우
@@ -149,7 +149,7 @@ public class ReviewDAO {
 					"insert into review(review_number, order_number, photo1, photo2, photo3, photo4, content, rating) "
 							+ "values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?, ?)");
 
-			pStatement.setInt(1, order_number);
+			pStatement.setString(1, order_number);
 			pStatement.setString(2, content);
 			pStatement.setString(3, photo1);
 			pStatement.setString(4, photo2);
@@ -169,7 +169,7 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int insertReivew(int order_number, String content, String photo1, String photo2, String photo3, String photo4,
+	public int insertReivew(String order_number, String content, String photo1, String photo2, String photo3, String photo4,
 			String photo5, int rating) {
 		// result가 0보다 크면 리뷰 작성 성공
 		// 사진 5장을 첨부했을 경우
@@ -180,7 +180,7 @@ public class ReviewDAO {
 			pStatement = connection
 					.prepareStatement("insert into review values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-			pStatement.setInt(1, order_number);
+			pStatement.setString(1, order_number);
 			pStatement.setString(2, content);
 			pStatement.setString(3, photo1);
 			pStatement.setString(4, photo2);
@@ -471,7 +471,7 @@ public class ReviewDAO {
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
-				resultList.add(new ReviewDTO(resultSet.getInt("review_number"), resultSet.getInt("order_number"),
+				resultList.add(new ReviewDTO(resultSet.getInt("review_number"), resultSet.getString("order_number"),
 						resultSet.getDate("regist_date"), resultSet.getString("content"), resultSet.getString("photo1"),
 						resultSet.getString("photo2"), resultSet.getString("photo3"), resultSet.getString("photo4"),
 						resultSet.getString("photo5"), resultSet.getInt("rating")));
@@ -573,7 +573,7 @@ public class ReviewDAO {
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
-				resultList.add(new ReviewDTO(resultSet.getInt("review_number"), resultSet.getInt("order_number"),
+				resultList.add(new ReviewDTO(resultSet.getInt("review_number"), resultSet.getString("order_number"),
 						resultSet.getDate("regist_date"), resultSet.getString("content"), resultSet.getString("photo1"),
 						resultSet.getString("photo2"), resultSet.getString("photo3"), resultSet.getString("photo4"),
 						resultSet.getString("photo5"), resultSet.getInt("rating")));
