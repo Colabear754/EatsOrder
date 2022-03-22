@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ReviewDTO {
 	private int review_number;
-	private int order_number;
+	private String order_number;
 	private Date regist_date;
 	private String content;
 	private String photo1;
@@ -18,7 +18,7 @@ public class ReviewDTO {
 		super();
 	}
 
-	public ReviewDTO(int review_number, int order_number, Date regist_date, String content, String photo1, String photo2, String photo3,
+	public ReviewDTO(int review_number, String order_number, Date regist_date, String content, String photo1, String photo2, String photo3,
 			String photo4, String photo5, int rating) {
 		this.review_number = review_number;
 		this.order_number = order_number;
@@ -40,11 +40,11 @@ public class ReviewDTO {
 		this.review_number = review_number;
 	}
 
-	public int getOrder_number() {
+	public String getOrder_number() {
 		return order_number;
 	}
 
-	public void setOrder_number(int order_number) {
+	public void setOrder_number(String order_number) {
 		this.order_number = order_number;
 	}
 
