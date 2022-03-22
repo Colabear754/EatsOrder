@@ -1,24 +1,24 @@
 package review;
 
 public class ReviewLikeDTO {
-	private int number;
+	private int review_number;
 	private String email;
 
 	public ReviewLikeDTO() {
 		super();
 	}
 
-	public ReviewLikeDTO(int number, String email) {
-		this.number = number;
+	public ReviewLikeDTO(int review_number, String email) {
+		this.review_number = review_number;
 		this.email = email;
 	}
 
 	public int getNumber() {
-		return number;
+		return review_number;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setNumber(int review_number) {
+		this.review_number = review_number;
 	}
 
 	public String getEmail() {
