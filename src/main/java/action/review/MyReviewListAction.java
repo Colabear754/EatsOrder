@@ -13,7 +13,7 @@ public class MyReviewListAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// TODO Auto-generated method stub
+		// 내 리뷰 목록 조회 액션클래스
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		String email = request.getParameter("email");
