@@ -7,8 +7,8 @@ import connectionMgr.DBConnectionMgr;
 
 /*
  * 구현한 기능
- * 리뷰작성, 리뷰수정, 리뷰삭제, 좋아요, 좋아요개수 조회, 리뷰조회, 리뷰개수 조회, 자신의 리뷰 조회, 리뷰 작성자 조회
- * 댓글작성, 댓글조회, 댓글수정, 댓글삭제, 댓글개수 조회
+ * 리뷰작성, 리뷰수정, 리뷰삭제, 좋아요, 좋아요개수 조회, 리뷰조회, 리뷰목록 조회 리뷰개수 조회, 자신의 리뷰 조회, 리뷰 작성자 조회
+ * 댓글작성, 댓글조회, 댓글수정, 댓글목록 조회 댓글삭제, 댓글개수 조회
 */
 
 public class ReviewDAO {
@@ -42,7 +42,7 @@ public class ReviewDAO {
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("리뷰 작성 성공 여부 : " + result);
+			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -69,7 +69,7 @@ public class ReviewDAO {
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("리뷰 작성 성공 여부 : " + result);
+			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -97,7 +97,7 @@ public class ReviewDAO {
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("리뷰 작성 성공 여부 : " + result);
+			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -127,7 +127,7 @@ public class ReviewDAO {
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("리뷰 작성 성공 여부 : " + result);
+			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -159,7 +159,7 @@ public class ReviewDAO {
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("리뷰 작성 성공 여부 : " + result);
+			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -191,11 +191,38 @@ public class ReviewDAO {
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("리뷰 작성 성공 여부 : " + result);
+			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement);
+		}
+
+		return result;
+	}
+
+	// 리뷰 조회
+	public ReviewDTO getReview(int review_number) {
+		ReviewDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from review where review_number=?");
+			pStatement.setInt(1, review_number);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = new ReviewDTO(resultSet.getInt("review_number"), resultSet.getString("order_number"),
+						resultSet.getDate("regist_date"), resultSet.getString("content"), resultSet.getString("photo1"),
+						resultSet.getString("photo2"), resultSet.getString("photo3"), resultSet.getString("photo4"),
+						resultSet.getString("photo5"), resultSet.getInt("rating"));
+			}
+
+			System.out.println("조회된 리뷰 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
 		return result;
@@ -222,11 +249,12 @@ public class ReviewDAO {
 					result = pStatement.executeUpdate();
 
 					if (result > 0) {
-						System.out.println("리뷰 수정 성공");
 						connection.commit();
 					}
 				}
 			}
+			
+			System.out.println("리뷰 수정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -295,12 +323,10 @@ public class ReviewDAO {
 					pStatement.setString(2, email);
 
 					result = pStatement.executeUpdate();
-
-					if (result > 0) {
-						System.out.println(email + "사용자가 " + review_number + "번 리뷰에 좋아요 처리 성공");
-					}
 				}
 			}
+			
+			System.out.println("좋아요 처리 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -324,8 +350,9 @@ public class ReviewDAO {
 
 			if (resultSet.next()) {
 				result = resultSet.getInt(1);
-				System.out.println(review_number + "번 리뷰의 좋아요 개수 : " + result);
 			}
+
+			System.out.println(review_number + "번 리뷰의 좋아요 개수 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -366,6 +393,31 @@ public class ReviewDAO {
 		return result;
 	}
 
+	// 댓글 조회
+	public ReplyDTO getReply(int reply_number) {
+		ReplyDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from reply where reply_number=?");
+			pStatement.setInt(1, reply_number);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = new ReplyDTO(resultSet.getInt("reply_number"), resultSet.getInt("review_number"),
+						resultSet.getDate("regist_date"), resultSet.getString("content"));
+			}
+			
+			System.out.println("조회된 댓글 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
 	// 댓글 수정
 	public int updateReply(int reply_number, int rst_id, String content) {
 		// result가 0보다 크면 댓글 수정 성공
@@ -390,11 +442,12 @@ public class ReviewDAO {
 					result = pStatement.executeUpdate();
 
 					if (result > 0) {
-						System.out.println("댓글 수정 성공");
 						connection.commit();
 					}
 				}
 			}
+			
+			System.out.println("댓글 수정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -476,6 +529,8 @@ public class ReviewDAO {
 						resultSet.getString("photo2"), resultSet.getString("photo3"), resultSet.getString("photo4"),
 						resultSet.getString("photo5"), resultSet.getInt("rating")));
 			}
+
+			System.out.println("조회된 리뷰 개수 : " + resultList.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -534,7 +589,7 @@ public class ReviewDAO {
 	}
 
 	// 매장ID에 해당하는 리뷰 댓글 리스트 조회	
-	public ArrayList<ReplyDTO> getReply(int rst_id) {
+	public ArrayList<ReplyDTO> getReplies(int rst_id) {
 		ArrayList<ReplyDTO> resultList = new ArrayList<>();
 		;
 
@@ -578,6 +633,8 @@ public class ReviewDAO {
 						resultSet.getString("photo2"), resultSet.getString("photo3"), resultSet.getString("photo4"),
 						resultSet.getString("photo5"), resultSet.getInt("rating")));
 			}
+
+			System.out.println("나의 리뷰 개수 : " + resultList.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -603,7 +660,7 @@ public class ReviewDAO {
 				result = resultSet.getString(1);
 			}
 
-			System.out.println("리뷰 작성사 : " + result);
+			System.out.println("리뷰 작성자 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
