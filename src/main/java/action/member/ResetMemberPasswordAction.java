@@ -14,13 +14,8 @@ public class ResetMemberPasswordAction implements CommandAction {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		MemberDAO memberProcess = new MemberDAO();
-		boolean result = false;
 		
-		if (memberProcess.resetPassword(email, password) > 0) {
-			result = true;
-		}
-		
-		request.setAttribute("result", result);
+		memberProcess.resetPassword(email, password);
 		
 		return "/resetMemberPassword.jsp";
 	}
