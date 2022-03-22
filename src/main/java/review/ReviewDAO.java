@@ -235,9 +235,9 @@ public class ReviewDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection
-					.prepareStatement("select orderer from review r, order_history oh" + "where review_number="
-							+ review_number + " and r.order_number=oh.order_number and sysdate-regist_date < 7");
+			pStatement = connection.prepareStatement("select orderer from review r, order_history oh "
+					+ "where review_number=? and r.order_number=oh.order_number and sysdate-regist_date < 7");
+			pStatement.setInt(1, review_number);
 			connection.setAutoCommit(false);
 			resultSet = pStatement.executeQuery();
 
@@ -253,7 +253,7 @@ public class ReviewDAO {
 					}
 				}
 			}
-			
+
 			System.out.println("리뷰 수정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -325,7 +325,7 @@ public class ReviewDAO {
 					result = pStatement.executeUpdate();
 				}
 			}
-			
+
 			System.out.println("좋아요 처리 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -407,7 +407,7 @@ public class ReviewDAO {
 				result = new ReplyDTO(resultSet.getInt("reply_number"), resultSet.getInt("review_number"),
 						resultSet.getDate("regist_date"), resultSet.getString("content"));
 			}
-			
+
 			System.out.println("조회된 댓글 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -446,7 +446,7 @@ public class ReviewDAO {
 					}
 				}
 			}
-			
+
 			System.out.println("댓글 수정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
