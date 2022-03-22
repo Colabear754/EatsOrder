@@ -32,7 +32,7 @@ public class ReviewListAction implements CommandAction {
 		int end = currentPage * PAGESIZE;
 
 		ArrayList<ReviewDTO> reviewList = reviewProcess.getReviews(rst_id, onlyPhotoReview, start, end); // 리뷰 리스트
-		ArrayList<ReplyDTO> replyList = reviewProcess.getReply(rst_id); // 사장님 댓글 리스트
+		ArrayList<ReplyDTO> replyList = reviewProcess.getReplies(rst_id); // 사장님 댓글 리스트
 		ArrayList<String> writerNicknameList = new ArrayList<>(); // 작성자 닉네임 리스트
 		ArrayList<Integer> likeCountList = new ArrayList<>(); // 리뷰 좋아요 개수 리스트
 
