@@ -41,7 +41,7 @@ public class RestaurantDAO {
 			resultSet = pStatement.executeQuery();
 
 			result = resultSet.next();
-			
+
 			System.out.println("로그인 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,12 +56,12 @@ public class RestaurantDAO {
 	public int insertRestaurant(RestaurantDTO data, String password, String phone) {
 		// result가 0보다 크면 매장 추가 성공
 		int result = -1;
-		
-		if (data.getPhone().indexOf("-") < 0) {	// 매장 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (data.getPhone().indexOf("-") < 0) { // 매장 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			data.setPhone(data.getPhone().replaceAll("(\\d{2,3})(\\d{3,4})(\\d{4})", "$1-$2-$3"));
 		}
-		
-		if (phone.indexOf("-") < 0) {	// 사장님 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 사장님 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -112,19 +112,19 @@ public class RestaurantDAO {
 
 		return result;
 	}
-	
+
 	// 매장 정보 조회
 	public RestaurantDTO getRestaurant(int rst_id) {
 		// 매장ID에 해당하는 매장 정보를 가진 매장 객체를 반환
 		// 해당하는 정보가 없으면 null 객체를 반환
 		RestaurantDTO result = null;
-		
+
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select * from restaurant where rst_id=?");
 			pStatement.setInt(1, rst_id);
 			resultSet = pStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				result = new RestaurantDTO(resultSet.getInt("rst_id"), resultSet.getInt("category_id"),
 						resultSet.getString("rst_name"), resultSet.getString("phone"), resultSet.getString("address"),
@@ -134,14 +134,14 @@ public class RestaurantDAO {
 						resultSet.getString("estimated_time"), resultSet.getString("rst_photo"),
 						resultSet.getString("rst_logo"), resultSet.getInt("enable"));
 			}
-			
+
 			System.out.println("조회 결과 : " + result);
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
-		
+
 		return result;
 	}
 
@@ -361,8 +361,8 @@ public class RestaurantDAO {
 	public int updateRstManager(int rst_id, String password, String newPassword, String phone) {
 		// result가 0보다 크면 수정 성공
 		int result = -1;
-		
-		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -442,20 +442,34 @@ public class RestaurantDAO {
 		return result;
 	}
 
-	// 매장 찜하기
-	public int insertFavoriteRestaurant(String email, int rst_id) {
-		// result가 0보다 크면 찜하기 성공
+	// 찜매장 등록 또는 취소
+	public int favoriteRestaurant(String email, int rst_id) {
+		// 레코드를 조회한 후 이미 존재하면 삭제, 없으면 추가
+		// result가 0보다 크면 찜매장 처리 성공
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("insert into favorite_restaurant values(?, ?)");
+			pStatement = connection.prepareStatement("select * from favorite_restaurant where email=? and rst_id=?");
 			pStatement.setString(1, email);
 			pStatement.setInt(2, rst_id);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				pStatement = connection.prepareStatement("delete from favorite_restaurant where email=? and rst_id=?");
+				pStatement.setString(1, email);
+				pStatement.setInt(2, rst_id);
+				System.out.print("매장 찜하기 취소 ");
+			} else {
+				pStatement = connection.prepareStatement("insert into favorite_restaurant values(?, ?)");
+				pStatement.setString(1, email);
+				pStatement.setInt(2, rst_id);
+				System.out.print("매장 찜하기 등록 ");
+			}
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("매장 찜하기 결과 : " + result);
+			System.out.println("결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -558,8 +572,8 @@ public class RestaurantDAO {
 	public ArrayList<Integer> findRst_id(String phone) {
 		// 매장ID를 찾지 못하면 null을, 찾으면 매장ID를 배열로 반환
 		ArrayList<Integer> resultList = new ArrayList<>();
-		
-		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -579,30 +593,30 @@ public class RestaurantDAO {
 
 		return resultList;
 	}
-	
+
 	// 매장 평점 조회
 	public double getRating(int rst_id) {
 		// 매장 평점을 반환
 		// 조회에 실패하면 -1을 반환
 		double result = -1;
-		
+
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select avg_rating from v_rst_rating where rst_id=?");
 			pStatement.setInt(1, rst_id);
 			resultSet = pStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				result = resultSet.getDouble(1);
 			}
-			
+
 			System.out.println("매장 평점 : " + result);
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
-		
+
 		return result;
 	}
 }
