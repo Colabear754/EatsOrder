@@ -12,8 +12,8 @@ public class CouponListAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
+		// 보유한 쿠폰 목록을 조회하는 액션클래스
+		String email = (String) request.getSession().getAttribute("email");
 		CouponDAO couponProcess = new CouponDAO();
 		
 		HashMap<String, ArrayList<Object>> couponData = couponProcess.getCoupons(email);
