@@ -28,28 +28,36 @@ public class CouponDAO {
 
 	// 사이트 관리자가 유효쿠폰 추가
 	public int insertValidCoupon(String coupon_id, String coupon_name, String coupon_info, int available_price,
-			int discount_amount, Date expiration_date) {
+			int discount_amount, Date expiration_date, String admin_id, String password) {
 		// result가 0보다 크면 새로운 유효쿠폰 추가 성공
 		// expiration_date는 java.sql.Date.valueOf() 메소드를 통해 "yyyy-mm-dd" 형태의 문자열을 Date 타입으로 바꿔야함
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("insert into valid_coupon values(?, ?, ?, ?, ?, ?)");
-			pStatement.setString(1, coupon_id);
-			pStatement.setString(2, coupon_name);
-			pStatement.setString(3, coupon_info);
-			pStatement.setInt(4, available_price);
-			pStatement.setInt(5, discount_amount);
-			pStatement.setDate(6, expiration_date);
+			pStatement = connection
+					.prepareStatement("select * from administrator where admin_id=? and password=pkg_crypto.encrypt(?)");
+			pStatement.setString(1, admin_id);
+			pStatement.setString(2, password);
+			resultSet = pStatement.executeQuery();
 
-			result = pStatement.executeUpdate();
+			if (resultSet.next()) {
+				pStatement = connection.prepareStatement("insert into valid_coupon values(?, ?, ?, ?, ?, ?)");
+				pStatement.setString(1, coupon_id);
+				pStatement.setString(2, coupon_name);
+				pStatement.setString(3, coupon_info);
+				pStatement.setInt(4, available_price);
+				pStatement.setInt(5, discount_amount);
+				pStatement.setDate(6, expiration_date);
 
-			System.out.println("유효쿠폰 추가 성공 여부 : " + result);
+				result = pStatement.executeUpdate();
+			}
+
+			System.out.println("유효쿠폰 추가 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			connectionMgr.freeConnection(connection, pStatement);
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
 		return result;
@@ -69,7 +77,7 @@ public class CouponDAO {
 
 			result = pStatement.executeUpdate();
 
-			System.out.println("사용자 쿠폰 등록 성공 여부 : " + result);
+			System.out.println("사용자 쿠폰 등록 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -165,11 +173,11 @@ public class CouponDAO {
 					.prepareStatement("select count(*) from owned_coupon where owner_id=? and available_count > 0");
 			pStatement.setString(1, owner_id);
 			resultSet = pStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				result = resultSet.getInt(1);
 			}
-			
+
 			System.out.println("보유한 쿠폰 개수 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
