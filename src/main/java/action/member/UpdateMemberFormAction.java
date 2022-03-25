@@ -11,7 +11,7 @@ public class UpdateMemberFormAction implements CommandAction {
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
+		String email = (String) request.getSession().getAttribute("email");
 		MemberDAO memberProcess = new MemberDAO();
 		MemberInfoDTO member = memberProcess.getMember(email);
 		

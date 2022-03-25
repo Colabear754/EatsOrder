@@ -12,7 +12,7 @@ public class MemberInfoAction implements CommandAction {
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
+		String email = (String) request.getSession().getAttribute("email");
 		MemberDAO memberProcess = new MemberDAO();
 		CouponDAO couponProcess = new CouponDAO();
 		
