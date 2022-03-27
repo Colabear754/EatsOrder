@@ -8,13 +8,10 @@ import connectionMgr.DBConnectionMgr;
 /*
  * 구현된 기능
  * 메뉴 카테고리 조회, 메뉴 카테고리 추가, 메뉴 카테고리 수정, 메뉴 카테고리 삭제,
- * 메뉴 카테고리에 메뉴 추가, 카테고리별 메뉴 조회, 메뉴 수정, 메뉴 삭제, 
+ * 메뉴 카테고리에 메뉴 추가, 카테고리별 메뉴 목록 조회, 메뉴 조회, 메뉴 수정, 메뉴 삭제, 
  * 메뉴와 옵션 그룹 연결
  * 매장에 등록된 옵션 그룹 조회, 메뉴별 옵션 그룹 조회, 옵션 그룹 추가, 옵션 그룹 수정, 옵션 그룹 삭제
  * 옵션 그룹에 옵션 추가, 그룹별 옵션 조회, 옵션 수정, 옵션 삭제
- * 
- * 구현해야 할 기능
- * 
 */
 
 public class MenuAndOptionDAO {
@@ -38,8 +35,10 @@ public class MenuAndOptionDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement(
-					"insert into menu_category values(mc_index_seq.nextval, '" + category_name + "', " + rst_id + ")");
+			pStatement = connection.prepareStatement("insert into menu_category values(mc_index_seq.nextval, ?, ?)");
+			pStatement.setString(1, category_name);
+			pStatement.setInt(2, rst_id);
+
 			result = pStatement.executeUpdate();
 
 			System.out.println(rst_id + "번 매장에 " + category_name + " 카테고리 추가 성공 여부 : " + result);
@@ -168,14 +167,17 @@ public class MenuAndOptionDAO {
 		return result;
 	}
 
-	public ArrayList<MenuDTO> getMenu(int rst_id, int category_id) {
+	// 카테고리별 메뉴 목록 조회
+	public ArrayList<MenuDTO> getMenuList(int rst_id, int category_id) {
 		// 매장ID와 메뉴 카테고리 ID에 해당하는 메뉴 리스트 조회
 		ArrayList<MenuDTO> resultList = new ArrayList<>();
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select menu.* from menu, menu_category mc where menu.category_id="
-					+ category_id + " and menu.category_id=mc.category_id and mc.rst_id=" + rst_id);
+			pStatement = connection.prepareStatement("select menu.* from menu, menu_category mc where menu.category_id=? "
+					+ "and menu.category_id=mc.category_id and mc.rst_id=?");
+			pStatement.setInt(1, category_id);
+			pStatement.setInt(2, rst_id);
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -189,6 +191,32 @@ public class MenuAndOptionDAO {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 		return resultList;
+	}
+
+	// 메뉴 조회
+	public MenuDTO getMenu(int menu_id) {
+		MenuDTO result = null;
+	
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from menu where menu_id=?");
+			pStatement.setInt(1, menu_id);
+			resultSet = pStatement.executeQuery();
+	
+			if (resultSet.next()) {
+				result = new MenuDTO(resultSet.getInt("menu_id"), resultSet.getInt("category_id"),
+						resultSet.getString("menu_name"), resultSet.getString("menu_info"),
+						resultSet.getString("menu_photo"), resultSet.getInt("price"), resultSet.getInt("enable"));
+			}
+			
+			System.out.println("조회한 메뉴 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+	
+		return result;
 	}
 
 	public int updateMenu(int menu_id, int category_id, String menu_name, String menu_info, String menu_photo, int price,
