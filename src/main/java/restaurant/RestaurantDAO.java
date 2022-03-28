@@ -145,6 +145,31 @@ public class RestaurantDAO {
 		return result;
 	}
 
+	// 사장님 정보 조회
+	public RestaurantManagerDTO getRestaurantManager(int rst_id) {
+		// 매장ID에 해당하는 사장님 객체를 반환
+		// 해당하는 정보가 없으면 null 객체를 반환
+		RestaurantManagerDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from restaurant_manager where rst_id=?");
+			pStatement.setInt(1, rst_id);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = new RestaurantManagerDTO(resultSet.getInt("rst_id"), resultSet.getString("password"),
+						resultSet.getString("phone"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
 	// 매장 목록 조회
 	public ArrayList<RestaurantDTO> getRestaurants(int category_id, int orderBy, String sido, String sigungu, String bname,
 			int start, int end) {
