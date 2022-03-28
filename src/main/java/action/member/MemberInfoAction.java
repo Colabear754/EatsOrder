@@ -11,15 +11,14 @@ public class MemberInfoAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// TODO Auto-generated method stub
-		String email = (String) request.getSession().getAttribute("email");
+		// 회원정보를 조회하는 액션클래스
+		String email = (String) request.getSession().getAttribute("account");
 		MemberDAO memberProcess = new MemberDAO();
 		CouponDAO couponProcess = new CouponDAO();
 		
 		MemberInfoDTO member = memberProcess.getMember(email);
 		int couponCount = couponProcess.getCouponCount(email);
 		
-		request.setAttribute("email", email);
 		request.setAttribute("member", member);
 		request.setAttribute("couponCount", couponCount);
 		

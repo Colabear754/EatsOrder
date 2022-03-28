@@ -13,7 +13,7 @@ public class CouponListAction implements CommandAction {
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// 보유한 쿠폰 목록을 조회하는 액션클래스
-		String email = (String) request.getSession().getAttribute("email");
+		String email = (String) request.getSession().getAttribute("account");
 		CouponDAO couponProcess = new CouponDAO();
 		
 		HashMap<String, ArrayList<Object>> couponData = couponProcess.getCoupons(email);
