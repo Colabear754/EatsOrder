@@ -52,6 +52,30 @@ public class MenuAndOptionDAO {
 		return result;
 	}
 
+	// 메뉴 카테고리 조회
+	public MenuCategoryDTO getMenuCategory(int category_id) {
+		MenuCategoryDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from menu_category where category_id=?");
+			pStatement.setInt(1, category_id);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = new MenuCategoryDTO(resultSet.getInt("category_id"), resultSet.getString("category_name"),
+						resultSet.getInt("rst_id"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 메뉴 카테고리 리스트 조회
 	public ArrayList<MenuCategoryDTO> getMenuCategories(int rst_id) {
 		// 매장ID에 해당하는 메뉴 카테고리 리스트 조회
 		ArrayList<MenuCategoryDTO> resultList = new ArrayList<>();
@@ -196,26 +220,26 @@ public class MenuAndOptionDAO {
 	// 메뉴 조회
 	public MenuDTO getMenu(int menu_id) {
 		MenuDTO result = null;
-	
+
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select * from menu where menu_id=?");
 			pStatement.setInt(1, menu_id);
 			resultSet = pStatement.executeQuery();
-	
+
 			if (resultSet.next()) {
 				result = new MenuDTO(resultSet.getInt("menu_id"), resultSet.getInt("category_id"),
 						resultSet.getString("menu_name"), resultSet.getString("menu_info"),
 						resultSet.getString("menu_photo"), resultSet.getInt("price"), resultSet.getInt("enable"));
 			}
-			
+
 			System.out.println("조회한 메뉴 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
-	
+
 		return result;
 	}
 
@@ -326,6 +350,30 @@ public class MenuAndOptionDAO {
 		return result;
 	}
 
+	// 옵션그룹 조회
+	public OptionGroupDTO getOptionGroup(int group_id) {
+		OptionGroupDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from option_group where group_id=?");
+			pStatement.setInt(1, group_id);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = new OptionGroupDTO(resultSet.getInt("group_id"), resultSet.getInt("rst_id"),
+						resultSet.getString("group_name"), resultSet.getInt("essential"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 옵션그룹 리스트 조회
 	public ArrayList<OptionGroupDTO> getMenuOptionGroups(int menu_id) {
 		// 메뉴ID에 해당하는 옵션그룹 조회
 		ArrayList<OptionGroupDTO> resultList = new ArrayList<>();
@@ -453,6 +501,30 @@ public class MenuAndOptionDAO {
 		return result;
 	}
 
+	// 옵션 조회
+	public OptionInfoDTO getOption(int option_id) {
+		OptionInfoDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from option_info where option_id=?");
+			pStatement.setInt(1, option_id);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = new OptionInfoDTO(resultSet.getInt("option_id"), resultSet.getInt("group_id"),
+						resultSet.getString("option_name"), resultSet.getInt("price"), resultSet.getInt("enable"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 옵션 리스트 조회
 	public ArrayList<OptionInfoDTO> getOptions(int group_id) {
 		// 옵션그룹ID에 해당하는 옵션 리스트 조회
 		ArrayList<OptionInfoDTO> resultList = new ArrayList<>();
