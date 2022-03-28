@@ -525,7 +525,7 @@ public class MenuAndOptionDAO {
 	}
 
 	// 옵션 리스트 조회
-	public ArrayList<OptionInfoDTO> getOptions(int group_id) {
+	public ArrayList<OptionInfoDTO> getOptionList(int group_id) {
 		// 옵션그룹ID에 해당하는 옵션 리스트 조회
 		ArrayList<OptionInfoDTO> resultList = new ArrayList<>();
 
