@@ -12,7 +12,7 @@ public class LikeReviewAction implements CommandAction {
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// 리뷰에 좋아요를 등록하거나 취소하는 액션클래스
 		int review_number = Integer.parseInt(request.getParameter("review_number"));
-		String email = request.getParameter("email");
+		String email = (String) request.getSession().getAttribute("account");
 		ReviewDAO reviewProcess = new ReviewDAO();
 		
 		reviewProcess.likeReview(review_number, email);

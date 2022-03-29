@@ -16,7 +16,7 @@ public class MyReviewListAction implements CommandAction {
 		// 내 리뷰 목록 조회 액션클래스
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
-		String email = request.getParameter("email");
+		String email = (String) request.getSession().getAttribute("account");
 		ReviewDAO reviewProcess = new ReviewDAO();
 		
 		if (pageNum == null) {
