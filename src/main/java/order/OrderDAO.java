@@ -411,7 +411,7 @@ public class OrderDAO {
 	}
 
 	// 주문내역 조회
-	public ArrayList<HashMap<String, Object>> getOrders(String orderer, int start, int end) {
+	public ArrayList<HashMap<String, Object>> getOrderList(String orderer, int start, int end) {
 		// 주문번호, 매장명, 매장로고, 메뉴이름 1개, 그 외에 주문한 메뉴 종류 수, 결제일자를 저장한 해쉬 리스트를 반환
 		ArrayList<HashMap<String, Object>> resultList = new ArrayList<>();
 		HashMap<String, Object> hash;
