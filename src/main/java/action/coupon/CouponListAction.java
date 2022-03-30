@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
 import coupon.CouponDAO;
+import coupon.CouponDetailDTO;
 
 public class CouponListAction implements CommandAction {
 
@@ -16,7 +17,7 @@ public class CouponListAction implements CommandAction {
 		String email = (String) request.getSession().getAttribute("account");
 		CouponDAO couponProcess = new CouponDAO();
 		
-		HashMap<String, ArrayList<Object>> couponData = couponProcess.getCoupons(email);
+		ArrayList<CouponDetailDTO> couponData = couponProcess.getCoupons(email);
 		
 		request.setAttribute("couponData", couponData);
 		

@@ -2,7 +2,6 @@ package coupon;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import connectionMgr.DBConnectionMgr;
 
@@ -128,11 +127,9 @@ public class CouponDAO {
 	}
 
 	// 사용 가능한 쿠폰 조회
-	public HashMap<String, ArrayList<Object>> getCoupons(String owner_id) {
+	public ArrayList<CouponDetailDTO> getCoupons(String owner_id) {
 		// 해시의 coupon키값은 쿠폰리스트, available_count키값은 순서대로 해당 쿠폰의 사용가능횟수
-		HashMap<String, ArrayList<Object>> result = new HashMap<>();
-		ArrayList<Object> couponList = new ArrayList<>();
-		ArrayList<Object> countList = new ArrayList<>();
+		ArrayList<CouponDetailDTO> result = new ArrayList<>();
 
 		try {
 			connection = connectionMgr.getConnection();
@@ -143,15 +140,11 @@ public class CouponDAO {
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
-				couponList.add(new ValidCouponDTO(resultSet.getString("coupon_id"), resultSet.getString("coupon_name"),
-						resultSet.getString("coupon_info"), resultSet.getInt("available_price"),
-						resultSet.getInt("discount_amount"), resultSet.getDate("expiration_date")));
-				countList.add(resultSet.getInt("available_count"));
-			}
-
-			if (!couponList.isEmpty() && couponList.size() == countList.size()) {
-				result.put("coupons", couponList);
-				result.put("counts", countList);
+				result.add(new CouponDetailDTO(
+						new ValidCouponDTO(resultSet.getString("coupon_id"), resultSet.getString("coupon_name"),
+								resultSet.getString("coupon_info"), resultSet.getInt("available_price"),
+								resultSet.getInt("discount_amount"), resultSet.getDate("expiration_date")),
+						resultSet.getInt("available_count")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

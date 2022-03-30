@@ -1,12 +1,12 @@
 package action.order;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
+import order.OrderBasicInfoDTO;
 import order.OrderDAO;
 
 public class OrderListAction implements CommandAction {
@@ -28,7 +28,7 @@ public class OrderListAction implements CommandAction {
 		int start = (currentPage - 1) * PAGESIZE + 1;
 		int end = currentPage * PAGESIZE;
 		
-		ArrayList<HashMap<String, Object>> result = orderProcess.getOrderList(orderer, start, end);
+		ArrayList<OrderBasicInfoDTO> result = orderProcess.getOrderList(orderer, start, end);
 		
 		request.setAttribute("result", result);
 		

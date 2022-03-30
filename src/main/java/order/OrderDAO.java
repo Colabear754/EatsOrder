@@ -297,7 +297,7 @@ public class OrderDAO {
 						break;
 					}
 				}
-				
+
 				if (result > 0 && used_point > 0) {
 					// 사용 포인트가 있다면 포인트를 차감
 					pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
@@ -310,7 +310,7 @@ public class OrderDAO {
 			if (result > 0) {
 				connection.commit();
 			}
-			
+
 			System.out.println("주문 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -354,15 +354,12 @@ public class OrderDAO {
 	}
 
 	// 주문 상세 조회
-	public HashMap<String, Object> getOrderDetail(String order_number) {
-		// 해쉬에 주문상세정보, 주문메뉴 및 옵션 리스트, 총액을 저장한 후 반환
-		HashMap<String, Object> resultHash = new HashMap<>();
+	public OrderDetailInfoDTO getOrderDetailInfo(String order_number) {
+		// 주문상세정보, 주문메뉴 및 옵션 리스트, 총액을 저장한 객체를 반환
+		OrderDetailInfoDTO result = null;
 		ArrayList<String> menuList = new ArrayList<>();
 		ArrayList<String> optionList = new ArrayList<>();
 		ArrayList<Integer> quantityList = new ArrayList<>();
-		int used_point = 0;
-		int discount_amount = 0;
-		int price = 0;
 
 		try {
 			connection = connectionMgr.getConnection();
@@ -373,14 +370,14 @@ public class OrderDAO {
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				resultHash.put("order_history",
-						new OrderHistoryDTO(resultSet.getString("order_number"), resultSet.getString("orderer"),
-								resultSet.getString("destination"), resultSet.getString("coupon_id"),
-								resultSet.getInt("used_point"), resultSet.getString("payment_method"),
-								resultSet.getTimestamp("pay_date"), resultSet.getString("order_request"),
-								resultSet.getInt("payment_status"), resultSet.getString("reason_cancellation")));
-				used_point = resultSet.getInt("used_point");
-				discount_amount = resultSet.getInt("discount_amount");
+				result = new OrderDetailInfoDTO();
+				result.setOrderHistory(new OrderHistoryDTO(resultSet.getString("order_number"),
+						resultSet.getString("orderer"), resultSet.getString("destination"), resultSet.getString("coupon_id"),
+						resultSet.getInt("used_point"), resultSet.getString("payment_method"),
+						resultSet.getTimestamp("pay_date"), resultSet.getString("order_request"),
+						resultSet.getInt("payment_status"), resultSet.getString("reason_cancellation")));
+				result.setUsed_point(resultSet.getInt("used_point"));
+				result.setDiscount_amount(resultSet.getInt("discount_amount"));
 
 				pStatement = connection
 						.prepareStatement("select menu_name, m.price as mp, option_name, oi.price op, quantity "
@@ -393,13 +390,11 @@ public class OrderDAO {
 					menuList.add(resultSet.getString("menu_name"));
 					optionList.add(resultSet.getString("option_name"));
 					quantityList.add(resultSet.getInt("quantity"));
-					price += (resultSet.getInt("mp") + resultSet.getInt("op")) * resultSet.getInt("quantity");
+					result.setMenuList(menuList);
+					result.setOptionList(optionList);
+					result.setQuantityList(quantityList);
+					result.setPrice((resultSet.getInt("mp") + resultSet.getInt("op")) * resultSet.getInt("quantity"));
 				}
-
-				resultHash.put("menuList", menuList);
-				resultHash.put("optionList", optionList);
-				resultHash.put("quantityList", quantityList);
-				resultHash.put("price", price - used_point - discount_amount);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -407,14 +402,13 @@ public class OrderDAO {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
-		return resultHash;
+		return result;
 	}
 
 	// 주문내역 조회
-	public ArrayList<HashMap<String, Object>> getOrderList(String orderer, int start, int end) {
-		// 주문번호, 매장명, 매장로고, 메뉴이름 1개, 그 외에 주문한 메뉴 종류 수, 결제일자를 저장한 해쉬 리스트를 반환
-		ArrayList<HashMap<String, Object>> resultList = new ArrayList<>();
-		HashMap<String, Object> hash;
+	public ArrayList<OrderBasicInfoDTO> getOrderList(String orderer, int start, int end) {
+		// 주문번호, 매장명, 매장로고, 메뉴이름 1개, 그 외에 주문한 메뉴 종류 수, 결제일자를 저장한 객체 리스를 반환
+		ArrayList<OrderBasicInfoDTO> resultList = new ArrayList<>();
 		String order_number = "";
 		ResultSet temp = null;
 
@@ -433,20 +427,17 @@ public class OrderDAO {
 			resultSet = pStatement.executeQuery();
 
 			while (resultSet.next()) {
-				hash = new HashMap<>();
 				order_number = resultSet.getString("order_number");
-				pStatement = connection.prepareStatement("select menu_name from order_detail, menu where order_number=?");
+				pStatement = connection.prepareStatement(
+						"select menu_name from order_detail, menu where order_number=? and od.menu_id=m.menu_id");
 				pStatement.setString(1, order_number);
 				temp = pStatement.executeQuery();
 
-				hash.put("order_number", order_number);
-				hash.put("rst_name", resultSet.getString("rst_name"));
-				hash.put("rst_logo", resultSet.getString("rst_logo"));
-				hash.put("menu_name", temp.getString(1));
-				hash.put("count", resultSet.getInt("count") - 1);
-				hash.put("pay_date", resultSet.getTimestamp("pay_date"));
-
-				resultList.add(hash);
+				if (temp.next()) {
+					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getString("rst_name"),
+							resultSet.getString("rst_logo"), temp.getString(1), resultSet.getInt("count") - 1,
+							resultSet.getTimestamp("pay_date")));
+				}
 			}
 
 			if (temp != null) {
