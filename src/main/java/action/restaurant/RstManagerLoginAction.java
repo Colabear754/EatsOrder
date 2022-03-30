@@ -20,6 +20,6 @@ public class RstManagerLoginAction implements CommandAction {
 			request.getSession().setAttribute("rst_id", rst_id);
 		}
 		
-		return "/rstManagerLoginForm.jsp";
+		return "/rstManagerMain.jsp";
 	}
 }

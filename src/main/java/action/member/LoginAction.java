@@ -27,6 +27,6 @@ public class LoginAction implements CommandAction {
 			request.getSession().setAttribute("account", account);	// 계정과 비밀번호 체크에 성공하면 세션 설정
 		}
 		
-		return "/loginForm.jsp";
+		return "/main.jsp";
 	}
 }
