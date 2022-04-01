@@ -1,7 +1,6 @@
 package action.menu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.CommandAction;
 import menu.MenuAndOptionDAO;
 import menu.OptionGroupDTO;
+import menu.OptionInfoDTO;
 
 public class OptionListAction implements CommandAction {
 
@@ -19,17 +19,25 @@ public class OptionListAction implements CommandAction {
 		int menu_id = Integer.parseInt(request.getParameter("menu_id"));
 		MenuAndOptionDAO menuProcess = new MenuAndOptionDAO();
 		ArrayList<OptionGroupDTO> optionGroupList = menuProcess.getMenuOptionGroups(menu_id);
-		ArrayList<HashMap<String, Object>> optionList = new ArrayList<>();
+		ArrayList<OptionList> optionList = new ArrayList<>();
 		
 		for (OptionGroupDTO optionGroup : optionGroupList) {
-			HashMap<String, Object> hashMap = new HashMap<>();
-			hashMap.put("optionGroup", optionGroup);
-			hashMap.put("optionList", menuProcess.getOptionList(optionGroup.getGroup_id()));
-			optionList.add(hashMap);
+			OptionList groupOptionList = new OptionList(optionGroup, menuProcess.getOptionList(optionGroup.getGroup_id()));
+			optionList.add(groupOptionList);
 		}
 		
 		request.setAttribute("optionList", optionList);
 		
 		return "/optionList.jsp";
+	}
+}
+
+class OptionList {
+	OptionGroupDTO optionGroup;
+	ArrayList<OptionInfoDTO> optionList;
+	
+	public OptionList(OptionGroupDTO optionGroup, ArrayList<OptionInfoDTO> optionList) {
+		this.optionGroup = optionGroup;
+		this.optionList = optionList;
 	}
 }

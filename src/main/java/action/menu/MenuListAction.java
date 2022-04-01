@@ -1,7 +1,6 @@
 package action.menu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,17 +17,25 @@ public class MenuListAction implements CommandAction {
 		int rst_id = Integer.parseInt(request.getParameter("rst_id"));
 		MenuAndOptionDAO menuProcess = new MenuAndOptionDAO();
 		ArrayList<MenuCategoryDTO> categoryList = menuProcess.getMenuCategories(rst_id);
-		ArrayList<HashMap<String, Object>> menuList = new ArrayList<>();
+		ArrayList<MenuList> menuList = new ArrayList<>();
 		
 		for (MenuCategoryDTO category : categoryList) {
-			HashMap<String, Object> hashMap = new HashMap<>();
-			hashMap.put("category", category);
-			hashMap.put("menuList", menuProcess.getMenuList(rst_id, category.getCategory_id()));
-			menuList.add(hashMap);
+			MenuList categoryMenuList = new MenuList(category, menuProcess.getMenuList(rst_id, category.getCategory_id()));
+			menuList.add(categoryMenuList);
 		}
 		
 		request.setAttribute("menuList", menuList);
 		
 		return "/menuList.jsp";
+	}
+}
+
+class MenuList {
+	MenuCategoryDTO category;
+	ArrayList<MenuDTO> menuList;
+	
+	public MenuList(MenuCategoryDTO category, ArrayList<MenuDTO> menuList) {
+		this.category = category;
+		this.menuList = menuList;
 	}
 }
