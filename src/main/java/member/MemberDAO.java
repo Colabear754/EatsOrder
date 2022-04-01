@@ -1,6 +1,7 @@
 package member;
 
 import java.sql.*;
+import java.util.regex.Pattern;
 
 import connectionMgr.DBConnectionMgr;
 
@@ -142,6 +143,13 @@ public class MemberDAO {
 	public int insertMember(String email, String password, String phone, String nickname, int receive_marketing) {
 		// 1 : 가입 성공, 0 : 가입 실패
 		int result = 0;
+		String emailPattern = "\\w+@\\w+\\.\\w+(\\.\\w+)?";	// 이메일 유효성검사를 위한 정규식패턴
+		String phonePattern = "^01(?:0|1|[6-9])(?:\\d{3,4})\\d{4}$";	// 전화번호 유효성검사를 위한 정규식패턴
+		String nicknamePattern = "^[가-힣a-zA-Z0-9]*$";	// 닉네임 유효성검사를 위한 정규식패턴
+		
+		if (!Pattern.matches(emailPattern, email) || !Pattern.matches(phonePattern, phone) || !Pattern.matches(nicknamePattern, nickname)) {
+			return -1;	// 유효성 검사에 하나라도 실패하면 -1을 반환
+		}
 		
 		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
@@ -174,7 +182,7 @@ public class MemberDAO {
 				}
 			}
 
-			System.out.println("회원가입 성공 여부 : " + result);
+			System.out.println("회원가입 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
