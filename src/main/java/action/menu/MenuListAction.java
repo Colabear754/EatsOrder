@@ -18,14 +18,14 @@ public class MenuListAction implements CommandAction {
 		MenuAndOptionDAO menuProcess = new MenuAndOptionDAO();
 		ArrayList<MenuCategoryDTO> categoryList = menuProcess.getMenuCategories(rst_id);
 		ArrayList<MenuList> menuList = new ArrayList<>();
-		
+
 		for (MenuCategoryDTO category : categoryList) {
 			MenuList categoryMenuList = new MenuList(category, menuProcess.getMenuList(rst_id, category.getCategory_id()));
 			menuList.add(categoryMenuList);
 		}
-		
+
 		request.setAttribute("menuList", menuList);
-		
+
 		return "/menuList.jsp";
 	}
 }
@@ -33,9 +33,25 @@ public class MenuListAction implements CommandAction {
 class MenuList {
 	MenuCategoryDTO category;
 	ArrayList<MenuDTO> menuList;
-	
+
 	public MenuList(MenuCategoryDTO category, ArrayList<MenuDTO> menuList) {
 		this.category = category;
+		this.menuList = menuList;
+	}
+
+	public MenuCategoryDTO getCategory() {
+		return category;
+	}
+
+	public void setCategory(MenuCategoryDTO category) {
+		this.category = category;
+	}
+
+	public ArrayList<MenuDTO> getMenuList() {
+		return menuList;
+	}
+
+	public void setMenuList(ArrayList<MenuDTO> menuList) {
 		this.menuList = menuList;
 	}
 }
