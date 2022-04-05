@@ -1,0 +1,98 @@
+/* 작성자: 허우림. 업로드일자:2022.04.04. 페이지 이름:매장목록헤더css */
+
+* {
+    margin: 0;
+}
+.box{
+    width: 100%;
+    height: 300px;
+    background-color: #FECB10;
+    
+}
+
+.white_box{
+    position: absolute;
+    top: 100px;
+    left: 535px; /*1920-박스넓이(850) /2*/
+    width: 850px;
+    height: 100px;
+    z-index: 10;
+    background-color:white;
+    border-radius: 8px;
+}
+/*주소 입력 input 박스*/
+.search1{
+    position: absolute;
+    top: 125px;
+    left: 560px;
+    width: 590px;
+    height: 50px;
+    z-index: 20;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    padding-left:70px;
+    border-style:none;
+    font-size: 18px;
+    font-weight: 400px;
+    background-image: url("marker.png");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    outline: none;
+}
+.search_btn{
+    position: absolute;
+    top: 125px;
+    left: 1175px;
+    width:185px;
+    height: 50px;
+    background-color: #FC6E4D;
+    z-index:200;
+    box-sizing: border-box;
+    border-radius: 8px;
+    text-align: center;
+    /*검색 버튼 내 글씨를 수직 가운데정렬*/
+    line-height: 50px;
+    
+}
+.find_addr, i{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    /*아이콘과 글자 사이 거리두기*/
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(13,auto);
+    grid-template-rows: 1;
+    /* border-bottom: 1px solid grey; */
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top:30px;
+    padding-bottom: 30px; 
+    padding-left:1%;
+    padding-right:1%;
+    column-gap: 1%;
+    row-gap: 8px;
+}
+.grid div{
+    margin-top: auto;
+}
+.category{
+    /* border: 1px solid black; */
+    font-size: 17px;
+    text-align: center;
+    font-weight: 900;
+    font-style: black;
+    /* margin-left:24px;
+    margin-right:24px; */
+}
+.category a{
+    text-decoration: none;
+    color: black;
+}
