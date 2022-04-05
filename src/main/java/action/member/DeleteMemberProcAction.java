@@ -10,7 +10,7 @@ public class DeleteMemberProcAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// TODO Auto-generated method stub
+		// 회원 탈퇴 액션클래스
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String reason_withdraw = request.getParameter("reason_withdraw");

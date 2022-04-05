@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 import connectionMgr.DBConnectionMgr;
 
 /*
+ * 작성자 : 정건영
+ * 작성일 : 2022/02/27
+ * 설명 : 회원과 관련된 기능에 대한 DAO 클래스
+ * 
  * 구현된 기능
  * 로그인, 중복값 체크, 회원가입, 회원탈퇴, 회원수정, 탈퇴한지 30일 지난 회원정보 제거, 회원조회, 닉네임조회, 아이디/비밀번호 찾기
 */

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import connectionMgr.DBConnectionMgr;
 
 /*
+ * 작성자 : 정건영
+ * 작성일 : 2022/03/01
+ * 설명 : 쿠폰에 관련된 기능에 대한 DAO 클래스
+ * 
  * 구현된 기능
  * 유효쿠폰 추가, 사용자쿠폰 등록, 쿠폰 사용, 쿠폰 조회, 유효기간이 만료된 쿠폰 삭제
 */
