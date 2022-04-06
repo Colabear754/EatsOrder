@@ -336,8 +336,8 @@ public class MemberDAO {
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				result = new MemberInfoDTO(resultSet.getString("email"), resultSet.getString("phone"),
-						resultSet.getString("nickname"), resultSet.getString("membership"), resultSet.getInt("point"),
+				result = new MemberInfoDTO(resultSet.getString("email"), resultSet.getString("nickname"),
+						resultSet.getString("phone"), resultSet.getString("membership"), resultSet.getInt("point"),
 						resultSet.getDate("join_date"), resultSet.getDate("withdraw_date"),
 						resultSet.getInt("receive_marketing"));
 			}
