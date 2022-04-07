@@ -7,7 +7,7 @@ import action.CommandAction;
 import coupon.CouponDAO;
 import member.*;
 
-public class MemberInfoAction implements CommandAction {
+public class MyPageAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -22,6 +22,6 @@ public class MemberInfoAction implements CommandAction {
 		request.setAttribute("member", member);
 		request.setAttribute("couponCount", couponCount);
 		
-		return "/memberInfo.jsp";
+		return "/member/myPage.jsp";
 	}
 }
