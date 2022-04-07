@@ -16,7 +16,7 @@ public class FavoriteRstListAction implements CommandAction {
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// 찜한 매장 목록을 조회하는 액션클래스
 		String pageNum = request.getParameter("pageNum");
-		String email = request.getParameter("email");
+		String email = (String) request.getSession().getAttribute("account");
 		RestaurantDAO rstProcess = new RestaurantDAO();
 		ReviewDAO reviewProcess = new ReviewDAO();
 		ArrayList<RestaurantDetailDTO> favoriteRstData = new ArrayList<>();
@@ -40,6 +40,6 @@ public class FavoriteRstListAction implements CommandAction {
 		request.setAttribute("email", email);
 		request.setAttribute("favoriteRstData", favoriteRstData);
 
-		return "favoriteRstList.jsp";
+		return "/member/favoriteRstList.jsp";
 	}
 }

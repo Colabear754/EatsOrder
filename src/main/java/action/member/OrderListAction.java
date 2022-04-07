@@ -1,4 +1,4 @@
-package action.order;
+package action.member;
 
 import java.util.ArrayList;
 
@@ -32,6 +32,6 @@ public class OrderListAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/orderList.jsp";
+		return "/member/orderList.jsp";
 	}
 }

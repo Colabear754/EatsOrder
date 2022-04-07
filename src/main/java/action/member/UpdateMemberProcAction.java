@@ -10,7 +10,7 @@ public class UpdateMemberProcAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// TODO Auto-generated method stub
+		// 회원정보를 수정하는 액션클래스
 		request.setCharacterEncoding("utf-8");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -31,6 +31,6 @@ public class UpdateMemberProcAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/updateMemberProc.jsp";
+		return "/member/updateMemberProc.jsp";
 	}
 }
