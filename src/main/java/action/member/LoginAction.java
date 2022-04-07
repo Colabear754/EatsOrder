@@ -17,6 +17,10 @@ public class LoginAction implements CommandAction {
 		MemberDAO memberProcess = new MemberDAO();
 		boolean result = false;
 		
+		System.out.println("회원타입 : " + type);
+		System.out.println("계정 : " + account);
+		System.out.println("패스워드 : " + password);
+		
 		if (type == 1) {
 			result = memberProcess.memberLogin(account, password);
 		} else {
@@ -27,6 +31,6 @@ public class LoginAction implements CommandAction {
 			request.getSession().setAttribute("account", account);	// 계정과 비밀번호 체크에 성공하면 세션 설정
 		}
 		
-		return "/main.jsp";
+		return "/login.jsp";
 	}
 }

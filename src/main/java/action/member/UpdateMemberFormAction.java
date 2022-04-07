@@ -17,6 +17,6 @@ public class UpdateMemberFormAction implements CommandAction {
 		
 		request.setAttribute("member", member);
 		
-		return "updateMemberForm.jsp";
+		return "/member/updateMemberForm.jsp";
 	}
 }

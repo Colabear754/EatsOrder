@@ -1,4 +1,4 @@
-package action.coupon;
+package action.member;
 
 import java.util.*;
 
@@ -21,6 +21,6 @@ public class CouponListAction implements CommandAction {
 		
 		request.setAttribute("couponData", couponData);
 		
-		return "/couponList.jsp";
+		return "/member/couponList.jsp";
 	}
 }
