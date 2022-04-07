@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.CommandAction;
 import restaurant.RestaurantDAO;
 import restaurant.RestaurantDTO;
+import restaurant.RestaurantDetailDTO;
 import review.ReviewDAO;
 
 public class RstListAction implements CommandAction {
@@ -26,6 +27,7 @@ public class RstListAction implements CommandAction {
 		String searchText = request.getParameter("searchText");
 		RestaurantDAO rstProcess = new RestaurantDAO();
 		ReviewDAO reviewProcess = new ReviewDAO();
+		ArrayList<RestaurantDetailDTO> rstData = new ArrayList<>();
 
 		if (pageNum == null) {
 			pageNum = "1";
@@ -35,9 +37,6 @@ public class RstListAction implements CommandAction {
 		int start = (currentPage - 1) * PAGESIZE + 1;
 		int end = currentPage * PAGESIZE;
 		ArrayList<RestaurantDTO> rstList = null;
-		ArrayList<Integer> reviewCountList = new ArrayList<>();
-		ArrayList<Integer> replyCountList = new ArrayList<>();
-		ArrayList<Double> ratingList = new ArrayList<>();
 
 		if (!searchText.isBlank()) {
 			rstList = rstProcess.getRestaurants(category_id, orderBy, sido, sigungu, bname, start, end);
@@ -46,9 +45,8 @@ public class RstListAction implements CommandAction {
 		}
 		
 		for (RestaurantDTO rst : rstList) {
-			reviewCountList.add(reviewProcess.getReviewCount(rst.getRst_id()));
-			replyCountList.add(reviewProcess.getReplyCount(rst.getRst_id()));
-			ratingList.add(rstProcess.getRating(rst.getRst_id()));
+			rstData.add(new RestaurantDetailDTO(rst, reviewProcess.getReplyCount(rst.getRst_id()),
+					reviewProcess.getReplyCount(rst.getRst_id()), rstProcess.getRating(rst.getRst_id())));
 		}
 		
 		request.setAttribute("category_id", category_id);
@@ -57,10 +55,7 @@ public class RstListAction implements CommandAction {
 		request.setAttribute("sigungu", sigungu);
 		request.setAttribute("bname", bname);
 		request.setAttribute("searchText", searchText);
-		request.setAttribute("rstList", rstList);
-		request.setAttribute("reviewCountList", reviewCountList);
-		request.setAttribute("replyCountList", replyCountList);
-		request.setAttribute("ratingList", ratingList);
+		request.setAttribute("rstData", rstData);
 
 		return "/rstList.jsp";
 	}
