@@ -288,9 +288,10 @@ public class MemberDAO {
 
 				if (result > 0) {
 					connection.commit();
-					System.out.println("회원정보 수정 성공");
 				}
 			}
+			
+			System.out.println("회원정보 수정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

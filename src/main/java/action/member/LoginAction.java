@@ -17,10 +17,6 @@ public class LoginAction implements CommandAction {
 		MemberDAO memberProcess = new MemberDAO();
 		boolean result = false;
 		
-		System.out.println("회원타입 : " + type);
-		System.out.println("계정 : " + account);
-		System.out.println("패스워드 : " + password);
-		
 		if (type == 1) {
 			result = memberProcess.memberLogin(account, password);
 		} else {
