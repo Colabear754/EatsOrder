@@ -18,8 +18,8 @@ public class MyReviewListAction implements CommandAction {
 		String pageNum = request.getParameter("pageNum");
 		String email = (String) request.getSession().getAttribute("account");
 		ReviewDAO reviewProcess = new ReviewDAO();
-		ArrayList<ReviewAndLikeCountDTO> reviewData = new ArrayList<>();
-		
+		ArrayList<ReviewDetailDTO> reviewData = new ArrayList<>();
+
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -27,15 +27,16 @@ public class MyReviewListAction implements CommandAction {
 		int currentPage = Integer.parseInt(pageNum);
 		int start = (currentPage - 1) * PAGESIZE + 1;
 		int end = currentPage * PAGESIZE;
-		
+
 		ArrayList<ReviewDTO> reviewList = reviewProcess.getMyReviews(email, start, end);
-		
+
 		for (ReviewDTO review : reviewList) {
-			reviewData.add(new ReviewAndLikeCountDTO(review, reviewProcess.getLikeCount(review.getReview_number())));
+			reviewData.add(new ReviewDetailDTO(review, reviewProcess.getLikeCount(review.getReview_number()),
+					reviewProcess.getReviewRst(review.getReview_number())));
 		}
-		
+
 		request.setAttribute("myReviews", reviewData);
-		
+
 		return "/member/myReviewList.jsp";
 	}
 }
