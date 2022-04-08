@@ -433,7 +433,7 @@ public class OrderDAO {
 			while (resultSet.next()) {
 				order_number = resultSet.getString("order_number");
 				pStatement = connection.prepareStatement(
-						"select menu_name from order_detail, menu m where order_number=? and od.menu_id=m.menu_id");
+						"select menu_name from order_detail od, menu m where order_number=? and od.menu_id=m.menu_id");
 				pStatement.setString(1, order_number);
 				temp = pStatement.executeQuery();
 
