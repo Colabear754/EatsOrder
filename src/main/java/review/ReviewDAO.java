@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import connectionMgr.DBConnectionMgr;
+import restaurant.RestaurantDTO;
 
 /*
  * 작성자 : 정건영
@@ -12,7 +13,7 @@ import connectionMgr.DBConnectionMgr;
  * 
  * 구현한 기능
  * 리뷰작성, 리뷰수정, 리뷰삭제, 좋아요, 좋아요개수 조회, 리뷰조회, 리뷰목록 조회 리뷰개수 조회, 자신의 리뷰 조회, 리뷰 작성자 조회
- * 댓글작성, 댓글조회, 댓글수정, 댓글목록 조회 댓글삭제, 댓글개수 조회
+ * 댓글작성, 댓글조회, 댓글수정, 댓글목록 조회 댓글삭제, 댓글개수 조회, 리뷰에 해당하는 매장 조회
 */
 
 public class ReviewDAO {
@@ -351,7 +352,7 @@ public class ReviewDAO {
 			pStatement.setString(2, email);
 			resultSet = pStatement.executeQuery();
 
-			if (resultSet.next()) {	// 좋아요가 이미 등록되어 있으면 좋아요를 취소, 없다면 좋아요 등록
+			if (resultSet.next()) { // 좋아요가 이미 등록되어 있으면 좋아요를 취소, 없다면 좋아요 등록
 				pStatement = connection.prepareStatement("delete from review_like where review_number=? and email=?");
 				pStatement.setInt(1, review_number);
 				pStatement.setString(2, email);
@@ -362,7 +363,7 @@ public class ReviewDAO {
 				pStatement.setString(2, email);
 				System.out.print("좋아요 등록 ");
 			}
-			
+
 			result = pStatement.executeUpdate();
 
 			System.out.println("결과 : " + result);
@@ -699,6 +700,36 @@ public class ReviewDAO {
 			}
 
 			System.out.println("리뷰 작성자 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 리뷰 번호에 해당하는 매장 정보 조회
+	public RestaurantDTO getReviewRst(int review_number) {
+		// 매장 DTO를 반환
+		RestaurantDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement(
+					"select r.* from restaurant r, v_review_to_rst vrr where review_number=? and vrr.rst_id=r.rst_id");
+			pStatement.setInt(1, review_number);
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = new RestaurantDTO(resultSet.getInt("rst_id"), resultSet.getInt("category_id"),
+						resultSet.getString("rst_name"), resultSet.getString("phone"), resultSet.getString("address"),
+						resultSet.getInt("min_order"), resultSet.getString("origin"), resultSet.getString("hours"),
+						resultSet.getString("bussiness_number"), resultSet.getString("bussiness_name"),
+						resultSet.getString("payments"), resultSet.getInt("delivery_tip"), resultSet.getString("rst_notice"),
+						resultSet.getString("estimated_time"), resultSet.getString("rst_photo"),
+						resultSet.getString("rst_logo"), resultSet.getInt("enable"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
