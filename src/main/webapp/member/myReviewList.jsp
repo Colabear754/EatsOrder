@@ -20,7 +20,7 @@
             <div class="review_wrapper">
                 <h1>주문내역</h1>
                 <div class="review_all_box">
-                	<c:forEach var="reviewData" items="myReviews">
+                	<c:forEach var="reviewData" items="${myReviews}">
 	                    <div class="review_box">
 	                        <h3><a href="#">가게명<span>></span></a></h3>
 	                        <div class="star">
@@ -36,11 +36,31 @@
 	                            <span>|</span>
 	                            <a href="/EatsOrder/review/deleteReviewForm.do">삭제</a>
 	                        </div>
-	                        <c:forEach var="i" begin="1" end="5">
-		                        <div class="review_img">
-		                            <img src="${reviewData.review.photo += i}">
-		                        </div>
-	                        </c:forEach>
+	                        <c:if test="${reviewData.review.photo1 != null}">
+			                    <div class="review_img">
+			                        <img src="${reviewData.review.photo1}">
+			                    </div>
+		                    </c:if>
+		                    <c:if test="${reviewData.review.photo2 != null}">
+			                    <div class="review_img">
+			                        <img src="${reviewData.review.photo2}">
+			                    </div>
+		                    </c:if>
+		                    <c:if test="${reviewData.review.photo3 != null}">
+			                    <div class="review_img">
+			                        <img src="${reviewData.review.photo3}">
+			                    </div>
+		                    </c:if>
+		                    <c:if test="${reviewData.review.photo4 != null}">
+			                    <div class="review_img">
+			                        <img src="${reviewData.review.photo4}">
+			                    </div>
+		                    </c:if>
+		                    <c:if test="${reviewData.review.photo5 != null}">
+			                    <div class="review_img">
+			                        <img src="${reviewData.review.photo5}">
+			                    </div>
+		                    </c:if>
 	                        <div class="review_text">
 	                            <div>선택메뉴</div>
 	                            <p>${reviewData.review.content}</p>

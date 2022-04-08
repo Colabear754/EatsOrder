@@ -20,7 +20,7 @@
             <div class="review_wrapper">
                 <h1>주문내역</h1>
                 <div class="review_all_box">
-                	<c:forEach var="order" items="result">
+                	<c:forEach var="order" items="${result}">
 	                    <div class="review_box">
 	                        <h3><a href="#">${order.rst_name}<span>></span></a></h3>
 	                        <div class="del_btn">
