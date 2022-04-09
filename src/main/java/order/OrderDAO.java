@@ -414,7 +414,7 @@ public class OrderDAO {
 		// 주문번호, 매장명, 매장로고, 메뉴이름 1개, 그 외에 주문한 메뉴 종류 수, 결제일자를 저장한 객체 리스를 반환
 		ArrayList<OrderBasicInfoDTO> resultList = new ArrayList<>();
 		String order_number = "";
-		ResultSet temp = null;
+		ResultSet resultSet2 = null;
 
 		try {
 			connection = connectionMgr.getConnection();
@@ -435,17 +435,17 @@ public class OrderDAO {
 				pStatement = connection.prepareStatement(
 						"select menu_name from order_detail od, menu m where order_number=? and od.menu_id=m.menu_id");
 				pStatement.setString(1, order_number);
-				temp = pStatement.executeQuery();
+				resultSet2 = pStatement.executeQuery();
 
-				if (temp.next()) {
+				if (resultSet2.next()) {
 					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getString("rst_name"),
-							resultSet.getString("rst_logo"), temp.getString(1), resultSet.getInt("count") - 1,
+							resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
 							resultSet.getTimestamp("pay_date")));
 				}
 			}
 
-			if (temp != null) {
-				temp.close();
+			if (resultSet2 != null) {
+				resultSet2.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

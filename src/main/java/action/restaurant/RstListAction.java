@@ -45,7 +45,7 @@ public class RstListAction implements CommandAction {
 		}
 		
 		for (RestaurantDTO rst : rstList) {
-			rstData.add(new RestaurantDetailDTO(rst, reviewProcess.getReplyCount(rst.getRst_id()),
+			rstData.add(new RestaurantDetailDTO(rst, reviewProcess.getReviewCount(rst.getRst_id()),
 					reviewProcess.getReplyCount(rst.getRst_id()), rstProcess.getRating(rst.getRst_id())));
 		}
 		
