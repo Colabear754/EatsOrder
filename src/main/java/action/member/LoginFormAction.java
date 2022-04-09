@@ -10,6 +10,6 @@ public class LoginFormAction implements CommandAction {
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
-		return "/loginForm.jsp";
+		return "/main/loginForm.jsp";
 	}
 }
