@@ -2,6 +2,10 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 로그인
+
+수정자 : 정건영
+수정일 : 2022/04/10
+수정내용 : ajax로그인 추가
 */
 
 $(document).ready(function(){
@@ -41,4 +45,69 @@ $(document).ready(function(){
 //          return false;
 //          }
     });
+    
+    // ajax 로그인 구현
+    $("#login").click(function() {
+    	var type = $("#type").val()
+    	var account = $("#account").val()
+    	var password = $("#password").val()
+    	$.ajax({
+    		type: "POST",
+    		url: "/EatsOrder/main/login.do",
+    		data: "type=" + type + "&account=" + account + "&password=" + password,
+    		dataType: "text",
+    		success: function(data) {
+				if (data.indexOf("true") > 0) {
+					window.location.href = "/EatsOrder/main/main.do"
+				} else {
+					$("#login_error").css("display", "block")
+					$("#account").css("outline", "1px solid red")
+					$("#password").css("outline", "1px solid red")
+				}
+			},
+			error: function(request) {
+				alert("오류 발생 : " + request.status)
+			}
+    	})
+    })
+    
+    // 값이 변경되면 테두리 제거
+    $('#account').keyup(function(e) {
+		$(this).css('outline', '')
+		if (e.keyCode == 13) {
+			login()
+		}
+	})
+	
+	$('#password').keyup(function(e) {
+		$(this).css('outline', '')
+		if (e.keyCode == 13) {
+			login()
+		}
+	})
 });
+
+//엔터키를 눌렀을 때 로그인 되도록 별도 함수로 작성
+function login() {
+	var type = $("#type").val()
+	var account = $("#account").val()
+	var password = $("#password").val()
+	$.ajax({
+		type: "POST",
+		url: "/EatsOrder/main/login.do",
+		data: "type=" + type + "&account=" + account + "&password=" + password,
+		dataType: "text",
+		success: function(data) {
+			if (data.indexOf("true") > 0) {
+				window.location.href = "/EatsOrder/main/main.do"
+			} else {
+				$("#login_error").css("display", "block")
+				$("#account").css("outline", "1px solid red")
+				$("#password").css("outline", "1px solid red")
+			}
+		},
+		error: function(request) {
+			alert("오류 발생 : " + request.status)
+		}
+	})
+}
