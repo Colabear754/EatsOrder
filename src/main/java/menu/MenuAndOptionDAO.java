@@ -12,7 +12,7 @@ import connectionMgr.DBConnectionMgr;
  * 
  * 구현된 기능
  * 메뉴 카테고리 조회, 메뉴 카테고리 추가, 메뉴 카테고리 수정, 메뉴 카테고리 삭제,
- * 메뉴 카테고리에 메뉴 추가, 카테고리별 메뉴 목록 조회, 메뉴 조회, 메뉴 수정, 메뉴 삭제, 
+ * 메뉴 카테고리에 메뉴 추가, 카테고리별 메뉴 목록 조회, 메뉴 검색, 메뉴 조회, 메뉴 수정, 메뉴 삭제, 
  * 메뉴와 옵션 그룹 연결
  * 매장에 등록된 옵션 그룹 조회, 메뉴별 옵션 그룹 조회, 옵션 그룹 추가, 옵션 그룹 수정, 옵션 그룹 삭제
  * 옵션 그룹에 옵션 추가, 그룹별 옵션 조회, 옵션 수정, 옵션 삭제
@@ -221,6 +221,52 @@ public class MenuAndOptionDAO {
 		return resultList;
 	}
 
+	// 메뉴 검색
+	public ArrayList<MenuRstDTO> getMenuList(String searchText, String sido, String sigungu, String bname) {
+		ArrayList<MenuRstDTO> resultList = new ArrayList<>();
+		ResultSet resultSet2 = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement(
+					"select m.menu_id, r.rst_id, rst_name, round(avg(rating), 1) as rating, count(review_number) as count"
+							+ "from menu m, menu_category mc, restaurant r, review, order_history oh, order_detail od "
+							+ "where menu_name like ? and sido=? and sigungu=? and bname=? and m.category_id=mc.category_id and "
+							+ "mc.rst_id=r.rst_id and od.menu_id=m.menu_id and od.order_number=oh.order_number and oh.order_number=review.order_number "
+							+ "group by od.menu_id, m.menu_id, menu_name, r.rst_id, rst_name");
+			pStatement.setString(1, "%" + searchText + "%");
+			pStatement.setString(2, sido);
+			pStatement.setString(3, sigungu);
+			pStatement.setString(4, bname);
+
+			resultSet = pStatement.executeQuery();
+
+			while (resultSet.next()) {
+				pStatement = connection.prepareStatement("select * from menu where menu_id=?");
+				pStatement.setInt(1, resultSet.getInt("menu_id"));
+				resultSet2 = pStatement.executeQuery();
+
+				if (resultSet2.next()) {
+					resultList.add(new MenuRstDTO(new MenuDTO(resultSet2.getInt("menu_id"), resultSet2.getInt("category_id"),
+							resultSet2.getString("menu_name"), resultSet2.getString("menu_info"),
+							resultSet2.getString("menu_photo"), resultSet2.getInt("price"), resultSet2.getInt("enable")),
+							resultSet.getInt("rst_id"), resultSet.getString("rst_name"), resultSet.getDouble("rating"),
+							resultSet.getInt("count")));
+				}
+			}
+			
+			if (resultSet2 != null) {
+				resultSet2.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return resultList;
+	}
+
 	// 메뉴 조회
 	public MenuDTO getMenu(int menu_id) {
 		MenuDTO result = null;
@@ -247,6 +293,7 @@ public class MenuAndOptionDAO {
 		return result;
 	}
 
+	// 메뉴 수정
 	public int updateMenu(int menu_id, int category_id, String menu_name, String menu_info, String menu_photo, int price,
 			int enable) {
 		// result가 0보다 크면 메뉴 수정 성공
