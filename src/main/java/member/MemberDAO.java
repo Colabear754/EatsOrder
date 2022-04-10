@@ -101,7 +101,7 @@ public class MemberDAO {
 	}
 
 	// 중복값 체크
-	public boolean checkMemberInfo(String data, String type) {
+	public boolean checkDuplicateMember(String data, String type) {
 		// type = 1: 이메일, 2: 전화번호, 3: 닉네임 중복값 체크
 		boolean result = false;
 		String sql = "";
@@ -147,13 +147,6 @@ public class MemberDAO {
 	public int insertMember(String email, String password, String phone, String nickname, int receive_marketing) {
 		// 1 : 가입 성공, 0 : 가입 실패
 		int result = 0;
-		String emailPattern = "\\w+@\\w+\\.\\w+(\\.\\w+)?";	// 이메일 유효성검사를 위한 정규식패턴
-		String phonePattern = "^01(?:0|1|[6-9])(?:\\d{3,4})\\d{4}$";	// 전화번호 유효성검사를 위한 정규식패턴
-		String nicknamePattern = "^[가-힣a-zA-Z0-9]*$";	// 닉네임 유효성검사를 위한 정규식패턴
-		
-		if (!Pattern.matches(emailPattern, email) || !Pattern.matches(phonePattern, phone) || !Pattern.matches(nicknamePattern, nickname)) {
-			return -1;	// 유효성 검사에 하나라도 실패하면 -1을 반환
-		}
 		
 		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
