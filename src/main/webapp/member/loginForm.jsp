@@ -6,14 +6,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- 
+    <%-- 
     작성자: 김나연
     작성완료일: 22/04/04
     페이지명: 로그인 폼
     
-    수정자 : 정건영
-    수정일 : 2022/04/08
-    -->
+    jsp변환 : 정건영
+    변환일 : 2022/04/08
+    --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,13 +37,13 @@
                 <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
                 <div id="login_error">계정 또는 비밀번호를 확인해주세요.</div>
                 <div class="id_pw_search">
-                    <a href="/EatsOrder/main/findEmail.do">이메일 찾기</a>
+                    <a href="/EatsOrder/member/findEmail.do">이메일 찾기</a>
                     <span> | </span>
-                    <a href="/EatsOrder/main/checkMember.do">비밀번호 찾기</a>
+                    <a href="/EatsOrder/member/checkValidMember.do">비밀번호 찾기</a>
                 </div>
                 <div class="login_btn_box">
-                    <input type="button" name="login_btn" id="login_btn" value="로그인">
-                    <a href="/EatsOrder/main/insertMemberForm.do">회원가입</a>
+                    <input type="button" name="login" id="login" value="로그인">
+                    <a href="/EatsOrder/member/insertMemberForm.do">회원가입</a>
                 </div>
             </div>
         </div>

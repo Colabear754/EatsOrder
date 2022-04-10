@@ -46,32 +46,10 @@ $(document).ready(function(){
 //          }
     });
     
-    // ajax 로그인 구현
-    $("#login").click(function() {
-    	var type = $("#type").val()
-    	var account = $("#account").val()
-    	var password = $("#password").val()
-    	$.ajax({
-    		type: "POST",
-    		url: "/EatsOrder/main/login.do",
-    		data: "type=" + type + "&account=" + account + "&password=" + password,
-    		dataType: "text",
-    		success: function(data) {
-				if (data.indexOf("true") > 0) {
-					window.location.href = "/EatsOrder/main/main.do"
-				} else {
-					$("#login_error").css("display", "block")
-					$("#account").css("outline", "1px solid red")
-					$("#password").css("outline", "1px solid red")
-				}
-			},
-			error: function(request) {
-				alert("오류 발생 : " + request.status)
-			}
-    	})
-    })
+    // 로그인버튼으로 로그인
+    $("#login").click(login())
     
-    // 값이 변경되면 테두리 제거
+    // 엔터키를 눌렀을 때 로그인
     $('#account').keyup(function(e) {
 		$(this).css('outline', '')
 		if (e.keyCode == 13) {
@@ -94,7 +72,7 @@ function login() {
 	var password = $("#password").val()
 	$.ajax({
 		type: "POST",
-		url: "/EatsOrder/main/login.do",
+		url: "/EatsOrder/member/login.do",
 		data: "type=" + type + "&account=" + account + "&password=" + password,
 		dataType: "text",
 		success: function(data) {
