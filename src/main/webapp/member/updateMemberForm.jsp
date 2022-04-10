@@ -10,16 +10,29 @@
     
     jsp변환 : 정건영
     변환일 : 2022/04/06
+    추가수정내용 : 동적 웹 페이지 작동을 위한 태그 추가
     --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보수정</title>
     <link rel="stylesheet" href="./css/update_member_style.css">
+    <link rel="stylesheet" href="./css/login_header_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./js/update_member_script.js"></script>
 </head>
 <body>
+	<header>
+        <div class="header_top">
+            <div class="header_box">
+                <a href="/EatsOrder/main/main.do" class="logo"><img src="./img/Logo_white.png" alt="로고-아이콘"></a>
+                <ul class="icon_menu">
+                    <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
+                    <li><a href="/EatsOrder/member/loginForm.do"><i class="fa-solid fa-user"> Login</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
     <main>
         <form class="all_box" action="/EatsOrder/member/updateMemberProc.do" method="post">
             <div class="title_box">

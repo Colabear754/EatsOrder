@@ -9,12 +9,14 @@
     
     jsp변환 : 정건영
     변환일 : 2022/04/09
+    추가수정내용 : 동적 웹 페이지 작동을 위한 태그 추가
     --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel="stylesheet" href="./css/insert_member_style.css">
+    <link rel="stylesheet" href="./css/login_header_style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
@@ -23,6 +25,17 @@
 </head>
 
 <body>
+	<header>
+        <div class="header_top">
+            <div class="header_box">
+                <a href="/EatsOrder/main/main.do" class="logo"><img src="./img/Logo_white.png" alt="로고-아이콘"></a>
+                <ul class="icon_menu">
+                    <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
+                    <li><a href="/EatsOrder/member/loginForm.do"><i class="fa-solid fa-user"> Login</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
     <main>
         <div class="all_box">
             <div class="title_box">
@@ -59,7 +72,7 @@
                             <p>10자 이상 입력</p>
                             <p>영문/숫자/특수문자 모두 조합</p>
                             <p>동일한 숫자 3개 이상 연속 사용 불가</p> 
-                            <p class="error" id="password_error">비밀번호 조건에 맞게 입력해주세요.</p>
+                            <p class="error" id="password_error"></p>
                             <p class="available" id="available_password">사용 가능한 비밀번호입니다.</p>
                             </td>
                         </tr>
@@ -73,7 +86,7 @@
                             <th></th>
                             <td>
                                 <p>비밀번호를 한번 더 입력해주세요</p>
-                                <p class="error" id="re_pwd_error">비밀번호가 일치하지 않습니다.</p>
+                                <p class="error" id="re_pwd_error"></p>
                                 <p class="available" id="re_pwd_equal">비밀번호가 일치합니다.</p>
                             </td>
                         </tr>
@@ -103,7 +116,7 @@
                             <th></th>
                             <td>
                                 <p id="phone_notice">숫자만 입력하세요.</p>
-                                <p class="error" id="phone_error">이미 사용중인 휴대폰 번호입니다.</p>
+                                <p class="error" id="phone_error"></p>
                                 <p class="available" id="available_phone">사용 가능한 휴대폰 번호입니다.</p>
                             </td>
                         </tr>
