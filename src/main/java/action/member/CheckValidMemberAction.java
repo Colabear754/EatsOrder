@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.CommandAction;
 import member.MemberDAO;
 
-public class CheckMemberInfoAction implements CommandAction {
+public class CheckValidMemberAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -15,7 +15,7 @@ public class CheckMemberInfoAction implements CommandAction {
 		String phone = request.getParameter("phone");
 		MemberDAO memberProcess = new MemberDAO();
 		
-		boolean result = memberProcess.checkMemberInfo(email, phone);
+		boolean result = memberProcess.checkValidMember(email, phone);
 		
 		request.setAttribute("result", result);
 		

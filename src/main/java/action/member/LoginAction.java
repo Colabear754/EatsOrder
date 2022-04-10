@@ -29,6 +29,6 @@ public class LoginAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/main/login.jsp";
+		return "/member/login.jsp";
 	}
 }

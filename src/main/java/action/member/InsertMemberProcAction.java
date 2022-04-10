@@ -16,18 +16,14 @@ public class InsertMemberProcAction implements CommandAction {
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
 		String nickname = request.getParameter("nickname");
-		String temp = request.getParameter("receive_marketing");
-		int receive_marketing;
+		boolean isChecked = Boolean.parseBoolean(request.getParameter("receive_marketing"));
+		int receive_marketing = isChecked ? 1 : 0;
 		MemberDAO memberProcess = new MemberDAO();
-		
-		if (temp == null || temp.isBlank()) {
-			receive_marketing = 0;
-		} else {
-			receive_marketing = Integer.parseInt(temp);
-		}
-		
-		memberProcess.insertMember(email, password, phone, nickname, receive_marketing);
-		
-		return "/insertMemberProc.jsp";
+
+		int result = memberProcess.insertMember(email, password, phone, nickname, receive_marketing);
+
+		request.setAttribute("result", result);
+
+		return "/member/insertMemberProc.jsp";
 	}
 }
