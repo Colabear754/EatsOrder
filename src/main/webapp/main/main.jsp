@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- 
+    <%-- 
     작성자: 김나연
     작성완료일: 22/04/04
     페이지명: 메인페이지
     
-    수정자 : 정건영
-    수정일 : 2022/04/08
-    -->
+    jsp변환 : 정건영
+    변환일 : 2022/04/08
+    --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,13 +42,13 @@
 	                    </ul>
 	                </li>
 	                <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
-	                <li><a href="/EatsOrder/main/logout.do"><i class="fa-solid fa-power-off"> Logout</i></a></li>
+	                <li><a href="/EatsOrder/member/logout.do"><i class="fa-solid fa-power-off"> Logout</i></a></li>
 	            </ul>
         	</c:if>
         	<c:if test="${account == null}">
 	            <ul class="icon_menu">
 	                <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
-	                <li><a href="/EatsOrder/main/loginForm.do"><i class="fa-solid fa-user"> Login</i></a></li>
+	                <li><a href="/EatsOrder/member/loginForm.do"><i class="fa-solid fa-user"> Login</i></a></li>
 	            </ul>
         	</c:if>
 	    </div>
