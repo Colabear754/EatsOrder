@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- 
+    <%-- 
     작성자: 김나연
     작성완료일: 22/04/04
     페이지명: 회원정보수정
     
-    수정자 : 정건영
-    수정일 : 2022/04/06
-    -->
+    jsp변환 : 정건영
+    변환일 : 2022/04/06
+    --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
                     <tr>
                         <th>이메일</th>
                         <td>
-                            <input type="text" name="email" id="email" value="${member.email}" disabled="disabled"/>
+                            <input type="text" name="email" value="${member.email}" disabled="disabled"/>
                             <input type="text" name="email" id="email" value="${member.email}" hidden="true">
                         </td>
                     </tr>
