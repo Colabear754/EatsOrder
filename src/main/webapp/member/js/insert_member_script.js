@@ -1,11 +1,11 @@
-/* 
-작성자: 김나연
-작성완료일: 22/04/04
-페이지명: 회원가입
-
-수정자 : 정건영
-수정일 : 2022/04/10
-수정내용 : 동적 웹 페이지를 코드로 수정
+/*
+ * 작성자: 김나연
+ * 작성완료일: 22/04/04
+ * 페이지명: 회원가입
+ * 
+ * 수정자 : 정건영
+ * 수정일 : 2022/04/10
+ * 수정내용 : 동적 웹 페이지를 코드로 수정
 */
 
 $(document).ready(function() { //제이쿼리 정규식 표현
@@ -23,7 +23,7 @@ $(document).ready(function() { //제이쿼리 정규식 표현
       	$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/, "$1-$2-$3").replace("--", "-") );
       })
       
-      // 동적 웹 페이지를 위한 이벤트 함수들
+      // 동적 웹 페이지를 위한 이벤트 함수 추가부분
       // 이메일 중복 확인
       $('#email_check').click(function() {
     	  var email = $('#email').val();
@@ -59,6 +59,7 @@ $(document).ready(function() { //제이쿼리 정규식 표현
       $('#password').keyup(function() {
     	  if (!passwdCheck.test($("#password").val())) {
     		  $('#password_error').css('display', 'flex');
+    		  $('#password_error').text("비밀번호를 조건에 맞게 입력하세요.");
     		  $('#available_password').css('display', 'none');
     	  } else {
     		  $('#password_error').css('display', 'none');
@@ -67,6 +68,7 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     	  
     	  if ($('#re_pwd').val() != $('#password').val()) {
     		  $('#re_pwd_error').css('display', 'flex');
+    		  $('#re_pwd_error').text("비밀번호가 일치하지 않습니다.");
     		  $('#re_pwd_equal').css('display', 'none');
     	  } else {
     		  $('#re_pwd_error').css('display', 'none');
@@ -78,6 +80,7 @@ $(document).ready(function() { //제이쿼리 정규식 표현
       $('#re_pwd').keyup(function() {
     	  if ($('#re_pwd').val() != $('#password').val()) {
     		  $('#re_pwd_error').css('display', 'flex');
+    		  $('#re_pwd_error').text("비밀번호가 일치하지 않습니다.");
     		  $('#re_pwd_equal').css('display', 'none');
     	  } else {
     		  $('#re_pwd_error').css('display', 'none');
@@ -129,6 +132,7 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     		  success: function(data) {
     			  if (data.indexOf("true") > 0) {
     				  $('#phone_error').css('display', 'flex');
+    				  $('#phone_error').text("이미 사용중인 휴대폰 번호입니다.");
     				  $('#available_phone').css('display', 'none');
     			  } else {
     				  $('#phone_error').css('display', 'none');
@@ -149,10 +153,13 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     	  var phone = $('#phone').val();
     	  var receive_marketing = $('receive_marketing').is(':checked');
     	  
-    	//이메일 공백 확인
+    	  //이메일 공백 확인
 	      if(email == ""){
-	    	  alert("이메일을 입력해주세요.");
 	    	  $("#email").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+			  $('#email_error').css('display', 'flex');
+    		  $('#email_error').text("이메일을 입력해주세요");
+    		  $('#email').css('outline', '2px solid red');
 	    	  return false;
 	      }
            
@@ -161,65 +168,94 @@ $(document).ready(function() { //제이쿼리 정규식 표현
 		      alert("이메일 형식에 맞게 입력해주세요.")
 		      $("#email").val("");
 		      $("#email").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+			  $('#email_error').css('display', 'flex');
+    		  $('#email_error').text("이메일을 입력해주세요");
+    		  $('#email').css('outline', '2px solid red');
 		      return false;
 	      }
 
 	      //비밀번호 공백 확인
 	      if(password == ""){
-		      alert("비밀번호를 입력해주세요.");
 		      $("#password").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+    		  $('#password_error').css('display', 'flex');
+    		  $('#password_error').text("비밀번호를 입력하세요.");
+    		  $('#password').css('outline', '2px solid red');
 		      return false;
 	      }
 
 	      //비밀번호 유효성검사
 	      if(!passwdCheck.test(password)) {
-		      alert("형식에 맞게 비밀번호를 입력해주세요.");
 		      $("#password").val("");
 		      $("#password").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+    		  $('#password_error').css('display', 'flex');
+    		  $('#password_error').text("비밀번호를 조건에 맞게 입력하세요.");
+    		  $('#password').css('outline', '2px solid red');
 		      return false;
 	      }
 
 	      //비밀번호 확인 공백 확인
 	      if($("#re_pwd").val() == ""){
-		      alert("비밀번호를 다시 입력해주세요.");
 		      $("#re_pwd").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+    		  $('#re_pwd_error').css('display', 'flex');
+    		  $('#re_pwd_error').text("비밀번호를 조건에 맞게 입력하세요.");
+    		  $('#re_pwd').css('outline', '2px solid red');
 		      return false;
 	      }
    
 	      //비밀번호 똑같은지
 	      if(password != ($("#re_pwd").val())){ 
-		      alert("비밀번호가 다릅니다.");
 		      $("#password").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+    		  $('#re_pwd_error').css('display', 'flex');
+    		  $('#re_pwd_error').text("비밀번호가 일치하지 않습니다.");
+    		  $('#password').css('outline', '2px solid red');
+    		  $('#re_pwd').css('outline', '2px solid red');
 		      return false;
 	      }
    
 	      //닉네임 공백 확인
 	      if(nickname == ""){
-		      alert("닉네임을 입력해주세요.");
 		      $("#nickname").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+			  $('#nickname_error').css('display', 'flex');
+    		  $('#nickname_error').text("닉네임을 입력해주세요.");
+    		  $('#nickname').css('outline', '2px solid red');
 		      return false;
 	      }
 
 	      //닉네임 유효성 검사
 	      if(!nicknameCheck.test(nickname)){
-		      alert("형식에 맞게 입력해주세요.");
 		      $("#nickname").val("");
 		      $("#nickname").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+			  $('#nickname_error').css('display', 'flex');
+    		  $('#nickname_error').text("닉네임 형식에 맞게 입력해주세요.");
+    		  $('#nickname').css('outline', '2px solid red');
 		      return false;
 	      }
 
 	      //휴대폰 공백 확인
 	      if(phone == ""){
-		      alert("휴대폰 번호를 입력해주세요.");
 		      $("#phone").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+			  $('#phone_error').css('display', 'flex');
+    		  $('#phone_error').text("휴대폰 번호를 입력해주세요.");
+    		  $('#phone').css('outline', '2px solid red');
 		      return false;
 	      }
 
 	      //휴대폰 유효성 검사
 	      if(!phoneCheck.test(phone)){
-		      alert("형식에 맞게 입력해주세요.");
 		      $("#phone").val("");
 		      $("#phone").focus();
+	    	  // alert 대신 페이지에 출력하도록 수정
+			  $('#phone_error').css('display', 'flex');
+    		  $('#phone_error').text("휴대폰 번호를 형식에 맞게 입력해주세요.");
+    		  $('#phone').css('outline', '2px solid red');
 		      return false;
 	      }
     	  
