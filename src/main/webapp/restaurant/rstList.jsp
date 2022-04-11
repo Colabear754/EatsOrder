@@ -43,7 +43,7 @@
 </header>
 <br><br>
     <div class="search">
-        <form name="resForm" action="res_list.do" id="resForm">
+        <form name="rstForm" action="/EatsOrder/restaurant/rstInfo.do" id="resForm">
             <select name="orderBy" >
                 <option value="1">기본 정렬순</option>
                 <option value="2">별점순</option>
@@ -51,14 +51,20 @@
                 <option value="4">최소 주문 금액 순</option>
             </select>
                 <input class="search2" type="text" name="searchText" placeholder="음식점이나 메뉴를 검색해보세요">
-            <div class="search_btn2" onClick="document.getElementById('resForm').submit();"><i class="fa-solid fa-magnifying-glass fa-lg"></i></div>
+            <div class="search_btn2" onClick="document.getElementById('rstForm').submit();"><i class="fa-solid fa-magnifying-glass fa-lg"></i></div>
         </form>
     </div>
     <br><br><br><br>
+    <!-- 매장 검색 결과가 없으면 -->
+    <c:if test="">
+    	매장 등록 준비 중입니다.
+    </c:if>
+    <!-- 매장 검색 결과가 있으면 -->
+    <c:if test="">
     <div class="title">잇츠오더 플러스</div><br>
     <div class="outer-grid">
     	<c:forEach var="rstData" items="${rstData}">
-    	<a href="/EatsOrder/restaurant/res_detail.do">
+    	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.rst_id}">
         <div class="rst_photo">${rstData.getRst_photo}</div>
         <div class="inner-grid">
             <div class="rst_logo">${rstData.getRst_logo}</div>
@@ -74,6 +80,7 @@
            </a>
          </c:forEach>
      </div>
+     </c:if>
     <br>
     <div class="title">잇츠오더 등록가게</div><br>
     
