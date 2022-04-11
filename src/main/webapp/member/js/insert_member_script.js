@@ -78,13 +78,18 @@ $(document).ready(function() { //제이쿼리 정규식 표현
       
       // 비밀번호 확인
       $('#re_pwd').keyup(function() {
-    	  if ($('#re_pwd').val() != $('#password').val()) {
-    		  $('#re_pwd_error').css('display', 'flex');
-    		  $('#re_pwd_error').text("비밀번호가 일치하지 않습니다.");
-    		  $('#re_pwd_equal').css('display', 'none');
+    	  if ($('#password').val() != "") {
+	    	  if ($('#re_pwd').val() != $('#password').val()) {
+	    		  $('#re_pwd_error').css('display', 'flex');
+	    		  $('#re_pwd_error').text("비밀번호가 일치하지 않습니다.");
+	    		  $('#re_pwd_equal').css('display', 'none');
+	    	  } else {
+	    		  $('#re_pwd_error').css('display', 'none');
+	    		  $('#re_pwd_equal').css('display', 'flex');
+	    	  }
     	  } else {
     		  $('#re_pwd_error').css('display', 'none');
-    		  $('#re_pwd_equal').css('display', 'flex');
+    		  $('#re_pwd_equal').css('display', 'none');
     	  }
       })
       
@@ -124,25 +129,30 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     	  var phone = $('#phone').val();
     	  var type = 'phone';
     	  
-    	  $.ajax({
-    		  type: "POST",
-    		  url: "/EatsOrder/member/checkDuplicateMember.do",
-    		  data: "type=" + type + "&phone=" + phone,
-    		  dataType: "text",
-    		  success: function(data) {
-    			  if (data.indexOf("true") > 0) {
-    				  $('#phone_error').css('display', 'flex');
-    				  $('#phone_error').text("이미 사용중인 휴대폰 번호입니다.");
-    				  $('#available_phone').css('display', 'none');
-    			  } else {
-    				  $('#phone_error').css('display', 'none');
-    				  $('#available_phone').css('display', 'flex');
-    			  }
-    		  },
-    		  error: function(request) {
-  				alert("오류 발생 : " + request.status)
-  			  }
-    	  })
+    	  if (!phoneCheck.test(phone)) {
+			  $('#phone_error').css('display', 'flex');
+    		  $('#phone_error').text("휴대폰 번호를 입력해주세요.");
+    	  } else {
+	    	  $.ajax({
+	    		  type: "POST",
+	    		  url: "/EatsOrder/member/checkDuplicateMember.do",
+	    		  data: "type=" + type + "&phone=" + phone,
+	    		  dataType: "text",
+	    		  success: function(data) {
+	    			  if (data.indexOf("true") > 0) {
+	    				  $('#phone_error').css('display', 'flex');
+	    				  $('#phone_error').text("이미 사용중인 휴대폰 번호입니다.");
+	    				  $('#available_phone').css('display', 'none');
+	    			  } else {
+	    				  $('#phone_error').css('display', 'none');
+	    				  $('#available_phone').css('display', 'flex');
+	    			  }
+	    		  },
+	    		  error: function(request) {
+	  				alert("오류 발생 : " + request.status)
+	  			  }
+	    	  })
+    	  }
       })
       
       // 회원 가입
@@ -158,19 +168,18 @@ $(document).ready(function() { //제이쿼리 정규식 표현
 	    	  $("#email").focus();
 	    	  // alert 대신 페이지에 출력하도록 수정
 			  $('#email_error').css('display', 'flex');
-    		  $('#email_error').text("이메일을 입력해주세요");
+    		  $('#email_error').text("이메일을 입력해주세요.");
     		  $('#email').css('outline', '2px solid red');
 	    	  return false;
 	      }
            
 	      //이메일 유효성 검사
 	      if(!emailCheck.test(email)){
-		      alert("이메일 형식에 맞게 입력해주세요.")
 		      $("#email").val("");
 		      $("#email").focus();
 	    	  // alert 대신 페이지에 출력하도록 수정
 			  $('#email_error').css('display', 'flex');
-    		  $('#email_error').text("이메일을 입력해주세요");
+    		  $('#email_error').text("이메일 형식에 맞게 입력해주세요.");
     		  $('#email').css('outline', '2px solid red');
 		      return false;
 	      }
