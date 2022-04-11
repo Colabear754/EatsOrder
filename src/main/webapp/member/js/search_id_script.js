@@ -2,26 +2,52 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 이메일 찾기
+
+수정자: 정건영
+수정일: 2022/04/10
+수정내용: 동적 웹 페이지를 위한 함수 추가
 */
 
 $(document).ready(function(){ //제이쿼리 정규식 표현
      //휴대폰
-     var phoneCheck = RegExp(/^01[0179][0-9]{7,8}$/);
-
-    $("form").submit(function(){
-        //휴대폰 공백 확인
-      if($("#p_num").val() == ""){
-        alert("휴대폰 번호를 입력해주세요");
-        $("#p_num").focus();
-        return false;
-      }
-
-      //휴대폰 유효성 검사
-      if(!phoneCheck.test($("#p_num").val())){
-      alert("형식에 맞게 입력해주세요");
-      $("#p_num").val("");
-      $("#p_num").focus();
-      return false;
-      }
-    })
+	 $("#submit").click(function() {
+		 var phone = $('#phone').val();
+	     //휴대폰 공백 확인
+		 if(phone == "") {
+		     $("#phone").focus();
+		     // alert 대신 화면에 경고문을 표시하도록 수정
+			 $('#error').css('display', 'block')
+			 $('#phone').css('outline', '2px solid red')
+		     return false;
+	     }
+		 
+		 // 아이디 찾기 함수
+		 $.ajax({
+			 type: "POST",
+			 url: "/EatsOrder/member/findEmailProc.do",
+			 data: "phone=" + phone,
+			 dataType: "text",
+			 success: function(data) {
+				if (data.indexOf('@') > 0) {
+					$('#search_wrapper').css('display', 'none');
+					$('#result').html('회원님의 아이디는 <strong>' + data + '</strong>입니다.');
+					$('#result_wrapper').css('display', 'block');
+					$('#login_button').css('display', 'block');
+				} else {
+					$('#search_wrapper').css('display', 'none');
+					$('#result').text('해당하는 정보의 아이디가 존재하지 않습니다.');
+					$('#result_wrapper').css('display', 'block');
+					$('#regist_button').css('display', 'block');
+				}
+			},
+			error: function(request) {
+				alert("오류 발생 : " + request.status);
+			}
+		 })
+	 })
+	 
+	 // 휴대폰 번호 자동 하이픈 추가
+	 $('#phone').keyup(function() {
+    	$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/, "$1-$2-$3").replace("--", "-") );
+	 })
 })
