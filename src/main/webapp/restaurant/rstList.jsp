@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="grid">
-        <div class="category"><a href="#">전체보기</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do">전체보기</a></div>
         <div class="category"><a href="#">1인분 주문</a></div>
         <div class="category"><a href="#">프랜차이즈</a></div>
         <div class="category"><a href="#">치킨</a></div>
