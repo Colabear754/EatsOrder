@@ -12,7 +12,7 @@ public class LogoutAction implements CommandAction {
 		// 로그아웃 액션클래스
 		request.getSession().invalidate();	// 세션 해제
 		
-		return "/member/logout.jsp";
+		return "/member/process/logout.jsp";
 	}
 
 }

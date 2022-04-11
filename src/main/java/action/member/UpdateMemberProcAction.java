@@ -31,6 +31,6 @@ public class UpdateMemberProcAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/member/updateMemberProc.jsp";
+		return "/member/process/updateMemberProc.jsp";
 	}
 }
