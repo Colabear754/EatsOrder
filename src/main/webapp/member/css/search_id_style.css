@@ -2,6 +2,10 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 이메일 찾기
+
+수정자 : 정건영
+수정일 : 2022/04/10
+수정내용 : 동적 웹 페이지 작동을 위한 스타일 시트 추가
 */
 
 /* 전체 적용 */
@@ -100,23 +104,24 @@ h1 {
 */
 /* 로그인, 회원가입 버튼 */
 .button {
-    text-decoration: none;
+    text-decoration: none;   
     display: none;
     text-align: center;
+    line-height: 45px;
     border-radius: 5px;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 75px;
     width: 350px;
     height: 45px;
     background-color: #FC6E4D;
     border: none;
     cursor: pointer;
     font-size: 15px;
-    color: white;
     font-weight: bold;
+    color: white;
 }
 
-.login:hover {
+.button:hover {
     background-color: #d44424;
 }
 

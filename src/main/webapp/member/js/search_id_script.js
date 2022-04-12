@@ -34,7 +34,6 @@ $(document).ready(function(){ //제이쿼리 정규식 표현
 					$('#result_wrapper').css('display', 'block');
 					$('#login_button').css('display', 'block');
 				} else {
-					$('#search_wrapper').css('display', 'none');
 					$('#result').text('해당하는 정보의 아이디가 존재하지 않습니다.');
 					$('#result_wrapper').css('display', 'block');
 					$('#regist_button').css('display', 'block');

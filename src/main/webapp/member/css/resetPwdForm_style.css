@@ -5,7 +5,7 @@
 
 수정자 : 정건영
 수정일 : 2022/04/12
-수정내용 : 동적 웹 페이지 작동을 위한 스타일시트 추가
+수정내용 : 동적 웹 페이지 작동을 위한 스타일 시트 추가
 */
 
 /* 전체 적용 */
@@ -44,24 +44,25 @@ main {
 }
 
 /* ------------------------------------------------------------------ */
-/* 비밀번호 찾기 제목 */
+/* 제목 */
 h1 {
     margin-bottom: 35px;
 }
 
 /* 인풋박스 제목 공통설정 */
-.search_box p {
+.search_box h4 {
+    display: block;
     margin-left: 75px;
     text-align: left; 
     font-weight: bold;
 }
 
 /* 인풋박스 제목 각 설정 */
-.search_box p:nth-of-type(1) {
+.search_box h4:nth-of-type(1) {
     margin-top: 60px;
 }   
 
-.search_box p:nth-of-type(2) {
+.search_box h4:nth-of-type(2) {
     margin-top: 20px;
 }
 
@@ -80,6 +81,26 @@ h1 {
     margin-top: 10px;
     box-sizing: border-box;
     
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 양식 도움말 */
+#form_helper {
+    text-align: left;
+    margin: 10px 0 30px 70px;
+}
+
+#form_helper p {
+    font-size: 14px
+}
+
+#form_helper p:before {
+    content: '\2022';
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 12px;
+    vertical-align: 0;
 }
 
 /* ------------------------------------------------------------------ */
@@ -105,9 +126,9 @@ h1 {
     background-color: #d44424;
 }
 
-/* ---------------------------------------------------- */
+/* --------------------------------------------------------------------- */
 
-/* 동적 웹 페이지 작동을 위한 추가 코드 */
+/* 동적 웹 페이지 작동을 위한 추가 부분 */
 /* 오류 메시지와 안내 메시지 */
 .error {
 	display: none;
@@ -115,38 +136,8 @@ h1 {
 	font-weight: bold;
 }
 
-/* 결과 화면 */
-#result {
-    text-align: center;
-    font-size: 16pt;
-}
-
-#result_wrapper {
+.available {
 	display: none;
-    text-align: center;
-    width: 500px;
-	margin: auto;
-}
-
-/* 회원가입 버튼 */
-.button {
-    text-decoration: none;   
-    display: none;
-    text-align: center;
-    line-height: 45px;
-    border-radius: 5px;
-    margin: auto;
-    margin-top: 75px;
-    width: 350px;
-    height: 45px;
-    background-color: #FC6E4D;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    color: white;
-}
-
-.button:hover {
-    background-color: #d44424;
+	color: green;
+	font-weight: bold;
 }
