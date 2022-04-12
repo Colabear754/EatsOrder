@@ -51,8 +51,8 @@ input[type=text], [type=password] {
     box-sizing: border-box;
 }
 
-/* 인풋박스 버튼 디자인 */
-.all_box a {
+/* 중복확인 버튼 디자인 */
+.duplicate_check {
     display: inline-block;
     width: 90px;
     height: 30px;
@@ -64,6 +64,10 @@ input[type=text], [type=password] {
     border: 1px solid #FC6E4D;
     border-radius: 5px;
     line-height: 30px;
+}
+
+.duplicate_check:hover {
+	cursor: pointer;
 }
 
 /* 약관보기 버튼 */
@@ -89,6 +93,19 @@ span {
 td {
     padding: 10px 0 10px 20px;
     
+}
+
+/* 양식 도움말 */
+td p {
+    font-size: 14px
+}
+
+td p:before {
+    content: '\2022';
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 12px;
+    vertical-align: 0;
 }
 
 /* 수신동의 폼 정렬 */
@@ -144,4 +161,17 @@ hr {
 
 #form_helper3 td {
     height: 20px;
+}
+
+/* 오류 메시지와 안내 메시지 */
+.error {
+	display: none;
+	color: red;
+	font-weight: bold;
+}
+
+.available {
+	display: none;
+	color: green;
+	font-weight: bold;
 }

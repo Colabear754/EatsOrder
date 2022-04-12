@@ -30,9 +30,9 @@ $(document).ready(function() {
 	    		$('#re_pwd_equal').css('display', 'flex');
 	    	}
     	} else {
-  		  $('#re_pwd_error').css('display', 'none');
-		  $('#re_pwd_equal').css('display', 'none');
-	  }
+  		  	$('#re_pwd_error').css('display', 'none');
+  		  	$('#re_pwd_equal').css('display', 'none');
+    	}
     })
       
     // 비밀번호 확인

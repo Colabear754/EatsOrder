@@ -17,15 +17,9 @@ public class UpdateMemberProcAction implements CommandAction {
 		String newPassword = request.getParameter("newPassword");
 		String phone = request.getParameter("phone");
 		String nickname = request.getParameter("nickname");
-		String temp = request.getParameter("receive_marketing");
-		int receive_marketing;
+		boolean isChecked = Boolean.parseBoolean(request.getParameter("receive_marketing"));
+		int receive_marketing = isChecked ? 1 : 0;
 		MemberDAO memberProcess = new MemberDAO();
-		
-		if (temp == null || temp.isBlank()) {
-			receive_marketing = 0;
-		} else {
-			receive_marketing = Integer.parseInt(temp);
-		}
 		
 		int result = memberProcess.updateMember(email, password, newPassword, phone, nickname, receive_marketing);
 		

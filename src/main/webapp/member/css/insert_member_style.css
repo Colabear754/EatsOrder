@@ -45,7 +45,7 @@ input[type=text], [type=password] {
     box-sizing: border-box;
 }
 
-/* 인풋박스 버튼 디자인 */
+/* 중복확인 버튼 디자인 */
 .duplicate_check {
     display: inline-block;
     width: 90px;
@@ -91,6 +91,20 @@ span {
 td {
     padding: 10px 0 10px 20px;
 }
+
+/* 양식 도움말 */
+td p {
+    font-size: 14px
+}
+
+td p:before {
+    content: '\2022';
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 12px;
+    vertical-align: 0;
+}
+
 
 /* 수신동의 폼 정렬 */
 th, td{

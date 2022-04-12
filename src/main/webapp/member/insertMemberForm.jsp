@@ -55,9 +55,9 @@
                         <tr id="form_helper1" class="form_helper">
                             <th></th>
                             <td>
-                            <p>예시)food123@eatsorder.com</p>
-                            <p class="error" id="email_error"></p>
-                            <p class="available" id="available_email">사용 가능한 이메일입니다.</p>
+	                            <p>예시)food123@eatsorder.com</p>
+	                            <div class="error" id="email_error"></div>
+	                            <div class="available" id="available_email">사용 가능한 이메일입니다.</div>
                             </td>
                         </tr>
                         <tr>
@@ -69,11 +69,11 @@
                         <tr id="form_helper2" class="form_helper">
                             <th></th>
                             <td>
-                            <p>10자 이상 입력</p>
-                            <p>영문/숫자/특수문자 모두 조합</p>
-                            <p>동일한 숫자 3개 이상 연속 사용 불가</p> 
-                            <p class="error" id="password_error"></p>
-                            <p class="available" id="available_password">사용 가능한 비밀번호입니다.</p>
+	                            <p>10자 이상 입력</p>
+	                            <p>영문/숫자/특수문자 모두 조합</p>
+	                            <p>동일한 숫자 3개 이상 연속 사용 불가</p> 
+	                            <div class="error" id="password_error"></div>
+	                            <div class="available" id="available_password">사용 가능한 비밀번호입니다.</div>
                             </td>
                         </tr>
                         <tr>
@@ -86,8 +86,8 @@
                             <th></th>
                             <td>
                                 <p>비밀번호를 한번 더 입력해주세요</p>
-                                <p class="error" id="re_pwd_error"></p>
-                                <p class="available" id="re_pwd_equal">비밀번호가 일치합니다.</p>
+                                <div class="error" id="re_pwd_error"></div>
+                                <div class="available" id="re_pwd_equal">비밀번호가 일치합니다.</div>
                             </td>
                         </tr>
                         <tr>
@@ -101,8 +101,8 @@
                             <th></th>
                             <td>
                                 <p id="nickname_notice">한글, 영어, 숫자만 사용</p>
-                                <p class="error" id="nickname_error"></p>
-                                <p class="available" id="available_nickname">사용 가능한 닉네임입니다.</p>
+                                <div class="error" id="nickname_error"></div>
+                                <div class="available" id="available_nickname">사용 가능한 닉네임입니다.</div>
                             </td>
                         </tr>
                         <tr>
@@ -116,8 +116,8 @@
                             <th></th>
                             <td>
                                 <p id="phone_notice">숫자만 입력하세요.</p>
-                                <p class="error" id="phone_error"></p>
-                                <p class="available" id="available_phone">사용 가능한 휴대폰 번호입니다.</p>
+                                <div class="error" id="phone_error"></div>
+                                <div class="available" id="available_phone">사용 가능한 휴대폰 번호입니다.</div>
                             </td>
                         </tr>
                         <tr>
@@ -125,7 +125,7 @@
                             <td class="check_box">
                                 <label>
                                     <input type="checkbox" id="receive_marketing">
-                                    <span>마케팅 수신동의</span>
+                                    <span>마케팅 정보 수신동의</span>
                                     <a href="#">약관보기></a>
                                 </label>
                             </td>
