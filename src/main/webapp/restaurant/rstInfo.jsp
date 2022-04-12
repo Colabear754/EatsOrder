@@ -141,12 +141,13 @@
 
                                 <div class="btn-group-vertical">
                                     <!-- 추가 버튼태그 -->
+                                    <c:forEach var="categoryMenuList" items="${categoryMenuList}">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                         aria-expanded="false">
-                                        ${categoryList.category_name} <span class="caret"></span>
+                                        ${categoryMenuList.category_name} <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                    <c:forEach var="detail" items="${menuInfoList}">
+                                    <c:forEach var="detail" items="${categoryMenuList}">
                                         <li>
                                             <a data-toggle="modal" data-target="#myModal">
                                                 <div class="row">
@@ -159,6 +160,8 @@
                                                 </div>
                                             </a>
                                         </li>
+                                      </c:forEach>
+                                      </ul>
                                       </c:forEach>
                                         
                                 <div class="btn-group-vertical">

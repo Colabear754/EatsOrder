@@ -6,10 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import action.menu.MenuList;
 import member.MemberDAO;
-import menu.MenuAndOptionDAO;
-import menu.MenuCategoryDTO;
 import restaurant.RestaurantDAO;
 import restaurant.RestaurantDTO;
 import review.*;
@@ -79,8 +76,8 @@ public class RstInfoAction2 implements CommandAction{
 		ArrayList<MenuList> menuList = new ArrayList<>();
 		
 		//우림 추가---------
-		int category_id = Integer.parseInt(request.getParameter("category_id"));
-		ArrayList<MenuDTO> menuInfoList=menuProcess.getMenuList(rst_id, category_id);
+		//int category_id = Integer.parseInt(request.getParameter("category_id"));
+		//ArrayList<MenuDTO> menuInfoList=menuProcess.getMenuList(rst_id, category_id);
 		//----------------
 		for (MenuCategoryDTO category : categoryList) {
 			MenuList categoryMenuList = new MenuList(category, menuProcess.getMenuList(rst_id, category.getCategory_id()));
@@ -92,4 +89,30 @@ public class RstInfoAction2 implements CommandAction{
 		
 		return "/rstInfo.jsp";
 	}
+	
+		class MenuList {
+			MenuCategoryDTO category;
+			ArrayList<MenuDTO> menuList;
+	
+			public MenuList(MenuCategoryDTO category, ArrayList<MenuDTO> menuList) {
+				this.category = category;
+				this.menuList = menuList;
+			}
+	
+			public MenuCategoryDTO getCategory() {
+				return category;
+			}
+	
+			public void setCategory(MenuCategoryDTO category) {
+				this.category = category;
+			}
+	
+			public ArrayList<MenuDTO> getMenuList() {
+				return menuList;
+			}
+	
+			public void setMenuList(ArrayList<MenuDTO> menuList) {
+				this.menuList = menuList;
+			}
+		}
 }
