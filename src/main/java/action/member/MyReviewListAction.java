@@ -19,6 +19,7 @@ public class MyReviewListAction implements CommandAction {
 		String email = (String) request.getSession().getAttribute("account");
 		ReviewDAO reviewProcess = new ReviewDAO();
 		ArrayList<ReviewDetailDTO> reviewData = new ArrayList<>();
+		long overDate;	// 작성일로부터 경과 일수를 저장하기 위한 변수
 
 		if (pageNum == null) {
 			pageNum = "1";
@@ -31,8 +32,10 @@ public class MyReviewListAction implements CommandAction {
 		ArrayList<ReviewDTO> reviewList = reviewProcess.getMyReviews(email, start, end);
 
 		for (ReviewDTO review : reviewList) {
+			overDate = (System.currentTimeMillis() - review.getRegist_date().getTime()) / 1000 / 60 / 60 / 24;
+			
 			reviewData.add(new ReviewDetailDTO(review, reviewProcess.getLikeCount(review.getReview_number()),
-					reviewProcess.getReviewRst(review.getReview_number())));
+					reviewProcess.getReviewRst(review.getReview_number()), overDate));
 		}
 
 		request.setAttribute("myReviews", reviewData);

@@ -25,7 +25,7 @@
                 <div class="review_all_box">
                 	<c:forEach var="reviewData" items="${myReviews}">
 	                    <div class="review_box">
-	                        <h3><a href="#">가게명<span>></span></a></h3>
+	                        <h3><a href="#">${reviewData.restaurant.rst_name}<span>></span></a></h3>
 	                        <div class="star">
 	                            <span>★</span>
 	                            <span>★</span>
@@ -35,8 +35,10 @@
 	                            ${reviewData.review.rating}
 	                        </div>
 	                        <div class="del_btn">
+	                        	<c:if test="${reviewData.overDate <= 7}">
 	                            <a href="/EatsOrder/review/updateReviewForm.do">수정</a>
 	                            <span>|</span>
+	                            </c:if>
 	                            <a href="/EatsOrder/review/deleteReviewForm.do">삭제</a>
 	                        </div>
 	                        <c:if test="${reviewData.review.photo1 != null}">
