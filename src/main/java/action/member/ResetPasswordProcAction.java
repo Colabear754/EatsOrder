@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.CommandAction;
 import member.MemberDAO;
 
-public class ResetMemberPasswordAction implements CommandAction {
+public class ResetPasswordProcAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -15,8 +15,10 @@ public class ResetMemberPasswordAction implements CommandAction {
 		String password = request.getParameter("password");
 		MemberDAO memberProcess = new MemberDAO();
 		
-		memberProcess.resetPassword(email, password);
+		int result = memberProcess.resetPassword(email, password);
 		
-		return "/resetMemberPassword.jsp";
+		request.setAttribute("result", result);
+		
+		return "/member/process/resetPasswordProc.jsp";
 	}
 }
