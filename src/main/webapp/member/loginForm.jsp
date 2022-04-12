@@ -52,7 +52,7 @@
                 <div class="id_pw_search">
                     <a href="/EatsOrder/member/findEmailForm.do">이메일 찾기</a>
                     <span> | </span>
-                    <a href="/EatsOrder/member/checkValidMember.do">비밀번호 찾기</a>
+                    <a href="/EatsOrder/member/findPwdForm.do">비밀번호 찾기</a>
                 </div>
                 <div class="login_btn_box">
                     <input type="button" name="login" id="login" value="로그인">
