@@ -40,7 +40,7 @@
             <div class="search_box">
                 <h1>이메일 찾기</h1>
                 <p>휴대폰 번호</p>
-                <input type="text" name="phone" id="phone" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="휴대폰 번호를 입력해주세요.">
+                <input type="text" name="phone" id="phone" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="휴대폰 번호를 입력해주세요." maxlength="13">
                 <div id="error">휴대폰 번호를 입력해주세요.</div>
             </div>
             <div class="search_btn_box">

@@ -45,7 +45,7 @@
                         <th>이메일</th>
                         <td>
                             <input type="text" name="email" value="${member.email}" disabled="disabled"/>
-                            <input type="text" name="email" id="email" value="${member.email}" hidden="true">
+                            <input type="hidden" name="email" id="email" value="${member.email}">
                         </td>
                     </tr>
                     <tr>
@@ -96,7 +96,7 @@
                     <tr>
                         <th>휴대폰</th>
                         <td>
-                            <input type="text" name="phone" id="phone" value="${member.phone}" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="휴대폰 번호를 입력하세요.">
+                            <input type="text" name="phone" id="phone" value="${member.phone}" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="휴대폰 번호를 입력하세요." maxlength="13">
                             <a href="#">중복확인</a>
                         </td>
                     </tr>

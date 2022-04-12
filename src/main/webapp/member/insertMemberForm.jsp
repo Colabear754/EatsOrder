@@ -108,7 +108,7 @@
                         <tr>
                             <th>휴대폰</th>
                             <td>
-                                <input type="text" name="id_input" id="phone" oninput="this.value = this.value.replaceAll(/\D/g, '')">
+                                <input type="text" name="id_input" id="phone" oninput="this.value = this.value.replaceAll(/\D/g, '')" maxlength="13">
                                 <label class="duplicate_check" id="phone_check">중복확인</label>
                             </td>
                         </tr>
@@ -134,7 +134,7 @@
                 </table>
                 <div class="join_box">
                     <hr>
-                    <button class="button" id="submit">가입하기</button> <button class="button" onclick="history.back()">취소</button>
+                    <button class="button" id="submit">가입하기</button> <button class="button" onclick="window.location.href='/EatsOrder/member/loginForm.do'">취소</button>
                 </div>
             </div>
         </div>
