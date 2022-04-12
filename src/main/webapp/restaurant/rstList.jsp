@@ -56,27 +56,28 @@
     </div>
     <br><br><br><br>
     <!-- 매장 검색 결과가 없으면 -->
-    <c:if test="">
+    <c:if test="${rstData.isEmpty()}">
     	매장 등록 준비 중입니다.
     </c:if>
     <!-- 매장 검색 결과가 있으면 -->
-    <c:if test="">
+    <c:if test="${rstData.isEmpty()==false}">
     <div class="title">잇츠오더 플러스</div><br>
+    
     <div class="outer-grid">
-    	<c:forEach var="rstData" items="${rstData}">
-    	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.rst_id}">
-        <div class="rst_photo">${rstData.getRst_photo}</div>
-        <div class="inner-grid">
-            <div class="rst_logo">${rstData.getRst_logo}</div>
-            <div class="rst_text">
-                <div class="rst_name">${rstData.getRst_name}</div>
-                <div class="rst_info">
-                    <img src="star.png"/> 별점 ${rstData.getRating}점 | 리뷰 ${rstData.getReviewCount}개<br>
-							                    		사장님 댓글 ${rstData.getReplyCount}개<br>
-							                    		${rstData.getDelivery_tip}원 이상 배달
-                </div>
-            </div>
-           </div>
+    	<c:forEach var="rstData" items="${rstData}"> <!-- begin="0" end="4" 배열중에 일부만 출력 가능. 나중에 잇츠오더 플러스, 잇츠오더 등록가게 구분해서 출력할때 사용하기  -->
+    	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.getRst_id}">
+	        <div class="rst_photo">${rstData.getRst_photo}</div>
+	        <div class="inner-grid">
+	            <div class="rst_logo">${rstData.getRst_logo}</div>
+	            <div class="rst_text">
+	                <div class="rst_name">${rstData.getRst_name}</div>
+	                <div class="rst_info">
+	                    <img src="star.png"/> 별점 ${rstData.getRating}점 | 리뷰 ${rstData.getReviewCount}개<br>
+								                    		사장님 댓글 ${rstData.getReplyCount}개<br>
+								                    		${rstData.getDelivery_tip}원 이상 배달
+	                </div>
+	            </div>
+	           </div>
            </a>
          </c:forEach>
      </div>
