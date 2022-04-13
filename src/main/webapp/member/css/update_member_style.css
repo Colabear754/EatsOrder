@@ -92,7 +92,6 @@ span {
 /* 인풋박스 마진 */
 td {
     padding: 10px 0 10px 20px;
-    
 }
 
 /* 양식 도움말 */
@@ -115,11 +114,11 @@ th{
 }
 
 /* 이용약관동의 정렬 */
-tr:nth-child(8) label {
+tr:nth-child(12) label {
     display: block;
 }
 
-tr:nth-child(8) > th {
+tr:nth-child(12) > th {
     padding-bottom: 55px;
 }
 

@@ -67,9 +67,9 @@
                         <div>
                             <i class="fa-solid fa-location-dot"></i>
                             <input type="text" name="addr_search" id="addr_search" placeholder="클릭해서 주소를 선택해주세요 (필수입력)" readonly="readonly">
-                            <input type="text" name="sido" id="sido" hidden="true">
-                            <input type="text" name="sigungu" id="sigungu" hidden="true">
-                            <input type="text" name="bname" id="bname" hidden="true">
+                            <input type="hidden" name="sido" id="sido">
+                            <input type="hidden" name="sigungu" id="sigungu">
+                            <input type="hidden" name="bname" id="bname">
                         </div>
                         <div class="food_search_bar">
                             <i class="fa-solid fa-magnifying-glass"></i>

@@ -17,22 +17,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보수정</title>
     <link rel="stylesheet" href="./css/update_member_style.css">
-    <link rel="stylesheet" href="./css/login_header_style.css">
+    <link rel="stylesheet" href="./css/main_header_logBefore_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./js/update_member_script.js"></script>
 </head>
 <body>
-	<header>
-        <div class="header_top">
-            <div class="header_box">
-                <a href="/EatsOrder/main/main.do" class="logo"><img src="./img/Logo_white.png" alt="로고-아이콘"></a>
-                <ul class="icon_menu">
-                    <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
-                    <li><a href="/EatsOrder/member/loginForm.do"><i class="fa-solid fa-user"> Login</i></a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="all_box">
             <div class="title_box">
@@ -125,11 +114,6 @@
                     <tr>
                         <th>이용약관 동의</th>
                         <td class="check_box"> 
-                            <label>
-                                <input type="checkbox">
-                                <span>이용약관 동의</span>
-                                <a href="#">약관보기></a>
-                            </label><br>
                             <label>
                                 <input type="checkbox" name="receive_marketing">
                                 <span>마케팅 정보 수신동의</span>

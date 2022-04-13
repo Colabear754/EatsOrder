@@ -184,6 +184,16 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     $('#phone').keyup(function() {
     	availablePhone = false;
     })
+    
+    $('#terms').click(function() {
+    	$('#terms-modal').css('display', 'flex');
+    	
+    	$(document).mouseup(function(e) {
+    		if ($('#wrapper').has(e.target).length === 0) {
+    			$('#terms-modal').css('display', 'none')
+    		}
+    	})
+    })
 
     // 회원 가입
     $('#submit').click(function() {
@@ -317,6 +327,13 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     		$('#phone_error').css('display', 'flex');
     		$('#phone_error').text("휴대폰 번호 중복 확인을 해주세요.");
     		$('#phone').css('outline', '2px solid red');
+    		return false;
+    	}
+    	
+    	// 이용약관 동의 체크 여부
+    	if (!$('#agree').is(':checked')) {
+    		$('#terms_error').css('display', 'flex');
+    		$('#terms_label').css('outline', '2px solid red');
     		return false;
     	}
     	
