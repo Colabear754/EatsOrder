@@ -65,16 +65,16 @@
     
     <div class="outer-grid">
     	<c:forEach var="rstData" items="${rstData}"> <!-- begin="0" end="4" 배열중에 일부만 출력 가능. 나중에 잇츠오더 플러스, 잇츠오더 등록가게 구분해서 출력할때 사용하기  -->
-    	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.rst.rst_id}">
-	        <div class="rst_photo">${rstData.rst.rst_photo}</div>
+    	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.restaurant.rst_id}">
+	        <div class="rst_photo">${rstData.restaurant.rst_photo}</div>
 	        <div class="inner-grid">
-	            <div class="rst_logo">${rstData.rst.rst_logo}</div>
+	            <div class="rst_logo">${rstData.restaurant.rst_logo}</div>
 	            <div class="rst_text">
-	                <div class="rst_name">${rstData.rst.rst_name}</div>
+	                <div class="rst_name">${rstData.restaurant.rst_name}</div>
 	                <div class="rst_info">
-	                    <img src="star.png"/> 별점 ${rstData.rstProcess.getRating}점 | 리뷰 ${rstData.reviewProcess.getReviewCount}개<br>
-								                    		사장님 댓글 ${rstData.reviewProcess.getReplyCount}개<br>
-								                    		${rstData.rst.delivery_tip}원 이상 배달
+	                    <img src="star.png"/> 별점 ${rstData.rating}점 | 리뷰 ${rstData.reviewCount}개<br>
+								                    		사장님 댓글 ${rstData.replyCount}개<br>
+								                    		${rstData.restaurant.delivery_tip}원 이상 배달
 	                </div>
 	            </div>
 	           </div>
