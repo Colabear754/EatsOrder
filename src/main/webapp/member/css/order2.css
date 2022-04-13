@@ -1,0 +1,50 @@
+.p1{
+border:1px solid black;
+height:1000px;
+overflow: scroll;
+font-size:12px;
+padding:30px;
+margin:20px;
+}
+h2 {
+	text-align: center;
+}
+.p1::-webkit-scrollbar {
+	display:none;
+}
+ul{
+list-style:none;
+}
+.a4{
+padding-left:13px;
+}
+.a5{
+padding-left:13px;
+}
+.a6{
+padding-left:13px;
+}
+.a9{
+padding-left:13px;
+}
+.a12{
+padding-left:13px;
+}
+.a13{
+padding-left:13px;
+}
+.a21{
+padding-left:13px;
+}
+.a27{
+padding-left:13px;
+}
+.a28{
+padding-left:23px;
+}
+.a29{
+padding-left:13px;
+}
+.a35{
+padding-left:13px;
+}
