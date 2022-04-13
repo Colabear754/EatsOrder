@@ -25,25 +25,25 @@
         </div>
     </div>
     <div class="grid">
-        <div class="category"><a href="/EatsOrder/rstList.do">전체보기</a></div>
-        <div class="category"><a href="#">1인분 주문</a></div>
-        <div class="category"><a href="#">프랜차이즈</a></div>
-        <div class="category"><a href="#">치킨</a></div>
-        <div class="category"><a href="#">피자/양식</a></div>
-        <div class="category"><a href="#">중국집</a></div>
-        <div class="category"><a href="#">한식</a></div>
-        <div class="category"><a href="#">일식/돈까스</a></div>
-        <div class="category"><a href="#">족발/보쌈</a></div>
-        <div class="category"><a href="#">야식</a></div>
-        <div class="category"><a href="#">분식</a></div>
-        <div class="category"><a href="#">카페/디저트</a></div>
-        <div class="category"><a href="#">편의점/마트</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=0">전체보기</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=1">1인분 주문</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=2">프랜차이즈</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=3">치킨</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=4">피자/양식</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=5">중국집</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=6">한식</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=7">일식/돈까스</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=8">족발/보쌈</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=9">야식</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=10">분식</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=11">카페/디저트</a></div>
+        <div class="category"><a href="/EatsOrder/rstList.do&category_id=12">편의점/마트</a></div>
     </div>
     <hr style="border:1px color= silver;" width="100%">
 </header>
 <br><br>
     <div class="search">
-        <form name="rstForm" action="/EatsOrder/restaurant/rstInfo.do" id="resForm">
+        <form name="rstForm" action="/EatsOrder/restaurant/rstInfo.do" id="rstForm">
             <select name="orderBy" >
                 <option value="1">기본 정렬순</option>
                 <option value="2">별점순</option>
@@ -55,33 +55,33 @@
         </form>
     </div>
     <br><br><br><br>
-    <!-- 매장 검색 결과가 없으면 -->
+    <!-- 매장 검색 결과가 없으면 
     <c:if test="${rstData.isEmpty()}">
     	매장 등록 준비 중입니다.
-    </c:if>
+    </c:if>-->
     <!-- 매장 검색 결과가 있으면 -->
-    <c:if test="${rstData.isEmpty()==false}">
+    <%-- <c:if test="${rstData.isEmpty()==false}"> --%>
     <div class="title">잇츠오더 플러스</div><br>
     
     <div class="outer-grid">
     	<c:forEach var="rstData" items="${rstData}"> <!-- begin="0" end="4" 배열중에 일부만 출력 가능. 나중에 잇츠오더 플러스, 잇츠오더 등록가게 구분해서 출력할때 사용하기  -->
-    	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.getRst_id}">
-	        <div class="rst_photo">${rstData.getRst_photo}</div>
+    	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.rst.rst_id}">
+	        <div class="rst_photo">${rstData.rst.rst_photo}</div>
 	        <div class="inner-grid">
-	            <div class="rst_logo">${rstData.getRst_logo}</div>
+	            <div class="rst_logo">${rstData.rst.rst_logo}</div>
 	            <div class="rst_text">
-	                <div class="rst_name">${rstData.getRst_name}</div>
+	                <div class="rst_name">${rstData.rst.rst_name}</div>
 	                <div class="rst_info">
-	                    <img src="star.png"/> 별점 ${rstData.getRating}점 | 리뷰 ${rstData.getReviewCount}개<br>
-								                    		사장님 댓글 ${rstData.getReplyCount}개<br>
-								                    		${rstData.getDelivery_tip}원 이상 배달
+	                    <img src="star.png"/> 별점 ${rstData.rstProcess.getRating}점 | 리뷰 ${rstData.reviewProcess.getReviewCount}개<br>
+								                    		사장님 댓글 ${rstData.reviewProcess.getReplyCount}개<br>
+								                    		${rstData.rst.delivery_tip}원 이상 배달
 	                </div>
 	            </div>
 	           </div>
            </a>
          </c:forEach>
      </div>
-     </c:if>
+     <%-- </c:if> --%>
     <br>
     <div class="title">잇츠오더 등록가게</div><br>
     
