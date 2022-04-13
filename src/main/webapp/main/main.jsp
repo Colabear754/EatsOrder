@@ -16,8 +16,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main_style.css">
-    <link rel="stylesheet" href="./css/main_header_logBefore_style.css">
-    <link rel="stylesheet" href="./css/main_header_logAfter_style.css">
     <title>잇츠오더</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
@@ -29,30 +27,12 @@
 </head>
 <body>
     <header>
-	    <div class="header_top">
-	    	<div class="logo"><a href="/EatsOrder/main/main.do"><img src="./img/Logo.png" alt="로고-아이콘"></a></div>
-    		<c:if test="${account != null}">
-	            <ul class="icon_menu">
-	                <li><a href="/EatsOrder/member/myPage.do"><i class="fa-solid fa-heart"> MyPage</i></a>
-	                    <ul>
-	                        <li><a href="/EatsOrder/member/favoriteRstList.do">찜 목록</a></li>
-	                        <li><a href="/EatsOrder/member/couponList.do">쿠폰함</a></li>
-	                        <li><a href="/EatsOrder/member/myReviewList.do">리뷰관리</a></li>
-	                        <li><a href="/EatsOrder/member/orderList.do">회원주문내역</a></li>
-	                        <li><a href="/EatsOrder/member/updateMemberForm.do">내 정보 수정</a></li>
-	                    </ul>
-	                </li>
-	                <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
-	                <li><a href="/EatsOrder/member/logout.do"><i class="fa-solid fa-power-off"> Logout</i></a></li>
-	            </ul>
-        	</c:if>
-        	<c:if test="${account == null}">
-	            <ul class="icon_menu">
-	                <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
-	                <li><a href="/EatsOrder/member/loginForm.do"><i class="fa-solid fa-user"> Login</i></a></li>
-	            </ul>
-        	</c:if>
-	    </div>
+	    <c:if test="${account != null}">
+	        <jsp:include page="../component/main_header_logAfter.html" />
+        </c:if>
+        <c:if test="${account == null}">
+	        <jsp:include page="../component/main_header_logBefore.html" />
+        </c:if>
         <div class="header_back">
             <div class="all_header">
                 <div class="header_first">
@@ -145,5 +125,6 @@
             </a>
         </div>
     </main>
+    <jsp:include page="../component/footer.html" />
 </body>
 </html>

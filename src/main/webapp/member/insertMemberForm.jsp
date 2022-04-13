@@ -41,7 +41,7 @@
         <div class="all_box">
 	    	<div id="terms-modal">
 				<div id="wrapper">
-					<jsp:include page="./document/Utilization.html" />
+					<jsp:include page="../component/Utilization.html" />
 				</div>
 			</div>
             <div class="title_box">

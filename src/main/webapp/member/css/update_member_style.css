@@ -118,10 +118,6 @@ tr:nth-child(12) label {
     display: block;
 }
 
-tr:nth-child(12) > th {
-    padding-bottom: 55px;
-}
-
 /* ----------------------------------------------- */
 /* 가입버튼 컨테이너 */
 .member_box {
