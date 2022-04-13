@@ -13,6 +13,10 @@
     margin: 0;
 }
 
+a:hover {
+	cursor: pointer;
+}
+
 main {
     margin: 0 10%;
 }
@@ -112,7 +116,7 @@ th, td{
 
 /* 이용약관동의 정렬 */
 tr:nth-child(11) label {
-    display: block;
+    display: inline-block;
 }
 
 tr:nth-child(11) > th {

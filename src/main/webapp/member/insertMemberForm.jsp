@@ -17,7 +17,6 @@
     <title>회원가입</title>
     <link rel="stylesheet" href="./css/insert_member_style.css">
     <link rel="stylesheet" href="./css/login_header_style.css">
-  	<link href="./css/order2.css" rel="stylesheet" type="text/css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
@@ -129,16 +128,20 @@
                         <tr>
                             <th>이용약관 동의</th>
                             <td class="check_box">
-	                            <label id="terms_label">
-	                                <input type="checkbox" id="agree">
-	                                <span>이용약관 동의(필수)</span>
-	                                <a href="#" id="terms">약관보기></a>
-	                            </label>
-                                <label>
-                                    <input type="checkbox" id="receive_marketing">
-                                    <span>마케팅 정보 수신동의(선택)</span>
-                                    <a href="#">약관보기></a>
-                                </label>
+                            	<div>
+		                            <label id="terms_label">
+		                                <input type="checkbox" id="agree">
+		                                <span>이용약관 동의(필수)</span>
+		                            </label>
+		                            <a id="terms">약관보기></a>
+	                            </div>
+	                            <div>
+	                                <label>
+	                                    <input type="checkbox" id="receive_marketing">
+	                                    <span>마케팅 정보 수신동의(선택)</span>
+	                                </label>
+	                                <a>약관보기></a>
+                                </div>
                             </td>
                         </tr>
                         <tr>
