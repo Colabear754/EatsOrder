@@ -1,0 +1,123 @@
+body {
+	margin: 0 10%;
+}
+.member{
+border:1px solid black;
+margin:30px;
+}
+li::marker {
+color:red;
+}
+.m1{
+text-align: center;
+}
+.m2{
+font-size:18px;
+background-color:#EEEEEE;
+padding:7px;
+padding-left:30px;
+}
+.m3{
+font-size:15px;
+ padding:7px;
+ background-color:#ff9f00;
+ padding-left:30px;
+}
+.m4{
+list-style:none;
+padding-right:20px;
+font-weight:bold;
+padding:3px;
+position:relative;
+}
+.m5{
+list-style:none;
+padding-right:20px;
+font-weight:bold;
+padding:3px;
+}
+.m6{
+font-size:18px;
+background-color:#EEEEEE;
+padding:7px;
+padding-left:30px;
+font-weight:bold;
+}
+.m10{
+font-size:14px;
+}
+.checkbox input.checkbox1{
+    font-size: 1em;
+    width: 1.25em; /* 너비 설정 */
+    height: 1.25em; /* 높이 설정 */
+    vertical-align: middle;
+}
+.checkbox input.checkbox1 + label{ /* 라벨 텍스트 크기와 수직 정렬 맞춤 */
+    font-size: 17px;
+    vertical-align: middle;
+}
+#check2 {
+	padding: 5px;
+}
+.checkbox2 + label{
+    position: relative;
+	left:20px;
+	top:3px;
+}
+.checkbox input[type="checkbox"].checkbox2{
+	display:none;
+}
+.checkbox input[type="checkbox"].checkbox2 + label:before { /* 체크박스 배경 */
+	content: '';
+    border: 1px solid red;
+	padding-left:25px;
+	
+	
+}
+.checkbox input[type="checkbox"].checkbox2 + label:after { /* 체크 마크 */
+    position: absolute;
+	left: 4px;
+    content: '✔'; /* 체크 마크 ASCii 문자 */
+    font-size: 1.5em;
+    line-height: 0.8;
+    color: red;
+    transition: all .3s;
+}
+[type="checkbox"].checkbox2 + label:after { /* 기본 상태 - 투명에 크기 0 */
+    opacity: 0;
+    transform: scale(0);
+}
+[type="checkbox"]:checked.checkbox2 + label:after { /* 체크 상태 - 불투명에 크기 1 */
+    opacity: 1;
+    transform: scale(1);
+}
+.t1{ 
+display:inline-block;
+width:450px; line-height:50px;
+padding-left:10px;
+margin:10px;
+}
+.b1{
+padding:23px;
+padding-left:22px;
+}
+.m7{
+list-style:none;
+font-size:14px;
+color:#A9A9A9;
+padding-left:13px;
+}
+.m8{
+color:#ff9f00;
+font-size:14px;
+}
+.error {
+	color: red;
+	font-weight: bold;
+	display: none;
+	margin: 0 30px;
+}
+.password {
+	left: -20px;
+	margin: 0;
+}

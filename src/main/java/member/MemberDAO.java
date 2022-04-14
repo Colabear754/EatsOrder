@@ -1,7 +1,6 @@
 package member;
 
 import java.sql.*;
-import java.util.regex.Pattern;
 
 import connectionMgr.DBConnectionMgr;
 
@@ -192,7 +191,7 @@ public class MemberDAO {
 	// 회원탈퇴
 	public int deleteMember(String email, String password, String reason_withdraw) {
 		// result가 0보다 크면 탈퇴 성공
-		int result = 0;
+		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();

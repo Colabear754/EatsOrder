@@ -14,6 +14,6 @@ public class DeleteMemberFormAction implements CommandAction {
 		
 		request.setAttribute("email", email);
 		
-		return "deleteMemberForm.jsp";
+		return "/member/deleteMemberForm.jsp";
 	}
 }
