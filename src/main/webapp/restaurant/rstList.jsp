@@ -44,7 +44,7 @@
 <br><br>
     <div class="search">
         <form name="rstForm" action="/EatsOrder/restaurant/rstInfo.do" id="rstForm">
-            <select name="orderBy" >
+            <select name="orderBy">
                 <option value="1">기본 정렬순</option>
                 <option value="2">별점순</option>
                 <option value="3">리뷰 많은 순</option>
