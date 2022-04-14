@@ -1,9 +1,3 @@
-/* 
-작성자: 김나연
-작성완료일: 22/04/04
-페이지명: 푸터
-*/
-
 /* 전체마진 */
 * {
     margin: 0;
@@ -20,6 +14,7 @@ footer {
       display: grid;
       grid-template-columns: repeat(1,1fr);
       grid-template-rows: repeat(3,auto);
+      /* border: 1px solid red; */
       margin-left: 10%;
       margin-right: 10%;
       column-gap: 1%;
@@ -27,7 +22,7 @@ footer {
       padding-top: 50px;
   }
   
-  footer div,p {
+  footer div, footer p {
       color: #C4C4C4;
   }
   
@@ -40,6 +35,7 @@ footer {
       display: grid;
       grid-template-columns: 2fr 202px;
       grid-template-rows: repeat(1,auto);
+      /* border: 1px solid dodgerblue; */
       column-gap: 1%;
       row-gap: 12px;
       padding: 0 0 0 7px;
@@ -70,14 +66,16 @@ footer {
   
   /* footer 회사설명 */
   .fooer_script {
+      /* border: 1px solid pink; */
       margin-top: 35px;
   }
   
   .cs {
+      /* border: 1px solid orange; */
       margin: 35px 0;
   }
   
-  .cs h1,p{
+  .cs h1, .cs p{
       display: inline-block;
   }
   

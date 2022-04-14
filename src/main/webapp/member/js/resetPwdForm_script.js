@@ -22,13 +22,12 @@ $(document).ready(function() {
     	
     	if ($('#password').val() != "") {
 	    	if ($('#re_pwd').val() != $('#password').val()) {
-	    		$('#re_pwd_error').css('display', 'flex');
 	    		$('#re_pwd_error').text("비밀번호가 일치하지 않습니다.");
 	    		$('#re_pwd_equal').css('display', 'none');
 	    	} else {
-	    		$('#re_pwd_error').css('display', 'none');
-	    		$('#re_pwd_equal').css('display', 'flex');
-	    	}
+    			$('#re_pwd_error').css('display', 'none');
+    			$('#re_pwd_equal').css('display', 'flex');
+    		}
     	} else {
   		  	$('#re_pwd_error').css('display', 'none');
   		  	$('#re_pwd_equal').css('display', 'none');

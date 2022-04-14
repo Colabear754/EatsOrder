@@ -16,7 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel="stylesheet" href="./css/insert_member_style.css">
-    <link rel="stylesheet" href="./css/login_header_style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
@@ -25,17 +24,7 @@
 </head>
 
 <body>
-	<header>
-        <div class="header_top">
-            <div class="header_box">
-                <a href="/EatsOrder/main/main.do" class="logo"><img src="./img/Logo_white.png" alt="로고-아이콘"></a>
-                <ul class="icon_menu">
-                    <li><a href="#"><i class="fa-solid fa-cart-shopping"> Cart</i></a></li>
-                    <li><a href="/EatsOrder/member/loginForm.do"><i class="fa-solid fa-user"> Login</i></a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+	<jsp:include page="../component/login_header.html" />
     <main>
         <div class="all_box">
 	    	<div id="terms-modal">
@@ -159,5 +148,6 @@
             </div>
         </div>
     </main>
+    <jsp:include page="../component/footer.html" />
 </body>
 </html>

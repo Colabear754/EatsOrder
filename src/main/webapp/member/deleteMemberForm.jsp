@@ -14,7 +14,7 @@ jsp변환 : 정건영
 <script type="text/javascript" src="./js/delete_member_script.js"></script>
 </head>
 <body>
-	<div class="container">
+	<main>
 	<input type="hidden" id="email" value="${email}">
 	<div class="member">
 		<div class="m1">
@@ -74,6 +74,7 @@ jsp변환 : 정건영
 			</button>
 		</div>
 	</div>
-	</div>
+	</main>
+<%-- 	<jsp:include page="../component/footer.html" /> --%>
 </body>
 </html>

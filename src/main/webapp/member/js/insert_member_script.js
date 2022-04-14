@@ -79,7 +79,6 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     	}    	  
     	if ($('#password').val() != "") {
     		if ($('#re_pwd').val() != $('#password').val()) {
-    			$('#re_pwd_error').css('display', 'flex');
     			$('#re_pwd_error').text("비밀번호가 일치하지 않습니다.");
     			$('#re_pwd_equal').css('display', 'none');
     		} else {
