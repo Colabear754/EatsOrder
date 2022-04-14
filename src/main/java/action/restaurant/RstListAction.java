@@ -48,7 +48,7 @@ public class RstListAction implements CommandAction {
 			rstData.add(new RestaurantDetailDTO(rst, reviewProcess.getReviewCount(rst.getRst_id()),
 					reviewProcess.getReplyCount(rst.getRst_id()), rstProcess.getRating(rst.getRst_id())));
 		}
-		
+
 		request.setAttribute("category_id", category_id);
 		request.setAttribute("orderBy", orderBy);
 		request.setAttribute("sido", sido);
