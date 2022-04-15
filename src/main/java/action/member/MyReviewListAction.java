@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
+import coupon.CouponDAO;
+import member.MemberDAO;
+import member.MemberInfoDTO;
 import review.*;
 
 public class MyReviewListAction implements CommandAction {
@@ -17,6 +20,8 @@ public class MyReviewListAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		String email = (String) request.getSession().getAttribute("account");
+		MemberDAO memberProcess = new MemberDAO();
+		CouponDAO couponProcess = new CouponDAO();
 		ReviewDAO reviewProcess = new ReviewDAO();
 		ArrayList<ReviewDetailDTO> reviewData = new ArrayList<>();
 		long overDate;	// 작성일로부터 경과 일수를 저장하기 위한 변수
@@ -38,6 +43,11 @@ public class MyReviewListAction implements CommandAction {
 					reviewProcess.getReviewRst(review.getReview_number()), overDate));
 		}
 
+		MemberInfoDTO member = memberProcess.getMember(email);
+		int couponCount = couponProcess.getCouponCount(email);
+
+		request.setAttribute("member", member);
+		request.setAttribute("couponCount", couponCount);
 		request.setAttribute("myReviews", reviewData);
 
 		return "/member/myReviewList.jsp";

@@ -17,6 +17,7 @@ public class DeleteMemberProcAction implements CommandAction {
 		MemberDAO memberProcess = new MemberDAO();
 
 		int result = memberProcess.deleteMember(email, password, reason_withdraw);
+		request.getSession().invalidate();
 
 		request.setAttribute("result", result);
 
