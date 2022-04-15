@@ -1,0 +1,88 @@
+/* 
+작성자: 김나연
+작성완료일: 22/04/04
+페이지명: 푸터
+*/
+
+/* 전체마진 */
+* {
+    margin: 0;
+}
+
+/* footer 배경*/
+footer {
+    background-color: #212121;
+    height: 500px;
+    ;
+}
+
+/* footer 그리드 */
+.all_footer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, auto);
+    margin-left: 10%;
+    margin-right: 10%;
+    column-gap: 1%;
+    row-gap: 12px;
+    padding-top: 50px;
+}
+
+footer div, p {
+    color: #C4C4C4;
+}
+
+.hr1 {
+    clear: left;
+}
+
+/* footer list */
+.footer_list ul {
+    display: grid;
+    grid-template-columns: 2fr 202px;
+    grid-template-rows: repeat(1, auto);
+    column-gap: 1%;
+    row-gap: 12px;
+    padding: 0 0 0 7px;
+}
+
+/* footer 메뉴 전체 */
+.footer_list li {
+    display: inline;
+    text-decoration: none;
+    margin: 0 5px 0 0;
+}
+
+.footer_sns {
+    width: fit-content;
+    margin-left: 120px;
+}
+
+/* footer list a */
+.footer_list a {
+    text-decoration: none;
+    color: #C4C4C4
+}
+
+/* hr 효과 */
+hr {
+    background: #C4C4C4;
+}
+
+/* footer 회사설명 */
+.fooer_script {
+    margin-top: 35px;
+}
+
+.cs {
+    margin: 35px 0;
+}
+
+.cs h1,
+p {
+    display: inline-block;
+}
+
+.fooer_script2 {
+    margin: 35px 0 50px 0;
+}

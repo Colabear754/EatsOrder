@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이메일 찾기 결과</title>
+    <!-- css연결 : google font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+    </style>
+    <!-- css연결 : admin_main_style -->
+    <link rel="stylesheet" href="../css/find_email.css">
+</head>
+<body>
+    <main>
+        <div id="result_wrapper">
+        	<p id="result"></p>
+        	<a class="button" id="login_button" href="/EatsOrder/member/loginForm.do">로그인 하러 가기</a>
+        	<a class="button" id="regist_button" href="/EatsOrder/member/insertMemberForm.do">회원 가입</a>
+        </div>
+    </main>
+</body>
+</html>

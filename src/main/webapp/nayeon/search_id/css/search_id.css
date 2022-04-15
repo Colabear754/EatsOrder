@@ -1,0 +1,92 @@
+/*
+작성자: 김나연
+작성완료일: 22/04/04
+페이지명: 이메일 찾기
+*/
+
+/* 전체 적용 */
+/* 위에 뜸 해결*/
+*{
+    margin: 0;
+}
+
+/* 전체배경색 */
+body {
+    background-color: white;
+}
+
+/* 전체 글씨체 적용 */
+a, h1, h3, button, p {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* 메인 그리드 */
+main {
+    display: grid;
+    height: 620px;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(1,auto);
+    margin: 0 10%;
+    column-gap: 1%;
+    row-gap: 12px;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 전체 로그인 박스 */
+.search_wrapper {
+    margin: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* 이메일 찾기 제목 */
+h1 {
+    margin-bottom: 35px;
+}
+
+.search_box > p {
+    margin: 60px 0 0 75px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* 인풋 로그인 박스 */
+.search_box {
+    text-align: center;
+    width: 500px;
+}
+
+/* 핸드폰번호 입력 박스 */
+.search_box input {
+    display: block;
+    width: 350px;
+    height: 45px;
+    margin: auto;
+    margin-top: 10px;
+    box-sizing: border-box;
+    
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 찾기버튼 */
+.search_btn_box input {
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 20px;
+    width: 350px;
+    height: 45px;
+    background-color: #FC6E4D;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.search_btn_box input:hover {
+    background-color: #d44424;
+}
