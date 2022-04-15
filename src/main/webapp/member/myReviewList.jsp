@@ -21,16 +21,16 @@
 <body>
 	<jsp:include page="./myPage.jsp" />
     <main>
+        <c:set var="reviewCount" value="${fn:length(reviewData)}" />
         <div class="content_box">
             <div class="review_wrapper">
                 <h1>리뷰관리</h1>
                 <div class="review_all_box">
-                	<c:set var="reviewCount" value="${fn.length(myReviews)}" />
                 	<c:if test="${reviewCount == 0}">
                 		<h3>작성된 리뷰가 없습니다.</h3>
                 	</c:if>
                 	<c:if test="${reviewCount > 0}">
-	                	<c:forEach var="reviewData" items="${myReviews}">
+	                	<c:forEach var="reviewData" items="${reviewData}">
 		                    <div class="review_box">
 		                        <h3><a href="#">${reviewData.restaurant.rst_name}<span>></span></a></h3>
 		                        <div class="star">

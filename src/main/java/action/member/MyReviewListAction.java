@@ -48,7 +48,7 @@ public class MyReviewListAction implements CommandAction {
 
 		request.setAttribute("member", member);
 		request.setAttribute("couponCount", couponCount);
-		request.setAttribute("myReviews", reviewData);
+		request.setAttribute("reviewData", reviewData);
 
 		return "/member/myReviewList.jsp";
 	}

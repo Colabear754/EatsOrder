@@ -34,7 +34,7 @@
         <div class="login_wrapper">
             <div class="login_box">
                 <h1>로그인</h1>
-                <input type="hidden" value="1">
+                <input type="hidden" name="type" id="type" value="1">
                 <input type="text" name="account" id="account" placeholder="이메일을 입력해주세요">
                 <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
                 <div id="login_error">계정 또는 비밀번호를 확인해주세요.</div>

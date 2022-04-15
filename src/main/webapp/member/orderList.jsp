@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,29 +21,35 @@
 <body>
 	<jsp:include page="./myPage.jsp" />
     <main>
+    	<c:set var="orderCount" value="${fn:length(result)}" />
         <div class="content_box">
             <div class="review_wrapper">
                 <h1>주문내역</h1>
                 <div class="review_all_box">
-                	<c:forEach var="order" items="${result}">
-	                    <div class="review_box">
-	                        <h3><a href="#">${order.rst_name}<span>></span></a></h3>
-	                        <div class="del_btn">
-	                            <a href="#">상세보기</a>
-	                        </div>
-	                        <div class="review_img">
-	                            <img src="${order.rst_logo}">
-	                        </div>
-	                        <div class="review_text">
-	                        	<c:if test="${order.count == 0}">
-	                            	<p>${order.menu_name}</p>
-	                            </c:if>
-	                            <c:if test="${order.count > 0}">
-	                            	<p>${order.menu_name} 외 ${order.count}개</p>
-	                            </c:if>
-	                        </div>
-                    	</div>
-                    </c:forEach>
+	                <c:if test="${orderCount == 0}">
+	                	<h3>주문내역이 없습니다.</h3>
+	                </c:if>
+	                <c:if test="${orderCount > 0}">
+	                	<c:forEach var="order" items="${result}">
+		                    <div class="review_box">
+		                        <h3><a href="#">${order.rst_name}<span>></span></a></h3>
+		                        <div class="del_btn">
+		                            <a href="#">상세보기</a>
+		                        </div>
+		                        <div class="review_img">
+		                            <img src="${order.rst_logo}">
+		                        </div>
+		                        <div class="review_text">
+		                        	<c:if test="${order.count == 0}">
+		                            	<p>${order.menu_name}</p>
+		                            </c:if>
+		                            <c:if test="${order.count > 0}">
+		                            	<p>${order.menu_name} 외 ${order.count}개</p>
+		                            </c:if>
+		                        </div>
+	                    	</div>
+	                    </c:forEach>
+                    </c:if>
                 </div>
             </div>
         </div>
