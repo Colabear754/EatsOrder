@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사장님_원산지 표시</title>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
+    <link href="../ceo-page/css/ceo.origin.css" rel="stylesheet" type="text/css">
+    <script src="../ceo-page/js/ceo-origin.js"></script>
+
+
+
+    </script>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <div>
+                <li class="main1"><i class="fa-solid fa-address-card"></i>&nbsp;내 정보 관리<i
+                        class="fa-solid fa-caret-down"></i></li>
+                <ul>
+                    <a href="ceopage-info.html">
+                        <li class="sub1">&nbsp;사장님정보</li>
+                    </a>
+                    <a href="ceopage-origin.html">
+                        <li class="sub1">&nbsp;원산지 설정</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main2"><i class="fa-solid fa-clock"></i>&nbsp;영업시간/지역</li>
+                <ul>
+                    <a href="ceopage-sales.html">
+                        <li class="sub2">&nbsp;영업 일시중지</li>
+                    </a>
+                    <a href="ceopage-sales-setting.html">
+                        <li class="sub2">&nbsp;영업일 관리</li>
+                    </a>
+                    <a href="ceopage-sales-delivery.html">
+                        <li class="sub2">&nbsp;배달지역/배달요금 관리</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main3"><i class="fa-solid fa-file-lines"></i>&nbsp;메뉴 관리</li>
+                <ul>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_soldout">&nbsp;메뉴 품절관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_self">&nbsp;메뉴 셀프관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_price">&nbsp;메뉴 가격관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_pic">&nbsp;메뉴 사진관리</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main4"><i class="fa-regular fa-message"></i>&nbsp;고객 관리</li>
+                <ul>
+                    <a href="ceopage-review.html">
+                        <li class="sub4">&nbsp;리뷰관리</li>
+                    </a>
+                </ul>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="container" style="padding-top:5%">
+        <div class="location">
+            "사장님 페이지" >
+            <h2>원산지 표시</h2>
+        </div>
+        <!--location-->
+        <br>
+
+        <h3>원산지 표시</h3>
+        <div class="txts">
+            <p class="bs-callout-info">
+                <i class="spr"></i>
+                <srong>2017년 1월 1일</srong>
+                부터 배달앱
+                <strong>원산지 표시가 의무화</strong>
+                되며 위반시 처벌 대상이 됩니다.
+                달라진 원산지 표시제도를 참고하셔서 꼭 입력해주세요
+            </p>
+        </div>
+        <div class="from-origin">
+            <textarea id="country-orign" name="country-orign" style="height: 200px;" maxlength="5000" placeholder="예) *쌀: 국내산
+            * 오리지널치킨,양념치킨,반반치킨: 닭고기(브라질산)
+            * 매운족발: 돼지고기(국내산)
+            * 배추김치(반찬용): 배추(국내산),고춧가루(중국산)"></textarea>
+            <div id="test_cnt">(0 / 5000)</div>
+
+            <div class="btn-warpper"id="origin">
+                <div><button type="button" id="save_btn" class="btn" onclick="buttonClick(this)" value="안녕">저장하기</button></div>
+                
+            </div>
+        </div>
+
+
+
+    </div><!-- container-->
+</body>
+
+</html>
