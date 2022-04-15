@@ -1,3 +1,4 @@
+/* 2022.04.15 css수정 */
 *{
     margin: 0;
 }
@@ -43,14 +44,8 @@ margin-right:20%;
 }
 table{
 width: 100%;
-border-top: 1px solid #dfdfdf;
-border-left: 1px solid #dfdfdf;
-border-right: 1px solid #dfdfdf;
-border-bottom: 0.5px solid #dfdfdf;
-border-radius: 8px;
 margin-bottom:20px;
 border-spacing: 0;
-background-color: white;
 box-shadow: 5px black;
 }
 td{
@@ -108,18 +103,18 @@ font-size: 13px;
 color: #616161;
 }
 .restaurant-detail > table > tbody > tr > th {
-border-right: 1px solid skyblue;
-border-bottom: 1px solid skyblue;
+border-right: 1px solid #dfdfdf;
+border-bottom: 1px solid #dfdfdf;
 }
 .restaurant-detail > table > tbody > tr > td {
 
-border-bottom: 1px solid skyblue;
+border-bottom: 1px solid #dfdfdf;
 }
 .table-m1 > table > thead > tr > th {
-border: 1px solid skyblue;
+border: 1px solid #dfdfdf
 }
 .table-m1 > table > tbody > tr >td {
-border: 1px solid skyblue;
+border: 1px solid #dfdfdf;
 }
 .file {
 text-align: center;
@@ -129,8 +124,8 @@ text-align: center;
 
 }
 .table-bordered > tbody > tr > td {
-border: 1px solid skyblue;
+border: 1px solid #dfdfdf;
 }
 .table-bordered > thead > tr > th {
-border: 1px solid skyblue;
+border: 1px solid #dfdfdf;
 }
