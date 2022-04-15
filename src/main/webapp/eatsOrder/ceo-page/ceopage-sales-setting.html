@@ -1,0 +1,376 @@
+<!-- 사장님 영업일 관리 2022.04.04 김시웅-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사장님_영업일 관리</title>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
+  <script src="res_manager_nav.js"></script>
+  <link href="../ceo-page/css/ceo.setsales.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <div>
+        <li class="main1"><i class="fa-solid fa-address-card"></i>&nbsp;내 정보 관리<i class="fa-solid fa-caret-down"></i>
+        </li>
+        <ul>
+          <a href="ceopage-info.html">
+            <li class="sub1">&nbsp;사장님정보</li>
+          </a>
+          <a href="ceopage-origin.html">
+            <li class="sub1">&nbsp;원산지 설정</li>
+          </a>
+        </ul>
+      </div>
+
+      <br>
+      <div>
+        <li class="main2"><i class="fa-solid fa-clock"></i>&nbsp;영업시간/지역</li>
+        <ul>
+          <a href="ceopage-sales.html">
+            <li class="sub2">&nbsp;영업 일시중지</li>
+          </a>
+          <a href="ceopage-sales-setting.html">
+            <li class="sub2">&nbsp;영업일 관리</li>
+          </a>
+          <a href="ceopage-sales-delivery.html">
+            <li class="sub2">&nbsp;배달지역/배달요금 관리</li>
+          </a>
+        </ul>
+      </div>
+
+      <br>
+      <div>
+        <li class="main3"><i class="fa-solid fa-file-lines"></i>&nbsp;메뉴 관리</li>
+        <ul>
+          <a href="ceopage-menu.html">
+            <li class="sub3 menu_soldout">&nbsp;메뉴 품절관리</li>
+          </a>
+          <a href="ceopage-menu.html">
+            <li class="sub3 menu_self">&nbsp;메뉴 셀프관리</li>
+          </a>
+          <a href="ceopage-menu.html">
+            <li class="sub3 menu_price">&nbsp;메뉴 가격관리</li>
+          </a>
+          <a href="ceopage-menu.html">
+            <li class="sub3 menu_pic">&nbsp;메뉴 사진관리</li>
+          </a>
+        </ul>
+      </div>
+
+      <br>
+      <div>
+        <li class="main4"><i class="fa-regular fa-message"></i>&nbsp;고객 관리</li>
+        <ul>
+          <a href="ceopage-review.html">
+            <li class="sub4">&nbsp;리뷰관리</li>
+          </a>
+        </ul>
+      </div>
+    </ul>
+  </nav>
+
+  <div class="container" style="padding-top:5%">
+    <div class="location">
+      "사장님 페이지" >
+      <h2>영업일 관리</h2>
+    </div>
+    <!--location-->
+    <br>
+    <div class="info-txt">
+      <p>
+        <i class="spr"></i>
+        30일간 가게 영업일을 관리하실 수 있습니다
+        <b>셋팅된 날짜는 영업시간 마감까지 주문이 불가합니다</b>
+      </p>
+      <p>
+        <i class="spr"></i>
+        새벽"(00~04시)시간 당일(새벽시간)영업을 종료하고 싶으신 경우에는 현재날짜의 전날에 영업 마감 셋팅을 해주세요.
+      </p>
+    </div>
+    <!--info-txt-->
+    <h3 style="padding:10px; font-size: 17px; color: #616161;">영업일 관리</h3>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="30%">날짜</th>
+            <th style="text-align: left;">이유</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="oe-list">
+            <td style="color:#f00;">2022년 3월 20일</td>
+            <td>
+              <input name="form-0-date" value="2022-3-20" class="oe-date" readonly="true" type="text"
+                id="id_form-0-date">
+              <select id="id-dorm-0-reason" class="oe-reason" name="form-0-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-0-paused-until" id="id-form-0-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 21일</td>
+            <td>
+              <input name="form-1-date" value="2022-3-21" class="oe-date" readonly="true" type="text"
+                id="id_form1-date">
+              <select id="id-dorm-1-reason" class="oe-reason" name="form-1-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-1-paused-until" id="id-form-1-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 22일</td>
+            <td>
+              <input name="form-2-date" value="2022-3-22" class="oe-date" readonly="true" type="text"
+                id="id_form2-date">
+              <select id="id-dorm-2-reason" class="oe-reason" name="form-2-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-2-paused-until" id="id-form-2-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 23일</td>
+            <td>
+              <input name="form-3-date" value="2022-3-23" class="oe-date" readonly="true" type="text"
+                id="id_form3-date">
+              <select id="id-dorm-3-reason" class="oe-reason" name="form-3-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-3-paused-until" id="id-form-3-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 24일</td>
+            <td>
+              <input name="form-4-date" value="2022-3-24" class="oe-date" readonly="true" type="text"
+                id="id_form4-date">
+              <select id="id-dorm-4-reason" class="oe-reason" name="form-4-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-4-paused-until" id="id-form-4-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 25일</td>
+            <td>
+              <input name="form-5-date" value="2022-3-25" class="oe-date" readonly="true" type="text"
+                id="id_form5-date">
+              <select id="id-dorm-5-reason" class="oe-reason" name="form-5-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-5-paused-until" id="id-form-5-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 26일</td>
+            <td>
+              <input name="form-6-date" value="2022-3-26" class="oe-date" readonly="true" type="text"
+                id="id_form6-date">
+              <select id="id-dorm-6-reason" class="oe-reason" name="form-6-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-6-paused-until" id="id-form-6-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:red">2022년 3월 27일</td>
+            <td>
+              <input name="form-7-date" value="2022-3-27" class="oe-date" readonly="true" type="text"
+                id="id_form7-date">
+              <select id="id-dorm-7-reason" class="oe-reason" name="form-7-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-7-paused-until" id="id-form-7-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 28일</td>
+            <td>
+              <input name="form-8-date" value="2022-3-28" class="oe-date" readonly="true" type="text"
+                id="id_form8-date">
+              <select id="id-dorm-8-reason" class="oe-reason" name="form-8-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-8-paused-until" id="id-form-8-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 29일</td>
+            <td>
+              <input name="form-9-date" value="2022-3-29" class="oe-date" readonly="true" type="text"
+                id="id_form9-date">
+              <select id="id-dorm-9-reason" class="oe-reason" name="form-9-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-9-paused-until" id="id-form-9-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 30일</td>
+            <td>
+              <input name="form-10-date" value="2022-3-30" class="oe-date" readonly="true" type="text"
+                id="id_form10-date">
+              <select id="id-dorm-10-reason" class="oe-reason" name="form-10-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-10-paused-until" id="id-form-10-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+          <tr class="oe-list">
+            <td style="color:black">2022년 3월 31일</td>
+            <td>
+              <input name="form-11-date" value="2022-3-31" class="oe-date" readonly="true" type="text"
+                id="id_form11-date">
+              <select id="id-dorm-11-reason" class="oe-reason" name="form-11-season">
+                <option value="1">정상영업</option>
+                <option value="2">임시 휴무일</option>
+                <option value="3">기상 상황으로 배달 불가</option>
+                <option value="4">영업점 사정으로 배달불가</option>
+                <option value="5">조기 마감</option>
+                <option value="6">메뉴 품절</option>
+                <option value="7">주문 미접수로 인한 자동 마감</option>
+                <option value="8">정기 휴뮤일</option>
+              </select>
+              &nbsp;&nbsp;
+              <span id="paused-until" style="display: inline;">
+                <label name="form-11-paused-until" id="id-form-11-paused-until"></label>
+              </span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <!--table-responsive-->
+  </div><!-- container-->
+</body>
+
+</html>

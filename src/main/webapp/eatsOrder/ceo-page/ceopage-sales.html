@@ -1,0 +1,119 @@
+<!-- 사장님 영업일시 중지 2022.04.04 김시웅-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사장님_영업일시중지</title>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
+    <script src="res_manager_nav.js"></script>
+    <link href="../ceo-page/css/ceo.sales.css" rel="stylesheet" type="text/css">
+    <script src="../ceo-page/js/ceo-sales.js"></script>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <div>
+                <li class="main1"><i class="fa-solid fa-address-card"></i>&nbsp;내 정보 관리<i
+                        class="fa-solid fa-caret-down"></i></li>
+                <ul>
+                    <a href="ceopage-info.html">
+                        <li class="sub1">&nbsp;사장님정보</li>
+                    </a>
+                    <a href="ceopage-origin.html">
+                        <li class="sub1">&nbsp;원산지 설정</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main2"><i class="fa-solid fa-clock"></i>&nbsp;영업시간/지역</li>
+                <ul>
+                    <a href="ceopage-sales.html">
+                        <li class="sub2">&nbsp;영업 일시중지</li>
+                    </a>
+                    <a href="ceopage-sales-setting.html">
+                        <li class="sub2">&nbsp;영업일 관리</li>
+                    </a>
+                    <a href="ceopage-sales-delivery.html">
+                        <li class="sub2">&nbsp;배달지역/배달요금 관리</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main3"><i class="fa-solid fa-file-lines"></i>&nbsp;메뉴 관리</li>
+                <ul>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_soldout">&nbsp;메뉴 품절관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_self">&nbsp;메뉴 셀프관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_price">&nbsp;메뉴 가격관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_pic">&nbsp;메뉴 사진관리</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main4"><i class="fa-regular fa-message"></i>&nbsp;고객 관리</li>
+                <ul>
+                    <a href="ceopage-review.html">
+                        <li class="sub4">&nbsp;리뷰관리</li>
+                    </a>
+                </ul>
+            </div>
+
+    </nav>
+
+    <div class="container">
+        <div class="location">
+            "사장님 페이지" >
+            <h2>영업일시중지</h2>
+        </div>
+        <ul class="info-txt">
+            <li>사장님 사정으로 잠깐동안 주문을 받을 수 없는 경우 최대24시간까지 운영을 중지하실 수 있습니다</li>
+            <li>24시간 운영중지 설정은"휴무일 관리"에서 가능합니다
+                <a href="#">바로가기</a>
+            </li>
+            <li>설정하신 영업중지 시간이 경과되면 자동으로 영업이 재개 됩니다</li>
+        </ul>
+
+        <div class="restaurant_list">
+            <ul>
+                <li>
+                    <div class="info">
+                        <strong>자마버거-이대직영점</strong>
+                        <span style="color: #333; font-size: 15px;
+                        ">정상영업중</span>
+                    </div>
+
+
+                    <div class="btn">
+                        <select id="salesop" data-status="false">
+                            <option value="0">정상영업</option>
+                            <option value="1440">오늘 영업중지</option>
+                            <option value="30">30분 일시중지</option>
+                            <option value="60">1시간 일시중지</option>
+                            <option value="120">2시간 일시중지</option>
+                        </select>
+                        <button data-toggle="modal" onclick="buttonClick(this)">적용하기</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
