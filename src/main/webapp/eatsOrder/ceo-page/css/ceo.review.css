@@ -1,0 +1,268 @@
+*{
+    margin: 0;
+    
+}
+
+body{
+background-color: #f5f5f5;
+}
+nav{
+padding:10px;
+float:left;
+width:14%;
+background-color:#212121;
+position: fixed;
+height: 100%;
+
+}
+ul{
+list-style: none;
+font-style: none;
+padding-left:15px;
+font-size:18px;
+font-weight: bold;
+}
+li{
+color: white;
+line-height: 50px;
+}
+.main1, .main2, .main3, .main4{
+width: 100%;
+
+}
+a{
+text-decoration: none;
+}
+.hover{background:#939393; color:#ffffff; cursor:pointer;}
+/*위에는 nav 스타일*/
+
+.grid{
+/*div 메뉴 넓이 14%를 왼쪽 마진에 더해줘야 양쪽 간격이 맞음*/
+margin-left:34%;
+margin-right:20%;
+/* border:1px solid red; */
+}
+table{
+width: 100%;
+border-top: 1px solid #dfdfdf;
+border-left: 1px solid #dfdfdf;
+border-right: 1px solid #dfdfdf;
+border-bottom: 0.5px solid #dfdfdf;
+border-radius: 8px;
+margin-bottom:20px;
+border-spacing: 0;
+background-color: white;
+box-shadow: 5px black;
+}
+td{
+padding:20px;
+font-size: 18px;
+font-weight: 800;
+line-height: 30px;
+}
+.menu, .menu_status{
+border-top: 1px solid #dfdfdf;
+}
+.price{
+font-size:15px;
+}
+
+label input[type="radio"]{
+display: none;
+width:80px;
+
+}
+label input[type="radio"]+span{
+display:inline-block;
+background: none;
+border:1px solid #dfdfdf; 
+padding:0px 10px;
+text-align:center;
+width:80px;
+height:35px;
+line-height:33px;
+font-weight:500;
+cursor:pointer;
+border-radius: 8px;
+
+}
+label input[type="radio"]:checked+span{
+border:1px solid #FC6E4D;
+background:#FC6E4D;
+color:#fff;
+}
+.container {
+margin-left: 30%;
+padding-top: 10%;
+width: 1020px;
+}
+.location {
+display: block;
+padding: 0 14px 8px 0;
+text-align: right;
+font-size: 12px;
+color: #9f9f9f;
+}
+.location > h2 {
+display: inline-block;
+font-size: 13px;
+color: #616161;
+}
+
+/* 전체 브라우저 박스 */
+body {
+
+position: relative;
+
+}
+
+/* ----------------------------------------------------------- */
+/* 메인 콘텐츠 박스 */
+.content_box {
+display: inline-block;
+
+width: 80%;
+/* 메인 콘텐츠 다 채우면 100% 삭제예정 */
+height: 100%; 
+position: absolute;
+top: 0;
+right: 0;
+}
+
+/* ----------------------------------------------------------- */
+
+/* 리뷰관리 제목 */
+h1 {
+margin: 30px 0 40px 30px;
+}
+
+/* 리뷰 전체 랩퍼 */
+.review_wrapper {
+
+height: 1000px;
+   
+}
+
+/* 리뷰 전체 박스1 */
+.review_all_box {
+/* border: 1px solid red; */
+position: relative;
+margin-top: 20px;
+
+}
+
+
+
+/* 리뷰 박스 */
+.review_box {
+width: 95%;
+height: 310px;
+border: 1px solid #C4C4C4;
+border-radius: 10px;
+box-shadow: 3px 3px 10px #c4c4c477;
+position: relative;
+margin:  30px;
+
+}
+
+/* 리뷰박스2 - 부모 relative는 all_box*/
+.content_box .review_box:nth-child(2) {
+
+top: 0;
+right: 0;
+}
+/* ----------------------------------------------------------- */
+/* 가게명, 리뷰 이미지 */
+h3, .review_img {
+margin-left: 20px;
+}
+
+/* 가게명 세부설정 */
+h3 {
+display: inline-block;
+}
+
+/* 가게명 클릭 > */
+.review_box > a span {
+display: inline-block;
+font-size: 25px;
+font-weight: bold;
+margin-left: -5px;
+}
+
+/* 수정, 삭제 버튼 */
+.del_btn {
+position: absolute;
+right: 0;
+top: 0;
+margin: 15px 20px 0 0;
+font-weight: bold;
+}
+
+/* 수정,삭제 호버 */
+.del_btn a:first-child:hover, a:last-child:hover {
+color: #FC6E4D;
+}
+
+/* 리뷰 별점 전체 */
+.star {
+margin: -15px 0 15px 20px;
+}
+
+/* 별점 */
+.star span {
+margin: -2px;
+color: #C4C4C4;
+}
+
+/* ----------------------------------------------------------- */
+/* 리뷰 이미지 컨테이너 */
+.review_img {
+/* border: 1px solid red; */
+border-radius: 10px;
+width: 200px;
+height: 200px;
+position: relative;
+}
+
+/* 리뷰 이미지 */
+.review_img > img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+position: absolute;
+border-radius: 10px;
+}
+
+/* ----------------------------------------------------------- */
+/* 리뷰 소재목,내용 */
+.review_text {
+/* border: 1px solid red; */
+position: absolute;
+top: 26%;
+left: 30%;
+width: 270px;
+height: 200px;
+}
+
+/* 선택메뉴 */
+.review_text > div {
+/* border: 1px solid red; */
+background-color: #E5E5E5;
+border-radius: 20px;
+width: fit-content;
+padding: 8px;
+margin-left: -10px;
+}
+
+.commit {
+width: 600px;
+height: 80px;
+}
+.btn1 {
+border: none;
+background-color: #FC6E4D;
+width: 200px;
+height: 25px;
+margin-left: 200px;
+}

@@ -1,0 +1,194 @@
+<!-- 사장님 배달지역.배달요금 관리 2022.04.04 김시웅-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사장님_배달지역/배달요금 관리</title>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
+    <script src="res_manager_nav.js"></script>
+    <link href="../ceo-page/css/ceo.setdelivery.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <div>
+                <li class="main1"><i class="fa-solid fa-address-card"></i>&nbsp;내 정보 관리<i
+                        class="fa-solid fa-caret-down"></i></li>
+                <ul>
+                    <a href="ceopage-info.html">
+                        <li class="sub1">&nbsp;사장님정보</li>
+                    </a>
+                    <a href="ceopage-origin.html">
+                        <li class="sub1">&nbsp;원산지 설정</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main2"><i class="fa-solid fa-clock"></i>&nbsp;영업시간/지역</li>
+                <ul>
+                    <a href="ceopage-sales.html">
+                        <li class="sub2">&nbsp;영업 일시중지</li>
+                    </a>
+                    <a href="ceopage-sales-setting.html">
+                        <li class="sub2">&nbsp;영업일 관리</li>
+                    </a>
+                    <a href="ceopage-sales-delivery.html">
+                        <li class="sub2">&nbsp;배달지역/배달요금 관리</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main3"><i class="fa-solid fa-file-lines"></i>&nbsp;메뉴 관리</li>
+                <ul>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_soldout">&nbsp;메뉴 품절관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_self">&nbsp;메뉴 셀프관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_price">&nbsp;메뉴 가격관리</li>
+                    </a>
+                    <a href="ceopage-menu.html">
+                        <li class="sub3 menu_pic">&nbsp;메뉴 사진관리</li>
+                    </a>
+                </ul>
+            </div>
+
+            <br>
+            <div>
+                <li class="main4"><i class="fa-regular fa-message"></i>&nbsp;고객 관리</li>
+                <ul>
+                    <a href="ceopage-review.html">
+                        <li class="sub4">&nbsp;리뷰관리</li>
+                    </a>
+                </ul>
+            </div>
+
+    </nav>
+
+    <div class="container" style="padding-top:5%">
+        <div class="location">
+            "사장님 페이지" >
+            <h2>배달지역/배달요금 관리</h2>
+        </div>
+        <!--location-->
+        <br>
+
+        <div class="info-group">
+            <div class="info">
+                <h4 class="title">배달지역</h4>
+                <ul class="info-txt">
+                    <li>
+                        배달 가능 상태를
+                        <strong style="color: red;">[오늘불가]</strong>
+                        로 설정하면, 해당 지역은 마감 시간까지 주문을 받을수 없습니다.
+                    </li>
+                    <li>영업시간이 끝나면 자동으로 배달 불가 처리가 해제되어 다음 영업일에는 주문을 받을 수 있습니다</li>
+                </ul>
+            </div><!-- info-->
+            <div class="info">
+                <h4 class="title">배달요금</h4>
+                <ul class="info-txt">
+                    <li>프랜차이즈 제휴 계약을 맺고 계신 경우 프랜차이즈 정책에 따라 개별 배달요금 관리가 불가능할 수 있습니다</li>
+                </ul>
+            </div><!-- info-->
+        </div><!-- info-group-->
+
+        <table class="target-table" style="border: none;">
+            <thead>
+                <tr>
+                    <th style="float: left; padding: 10px;">지역명</th>
+                    <th class="td-status">배달 가능 상태</th>
+                </tr>
+            </thead>
+            <tbody id="delivery-list">
+                <tr class="target-list">
+                    <td>
+                        서울특별시 마포구 서교동
+                        <div class="min-quantity">최소주문금액 : 12,000원</div>
+                        <div class="delivery-fee">배달요금 : 2,900원</div>
+                        <br>
+                    </td>
+                    <td class="menu_status" style="text-align: right;">
+                        <label class="opt1">
+                            <input type="radio" name="menu_status" value="1" checked><span>가능</span>
+                        </label>
+                        <label class="opt2">
+                            <input type="radio" name="menu_status" value="0"><span>오늘불가</span>
+                        </label>
+                    </td>
+
+            </tbody>
+            <tbody id="delivery-list">
+                <tr class="target-list">
+                    <td>
+                        서울특별시 마포구 아현동
+                        <div class="min-quantity">최소주문금액 : 12,000원</div>
+                        <div class="delivery-fee">배달요금 : 3,400원</div>
+                        <br>
+                    </td>
+                    <td class="menu_status" style="text-align: right;">
+                        <label class="opt1">
+                            <input type="radio" name="menu_status1" value="1" checked><span>가능</span>
+                        </label>
+                        <label class="opt2">
+                            <input type="radio" name="menu_status1" value="0"><span>오늘불가</span>
+                        </label>
+                    </td>
+            </tbody>
+            <!--delivery-list-->
+
+            <tbody id="delivery-list">
+                <tr class="target-list">
+                    <td>
+                        서울특별시 마포구 연남동
+                        <div class="min-quantity">최소주문금액 : 12,000원</div>
+                        <div class="delivery-fee">배달요금 : 3,900원</div>
+                        <br>
+                    </td>
+                    <td class="menu_status" style="text-align: right;">
+                        <label class="opt1">
+                            <input type="radio" name="menu_status2" value="1" checked><span>가능</span>
+                        </label>
+                        <label class="opt2">
+                            <input type="radio" name="menu_status2" value="0"><span>오늘불가</span>
+                        </label>
+                    </td>
+            </tbody>
+            <!--delivery-list-->
+
+            <tbody id="delivery-list">
+                <tr class="target-list">
+                    <td>
+                        서울특별시 서대문구 남가좌1동
+                        <div class="min-quantity">최소주문금액 : 12,000원</div>
+                        <div class="delivery-fee">배달요금 : 5,400원</div>
+                        <br>
+                    </td>
+                    <td class="menu_status" style="text-align: right;">
+                        <label class="opt1">
+                            <input type="radio" name="menu_status3" value="1" checked><span>가능</span>
+                        </label>
+                        <label class="opt2">
+                            <input type="radio" name="menu_status3" value="0"><span>오늘불가</span>
+                        </label>
+                    </td>
+            </tbody>
+            <!--delivery-list-->
+
+        </table> <!-- target-table-->
+
+    </div><!-- container-->
+</body>
+
+</html>
