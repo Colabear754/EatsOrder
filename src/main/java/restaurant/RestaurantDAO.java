@@ -215,7 +215,7 @@ public class RestaurantDAO {
 			// 전체보기가 아닐 경우 SQL에 where 조건 추가
 			StringBuffer strBuffer = new StringBuffer(sql);
 
-			strBuffer.insert(sql.indexOf("order"), "and category_id=? ");
+			strBuffer.insert(sql.indexOf(")"), " and category_id=?");
 			sql = strBuffer.toString();
 		}
 
@@ -287,6 +287,7 @@ public class RestaurantDAO {
 			sql = "select * from (select rownum r, rst.* from restaurant rst, delivery_zone dz "
 					+ "where rst.rst_id=dz.rst_id and sido=? and sigungu=? and bname=? and rst_name like ? "
 					+ "order by min_order asc) where r>=? and r<=?";
+			break;
 		default:
 			sql = "";
 			break;
@@ -626,8 +627,8 @@ public class RestaurantDAO {
 	// 매장 평점 조회
 	public double getRating(int rst_id) {
 		// 매장 평점을 반환
-		// 조회에 실패하면 -1을 반환
-		double result = -1;
+		// 조회에 실패하면 0을 반환
+		double result = 0;
 
 		try {
 			connection = connectionMgr.getConnection();

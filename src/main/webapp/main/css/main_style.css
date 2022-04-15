@@ -27,6 +27,7 @@ a, h1, h3, button, p {
 a {
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 /* 스크롤 부드럽게 */
@@ -211,7 +212,7 @@ html { scroll-behavior: smooth; }
 
 
 /* 카테고리 상자 */
-.food_item {
+.food_item, .notice {
     display: inline-block;
     width:100%;
     height: 250px;
@@ -225,14 +226,14 @@ html { scroll-behavior: smooth; }
 }
 
 /* 카테고리 이미지 전체효과 */
-.food_item img {
+.food_item img, .notice img {
     border-radius: 10px;
     transition: 0.5s;
 
 }
 
 /* 카테고리 텍스트 위치 */
-.food_item > div {
+.food_item > div, .notice > div {
     margin: 20px 0 0 25px;
     transition: 0.5s;
 }

@@ -1,90 +1,103 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<!-- 작성자: 허우림. 업로드일자:2022.04.09. 페이지 이름:매장목록페이지 -->
+<%-- 작성자: 허우림. 업로드일자:2022.04.09. 페이지 이름:매장목록페이지 
+	jsp변환 : 정건영, 변환일 : 2022/04/15
+--%>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>매장목록페이지</title>
-    <link rel="stylesheet" type="text/css" href="res_list.css">
+    <title>매장목록</title>
+    <link rel="stylesheet" type="text/css" href="./css/rst_list.css">
     <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="./js/rstList_script.js"></script>
 </head>
 <body>
-<script>
-</script>
+<c:if test="${account == null}">
+<jsp:include page="../component/main_header_logBefore.html" />
+</c:if>
+<c:if test="${account != null}">
+<jsp:include page="../component/main_header_logAfter.html"></jsp:include>
+</c:if>
 <div class="container">
 <header>
     <div class="box">
     </div>
+    <div id="address-modal">
+		<div id="wrapper"></div>
+	</div>
     <div class="search_addr">
         <div class="white_box"></div>
         <div class="search_input">
-            <input class="search1" type="text" placeholder="주소를 입력하세요."><div class="search_btn1"><i class="fa-solid fa-magnifying-glass fa-lg"></i><b class="find_addr">주소 찾기</b></div>
+            <input class="search1" type="text" id="address-search" value="${address}" placeholder="주소를 입력하세요." readonly="readonly"><div class="search_btn1"><i class="fa-solid fa-magnifying-glass fa-lg"></i><b class="find_addr">검색 하기</b></div>
         </div>
     </div>
     <div class="grid">
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=0">전체보기</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=1">1인분 주문</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=2">프랜차이즈</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=3">치킨</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=4">피자/양식</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=5">중국집</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=6">한식</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=7">일식/돈까스</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=8">족발/보쌈</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=9">야식</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=10">분식</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=11">카페/디저트</a></div>
-        <div class="category"><a href="/EatsOrder/rstList.do&category_id=12">편의점/마트</a></div>
+        <div class="category" id="0"><a href="#" class="food_category">전체보기</a></div>
+        <div class="category" id="1"><a href="#" class="food_category">1인분 주문</a></div>
+        <div class="category" id="2"><a href="#" class="food_category">프랜차이즈</a></div>
+        <div class="category" id="3"><a href="#" class="food_category">치킨</a></div>
+        <div class="category" id="4"><a href="#" class="food_category">피자/양식</a></div>
+        <div class="category" id="5"><a href="#" class="food_category">중국집</a></div>
+        <div class="category" id="6"><a href="#" class="food_category">한식</a></div>
+        <div class="category" id="7"><a href="#" class="food_category">일식/돈까스</a></div>
+        <div class="category" id="8"><a href="#" class="food_category">족발/보쌈</a></div>
+        <div class="category" id="9"><a href="#" class="food_category">야식</a></div>
+        <div class="category" id="10"><a href="#" class="food_category">분식</a></div>
+        <div class="category" id="11"><a href="#" class="food_category">카페/디저트</a></div>
+        <div class="category" id="12"><a href="#" class="food_category">편의점/마트</a></div>
     </div>
     <hr style="border:1px color= silver;" width="100%">
 </header>
 <br><br>
     <div class="search">
-        <form name="rstForm" action="/EatsOrder/restaurant/rstInfo.do" id="rstForm">
-            <select name="orderBy">
-                <option value="1">기본 정렬순</option>
-                <option value="2">별점순</option>
-                <option value="3">리뷰 많은 순</option>
-                <option value="4">최소 주문 금액 순</option>
+        <form name="rstForm" action="/EatsOrder/restaurant/rstList.do" id="rstForm">
+            <select name="orderBy" id="orderBy">
+                <option value="1" ${orderBy == 1 ? 'selected="selected"' : ''}>기본 정렬순</option>
+                <option value="2" ${orderBy == 2 ? 'selected="selected"' : ''}>별점순</option>
+                <option value="3" ${orderBy == 3 ? 'selected="selected"' : ''}>리뷰 많은 순</option>
+                <option value="4" ${orderBy == 4 ? 'selected="selected"' : ''}>최소 주문 금액 순</option>
             </select>
-                <input class="search2" type="text" name="searchText" placeholder="음식점이나 메뉴를 검색해보세요">
+            <input class="search2" type="text" name="searchText" id="searchText" value="${searchText}" placeholder="음식점이나 메뉴를 검색해보세요">
+            <input type="hidden" name="category_id" value="${category_id}">
+            <input type="hidden" name="address" id="address" value="${address}">
+            <input type="hidden" name="sido" id="sido" value="${sido}">
+            <input type="hidden" name="sigungu" id="sigungu" value="${sigungu}">
+            <input type="hidden" name="bname" id="bname" value="${bname}">
             <div class="search_btn2" onClick="document.getElementById('rstForm').submit();"><i class="fa-solid fa-magnifying-glass fa-lg"></i></div>
         </form>
     </div>
     <br><br><br><br>
-    <!-- 매장 검색 결과가 없으면 
-    <c:if test="${rstData.isEmpty()}">
-    	매장 등록 준비 중입니다.
-    </c:if>-->
-    <!-- 매장 검색 결과가 있으면 -->
-    <%-- <c:if test="${rstData.isEmpty()==false}"> --%>
-    <div class="title">잇츠오더 플러스</div><br>
-    
+    <c:set var="rstDataLength" value="${fn:length(rstData)}"></c:set>
+    <c:if test="${rstDataLength == 0}">
+    	<div id="no-rst">찾으시는 가게가 없습니다.</div>
+    </c:if>
     <div class="outer-grid">
-    	<c:forEach var="rstData" items="${rstData}"> <!-- begin="0" end="4" 배열중에 일부만 출력 가능. 나중에 잇츠오더 플러스, 잇츠오더 등록가게 구분해서 출력할때 사용하기  -->
+    <c:if test="${rstDataLength > 0}">
+    	<c:forEach var="rstData" items="${rstData}"> 
     	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.restaurant.rst_id}">
-	        <div class="rst_photo">${rstData.restaurant.rst_photo}</div>
+	        <div class="rst_photo"><img src="${rstData.restaurant.rst_photo}"></div>
 	        <div class="inner-grid">
-	            <div class="rst_logo">${rstData.restaurant.rst_logo}</div>
+	            <div class="rst_logo"><img src="${rstData.restaurant.rst_logo}"></div>
 	            <div class="rst_text">
 	                <div class="rst_name">${rstData.restaurant.rst_name}</div>
 	                <div class="rst_info">
-	                    <img src="star.png"/> 별점 ${rstData.rating}점 | 리뷰 ${rstData.reviewCount}개<br>
-								                    		사장님 댓글 ${rstData.replyCount}개<br>
-								                    		${rstData.restaurant.delivery_tip}원 이상 배달
+	                    <img src="https://img.icons8.com/fluency/48/000000/star.png"/> 별점 ${rstData.rating}점 | 리뷰 <fmt:formatNumber value="${rstData.reviewCount}" pattern="#,###"/>개<br>
+								                    		사장님 댓글 <fmt:formatNumber value="${rstData.replyCount}" pattern="#,###"/>개<br>
+								                    		<fmt:formatNumber value="${rstData.restaurant.min_order}" pattern="#,###"/>원 이상 배달
 	                </div>
 	            </div>
 	           </div>
            </a>
          </c:forEach>
+     </c:if>
      </div>
-     <%-- </c:if> --%>
     <br>
-    <div class="title">잇츠오더 등록가게</div><br>
-    
 </div>
+<jsp:include page="../component/footer.html" />
 </body>
 </html>

@@ -43,18 +43,18 @@
                     <div id="address-modal">
 						<div id="wrapper"></div>
 					</div>
-                    <form class="search_box">
+                    <form class="search_box" action="/EatsOrder/restaurant/rstList.do" method="post">
                         <div>
                             <i class="fa-solid fa-location-dot"></i>
-                            <input type="text" name="addr_search" id="addr_search" placeholder="클릭해서 주소를 선택해주세요 (필수입력)" readonly="readonly">
+                            <input type="text" name="address" id="address" placeholder="클릭해서 주소를 선택해주세요 (필수입력)" readonly="readonly">
                             <input type="hidden" name="sido" id="sido">
                             <input type="hidden" name="sigungu" id="sigungu">
                             <input type="hidden" name="bname" id="bname">
                         </div>
                         <div class="food_search_bar">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="food_search" id="food_search" placeholder="메뉴와 음식점을 검색하세요 (선택사항)">
-                            <input type="submit" name="search_button" value="검색">
+                            <input type="text" name="searchText" id="searchText" placeholder="메뉴와 음식점을 검색하세요 (선택사항)">
+                            <input type="submit" value="검색">
                         </div>
                     </form>
                 </div>
@@ -67,59 +67,59 @@
     <main>
         <div class="main_food_text" id="main_food_text"><h1>원하시는 음식 카테고리를 선택하세요</h1></div>
         <div class="food_select_container">
-            <a href="#" class="food_item">
-                <img src="./img/event.png" class="first_img" alt="이벤트-사진"><div></div>
+            <a href="#" class="notice">
+                <img src="./img/event.png" class="first_img" alt="이벤트-사진"><label></label>
                 <span class="caption">이벤트/공지</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="0">
                 <img src="./img/all.png" alt="전체보기-사진"><div>전체보기</div>
                 <span class="caption">전체보기</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="1">
                 <img src="./img/oneMeal_crop.png" alt="1인분-사진"><div>1인분 주문</div>
                 <span class="caption">1인분 주문</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="2">
                 <img src="./img/fran_crop.png" alt="프랜차이즈-사진"><div>프랜차이즈</div>
                 <span class="caption">프랜차이즈</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="3">
                <img src="./img/chicken_crop.png" alt="치킨-사진"><div>치킨</div>
                 <span class="caption">치킨</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="4">
                 <img src="./img/pizza_crop.png" alt="피자-양식-사진"><div>피자/양식</div>
                 <span class="caption">피자/양식</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="5">
                 <img src="./img/china_crop.png" alt="중국집-사진"><div>중국집</div>
                 <span class="caption">중국집</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="6">
                 <img src="./img/korea_crop.png" alt="한식-사진"><div>한식</div>
                 <span class="caption">한식</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="7">
                <img src="./img/japan_crop.png" alt="일식-돈까스-사진"><div>일식/돈까스</div>
                 <span class="caption">일식/돈까스</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="8">
                 <img src="./img/bossam_crop.png" alt="족발-보쌈-사진"><div>족발/보쌈</div>
                 <span class="caption">족발/보쌈</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="9">
                 <img src="./img/nighrMeal_crop.png" alt="야식-사진"><div>야식</div>
                 <span class="caption">야식</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="10">
                 <img src="./img/bun_crop.png" alt="분식-사진"><div>분식</div>
                 <span class="caption">분식</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="11">
                 <img src="./img/coffee_crop.png" alt="카페-디저트-사진"><div>카페/디저트</div>
                 <span class="caption">카페/디저트</span>
             </a>
-            <a href="#" class="food_item">
+            <a href="#" class="food_item" id="12">
                 <img src="./img/ramen_crop.png" alt="편의점-마트-사진"><div>편의점/마트</div>
                 <span class="caption">편의점/마트</span>
             </a>
