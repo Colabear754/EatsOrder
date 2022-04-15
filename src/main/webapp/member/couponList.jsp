@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./css/myPage_coupon_style.css">
 </head>
 <body>
+	<jsp:include page="./myPage.jsp" />
     <main>
     	<c:set var="couponCount" value="${fn:length(couponData)}" />
         <div class="content_box">

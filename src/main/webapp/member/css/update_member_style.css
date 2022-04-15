@@ -127,14 +127,38 @@ tr:nth-child(12) label {
 
 /* 가입버튼 */
 .member_box > input {
-    width: 100px;
+    width: 120px;
     height: 40px;
+    margin: 40px 0 0 10px;
+    background-color: #FC6E4D;
+    color: white;
+    border: none;
+}
+
+.member_box > input:hover {
+    background-color: #d44424;
 }
 
 /* 취소버튼 */
 .member_box > button {
-    width: 100px;
+    width: 120px;
     height: 40px;
+    box-sizing: border-box;
+    border-radius: 0;
+    font-size: 14px;
+    line-height: 35px;
+    border: 1px solid #C4C4C4;
+}
+
+/* 탈퇴버튼 */
+.member_box > a {
+    width: 120px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 0;
+    font-size: 14px;
+    line-height: 35px;
+    border: 1px solid #C4C4C4;
 }
 
 /* ----------------------------------------------- */

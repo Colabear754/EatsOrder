@@ -21,6 +21,7 @@
 </head>
 
 <body>
+	<jsp:include page="./myPage.jsp" />
     <main>
     	<c:set var="favoriteRstCount" value="${fn:length(favoriteRstData)}" />
         <div class="content_box">

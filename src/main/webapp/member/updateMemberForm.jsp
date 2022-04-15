@@ -22,6 +22,7 @@
     <script type="text/javascript" src="./js/update_member_script.js"></script>
 </head>
 <body>
+	<jsp:include page="./myPage.jsp" />
     <main>
         <div class="all_box">
             <div class="title_box">
@@ -124,10 +125,11 @@
                 </tbody>
             </table>
             <div class="member_box">
-                <input type="button" value="수정 완료" id="submit"> <button onclick="history.back()">취소</button>
+                <input type="button" value="수정 완료" id="submit">
+                <button onclick="history.back()">취소</button>
+                <button onclick="window.location.href='/EatsOrder/member/deleteMemberForm.do'">탈퇴하기</button>
             </div>
         </div>
     </main>
 </body>
-
 </html>

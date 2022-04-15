@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/myPage_order_style.css">
 </head>
 <body>
+	<jsp:include page="./myPage.jsp" />
     <main>
         <div class="content_box">
             <div class="review_wrapper">

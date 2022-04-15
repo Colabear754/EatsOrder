@@ -1,0 +1,82 @@
+/*
+작성자: 김나연
+작성완료일: 22/04/04
+페이지명: 이메일 찾기
+*/
+
+/* 전체 적용 */
+/* 위에 뜸 해결*/
+*{
+    margin: 0;
+}
+
+/* 전체배경색 */
+body {
+    background-color: white;
+}
+
+/* 전체 글씨체 적용 */
+a, h1, h3, button, p {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* 메인 그리드 */
+main {
+    display: grid;
+    height: 620px;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(1,auto);
+    margin: 0 10%;
+    column-gap: 1%;
+    row-gap: 12px;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 전체 로그인 박스 */
+.join_wrapper {
+    margin: auto;
+    margin-top: 50px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 이메일 찾기 제목 */
+h1 {
+    margin-bottom: 35px;
+}
+
+.join_box > p {
+    margin-bottom: 70px;
+    font-weight: bold;
+}
+
+/* 인풋 로그인 박스 */
+.join_box {
+    text-align: center;
+    width: 500px;
+}
+
+
+/* ------------------------------------------------------------------ */
+
+/* 찾기버튼 */
+.join_btn_box button {
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 20px;
+    width: 250px;
+    height: 45px;
+    background-color: #FC6E4D;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.join_btn_box button:hover {
+    background-color: #d44424;
+}

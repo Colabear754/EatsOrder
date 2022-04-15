@@ -279,8 +279,9 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     		dataType: "text",
     		success: function(data) {
     			if (data > 0) {
-    				alert("회원 정보가 성공적으로 수정되었습니다.");
-    				window.location.href = "/EatsOrder/member/myPage.do";
+    				swal({ icon: "info", title: "회원정보가 성공적으로 수정되었습니다" }).then(
+    					window.location.href = "/EatsOrder/member/myPage.do"
+    				);
     			} else if (data < 0) {
     				$('#ex_password_error').css('display', 'flex');
     				$('#ex_password_error').text('현재 비밀번호가 일치하지 않습니다.');

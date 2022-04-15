@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,60 +19,67 @@
     <link rel="stylesheet" href="./css/myPage_review_style.css">
 </head>
 <body>
+	<jsp:include page="./myPage.jsp" />
     <main>
         <div class="content_box">
             <div class="review_wrapper">
-                <h1>주문내역</h1>
+                <h1>리뷰관리</h1>
                 <div class="review_all_box">
-                	<c:forEach var="reviewData" items="${myReviews}">
-	                    <div class="review_box">
-	                        <h3><a href="#">${reviewData.restaurant.rst_name}<span>></span></a></h3>
-	                        <div class="star">
-	                            <span>★</span>
-	                            <span>★</span>
-	                            <span>★</span>
-	                            <span>★</span>
-	                            <span>★</span>
-	                            ${reviewData.review.rating}
-	                        </div>
-	                        <div class="del_btn">
-	                        	<c:if test="${reviewData.overDate <= 7}">
-	                            <a href="/EatsOrder/review/updateReviewForm.do">수정</a>
-	                            <span>|</span>
-	                            </c:if>
-	                            <a href="/EatsOrder/review/deleteReviewForm.do">삭제</a>
-	                        </div>
-	                        <c:if test="${reviewData.review.photo1 != null}">
-			                    <div class="review_img">
-			                        <img src="${reviewData.review.photo1}">
-			                    </div>
-		                    </c:if>
-		                    <c:if test="${reviewData.review.photo2 != null}">
-			                    <div class="review_img">
-			                        <img src="${reviewData.review.photo2}">
-			                    </div>
-		                    </c:if>
-		                    <c:if test="${reviewData.review.photo3 != null}">
-			                    <div class="review_img">
-			                        <img src="${reviewData.review.photo3}">
-			                    </div>
-		                    </c:if>
-		                    <c:if test="${reviewData.review.photo4 != null}">
-			                    <div class="review_img">
-			                        <img src="${reviewData.review.photo4}">
-			                    </div>
-		                    </c:if>
-		                    <c:if test="${reviewData.review.photo5 != null}">
-			                    <div class="review_img">
-			                        <img src="${reviewData.review.photo5}">
-			                    </div>
-		                    </c:if>
-	                        <div class="review_text">
-	                            <div>선택메뉴</div>
-	                            <p>${reviewData.review.content}</p>
-	                        </div>
-	                    </div>
-                    </c:forEach>
+                	<c:set var="reviewCount" value="${fn.length(myReviews)}" />
+                	<c:if test="${reviewCount == 0}">
+                		<h3>작성된 리뷰가 없습니다.</h3>
+                	</c:if>
+                	<c:if test="${reviewCount > 0}">
+	                	<c:forEach var="reviewData" items="${myReviews}">
+		                    <div class="review_box">
+		                        <h3><a href="#">${reviewData.restaurant.rst_name}<span>></span></a></h3>
+		                        <div class="star">
+		                            <span>★</span>
+		                            <span>★</span>
+		                            <span>★</span>
+		                            <span>★</span>
+		                            <span>★</span>
+		                            ${reviewData.review.rating}
+		                        </div>
+		                        <div class="del_btn">
+		                        	<c:if test="${reviewData.overDate <= 7}">
+		                            <a href="/EatsOrder/review/updateReviewForm.do">수정</a>
+		                            <span>|</span>
+		                            </c:if>
+		                            <a href="/EatsOrder/review/deleteReviewForm.do">삭제</a>
+		                        </div>
+		                        <c:if test="${reviewData.review.photo1 != null}">
+				                    <div class="review_img">
+				                        <img src="${reviewData.review.photo1}">
+				                    </div>
+			                    </c:if>
+			                    <c:if test="${reviewData.review.photo2 != null}">
+				                    <div class="review_img">
+				                        <img src="${reviewData.review.photo2}">
+				                    </div>
+			                    </c:if>
+			                    <c:if test="${reviewData.review.photo3 != null}">
+				                    <div class="review_img">
+				                        <img src="${reviewData.review.photo3}">
+				                    </div>
+			                    </c:if>
+			                    <c:if test="${reviewData.review.photo4 != null}">
+				                    <div class="review_img">
+				                        <img src="${reviewData.review.photo4}">
+				                    </div>
+			                    </c:if>
+			                    <c:if test="${reviewData.review.photo5 != null}">
+				                    <div class="review_img">
+				                        <img src="${reviewData.review.photo5}">
+				                    </div>
+			                    </c:if>
+		                        <div class="review_text">
+		                            <div>선택메뉴</div>
+		                            <p>${reviewData.review.content}</p>
+		                        </div>
+		                    </div>
+	                    </c:forEach>
+                    </c:if>
                 </div>
             </div>
         </div>
