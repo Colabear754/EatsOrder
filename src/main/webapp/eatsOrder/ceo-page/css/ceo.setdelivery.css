@@ -1,3 +1,4 @@
+/* 2022.04.15작성자 김시웅 css수정 */
 *{
     margin: 0;
 }
@@ -50,7 +51,6 @@ border-bottom: 0.5px solid #dfdfdf;
 border-radius: 8px;
 margin-bottom:20px;
 border-spacing: 0;
-background-color: white;
 box-shadow: 5px black;
 }
 td{
