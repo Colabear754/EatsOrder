@@ -296,7 +296,16 @@ public class NoticeDAO {
 			rs=pstmt.executeQuery();
 		
 			if(rs.next()) {
-				
+				//글 수정페이지에서 첨부사진을 선택하지 않았다면(filename이 널이라면)
+				if(article.getFilename()==null) {
+					sql="update notice set title=?, category=?, content=? where notice_number=?";
+					pstmt=con.prepareStatement(sql);
+					pstmt.setString(1, article.getTitle());
+					pstmt.setInt(2, article.getCategory());
+					pstmt.setString(3, article.getContent());
+					pstmt.setInt(4, article.getNotice_number());
+				}else {
+					//글 수정페이지에서 첨부사진을 선택했다면(filename이 널이 아니라면)
 					sql="update notice set title=?, category=?, content=?, filename=? where notice_number=?";
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, article.getTitle());
@@ -304,11 +313,9 @@ public class NoticeDAO {
 					pstmt.setString(3, article.getContent());
 					pstmt.setString(4,article.getFilename());
 					pstmt.setInt(5, article.getNotice_number());
-					
-					int update=pstmt.executeUpdate();
-					System.out.println("게시판의 글수정 성공유무)=>"+update);
-					x=1;//수정성공 성공
-			}else {//암호가 존재하지 않은경우
+				}
+				x=1;
+			}else {
 				x=-1;
 			}
 		}catch(Exception e) {
@@ -342,7 +349,7 @@ public class NoticeDAO {
 					x=0;//삭제 실패
 				}
 		}catch(Exception e) {
-			System.out.println("deleteArticle()실행 오류=>"+e);//Log객체
+			System.out.println("deleteArticle()실행 오류=>"+e);
 		}finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
