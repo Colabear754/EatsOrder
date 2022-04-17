@@ -15,9 +15,11 @@ public class RstInfoAction implements CommandAction {
 		int rst_id = Integer.parseInt(request.getParameter("rst_id"));
 		RestaurantDAO rstProcess = new RestaurantDAO();
 		RestaurantDTO restaurant = rstProcess.getRestaurant(rst_id);
+		double rating = rstProcess.getRating(rst_id);
 		
 		request.setAttribute("restaurant", restaurant);
+		request.setAttribute("rating", rating);
 		
-		return "/rstInfo.jsp";
+		return "/restaurant/rstInfo.jsp";
 	}
 }

@@ -184,12 +184,21 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     	availablePhone = false;
     })
     
+    // 이용약관 보기
     $('#terms').click(function() {
-    	$('#terms-modal').css('display', 'flex');
+    	$.ajax({
+    		type: "get",
+    		url: "/EatsOrder/component/Utilization.html",
+    		success: function(data) {
+				$('#wrapper').append(data);
+		    	$('#terms-modal').css('display', 'flex');
+			}
+    	})
     	
     	$(document).mouseup(function(e) {
     		if ($('#wrapper').has(e.target).length === 0) {
-    			$('#terms-modal').css('display', 'none')
+    			$('#terms-modal').css('display', 'none');
+    			$('#wrapper').empty();
     		}
     	})
     })

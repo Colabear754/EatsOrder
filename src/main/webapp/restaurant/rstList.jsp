@@ -55,7 +55,7 @@
 </header>
 <br><br>
     <div class="search">
-        <form name="rstForm" action="/EatsOrder/restaurant/rstList.do" id="rstForm">
+        <form name="rstForm" action="/EatsOrder/restaurant/rstList.do" method="post" id="rstForm">
             <select name="orderBy" id="orderBy">
                 <option value="1" ${orderBy == 1 ? 'selected="selected"' : ''}>기본 정렬순</option>
                 <option value="2" ${orderBy == 2 ? 'selected="selected"' : ''}>별점순</option>

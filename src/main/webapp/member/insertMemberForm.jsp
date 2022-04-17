@@ -28,9 +28,7 @@
     <main>
         <div class="all_box">
 	    	<div id="terms-modal">
-				<div id="wrapper">
-					<jsp:include page="../component/Utilization.html" />
-				</div>
+				<div id="wrapper"></div>
 			</div>
             <div class="title_box">
                 <h1 id="test">회원가입</h1>
