@@ -7,7 +7,7 @@ import action.CommandAction;
 
 public class InsertReviewFormAction implements CommandAction {
 
-	//추가. 작성자:허우림. 작성일자:22-04-14. 내용:여러 개의 파일 업로드
+	//추가. 작성자:허우림. 작성일자:22-04-17. 내용:여러 개의 파일 업로드
 	
 	//request,paramName을 인자로 전달받아서 현재의 폼 요소들 중 paramName으로 지정된 부분에 입력된 값을 보존하고 현재의 폼을 전송하는 메소드
 	public String getParam(HttpServletRequest request,String paramName) {
@@ -29,8 +29,15 @@ public class InsertReviewFormAction implements CommandAction {
 			filecounter=Integer.parseInt(request.getParameter("addcnt"));
 		}
 		
-		//filecounter변수를 InsertReviewForm.jsp에서 for문 출력에 사용하기 위해 저장.
-		//request.setAttribute("filecounter",filecounter);
+		int review_number=1;
+		String content=request.getParameter("content");
+		int rating=Integer.parseInt(request.getParameter("rating"));
+		
+		request.setAttribute("filecounter",filecounter);
+		request.setAttribute("review_number", review_number);
+		request.setAttribute("content", content);
+		request.setAttribute("rating", rating);
+		
 	//-----------------------
 		
 		// 리뷰 작성 폼 액션클래스
