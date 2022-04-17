@@ -49,7 +49,7 @@
                             <td class="td2"><textarea class="write_cont" name="content">${article.content}</textarea></td>
                         </tr>
                         <tr><td class="td1 subject">기존 첨부 사진</td></tr>
-                        <tr><td class="td2 center" style="text-align: center;" ><img src="filestorage/${article.filename}"></td></tr>
+                        <tr><td class="td2 center"><img src="filestorage/${article.filename}"></td></tr>
                         <tr><td class="td1 subject">새로 첨부할 사진</td></tr>
                         <tr>
                             <td class="td1 td2"><input type="file" name="fileName"></td>

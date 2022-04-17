@@ -41,6 +41,7 @@
                         <tr>
                             <td class="td2"><textarea class="write_cont" name="content"></textarea>
                         </tr>
+                        <tr><td class="td1 subject">첨부할 사진</td></tr>
                         <tr>
                             <td class="td1 td2"><input type="file" name="filename"></td>
                         </tr>
