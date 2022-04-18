@@ -6,10 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import notice.*;
-
 import action.CommandAction;
-import action.UpdateProAction;
-import hwl.notice.NoticeDAO;
 
 //사진첨부 때문에 추가 
 import com.oreilly.servlet.MultipartRequest;
@@ -33,33 +30,12 @@ public class NoticeUpdateProAction implements CommandAction{
 		
 		try{
 			MultipartRequest multi=new MultipartRequest(request,saveFolder,maxSize,encType,new DefaultFileRenamePolicy());
-			Enumeration params=multi.getParameterNames();
 			
-			while(params.hasMoreElements()){
-				String name=(String)params.nextElement();
-				String value=multi.getParameter(name);
-				System.out.println(name+"="+value+"<br/>");
-				
-			}
 			Enumeration files=multi.getFileNames();
 			
 			while(files.hasMoreElements()){
 				String name=(String)files.nextElement();
-				
 				NoticeUpdateProAction.filename=multi.getFilesystemName(name);
-				
-				String original=multi.getOriginalFileName(name);
-				String type=multi.getContentType(name);
-				File f=multi.getFile(name);
-		
-				System.out.println("파라미터 이름:"+name+"<br/>");
-				System.out.println("실제 파일 이름:"+original+"<br/>");
-				System.out.println("저장된 파일 이름:"+NoticeUpdateProAction.filename+"<br/>");
-				System.out.println("파일 타입:"+type+"<br/>");
-				
-				if(f!=null){
-					System.out.println("크기:"+f.length()+"바이트");
-				}
 			}
 			NoticeDTO article=new NoticeDTO();
 			article.setNotice_number(Integer.parseInt(request.getParameter("notice_number")));		  
