@@ -49,7 +49,7 @@
             <br><br>
         </form>
     </div>
-    <a class="write_btn" href="/EatsOrder/notice/noticeWriteForm.do?category=${category}">글쓰기</a>
+    
     <br><br>
     <b class="board_count">총 ${pgList.count}건 [ ${pgList.currentPage} / ${pgList.pageCount} ]</b>
     <br><br>
