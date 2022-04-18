@@ -47,6 +47,6 @@ public class InsertReviewFormAction implements CommandAction {
 		request.setAttribute("order_number", order_number);
 		request.setAttribute("email", email);
 		
-		return "/insertReviewForm.jsp";
+		return "/review/insertReviewForm.jsp";
 	}
 }
