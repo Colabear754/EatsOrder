@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"
     import="notice.*,java.text.SimpleDateFormat"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ page import="com.oreilly.servlet.MultipartRequest" %>
-<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import="java.util.*,java.io.*,notice.*" %>
 <!DOCTYPE html>
 <html>
@@ -57,14 +55,8 @@
   </table> 
   <br>
   <div class="btn">
-	  <input type="button" value="글수정" 
-       onclick="document.location.href='/EatsOrder/notice/noticeUpdateForm.do?notice_number=${article.notice_number}&pageNum=${pageNum}&category=${article.category}'">
-	   &nbsp;&nbsp;&nbsp;&nbsp;
-	  <input type="button" value="글삭제" 
-       onclick="document.location.href='/EatsOrder/notice/noticeDeleteForm.do?notice_number=${article.notice_number}&pageNum=${pageNum}&category=${article.category}'">     
-	   &nbsp;&nbsp;&nbsp;&nbsp;
        <input type="button" value="글목록" 
-       onclick="document.location.href='/EatsOrder/noticeList.do?pageNum=${pageNum}&category=1'">
+       onclick="document.location.href='/EatsOrder/notice/noticeList.do?pageNum=${pageNum}&category=1'">
     </div>
 </form>      
 </div>
