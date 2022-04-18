@@ -1,6 +1,5 @@
 /*작성자: 허우림. 업로드일자:22-04-15. 파일 설명:공지사항게시판 목록css*/
 
-
 .hover{
 	background:#FECB10;
 	color:white;
@@ -33,9 +32,7 @@ ul.tabs{
     width: 70%;
     margin-right: 15%;
     margin-left: 15%;
-    /* border:1px solid green; */
 }
-
 a{
     display: inline-block;
     text-align: center;
@@ -45,9 +42,7 @@ a{
     transition: 1s;
     color:black;
 }
-
 li {
-    /* float: left; */
     width: 10%;
     display: inline-block;
     text-align: center;
@@ -61,8 +56,6 @@ li {
     height: 30px;
     float:right;
     font-size:15px;
-    /* margin-right: 1%; */
-    /* display: inline; */
     background-color: #FC6E4D;
     border-radius: 8px;
 }
@@ -72,9 +65,7 @@ li {
     text-align: center;
     width:40%;
     height: 50px;
-    /* border: 1px solid black; */
 }
-
 .search2, select{
     background-color: #F5F5F5;
     border-style:none;
@@ -87,24 +78,17 @@ li {
     position: relative;
     width: 50%;
     height: 50px;
-    /* border: 1px solid pink; */
     box-sizing: border-box;
-    
-
-
 }
 select{
     position: relative;
     width: 35%;
     height: 50px;
     box-sizing: border-box;
-    /* background-color: pink; */
-
 }
 /*검색버튼*/
 .search_btn{
     position: relative;
-    /* display:inline-block; */
     background-color: #FC6E4D;
     width: 50px;
     height: 50px;
@@ -114,30 +98,21 @@ select{
     float:right;
     border-radius: 8px;
 }
-
 .title{
-   	/* margin-left:40%; */
     font-size:20px;
     font-weight: bold;
-
 }
-
 .board_count{
     position:absolute;
-    /* float:left; */
     margin-right: 15%;
-    
 }
 .outer-grid {
     display: grid;
     width: 100%;
-    /* border: 1px solid red; */
 }
 table{
-    /* border:1px solid gray; */
     width: 100%;
      border-spacing: 0px;
-    /* border-collapse: separate;  */
 }
 table th, table tr td{
     height: 50px;
@@ -147,17 +122,12 @@ th{
     color:black;
     border-bottom: 1px solid gray;
     border-top: 1px solid gray;
-    /* background-color: #f5da7a66; */
     background-color: #F5F5F5;
-    /*투명도*/
-    /* opacity: 0.5; */
 }
 tr td{
-    /* border-top:1px solid green; */
     font-size: 17px;
     border-bottom:1px solid gray;
     text-align: center;
-    
 }
 .td1{
     width: 20%;
