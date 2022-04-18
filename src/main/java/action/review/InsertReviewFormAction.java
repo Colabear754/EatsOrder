@@ -24,7 +24,7 @@ public class InsertReviewFormAction implements CommandAction {
 		
 		request.setCharacterEncoding("UTF-8");
 		int filecounter=0;
-		//InsertReviewForm.jsp의 addcnt(업로드할 파일수)를 입력했다면,그것을 filecounter에 담음
+		//InsertReviewForm.jsp의 addcnt(업로드할 파일수)를 입력했다면,그것을 filecounter에 담아서 jsp에서 출력
 		if(request.getParameter("addcnt")!=null) {
 			filecounter=Integer.parseInt(request.getParameter("addcnt"));
 		}
