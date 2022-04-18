@@ -1,5 +1,7 @@
    
-      /* 2022.04.04 매장상세페이지 css 김시웅 */
+      /* 2022.04.04 매장상세페이지 css 김시웅 
+      	  2022.04.18 css 수정 김시웅		
+      */
       @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap%27');
        @media (min-width: 768px) {
            .carousel-inner .active,
@@ -225,10 +227,23 @@
         background-color: #FC6E4D;
        }
 
-       .info-item-title, i{
-           color: black;
+        .info-item-title, i {
+           color: #FC6E4D;
+           font-weight: bold;
        }
-
+       .info-item-title, span {
+        	color: black;
+        	font-weight: bold;
+    	}
+    	.order-items {
+    		color:#FC6E4D;
+    		font-weight: bold;
+    	}
+    	.reviewcon {
+    		color:black;
+    	}
+	   
+	   
        /* checking style */
        #switch:checked+.switch_label {
        background:#FC6E4D;
