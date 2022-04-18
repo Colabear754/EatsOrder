@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"
     import="notice.*,java.text.SimpleDateFormat"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ page import="java.util.*,java.io.*,notice.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,8 +54,14 @@
   </table> 
   <br>
   <div class="btn">
+	  <input type="button" value="글수정" 
+       onclick="document.location.href='/EatsOrder/notice_admin/noticeUpdateForm.do?notice_number=${article.notice_number}&pageNum=${pageNum}&category=${article.category}'">
+	   &nbsp;&nbsp;&nbsp;&nbsp;
+	  <input type="button" value="글삭제" 
+       onclick="document.location.href='/EatsOrder/notice_admin/noticeDeleteForm.do?notice_number=${article.notice_number}&pageNum=${pageNum}&category=${article.category}'">     
+	   &nbsp;&nbsp;&nbsp;&nbsp;
        <input type="button" value="글목록" 
-       onclick="document.location.href='/EatsOrder/notice/noticeList.do?pageNum=${pageNum}&category=${article.category}'">
+       onclick="document.location.href='/EatsOrder/notice_admin/noticeList.do?pageNum=${pageNum}&category=${article.category}'">
     </div>
 </form>      
 </div>
