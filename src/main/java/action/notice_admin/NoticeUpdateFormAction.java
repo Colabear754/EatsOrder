@@ -1,4 +1,4 @@
-package action.notice;
+package action.notice_admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +21,6 @@ public class NoticeUpdateFormAction implements CommandAction {
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("article", article);
 
-		return "/notice/noticeUpdateForm.jsp";
+		return "/notice_admin/noticeUpdateForm.jsp";
 	}
 }

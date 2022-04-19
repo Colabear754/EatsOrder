@@ -4,5 +4,5 @@
 
 <c:if test="${check==1}">
 	<meta http-equiv="Refresh"
-	           content="0;url=/EatsOrder/notice/noticeList.do?pageNum=${pageNum}&category=1">
+	           content="0;url=/EatsOrder/notice_admin/noticeList.do?pageNum=${pageNum}&category=${category}">
 </c:if>

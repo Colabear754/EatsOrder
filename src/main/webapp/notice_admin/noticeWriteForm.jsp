@@ -12,7 +12,7 @@
 <body>  
        <br>
         <div class="outer-grid">
-            <form method="post" name="writeform" enctype="multipart/form-data" action="/EatsOrder/notice/noticeWritePro.do">
+            <form method="post" name="writeform" enctype="multipart/form-data" action="/EatsOrder/notice_admin/noticeWritePro.do">
                 <input type="hidden" name="notice_number" value="${notice_number}">
                 <table>
                     <thead>
@@ -51,7 +51,7 @@
                 <div class="btn">
                     <input  type="submit" value="글등록하기">
                     <input  type="reset" value="다시 쓰기">
-                    <input  type="button"value="목록보기" OnClick="window.location='/EatsOrder/notice/noticeList.do?category=${category}'">
+                    <input  type="button"value="목록보기" OnClick="window.location='/EatsOrder/notice_admin/noticeList.do?category=${category}'">
                 </div>
             </form>
         </div>  

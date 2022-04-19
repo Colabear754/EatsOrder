@@ -51,6 +51,7 @@ public class InsertReviewProcAction implements CommandAction {
 			String[] photos = new String[5];
 			int photoCount = 0;	// 사진 개수
 			
+			//저장된 사진의 파일명을 photos 배열에 형변환 하여 담음
 			for(int i=0; i<saveFiles.size(); i++) {
 				photos[i]=(String)saveFiles.get(i);
 			}

@@ -1,4 +1,4 @@
-package action.notice;
+package action.notice_admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +13,15 @@ public class NoticeDeleteProAction implements CommandAction{
 		
 		String pageNum=request.getParameter("pageNum");
 		int notice_number=Integer.parseInt(request.getParameter("notice_number"));
+		int category=Integer.parseInt(request.getParameter("category"));
 		
 		NoticeDAO dbPro=new NoticeDAO();
 		int check=dbPro.deleteArticle(notice_number);
 		
-		request.setAttribute("pageNum", pageNum);//수정한 레코드가 있는 페이지로 이동
-		request.setAttribute("check", check);//${check} 데이터 수정성공 유무
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("check", check);
+		request.setAttribute("category", category);
 		
-		return "/notice/noticeDeletePro.jsp";
+		return "/notice_admin/noticeDeletePro.jsp";
 	}
 }

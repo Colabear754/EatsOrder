@@ -14,7 +14,7 @@
 <center><b>글수정</b>
 <br>
         <div class="outer-grid">
-            <form method="post" name="writeform" action="/EatsOrder/notice/noticeUpdatePro.do?pageNum=${pageNum}&category=${article.category}" 
+            <form method="post" name="writeform" action="/EatsOrder/notice_admin/noticeUpdatePro.do?pageNum=${pageNum}&category=${article.category}" 
             			onsubmit="return writeSave()">
                 <input type="hidden" name="notice_number" value="${article.notice_number}">
                 <input type="hidden" name="pageNum" value="${pageNum}">
@@ -61,7 +61,7 @@
                     <input  type="submit" value="글수정">
                     <input  type="reset" value="다시 쓰기">
                     <input type="button" value="목록보기" 
-       			onclick="document.location.href='/EatsOrder/notice/noticeList.do?pageNum=${pageNum}&category=${article.category}'">
+       			onclick="document.location.href='/EatsOrder/notice_admin/noticeList.do?pageNum=${pageNum}&category=${article.category}'">
                 </div>
             </form>
         </div>  

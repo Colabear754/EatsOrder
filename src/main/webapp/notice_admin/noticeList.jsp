@@ -4,9 +4,9 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<!-- 작성자: 허우림. 작성일: 22-04-25. 페이지명: 공지사항/이벤트/FAQ 게시판목록 페이지  -->
+<!-- 작성자: 허우림. 작성일: 22-04-18. 페이지명: 공지사항/이벤트/FAQ 게시판목록 페이지(관리자)  -->
 <head>
-<title>공지사항/이벤트/FAQ탭 게시판</title>
+<title>공지사항/이벤트/FAQ탭 게시판(관리자)</title>
 <link href="./css/noticelist.css?ver=12" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
@@ -31,13 +31,13 @@
     <div id="container">
  
     <ul class="tabs">
-        <li class="current tabmenu" data-tab="tab1" id="default"><a href="/EatsOrder/notice/noticeList.do?category=1">공지사항</a></li>
-        <li class="tabmenu" data-tab="tab2"><a href="/EatsOrder/notice/noticeList.do?category=2">이벤트</a></li>
-        <li class="tabmenu" data-tab="tab3"><a href="/EatsOrder/notice/noticeList.do?category=3">FAQ</a></li>
+        <li class="current tabmenu" data-tab="tab1" id="default"><a href="/EatsOrder/notice_admin/noticeList.do?category=1">공지사항</a></li>
+        <li class="tabmenu" data-tab="tab2"><a href="/EatsOrder/notice_admin/noticeList.do?category=2">이벤트</a></li>
+        <li class="tabmenu" data-tab="tab3"><a href="/EatsOrder/notice_admin/noticeList.do?category=3">FAQ</a></li>
     </ul>
     <br>
     <div class="search">
-        <form name="test" action="/EatsOrder/notice/noticeList.do">
+        <form name="test" action="/EatsOrder/notice_admin/noticeList.do">
             <select name="search" >
                 <option value="title">제목</option>
                 <option value="content">본문</option>
@@ -49,7 +49,7 @@
             <br><br>
         </form>
     </div>
-    
+    <a class="write_btn" href="/EatsOrder/notice_admin/noticeWriteForm.do?category=${category}">글쓰기</a>
     <br><br>
     <b class="board_count">총 ${pgList.count}건 [ ${pgList.currentPage} / ${pgList.pageCount} ]</b>
     <br><br>
@@ -80,7 +80,7 @@
 	                </td>
 	
 	                <td class="td2">
-	                    <a href="/EatsOrder/notice/noticeContent.do?notice_number=${article.notice_number}&pageNum=${pgList.currentPage}&category=${category}">
+	                    <a href="/EatsOrder/notice_admin/noticeContent.do?notice_number=${article.notice_number}&pageNum=${pgList.currentPage}&category=${category}">
 	                    ${article.title}</a> 
 	                </td>
 	                <td>
@@ -94,10 +94,10 @@
 	
 	<div class="numbering">
 	    <c:if test="${pgList.startPage > pgList.blockSize}">
-			<a href="/EatsOrder/notice/noticeList.do?pageNum=${pgList.startPage-pgList.blockSize}&search=${search}&searchtext=${searchtext}&category=${category}">[이전]</a>
+			<a href="/EatsOrder/notice_admin/noticeList.do?pageNum=${pgList.startPage-pgList.blockSize}&search=${search}&searchtext=${searchtext}&category=${category}">[이전]</a>
 		</c:if>
 	    <c:forEach var="i" begin="${pgList.startPage}" end="${pgList.endPage}">
-					<a href="/EatsOrder/notice/noticeList.do?pageNum=${i}&search=${search}&searchtext=${searchtext}&category=${category}">
+					<a href="/EatsOrder/notice_admin/noticeList.do?pageNum=${i}&search=${search}&searchtext=${searchtext}&category=${category}">
 						<c:if test="${pgList.currentPage==i}">
 								<b style="color: red;">[${i}]</b>
 						</c:if>
@@ -108,7 +108,7 @@
 		</c:forEach>
 	
 	    <c:if test="${pgList.endPage < pgList.pageCount}">
-					<a href="/EatsOrder/notice/noticeList.do?pageNum=${pgList.startPage+pgList.blockSize}&search=${search}&searchtext=${searchtext}&category=${category}">[다음]</a> 
+					<a href="/EatsOrder/notice_admin/noticeList.do?pageNum=${pgList.startPage+pgList.blockSize}&search=${search}&searchtext=${searchtext}&category=${category}">[다음]</a> 
 		</c:if>
 	</div>
     </div>

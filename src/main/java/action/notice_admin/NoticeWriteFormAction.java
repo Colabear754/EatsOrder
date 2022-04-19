@@ -1,4 +1,4 @@
-package action.notice;
+package action.notice_admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +18,6 @@ public class NoticeWriteFormAction implements CommandAction{
 		request.setAttribute("notice_number", notice_number);
 		request.setAttribute("category", category);
 		   
-		return "/writeForm.jsp";
+		return "/notice_admin/noticeWriteForm.jsp";
 	}
 }

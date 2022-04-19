@@ -1,11 +1,9 @@
-package action.notice;
+package action.notice_admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-
-import notice.*;
 
 public class NoticeDeleteFormAction implements CommandAction {
 	@Override
@@ -13,10 +11,12 @@ public class NoticeDeleteFormAction implements CommandAction {
 		
 		int notice_number=Integer.parseInt(request.getParameter("notice_number"));
 		String pageNum=request.getParameter("pageNum");		
-
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("notice_number", notice_number);//${article.num}
+		int category=Integer.parseInt(request.getParameter("category"));
 		
-		return "/notice/noticeDeleteForm.jsp";
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("notice_number", notice_number);
+		request.setAttribute("category", category);
+		
+		return "/notice_admin/noticeDeleteForm.jsp";
 	}
 }
