@@ -19,6 +19,6 @@ public class CheckValidMemberAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/member/process/checkValidMember.jsp";
+		return "/member/process/result.jsp";
 	}
 }

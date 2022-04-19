@@ -352,7 +352,7 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     		dataType: "text",
     		success: function(data) {
     			if (data > 0) {
-    				swal({ icon: "info", title: "회원가입에 성공하였습니다. 로그인 화면으로 돌아갑니다." }).then(
+    				swal({ icon: "success", title: "회원가입에 성공하였습니다. 로그인 화면으로 돌아갑니다." }).then(
         				window.location.href = "/EatsOrder/member/loginForm.do"
         			);
 //    				alert("회원가입에 성공하였습니다. 로그인 화면으로 돌아갑니다.");

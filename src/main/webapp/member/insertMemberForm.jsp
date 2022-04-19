@@ -42,7 +42,7 @@
                             <th>이메일</th>
                             <td>
                                 <input type="text" name="id_input" id="email" placeholder="이메일을 입력해주세요.">
-                                <label class="duplicate_check" id="email_check">중복확인</label>
+                                <a class="duplicate_check" id="email_check">중복확인</a>
                             </td>
                         </tr>
                         <tr id="form_helper1" class="form_helper">
@@ -87,7 +87,7 @@
                             <th>닉네임</th>
                             <td>
                                 <input type="text" name="id_input" id="nickname" placeholder="닉네임을 입력해주세요.">
-                                <label class="duplicate_check" id="nickname_check">중복확인</label>
+                                <a class="duplicate_check" id="nickname_check">중복확인</a>
                             </td>
                         </tr>
                         <tr id="form_helper4" class="form_helper">
@@ -102,7 +102,7 @@
                             <th>휴대폰</th>
                             <td>
                                 <input type="text" name="id_input" id="phone" oninput="this.value = this.value.replaceAll(/\D/g, '')" maxlength="13">
-                                <label class="duplicate_check" id="phone_check">중복확인</label>
+                                <a class="duplicate_check" id="phone_check">중복확인</a>
                             </td>
                         </tr>
                         <tr id="form_helper5" class="form_helper">

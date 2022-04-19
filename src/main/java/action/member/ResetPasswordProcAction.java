@@ -19,6 +19,6 @@ public class ResetPasswordProcAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/member/process/resetPasswordProc.jsp";
+		return "/member/process/result.jsp";
 	}
 }

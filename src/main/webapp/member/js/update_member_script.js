@@ -63,15 +63,15 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     			data: "type=" + type + "&nickname=" + nickname,
     			dataType: "text",
     			success: function(data) {
-    				if (data.indexOf("true") > 0 && nickname == $('#nickname').val()) {
-    					$('#nickname_error').css('display', 'flex');
-    					$('#nickname_error').text("이미 사용중인 닉네임입니다.");
-    					$('#available_nickname').css('display', 'none');
-    				} else {
+    				if (data.indexOf("true") < 0 && nickname == $('#nickname').val()) {
     					$('#nickname_error').css('display', 'none');
     					$('#available_nickname').css('display', 'flex');
     					$('#nickname').css('outline', '');
     					availableNickname = true;
+    				} else {
+    					$('#nickname_error').css('display', 'flex');
+    					$('#nickname_error').text("이미 사용중인 닉네임입니다.");
+    					$('#available_nickname').css('display', 'none');
     				}
     			},
     			error: function(request) {
@@ -101,19 +101,19 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     			data: "type=" + type + "&phone=" + phone,
     			dataType: "text",
     			success: function(data) {
-    				if (data.indexOf("true") > 0 && phone == $('#phone2').val()) {
-    					$('#phone_error').css('display', 'flex');
-    					$('#phone_error').text("이미 사용중인 휴대폰 번호입니다.");
-    					$('#available_phone').css('display', 'none');
-    				} else {
+    				if (data.indexOf("true") < 0 && phone == $('#phone2').val()) {
     					$('#phone_error').css('display', 'none');
     					$('#available_phone').css('display', 'flex');
     					$('#phone').css('outline', '');
     					availablePhone = true;
+    				} else {
+    					$('#phone_error').css('display', 'flex');
+    					$('#phone_error').text("이미 사용중인 휴대폰 번호입니다.");
+    					$('#available_phone').css('display', 'none');
     				}
     			},
     			error: function(request) {
-    				alert("오류 발생 : " + request.status)
+    				alert("오류 발생 : " + request.status);
     			}	
     		})
     	}
@@ -279,8 +279,8 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     		dataType: "text",
     		success: function(data) {
     			if (data > 0) {
-    				swal({ icon: "info", title: "회원정보가 성공적으로 수정되었습니다" }).then(
-    					window.location.href = "/EatsOrder/member/myPage.do"
+    				swal({ icon: "success", title: "회원정보가 성공적으로 수정되었습니다" }).then(
+    					window.location.href = "/EatsOrder/main/main.do"
     				);
     			} else if (data < 0) {
     				$('#ex_password_error').css('display', 'flex');

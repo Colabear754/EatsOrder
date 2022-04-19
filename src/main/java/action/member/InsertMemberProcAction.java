@@ -24,6 +24,6 @@ public class InsertMemberProcAction implements CommandAction {
 
 		request.setAttribute("result", result);
 
-		return "/member/process/insertMemberProc.jsp";
+		return "/member/process/result.jsp";
 	}
 }

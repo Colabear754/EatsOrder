@@ -79,9 +79,9 @@ main {
 }
 
 /* 인증번호 버튼 */
-tr:nth-child(7) a {
+/* tr:nth-child(7) a {
     width: 120px;
-}
+} */
 
 /* 약관보기 버튼 */
 .check_box a {
@@ -124,7 +124,7 @@ tr:nth-child(11) > th {
 /* ----------------------------------------------- */
 
 /* 가입버튼 */
-.join_box input {
+.join_box button {
     margin-top: 30px;
     width: 100px;
     height: 40px;
@@ -152,10 +152,6 @@ tr:nth-child(11) > th {
 
 .form_helper td {
     padding: 0 0 20px 20px;
-}
-
-#form_helper3 td {
-    height: 20px;
 }
 
 /* 오류 메시지와 안내 메시지 */
