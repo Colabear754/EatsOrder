@@ -11,7 +11,7 @@ public class RestaurantDTO {
 	private String hours;
 	private String bussiness_number;
 	private String bussiness_name;
-	private String payment;
+	private String payments;
 	private int delivery_tip;
 	private String rst_notice;
 	private String estimated_time;
@@ -24,7 +24,7 @@ public class RestaurantDTO {
 	}
 
 	public RestaurantDTO(int rst_id, int category_id, String rst_name, String phone, String address, int min_order, String origin,
-			String hours, String bussiness_number, String bussiness_name, String payment, int delivery_tip, String rst_notice,
+			String hours, String bussiness_number, String bussiness_name, String payments, int delivery_tip, String rst_notice,
 			String estimated_time, String rst_photo, String rst_logo, int enable) {
 		this.rst_id = rst_id;
 		this.category_id = category_id;
@@ -36,7 +36,7 @@ public class RestaurantDTO {
 		this.hours = hours;
 		this.bussiness_number = bussiness_number;
 		this.bussiness_name = bussiness_name;
-		this.payment = payment;
+		this.payments = payments;
 		this.delivery_tip = delivery_tip;
 		this.rst_notice = rst_notice;
 		this.estimated_time = estimated_time;
@@ -125,12 +125,12 @@ public class RestaurantDTO {
 		this.bussiness_name = bussiness_name;
 	}
 
-	public String getPayment() {
-		return payment;
+	public String getPayments() {
+		return payments;
 	}
 
-	public void setPayment(String payment) {
-		this.payment = payment;
+	public void setPayments(String payments) {
+		this.payments = payments;
 	}
 
 	public int getDelivery_tip() {

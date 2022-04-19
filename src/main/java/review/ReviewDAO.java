@@ -587,7 +587,7 @@ public class ReviewDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select count(review_number) from review where review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?)");
+					+ "(select review_number from v_review_to_rst where rst_id=? and review_number is not null)");
 			pStatement.setInt(1, rst_id);
 			resultSet = pStatement.executeQuery();
 

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="./css/update_member_style.css">
     <link rel="stylesheet" href="./css/main_header_logBefore_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="./js/update_member_script.js"></script>
 </head>
 <body>
