@@ -5,19 +5,18 @@
 */
 
 /* 모든 li 스타일 */
-li {
+.mypage_wrap li {
     list-style: none;
 }
 /* 모든 a 스타일 */
-a {
+.mypage_wrap a {
     text-decoration: none;
     color: black;
 }
 
 /* 전체 브라우저 박스 */
-body {
+.mypage_wrap {
     position: relative;
-    margin: 0 10%;
     box-sizing: border-box;
 }
 
@@ -29,6 +28,7 @@ body {
     height: 403px;
     box-sizing: border-box;
     overflow: hidden;
+    margin-top: 50px;
 }
 
 /* 프로필 등급 박스 */
@@ -64,7 +64,7 @@ body {
 }
 
 /* 고객 인사설정 */
-p {
+.mypage_wrap p {
     margin: 10% 10%;
 }
 
@@ -137,15 +137,5 @@ p {
 
 /* 퀵메뉴 목록 */
 .quick_menu li {
-    margin: 0 0 10px 15px;
-}
-
-/* ----------------------------------------------------------- */
-/* 메인 콘텐츠 박스 */
-.content_box {
-    width: 80%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
+    margin: 10px 0 10px 15px;
 }

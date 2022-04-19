@@ -44,8 +44,6 @@
                 <li><a href="/EatsOrder/member/updateMemberForm.do">내 정보 수정</a></li>
             </ul>
         </div>
-        <div class="content_box">
-        </div>
     </main>
 </body>
 

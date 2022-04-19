@@ -31,7 +31,7 @@
 				<div id="wrapper"></div>
 			</div>
             <div class="title_box">
-                <h1 id="test">회원가입</h1>
+                <h1>회원가입</h1>
                 <hr>
             </div>
             <div class="join_form"> 

@@ -80,7 +80,7 @@
     <c:if test="${rstDataLength > 0}">
     	<c:forEach var="rstData" items="${rstData}"> 
     	<a href="/EatsOrder/restaurant/rstInfo.do?rst_id=${rstData.restaurant.rst_id}">
-	        <div class="rst_photo"><img src="${rstData.restaurant.rst_photo}"></div>
+	        <div class="rst_photo"><img src="${rstData.restaurant.rst_photo}" width="300px" height="300px"></div>
 	        <div class="inner-grid">
 	            <div class="rst_logo"><img src="${rstData.restaurant.rst_logo}"></div>
 	            <div class="rst_text">

@@ -5,18 +5,8 @@
 */
 
 
-/* 모든 li 스타일 */
-li {
-    list-style: none;
-}
-/* 모든 a 스타일 */
-a {
-    text-decoration: none;
-    color: black;
-}
-
 /* 전체 브라우저 박스 */
-body {
+main {
     position: relative;
     margin: 0 10%;
     box-sizing: border-box;
@@ -38,8 +28,8 @@ body {
 /* ----------------------------------------------------------- */
 
 /* 쿠폰함 제목 */
-h1 {
-    margin: 30px 0 40px 30px;
+.coupon_wrapper h1 {
+    margin: 0 0 30px 40px;
 }
 
 /* 쿠폰 묶음 박스 */
