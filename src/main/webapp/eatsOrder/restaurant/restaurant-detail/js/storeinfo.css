@@ -1,0 +1,16 @@
+* {list-style: none; font-family: 'Nanum Gothic', sans-serif;}
+.info-item-title, i {
+    color: #FC6E4D;
+    font-weight: bold;
+}
+.info-item-title, span {
+     color: black;
+     font-weight: bold;
+ }
+ .order-items {
+     color:#FC6E4D;
+     font-weight: bold;
+ }
+ .reviewcon {
+     color:black;
+ }

@@ -98,34 +98,6 @@
 }
 
 /*---------------*/
-.grid {
-    display: grid;
-    grid-template-columns: repeat(13,auto);
-    grid-template-rows: 1;
-   
-    border-left: 1px solid grey;
-    border-right: 1px solid grey;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding-top:30px;
-    padding-bottom: 30px; 
-    padding-left:1%;
-    padding-right:1%;
-    column-gap: 1%;
-    row-gap: 8px;
-}
-.grid div{
-    margin-top: auto;
-}
-.category{
-    /* border: 1px solid black; */
-    font-size: 16px;
-    text-align: center;
-    font-weight: bold;
-
-    /* margin-left:24px;
-    margin-right:24px; */
-}
 
 .search{
     position:relative;
