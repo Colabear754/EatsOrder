@@ -126,8 +126,8 @@
             </table>
             <div class="member_box">
                 <input type="button" value="수정 완료" id="submit">
-                <button onclick="history.back()">취소</button>
-                <button onclick="window.location.href='/EatsOrder/member/deleteMemberForm.do'">탈퇴하기</button>
+                <a href="javascript:history.back()">취소</a>
+                <a href="EatsOrder/member/deleteMemberForm.do">탈퇴하기</a>
             </div>
         </div>
     </main>

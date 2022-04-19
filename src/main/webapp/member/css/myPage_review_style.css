@@ -4,18 +4,14 @@
 페이지명: 리뷰관리
 */
 
-/* 모든 li 스타일 */
-li {
-    list-style: none;
-}
 /* 모든 a 스타일 */
-a {
+.content_box a {
     text-decoration: none;
     color: black;
 }
 
 /* 전체 브라우저 박스 */
-body {
+main {
     position: relative;
     margin: 0 10%;
     box-sizing: border-box;
@@ -35,8 +31,18 @@ body {
 /* ----------------------------------------------------------- */
 
 /* 리뷰관리 제목 */
-h1 {
-    margin: 30px 0 40px 30px;
+.review_wrapper h1 {
+    margin: 0 0 10px 30px;
+}
+
+/* 리뷰관리 소제목 */
+.review_wrapper h2 {
+    margin: 0px 0 0 30px;
+}
+
+.review_wrapper hr {
+    margin: 90px 0 40px 30px;
+    width: 1150px;
 }
 
 /* 리뷰 전체 박스 */
@@ -73,12 +79,12 @@ h1 {
 }
 /* ----------------------------------------------------------- */
 /* 가게명, 리뷰 이미지 */
-h3, .review_img {
+.review_box h3, .review_img {
     margin-left: 20px;
 }
 
 /* 가게명 세부설정 */
-h3 {
+.review_box h3 {
     display: inline-block;
 }
 
@@ -105,15 +111,10 @@ h3 {
 }
 
 /* 리뷰 별점 전체 */
-.star {
-    margin: -15px 0 15px 20px;
+.star_box {
+    margin: -27px 0 15px 20px;
 }
 
-/* 별점 */
-.star span {
-    margin: -2px;
-    color: #C4C4C4;
-}
 
 /* ----------------------------------------------------------- */
 /* 리뷰 이미지 */
@@ -143,10 +144,52 @@ h3 {
 }
 
 /* 선택메뉴 */
-.review_text > div {
+.review_text > div:first-child {
     background-color: #E5E5E5;
     border-radius: 20px;
     width: fit-content;
     padding: 8px;
     margin-left: -10px;
+}
+
+/* ----------------------------------------------------------- */
+/* 작성 전 리뷰 설정 */
+/* 리뷰 작성 textarea */
+.review_text textarea {
+    margin: 10px 0 0 -5px;   
+    resize: none;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    
+}
+
+/* 리뷰 작성 버튼 */
+.review_text input {
+    margin: 12px 0 0 223px;
+}
+
+/* 리뷰 작성 글자수 체크 위치 */
+.text_length_box {
+    margin: 0 0 0 193px;
+    width: 100px;
+}
+
+/* 리뷰 작성 글자수체크 */
+.text_length_box span {
+    font-size: 14px;
+    color: #939393;
+}
+
+/* 별점 주기 */
+#star a{
+    text-decoration: none;
+    color: #939393;
+   }
+   #star a.on{
+    color: #FECB10;
+   } 
+
+/* 별점 출력 */
+.rating i {
+    color: #939393;
 }

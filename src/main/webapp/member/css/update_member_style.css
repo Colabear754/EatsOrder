@@ -5,11 +5,11 @@
 */
 
 /* 전체 브라우저 박스 */
-body {
+main {
     position: relative;
     margin: 0 10%;
     box-sizing: border-box;
-    height: 1000px;
+    height: 850px;
 }
 
 /* ----------------------------------------------------------- */
@@ -24,13 +24,13 @@ body {
 }
 
 /* ----------------------------------------------- */
-h1 {
-    margin: 30px 0 40px 30px;
+.title_box h1 {
+    margin-left: 58px;
     width: fit-content;
 }
 
 /* 테이블 전체 */
-table {
+.all_box table {
     margin: 30px 30px 20px 30px;
     width: 95%;
 }
@@ -45,14 +45,14 @@ table {
 
 /* ----------------------------------------------- */
 /* 인풋박스 디자인 */
-input[type=text], [type=password] {
+.all_box input[type=text], [type=password] {
     width: 250px;
     height: 30px;
     box-sizing: border-box;
 }
 
-/* 중복확인 버튼 디자인 */
-.duplicate_check {
+/* 인풋박스 버튼 디자인 */
+.all_box a {
     display: inline-block;
     width: 90px;
     height: 30px;
@@ -66,7 +66,7 @@ input[type=text], [type=password] {
     line-height: 30px;
 }
 
-.duplicate_check:hover {
+.all_box a:hover {
 	cursor: pointer;
 }
 
@@ -81,40 +81,28 @@ input[type=text], [type=password] {
 
 /* ----------------------------------------------- */
 /* 수신동의 체크박스 전체*/
-input[type=checkbox] {
+.all_box input[type=checkbox] {
     display: inline-block;
 }
 
-span {
+.all_box span {
     display: inline-block;
 }
 
 /* 인풋박스 마진 */
-td {
+.all_box td {
     padding: 10px 0 10px 20px;
-}
-
-/* 양식 도움말 */
-td p {
-    font-size: 14px
-}
-
-td p:before {
-    content: '\2022';
-    display: inline-block;
-    padding: 0 4px 0 2px;
-    font-size: 12px;
-    vertical-align: 0;
+    
 }
 
 /* 수신동의 폼 정렬 */
-th{
+.all_box th{
     text-align: left;
     padding: 0 30px;
 }
 
 /* 이용약관동의 정렬 */
-tr:nth-child(12) label {
+.all_box tr:nth-child(8) label {
     display: block;
 }
 
@@ -133,25 +121,15 @@ tr:nth-child(12) label {
     background-color: #FC6E4D;
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 .member_box > input:hover {
     background-color: #d44424;
 }
 
-/* 취소버튼 */
-.member_box > button {
-    width: 120px;
-    height: 40px;
-    box-sizing: border-box;
-    border-radius: 0;
-    font-size: 14px;
-    line-height: 35px;
-    border: 1px solid #C4C4C4;
-}
-
 /* 탈퇴버튼 */
-.member_box > a {
+.member_box a {
     width: 120px;
     height: 40px;
     box-sizing: border-box;
@@ -163,19 +141,47 @@ tr:nth-child(12) label {
 
 /* ----------------------------------------------- */
 /* hr */
-hr {
-    margin-top: 20px;
+.title_box hr {
+    margin: 35px 0 0 55px;
 }
 
 /* ----------------------------------------------- */
 /* 양식 도움말 */
-/* 새 비밀번호*/
-.form_helper p {
-    margin:0
+/* 양식 도움말 체크 완료 전 */
+main p {
+    margin: 0;
 }
 
+.form_helper p {
+    font-size: 14px
+}
+
+.form_helper p:before {
+    content: '\2022';
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 12px;
+    vertical-align: 0;
+}
+
+/* 제이쿼리 addclass로 good 클래스 추가  */
+
+/* 양식 도움말 체크 완료 후 */
+.form_helper p.good {
+    color: green;
+}
+
+.form_helper p.good:before {
+    content: '\2713';
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 12px;
+    vertical-align: 0;
+}
+
+
 .form_helper td {
-    padding: 0 0 0 20px;
+    padding: 0 0 20px 20px;
 }
 
 #form_helper3 td {

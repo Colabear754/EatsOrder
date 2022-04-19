@@ -11,12 +11,12 @@
 }
 
 /* 전체배경색 */
-body {
+.login_wrapper {
     background-color: white;
 }
 
 /* 전체 글씨체 적용 */
-a, h1, h3, button, p {
+.login_wrapper a, h1, h3, button, p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -24,7 +24,7 @@ a, h1, h3, button, p {
 /* 메인 그리드 */
 main {
     display: grid;
-    height: 620px;
+    height: 720px;
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(1,auto);
     margin: 0 10%;
@@ -41,7 +41,7 @@ main {
 
 /* ------------------------------------------------------------------ */
 /* 로그인 텍스트 */
-h1 {
+.login_box h1 {
     margin-bottom: 35px;
 }
 

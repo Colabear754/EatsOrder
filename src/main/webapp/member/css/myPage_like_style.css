@@ -4,22 +4,18 @@
 페이지명: 찜목록
 */
 
-/* 모든 li 스타일 */
-li {
-    list-style: none;
-}
 /* 모든 a 스타일 */
-a {
+.review_box a {
     text-decoration: none;
     color: black;
 }
 
 /* 전체 브라우저 박스 */
-body {
+main {
     position: relative;
     margin: 0 10%;
     box-sizing: border-box;
-    height: 1000px;
+    height: 850px;
 }
 
 /* ----------------------------------------------------------- */
@@ -36,8 +32,8 @@ body {
 /* ----------------------------------------------------------- */
 
 /* 리뷰관리 제목 */
-h1 {
-    margin: 30px 0 40px 30px;
+.review_wrapper h1 {
+    margin: 0 0 40px 30px;
 }
 
 /* 리뷰 전체 박스 */
@@ -76,12 +72,12 @@ h1 {
 }
 /* ----------------------------------------------------------- */
 /* 가게명, 리뷰 이미지 */
-h3, .review_img {
+.review_box h3, .review_img {
     margin-left: 20px;
 }
 
 /* 가게명 세부설정 */
-h3 {
+.review_box h3 {
     display: inline-block;
 }
 
@@ -141,7 +137,7 @@ h3 {
 }
 
 /* 주문액, 주문메뉴 간격 */
-p {
+.review_text p {
     margin: 5px;
 }
 

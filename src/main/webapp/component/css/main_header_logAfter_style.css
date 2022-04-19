@@ -11,29 +11,22 @@
     margin: 0;
 }
 
-/* 전체배경색 */
-body {
-    background-color: white;
-}
-
 /* 전체 글씨체 적용 */
-a, h1, h3, button, p {
+.header_top a, h1, h3, button, p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* 폰트사이즈, 폰트효과적용 */
-a {
+.header_top a {
     font-size: 16px;
     font-weight: bold;
 }
-
-/* 스크롤 부드럽게 */
-html { scroll-behavior: smooth; }
 
 /* ------------------------------------------------------------------ */
 /* 헤더 탑 */
 /* header top- 로고,찜 아이콘 컨테이너 */
 .header_top {
+    background-color: white;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-template-rows: repeat(1,auto);
@@ -85,6 +78,9 @@ html { scroll-behavior: smooth; }
     display: none;
     list-style: none;
     transition: 0.5s; 
+    /* 드롭다운 메뉴 충돌 해결 */
+    position: relative;
+    z-index: 10;
 }
 
 /* 마이페이지 드롭다운메뉴 호버 후 */

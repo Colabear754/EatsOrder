@@ -10,13 +10,8 @@
     margin: 0;
 }
 
-/* 전체배경색 */
-body {
-    background-color: white;
-}
-
 /* 전체 글씨체 적용 */
-a, h1, h3, button, p {
+.header_top a, h1, h3, button, p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 

@@ -14,17 +14,17 @@
 }
 
 /* 전체배경색 */
-body {
+main {
     background-color: white;
 }
 
 /* 전체 글씨체 적용 */
-a, h1, h3, button, p {
+main .header_back a, h1, h3, button, p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* 폰트사이즈, 폰트효과적용 */
-a {
+.food_select_container a {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
@@ -212,7 +212,7 @@ html { scroll-behavior: smooth; }
 
 
 /* 카테고리 상자 */
-.food_item, .notice {
+.food_item {
     display: inline-block;
     width:100%;
     height: 250px;
@@ -226,14 +226,14 @@ html { scroll-behavior: smooth; }
 }
 
 /* 카테고리 이미지 전체효과 */
-.food_item img, .notice img {
+.food_item img {
     border-radius: 10px;
     transition: 0.5s;
 
 }
 
 /* 카테고리 텍스트 위치 */
-.food_item > div, .notice > div {
+.food_item > div {
     margin: 20px 0 0 25px;
     transition: 0.5s;
 }

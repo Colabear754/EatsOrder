@@ -14,21 +14,17 @@
     margin: 0;
 }
 
-/* 전체배경색 */
-body {
-    background-color: white;
-}
-
 /* 전체 글씨체 적용 */
-a, h1, h3, button, p {
+.search_wrapper a, .search_wrapper h1, .search_wrapper h3, .search_wrapper button, .search_wrapper p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* ------------------------------------------------------------------ */
 /* 메인 그리드 */
 main {
+    background-color: white;
     display: grid;
-    height: 620px;
+    height: 700px;
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(1,auto);
     margin: 0 10%;
@@ -45,7 +41,7 @@ main {
 
 /* ------------------------------------------------------------------ */
 /* 제목 */
-h1 {
+.search_box h1 {
     margin-bottom: 35px;
 }
 
@@ -110,8 +106,7 @@ h1 {
     display: block;
     text-align: center;
     border-radius: 5px;
-    margin: auto;
-    margin-top: 20px;
+    margin: 20px auto;
     width: 350px;
     height: 45px;
     background-color: #FC6E4D;
