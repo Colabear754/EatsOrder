@@ -14,6 +14,7 @@ jsp변환 : 정건영
 <script type="text/javascript" src="./js/delete_member_script.js"></script>
 </head>
 <body>
+	<jsp:include page="../component/main_header_logAfter.html" />
 	<main>
 	<input type="hidden" id="email" value="${email}">
 	<div class="member">
@@ -69,12 +70,12 @@ jsp변환 : 정건영
 			<button type="button" id="withdraw" style="width: 20%; height: 40px; background-color: #ff9f00;">
 				<strong>회원탈퇴하기</strong>
 			</button>
-			<button type="button" id="cancel" style="width: 20%; height: 40px; background-color: #fdfdfd;">
+			<button type="button" id="cancel" style="width: 20%; height: 40px; background-color: #fdfdfd;" onclick="history.back()">
 				<strong>취소</strong>
 			</button>
 		</div>
 	</div>
 	</main>
-<%-- 	<jsp:include page="../component/footer.html" /> --%>
+	<jsp:include page="../component/footer.html" />
 </body>
 </html>

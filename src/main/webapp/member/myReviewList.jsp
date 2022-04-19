@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="./css/myPage_review_style.css">
 </head>
 <body>
-	<jsp:include page="./myPage.jsp" />
+	<jsp:include page="../component/main_header_logAfter.html" />
     <main>
+		<jsp:include page="./myPage.jsp" />
         <c:set var="reviewCount" value="${fn:length(reviewData)}" />
         <div class="content_box">
             <div class="review_wrapper">
@@ -84,6 +85,7 @@
             </div>
         </div>
     </main>
+    <jsp:include page="../component/footer.html" />
 </body>
 
 </html>

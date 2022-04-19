@@ -22,8 +22,9 @@
     <script type="text/javascript" src="./js/update_member_script.js"></script>
 </head>
 <body>
-	<jsp:include page="./myPage.jsp" />
+	<jsp:include page="../component/main_header_logAfter.html" />
     <main>
+	<jsp:include page="./myPage.jsp" />
         <div class="all_box">
             <div class="title_box">
                 <h1>회원정보수정</h1>
@@ -127,9 +128,10 @@
             <div class="member_box">
                 <input type="button" value="수정 완료" id="submit">
                 <a href="javascript:history.back()">취소</a>
-                <a href="EatsOrder/member/deleteMemberForm.do">탈퇴하기</a>
+                <a href="/EatsOrder/member/deleteMemberForm.do">탈퇴하기</a>
             </div>
         </div>
     </main>
+    <jsp:include page="../component/footer.html" />
 </body>
 </html>

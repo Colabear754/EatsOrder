@@ -5,15 +5,19 @@
 */
 
 /* 전체마진 */
-* {
+footer * {
     margin: 0;
+}
+
+body {
+	margin: 0;
 }
 
 /* footer 배경*/
 footer {
     background-color: #212121;
     height: 500px;
-    ;
+    margin: 0;
 }
 
 /* footer 그리드 */

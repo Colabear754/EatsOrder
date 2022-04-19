@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <main>
+    <div class="mypage_wrap">
         <div class="profile_box">
             <div class="membership_lv">
                 <div><strong>${member.membership}</strong></div>
@@ -44,7 +44,7 @@
                 <li><a href="/EatsOrder/member/updateMemberForm.do">내 정보 수정</a></li>
             </ul>
         </div>
-    </main>
+    </div>
 </body>
 
 </html>

@@ -6,12 +6,12 @@
 
 /* 전체 적용 */
 /* 위에 뜸 해결*/
-*{
+.header_top *{
     margin: 0;
 }
 
 /* 전체 글씨체 적용 */
-.header_top a, h1, h3, button, p {
+.header_top a, .header_top h1, .header_top h3, .header_top button, .header_top p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 

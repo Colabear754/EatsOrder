@@ -7,20 +7,20 @@
 
 /* 전체 적용 */
 /* 위에 뜸 해결*/
-*{
+.header_top *{
     margin: 0;
 }
 
 /* 전체 글씨체 적용 */
-.header_top a, h1, h3, button, p {
+.header_top a, .header_top h1, .header_top h3, .header_top button, .header_top p, .header_top label {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* 폰트사이즈, 폰트효과적용 */
-.header_top a {
+/* .header_top a {
     font-size: 16px;
     font-weight: bold;
-}
+} */
 
 /* ------------------------------------------------------------------ */
 /* 헤더 탑 */
@@ -37,9 +37,11 @@
 }
 
 /* 헤더버튼 하이퍼링크 */
-.header_top a {
+.header_top a, .header_top label {
     text-decoration: none;
     color: #FF9F00;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 /* 로고 */

@@ -21,8 +21,9 @@
 </head>
 
 <body>
-	<jsp:include page="./myPage.jsp" />
+	<jsp:include page="../component/main_header_logAfter.html" />
     <main>
+		<jsp:include page="./myPage.jsp" />
     	<c:set var="favoriteRstCount" value="${fn:length(favoriteRstData)}" />
         <div class="content_box">
             <div class="review_wrapper">
@@ -53,6 +54,7 @@
             </div>
         </div>
     </main>
+    <jsp:include page="../component/footer.html" />
 </body>
 
 </html>
