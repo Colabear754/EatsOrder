@@ -24,7 +24,7 @@
             <div class="membership_lv">
                 <div><strong>${member.membership}</strong></div>
             </div>
-            <p>안녕하세요 ${member.nickname}님</p>
+            <p>안녕하세요, ${member.nickname}님</p>
             <ul>
                 <li><a href="/EatsOrder/member/couponList.do"><strong>${couponCount}장</strong><br>쿠폰</a></li>
                 <li><a><strong>${member.point}P</strong><br>포인트</a></li>
