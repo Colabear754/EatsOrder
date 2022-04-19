@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>메뉴팝업페이지</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<link href="css/menupopup.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+	<script src="js/menupopup.js"></script>
+		
+	
+
+</head>
+
+    
+</head>
+<body>
+    
+    <div class="container">
+      
+
+				<a data-toggle="modal" data-target="#myModal">모달 창 띄우기</a>
+
+                
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">메뉴상세</h4>
+								<button type="button" class="close" data-dismiss="modal">×</button>
+							</div>
+			
+							<div class="modal-body">
+								<div class="detail-image">
+									<img src="./img/sand.jpg">
+								</div>
+								<!--detail-image-->
+								<div class="detail-text" id="menu">자마버거오리지널</div>
+								<div class="detail-price">
+									<strong>가격</strong>
+									<div class="price" id="amt">11000</div>
+								</div>
+								<!--detail-price-->
+								<div class="menu-list-wrap">
+									<div class="menu-list-tit">
+										<strong>추가메뉴</strong>
+									</div>
+									<!--menu-list-tit-->
+									<div class="menu-list">
+										<input type="hidden" id="opts" value="0" />
+										<lable class="menu-container">
+											<div>
+												<label><input type="checkbox" id="m1" name="check_1"
+														value="13000" />&nbsp;자마치즈버거</label>
+												<span class="price">13000</span>
+			
+											</div>
+											<div>
+												<label><input type="checkbox" id="m2" name="check_1"
+														value="1000" />&nbsp;치즈추가</label>
+												<span class="price">1000</span>
+											</div>
+										</lable>
+									</div>
+									<!--menu-list-->
+								</div><!-- menu-list-wrap-->
+								<div class="quantity-control">
+									<strong>수량</strong>
+									<input type="button" id="plus" value='+' style="float: right; width: 25px;" />
+									<div id='result' style="float: right; padding-left: 10px; padding-right: 10px;">1</div>
+									<input type="button" id="minus" value='-' style="float: right; width: 25px;" />
+			
+								</div>
+								<!--quantity-control-->
+								<div class="detail-price">
+									<strong>총주문금액</strong>
+									<div class="price" id="totAmt">11000</div>
+								</div>
+								<!--detail-price-->
+							</div>
+							<!--modal-body-->
+							<div class="modal-footer">
+								<div class="detail btn-wrap">
+									<form action="" method="post"></form>
+									<button class="btn-add-cart" onclick="orderList(this)" value="주문표">주문표에추가</button>
+									<button class="btn-order" onclick="buttonClick(this)" value="확인">주문하기</button>
+									</from>
+									<p id="result"></p>
+								</div><!-- detail btn-wrap -->
+			
+							</div><!-- modal-footer -->
+						</div> <!-- content-->
+					</div> <!-- modal-dialog-->
+				</div><!-- moda fade-->
+
+				
+			
+			
+    </div> <!-- contaniner-->       
+
+
+
+
+
+
+    
+	
+</body>
+
+</html>

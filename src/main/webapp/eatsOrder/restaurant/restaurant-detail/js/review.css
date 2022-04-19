@@ -1,0 +1,68 @@
+/*리뷰 css 2022.04.04 김시웅 */
+* {list-style: none; font-family: 'Nanum Gothic', sans-serif;}
+
+.wrapper {
+  height: 40px;
+  
+}
+#switch {
+  position:relative;
+  /* hidden */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.switch_label {
+  position: absolute;
+  cursor: pointer;
+  width: 58px;
+  height: 28px;
+  background: #fff;
+  border: 2px solid gray;
+  border-radius: 20px;
+  
+}
+.onf_btn {
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background:gray;
+  transition: 0.2s;
+}
+.btn-warning {
+  background-color: #FC6E4D;
+  width: 100%;
+ }
+
+  .info-item-title, i {
+     color: #FC6E4D;
+     font-weight: bold;
+ }
+ .info-item-title, span {
+    color: black;
+    font-weight: bold;
+}
+.order-items {
+  color:#FC6E4D;
+  font-weight: bold;
+}
+.reviewcon {
+  color:black;
+}
+
+/* checking style */
+#switch:checked+.switch_label {
+  background:#FC6E4D;
+  border: 2px solid #FC6E4D;
+}
+/* move */
+#switch:checked+.switch_label .onf_btn {
+  left: 34px;
+  background: #fff;
+  box-shadow: 1px 2px 3px #00000020;
+}
