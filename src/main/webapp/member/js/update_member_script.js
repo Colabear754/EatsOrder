@@ -279,19 +279,21 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     		dataType: "text",
     		success: function(data) {
     			if (data > 0) {
-    				swal({ icon: "success", title: "회원정보가 성공적으로 수정되었습니다" }).then(
-    					window.location.href = "/EatsOrder/main/main.do"
-    				);
+    				swal("회원정보가 성공적으로 수정되었습니다.", "", "success").then((result) => {
+    					if (result) {
+    						window.location.href = "/EatsOrder/main/main.do"
+    					}
+    				});
     			} else if (data < 0) {
     				$('#ex_password_error').css('display', 'flex');
     				$('#ex_password_error').text('현재 비밀번호가 일치하지 않습니다.');
     				$('#password').css('outline', '2px solid red');
     			} else {
-    				alert('회원 정보 수정에 실패하였습니다. 입력 정보를 확인해주세요.')
+    				swal("회원 정보 수정에 실패하였습니다.", "입력 정보를 확인해주세요.", "warning");
     			}
     		}, 
     		error: function(request) {
-    			alert("오류 발생 : " + request.statusText)
+    			swal("오류 발생", request.statusText, "error");
     		}
     	});
     });

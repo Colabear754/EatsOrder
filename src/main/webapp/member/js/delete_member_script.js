@@ -69,12 +69,18 @@ $(function() {
 			dataType: "text",
 			success: function(data) {
 				if (data > 0) {
-					alert('성공적으로 탈퇴하였습니다. 메인 페이지로 돌아갑니다.');
-					window.location.href = "/EatsOrder/main/main.do";
+					swal("성공적으로 탈퇴하였습니다.", "메인 페이지로 돌아갑니다.", "success").then((result) => {
+    					if (result) {
+    						window.location.href = "/EatsOrder/main/main.do";
+    					}
+    				});
 				} else {
 					$('#password_error').css('display', 'flex');
 					$('#password').css('outline', '2px solid red');
 				}
+			},
+			error: function(request) {
+    			swal("오류 발생", request.statusText, "error");
 			}
 		})
 	})

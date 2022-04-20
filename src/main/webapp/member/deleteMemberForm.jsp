@@ -11,6 +11,7 @@ jsp변환 : 정건영
 <title>회원탈퇴</title>
 <link href="./css/delete_member_style.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="./js/delete_member_script.js"></script>
 </head>
 <body>
