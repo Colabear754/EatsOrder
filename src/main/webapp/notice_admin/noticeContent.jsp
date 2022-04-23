@@ -10,7 +10,7 @@
 </head>
 <body>  
 <div class="outer-grid">
-<b>글내용 보기</b>
+<b>글 상세보기</b>
 <br>
 <form>
 <table id="table"> 
