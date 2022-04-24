@@ -12,7 +12,7 @@ import restaurant.RestaurantDetailDTO;
 import review.ReviewDAO;
 
 public class RstListAction implements CommandAction {
-	private static final int PAGESIZE = 10;
+	private static final int PAGESIZE = 12;
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {

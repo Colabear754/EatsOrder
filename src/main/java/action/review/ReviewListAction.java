@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
 import member.MemberDAO;
+import order.OrderDAO;
 import review.*;
 
 public class ReviewListAction implements CommandAction {
@@ -21,6 +22,7 @@ public class ReviewListAction implements CommandAction {
 		boolean onlyPhotoReview = Boolean.parseBoolean(request.getParameter("onlyPhotoReview")); // 사진 리뷰만 조회
 		ReviewDAO reviewProcess = new ReviewDAO();
 		MemberDAO memberProcess = new MemberDAO();
+		OrderDAO orderProcess = new OrderDAO();
 
 		if (pageNum == null) { // 현재 페이지번호가 null이면 1으로 지정
 			pageNum = "1";
@@ -33,12 +35,21 @@ public class ReviewListAction implements CommandAction {
 
 		ArrayList<ReviewDTO> reviewList = reviewProcess.getReviews(rst_id, onlyPhotoReview, start, end); // 리뷰 리스트
 		ArrayList<ReplyDTO> replyList = reviewProcess.getReplies(rst_id); // 사장님 댓글 리스트
-		ArrayList<String> writerNicknameList = new ArrayList<>(); // 작성자 닉네임 리스트
-		ArrayList<Integer> likeCountList = new ArrayList<>(); // 리뷰 좋아요 개수 리스트
+		ArrayList<ReviewDetailDTO> reviewDetailList = new ArrayList<>();	// 리뷰와 작성자, 좋아요 개수 등을 담을 리스트
 
 		for (ReviewDTO review : reviewList) { // 리뷰 리스트에 있는 각 리뷰에 해당하는 작성자 닉네임과 좋아요 개수를 별도의 ArrayList에 저장
-			writerNicknameList.add(memberProcess.getNickname(reviewProcess.getReviewWriter(review.getReview_number())));
-			likeCountList.add(reviewProcess.getLikeCount(review.getReview_number()));
+			int number = review.getReview_number();
+			String nickname = memberProcess.getNickname(reviewProcess.getReviewWriter(number));
+			ArrayList<String> orderedItems = orderProcess.getOrderedItems(number);
+			String orderedItemString = "";
+			
+			for (String item : orderedItems) {
+				orderedItemString += item + ", ";
+			}
+			
+			orderedItemString = orderedItemString.substring(0, orderedItemString.length() - 2);
+			
+			reviewDetailList.add(new ReviewDetailDTO(review, nickname, reviewProcess.getLikeCount(number), null, 0, orderedItemString));
 		}
 
 		int reviewCount = reviewList.size(); // 리뷰 개수
@@ -48,12 +59,10 @@ public class ReviewListAction implements CommandAction {
 
 		request.setAttribute("reviewCount", reviewCount);
 		request.setAttribute("replyCount", replyCount);
-		request.setAttribute("reviewList", reviewList);
+		request.setAttribute("reviewDetailList", reviewDetailList);
 		request.setAttribute("replyList", replyList);
-		request.setAttribute("writerNicknameList", writerNicknameList);
-		request.setAttribute("likeCountList", likeCountList);
 		request.setAttribute("onlyPhotoReview", onlyPhotoReview);
 
-		return "/reviewList.jsp";
+		return "/review/reviewList.jsp";
 	}
 }

@@ -39,8 +39,8 @@ public class MyReviewListAction implements CommandAction {
 		for (ReviewDTO review : reviewList) {
 			overDate = (System.currentTimeMillis() - review.getRegist_date().getTime()) / 1000 / 60 / 60 / 24;
 			
-			reviewData.add(new ReviewDetailDTO(review, reviewProcess.getLikeCount(review.getReview_number()),
-					reviewProcess.getReviewRst(review.getReview_number()), overDate));
+			reviewData.add(new ReviewDetailDTO(review, null, reviewProcess.getLikeCount(review.getReview_number()),
+					reviewProcess.getReviewRst(review.getReview_number()), overDate, null));
 		}
 
 		MemberInfoDTO member = memberProcess.getMember(email);

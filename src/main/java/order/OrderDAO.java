@@ -455,4 +455,50 @@ public class OrderDAO {
 
 		return resultList;
 	}
+
+	// 메뉴에 해당하는 매장 배달비 조회
+	public int getDelivery_tip(int menu_id) {
+		int result = -1;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select delivery_tip from restaurant r, menu_category mc, menu m "
+					+ "where menu_id=? and m.category_id=mc.category_id and mc.rst_id=r.rst_id");
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 주문한 메뉴 이름 목록 조회
+	public ArrayList<String> getOrderedItems(int review_number) {
+		ArrayList<String> resultList = new ArrayList<>();
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select distinct menu_name "
+					+ "from menu m, order_detail od, order_history oh, review r "
+					+ "where review_number=? and r.order_number=oh.order_number and oh.order_number=od.order_number and od.menu_id=m.menu_id");
+			pStatement.setInt(1, review_number);
+			resultSet = pStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				resultList.add(resultSet.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return resultList;
+	}
 }

@@ -194,7 +194,7 @@
         position: sticky;
         top:0px
     }
-       #switch {
+       #onlyPhotoReview {
        position:relative;
        /* hidden */
        appearance: none;
@@ -245,40 +245,26 @@
 	   
 	   
        /* checking style */
-       #switch:checked+.switch_label {
+       #onlyPhotoReview:checked+.switch_label {
        background:#FC6E4D;
        border: 2px solid #FC6E4D;
        }
        /* move */
-       #switch:checked+.switch_label .onf_btn {
+       #onlyPhotoReview:checked+.switch_label .onf_btn {
        left: 34px;
        background: #fff;
        box-shadow: 1px 2px 3px #00000020;
        }
        
-     /* footer 배경*/
-footer {
-    background-color: #212121;
-    height: 500px;;
-  }
   
   /* footer 그리드 */
   .all_footer {
-     
-      
-     
       /* border: 1px solid red; */
       margin-left: 10%;
       margin-right: 10%;
       column-gap: 1%;
       row-gap: 12px;
       padding-top: 15px;
-  }
-  
-  
-  
-  footer div,p {
-      color: #C4C4C4;
   }
   
   .hr1 {

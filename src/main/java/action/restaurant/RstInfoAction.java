@@ -11,7 +11,7 @@ public class RstInfoAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// TODO Auto-generated method stub
+		// 매장 정보를 조회하는 액션 클래스
 		int rst_id = Integer.parseInt(request.getParameter("rst_id"));
 		RestaurantDAO rstProcess = new RestaurantDAO();
 		RestaurantDTO restaurant = rstProcess.getRestaurant(rst_id);
@@ -20,6 +20,6 @@ public class RstInfoAction implements CommandAction {
 		request.setAttribute("restaurant", restaurant);
 		request.setAttribute("rating", rating);
 		
-		return "/restaurant/rstInfo.jsp";
+		return "/restaurant/rst_info.jsp";
 	}
 }

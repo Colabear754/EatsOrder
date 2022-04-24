@@ -545,12 +545,12 @@ public class ReviewDAO {
 		if (onlyPhotoReview) {
 			// 사진이 포함된 리뷰만 조회
 			sql = "select * from (select rownum r, review.* from review where photo1 is not null and review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
+					+ "(select review_number from v_review_to_rst where rst_id=?) order by regist_date desc) "
 					+ "where r>=? and r<=?";
 		} else {
 			// 모든 리뷰 조회
 			sql = "select * from (select rownum r, review.* from review where review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
+					+ "(select review_number from v_review_to_rst where rst_id=?) order by regist_date desc) "
 					+ "where r>=? and r<=?";
 		}
 

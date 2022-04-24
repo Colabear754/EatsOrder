@@ -639,8 +639,6 @@ public class RestaurantDAO {
 			if (resultSet.next()) {
 				result = resultSet.getDouble(1);
 			}
-
-			System.out.println("매장 평점 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
