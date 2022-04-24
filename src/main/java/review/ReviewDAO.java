@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import connectionMgr.DBConnectionMgr;
+import order.OrderBasicInfoDTO;
 import restaurant.RestaurantDTO;
 
 /*
@@ -737,5 +738,49 @@ public class ReviewDAO {
 		}
 
 		return result;
+	}
+	
+	// 리뷰를 작성할 수 있는 주문 목록 조회
+	public ArrayList<OrderBasicInfoDTO> getReviewToWrite(String orderer) {
+		// 주문한지 7일 이내면서 리뷰를 작성하지 않은 주문만 조회
+		ArrayList<OrderBasicInfoDTO> resultList = new ArrayList<>();
+		String order_number = "";
+		ResultSet resultSet2 = null;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select oh.order_number, rst_name, rst_logo, count(menu_name) as count, pay_date "
+					+ "from review r, order_history oh, order_detail od, menu m, menu_category mc, restaurant rst "
+					+ "where orderer=? and oh.order_number=od.order_number and od.menu_id=m.menu_id "
+					+ "and m.category_id=mc.category_id and mc.rst_id=rst.rst_id and r.order_number(+)=oh.order_number "
+					+ "and extract(day from systimestamp - pay_date)<7 and review_number is null "
+					+ "group by oh.order_number, rst_name, rst_logo, pay_date order by oh.order_number desc");
+			resultSet = pStatement.executeQuery();
+			pStatement.setString(1, orderer);
+			
+			while (resultSet.next()) {
+				order_number = resultSet.getString("order_number");
+				pStatement = connection.prepareStatement(
+						"select menu_name from order_detail od, menu m where order_number=? and od.menu_id=m.menu_id");
+				pStatement.setString(1, order_number);
+				resultSet2 = pStatement.executeQuery();
+
+				if (resultSet2.next()) {
+					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getString("rst_name"),
+							resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
+							resultSet.getTimestamp("pay_date")));
+				}
+			}
+			
+			if (resultSet2 != null) {
+				resultSet2.close();
+			}
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
+		return resultList;
 	}
 }

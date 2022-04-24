@@ -9,6 +9,7 @@ import action.CommandAction;
 import coupon.CouponDAO;
 import member.MemberDAO;
 import member.MemberInfoDTO;
+import order.OrderBasicInfoDTO;
 import review.*;
 
 public class MyReviewListAction implements CommandAction {
@@ -24,6 +25,7 @@ public class MyReviewListAction implements CommandAction {
 		CouponDAO couponProcess = new CouponDAO();
 		ReviewDAO reviewProcess = new ReviewDAO();
 		ArrayList<ReviewDetailDTO> reviewData = new ArrayList<>();
+		ArrayList<OrderBasicInfoDTO> orderList = reviewProcess.getReviewToWrite(email);
 		long overDate;	// 작성일로부터 경과 일수를 저장하기 위한 변수
 
 		if (pageNum == null) {
@@ -49,6 +51,7 @@ public class MyReviewListAction implements CommandAction {
 		request.setAttribute("member", member);
 		request.setAttribute("couponCount", couponCount);
 		request.setAttribute("reviewData", reviewData);
+		request.setAttribute("orderList", orderList);
 
 		return "/member/myReviewList.jsp";
 	}
