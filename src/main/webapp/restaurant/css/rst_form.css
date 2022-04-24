@@ -73,6 +73,7 @@
     }
     .container {
         padding: 0;
+        width: 100%;
     }
     .white_box{
         position: absolute;
