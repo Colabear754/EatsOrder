@@ -11,7 +11,7 @@ $(function() {
 		url: "/EatsOrder/review/reviewList.do",
 		data: "rst_id=" + $('#review_rst').val() + "&pageNum=1&onlyPhotoReview=false",
 		dataType: "text",
-		sucess: function(data) {
+		success: function(data) {
 			$('#form-review-list').html(data);
 		},
 		error: function(request) {
@@ -30,7 +30,7 @@ $(function() {
 			url: "/EatsOrder/review/reviewList.do",
 			data: "rst_id=" + rst_id + "&pageNum=1&onlyPhotoReview=" + onlyPhotoReview,
 			dataType: "text",
-			sucess: function(data) {
+			success: function(data) {
 				$('#form-review-list').empty();
 				$('#form-review-list').html(data);
 			},
@@ -52,7 +52,7 @@ $(function() {
 			url: "/EatsOrder/review/reviewList.do",
 			data: "rst_id=" + rst_id + "&pageNum=" + pageNum + "&onlyPhotoReview=" + onlyPhotoReview,
 			dataType: "text",
-			sucess: function(data) {
+			success: function(data) {
 				$('#form-review-list').html(data);
 			},
 			error: function(request) {
