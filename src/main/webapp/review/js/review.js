@@ -12,7 +12,7 @@ $(function() {
 		data: "rst_id=" + $('#review_rst').val() + "&pageNum=1&onlyPhotoReview=false",
 		dataType: "text",
 		sucess: function(data) {
-			$('#form-review-list').append(data);
+			$('#form-review-list').html(data);
 		},
 		error: function(request) {
 			alert('오류 발생 : ' + request.statusText);
@@ -23,6 +23,7 @@ $(function() {
 	$('#onlyPhotoReview').change(function() {
 		var rst_id = $('#review_rst').val();
 		var onlyPhotoReview = $('#onlyPhotoReview').is(':checked');
+		pageNumElement.val('1');
 		// 리뷰 리스트를 비우고 사진 리뷰만 다시 조회하여 출력
 		$.ajax({
 			type: "POST",
@@ -31,7 +32,7 @@ $(function() {
 			dataType: "text",
 			sucess: function(data) {
 				$('#form-review-list').empty();
-				$('#form-review-list').append(data);
+				$('#form-review-list').html(data);
 			},
 			error: function(request) {
 				alert('오류 발생 : ' + request.statusText);
@@ -52,7 +53,7 @@ $(function() {
 			data: "rst_id=" + rst_id + "&pageNum=" + pageNum + "&onlyPhotoReview=" + onlyPhotoReview,
 			dataType: "text",
 			sucess: function(data) {
-				$('#form-review-list').append(data);
+				$('#form-review-list').html(data);
 			},
 			error: function(request) {
 				alert('오류 발생 : ' + request.statusText);

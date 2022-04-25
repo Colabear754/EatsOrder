@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link href="./css/rst_form.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="./js/rst_form.js"></script>
@@ -69,7 +70,7 @@
         <div class="row" style="border:none">
             <div class="col-sm-8">
                 <div class="row" style=" border-radius: 6px; border: 1px solid gray;">
-                    <img class="img-responsive col-sm-3" src="../restaurant-detail/img/sand.jpg"
+                    <img class="img-responsive col-sm-3" src="./img/${restaurant.rst_logo}"
                         style="border-right: 1px dotted gray; height: 110px;">
                     <ul class="list-unstyled col-sm-9">
                         <li>${restaurant.rst_name}</li>

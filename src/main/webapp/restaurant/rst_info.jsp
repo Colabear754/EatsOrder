@@ -4,15 +4,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>매장상세(정보)페이지</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="Cache-Control" content="no-cache" />
-	<meta http-equiv="Expires" content="0" />
-	<meta http-equiv="Pragma" content="no-cache" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-	<link href="./css/storeinfo.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="container">

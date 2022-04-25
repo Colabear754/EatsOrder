@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="text/javascript" src="../review/js/review.js"></script>
 </head>
 <body>
 	<c:forEach var="reviewData" items="${reviewDetailList}">

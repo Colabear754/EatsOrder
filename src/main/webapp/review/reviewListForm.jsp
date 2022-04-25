@@ -42,9 +42,9 @@
 				</div>
 				<!-- row-->
 				<div id="form-review-list" class="row" style="display: block; border: 1px solid gray">
+					<!-- 여기에 리뷰가 들어감 -->
 				</div>
 				<div class="row" style="display: block; border: 1px solid gray">
-					<!-- 여기에 리뷰가 들어감 -->
 					<input type="hidden" id="pageNum" value="1">
 					<div class="list-group-item btn-more" style="display: block; padding: 10px; text-align: center; color: #FC6E4D; border-top: 1px solid gray;">
 						<a ng-cilck="get_next_reviews()"> 

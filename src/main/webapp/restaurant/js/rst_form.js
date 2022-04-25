@@ -12,7 +12,7 @@ $(function() {
 		data: "rst_id=" + $('#rst_id').val(),
 		dataType: "text",
 		success: function(data) {
-			$('#menu-list').append(data);
+			$('#menu-list').html(data);
 		},
 		error: function(request) {
 			alert('오류 발생 : ' + request.statusText);
@@ -42,7 +42,7 @@ $(function() {
 		}
 	})
 	
-	// 카테고리 변경
+	// 매장 카테고리를 클릭하면 해당 카테고리 매장 목록으로 이동
 	$('.category').click(function() {
 		if ($('#address').val() != '') {
 			// 폼 생성 및 속성 설정
@@ -67,67 +67,76 @@ $(function() {
 	// 메뉴 탭 클릭 시
 	$('#menu-tab').click(function() {
 		var rst_id = $('#rst_id').val();
-		// 기존 탭 내용 모두 제거
-		$('#menu-list').empty();
-		$('#review-list').empty();
-		$('#rst-info').empty();
-		// 메뉴리스트를 받아와서 태그에 추가
-		$.ajax({
-			type: "POST",
-			url: "/EatsOrder/menu/menuList.do",
-			data: "rst_id=" + rst_id,
-			dataType: "text",
-			success: function(data) {
-				$('#menu-list').append(data);
-			},
-			error: function(request) {
-				alert('오류 발생 : ' + request.statusText);
-			}
-		})
+		
+		if (!$('#menu-tab').hasClass('active')) {
+			// 기존 탭 내용 모두 제거
+			$('#menu-list').empty();
+			$('#review-list').empty();
+			$('#rst-info').empty();
+			// 메뉴리스트를 받아와서 태그에 추가
+			$.ajax({
+				type: "POST",
+				url: "/EatsOrder/menu/menuList.do",
+				data: "rst_id=" + rst_id,
+				dataType: "text",
+				success: function(data) {
+					$('#menu-list').html(data);
+				},
+				error: function(request) {
+					alert('오류 발생 : ' + request.statusText);
+				}
+			})
+		}
 	})
 	
 	// 리뷰 탭 클릭 시
 	$('#review-tab').click(function() {
 		var rst_id = $('#rst_id').val();
 		var pageNum = 1;
-		// 기존 탭 내용 모두 제거
-		$('#menu-list').empty();
-		$('#review-list').empty();
-		$('#rst-info').empty();
-		// 리뷰리스트를 받아와서 태그에 추가
-		$.ajax({
-			type: "POST",
-			url: "/EatsOrder/review/reviewListForm.do",
-			data: "rst_id=" + rst_id + "&pageNum=" + pageNum,
-			dataType: "text",
-			success: function(data) {
-				$('#review-list').append(data);
-			},
-			error: function(request) {
-				alert('오류 발생 : ' + request.statusText);
-			}
-		})
+		
+		if (!$('#review-tab').hasClass('active')) {
+			// 기존 탭 내용 모두 제거
+			$('#menu-list').empty();
+			$('#review-list').empty();
+			$('#rst-info').empty();
+			// 리뷰리스트를 받아와서 태그에 추가
+			$.ajax({
+				type: "POST",
+				url: "/EatsOrder/review/reviewListForm.do",
+				data: "rst_id=" + rst_id + "&pageNum=" + pageNum,
+				dataType: "text",
+				success: function(data) {
+					$('#review-list').html(data);
+				},
+				error: function(request) {
+					alert('오류 발생 : ' + request.statusText);
+				}
+			})
+		}
 	})
 	
 	// 매장정보 탭 클릭 시
 	$('#info-tab').click(function() {
 		var rst_id = $('#rst_id').val();
-		// 기존 탭 내용 모두 제거
-		$('#menu-list').empty();
-		$('#review-list').empty();
-		$('#rst-info').empty();
-		// 리뷰리스트를 받아와서 태그에 추가
-		$.ajax({
-			type: "POST",
-			url: "/EatsOrder/restaurant/rst_info.do",
-			data: "rst_id=" + rst_id,
-			dataType: "text",
-			success: function(data) {
-				$('#rst-info').append(data);
-			},
-			error: function(request) {
-				alert('오류 발생 : ' + request.statusText);
-			}
-		})
+		
+		if (!$('#info-tab').hasClass('active')) {
+			// 기존 탭 내용 모두 제거
+			$('#menu-list').empty();
+			$('#review-list').empty();
+			$('#rst-info').empty();
+			// 리뷰리스트를 받아와서 태그에 추가
+			$.ajax({
+				type: "POST",
+				url: "/EatsOrder/restaurant/rst_info.do",
+				data: "rst_id=" + rst_id,
+				dataType: "text",
+				success: function(data) {
+					$('#rst-info').html(data);
+				},
+				error: function(request) {
+					alert('오류 발생 : ' + request.statusText);
+				}
+			})
+		}
 	})
 })

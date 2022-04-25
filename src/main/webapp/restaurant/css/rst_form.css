@@ -325,3 +325,11 @@
   .fooer_script2 {
       margin: 35px 0 50px 0;
   }
+  
+  .menu:hover {
+  	cursor: pointer;
+  }
+  
+  .menu-info {
+  	font-size: 10pt;
+  }

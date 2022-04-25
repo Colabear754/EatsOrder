@@ -1,0 +1,326 @@
+   
+      /* 2022.04.04 매장상세페이지 css 김시웅 
+      	  2022.04.18 css 수정 김시웅		
+      */
+      @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap%27');
+       @media (min-width: 768px) {
+           .carousel-inner .active,
+           .carousel-inner .active + .carousel-item,
+           .carousel-inner .active + .carousel-item + .carousel-item,
+           .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  { display: block; }
+           .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+           .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+           .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+           .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item { transition: none; }
+           .carousel-inner .carousel-item-next,
+           .carousel-inner .carousel-item-prev { position: relative;  transform: translate3d(0, 0, 0); }
+           .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item { position: absolute; top: 0; right: -25%; z-index: -1; display: block; visibility: visible; }
+           .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+           .carousel-item-next.carousel-item-left + .carousel-item,
+           .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+           .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+           .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item { position: relative; transform: translate3d(-100%, 0, 0); visibility: visible; }
+           .carousel-inner .carousel-item-next.carousel-item-left { position: absolute;  top: 0;  left: 0;  z-index: -1; display: block; visibility: visible; }
+           .carousel-inner .carousel-item-prev.carousel-item-right { position: absolute;  top: 0; left: -25%; z-index: -1;  display: block; visibility: visible; }
+           .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+           .carousel-item-prev.carousel-item-right + .carousel-item,
+           .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+           .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+           .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item { position: relative; transform: translate3d(100%, 0, 0); display: block; visibility: visible; }
+       }
+       
+
+
+       
+       * {list-style: none; font-family: 'Nanum Gothic', sans-serif;}
+       .restaurant-title { border: 1px solid grey; margin-top: 15px; border-radius: 6px;}
+       .restaurant-title .nav { width: 100%; border-bottom: 1px solid grey;}
+       .restaurant-title .nav-item {  border-right:  1px solid grey; }
+       .restaurant-title .nav-item:last-child { border-right: 0; }
+       .nav-pills{ border-radius:  0;}
+       .orderlist {border: 1px solid grey; border-radius: 5%; padding: 0;}
+       .orderlist li {border-bottom: 1px solid grey;}
+       .orderlist li:last-child {border-bottom: 0;}
+       .aorder { height: 30px; text-align: center; background-color: gray; color:white; border: 1px solid grey; border-radius: 5%;}
+       .aorder:last-child {border-bottom: 0; border-left: 0; border-bottom: 0; border-right: 0; }
+       .border { height: 80px; font-size: 13px; }
+       .corder { height: 30px; font-size: 13px;  text-align: right; }
+       .dorder { height: 30px; text-align: right; color: red;}
+       .btn-warning {width:100%}
+       .btn-group-vertical {width: 100%; border-bottom: 1px solid grey;;}
+       .btn-group-vertical:last-child {border-bottom: 0;}
+       .dropdown-menu {position: relative; width: 100%; padding-top: 0; padding-bottom: 0;}
+       .img-responsive {border-right: 1px soild sgrey;;}
+       .btn-group-vertical button {text-align: left;}
+       .dropdown-menu > li {border-bottom: 1px solid gray;}
+       .dropdown-menu li {margin-top: 0; margin-bottom: 0;}
+       .dropdown-menu  li:last-child {border-bottom: 0;} 
+       .container-fluid {border-bottom: 1px solid grey;; padding-bottom: 15px;}
+       .img-responsive {border-right: 1px solid gray; height: 80px;}
+       
+       /*
+       .restaurant-title .nav-item  { width: 33.3333333333%; text-align: center; border: 1px solid gray; border-left: 0; }
+       .restaurant-title .nav-item:last-child { border-right: 0; }
+       */
+    * {
+        margin: 0;
+    }
+    .box{
+        width: 100%;
+        height: 300px;
+        background-color: #FECB10;
+        
+    }
+    .container {
+        padding: 0;
+    }
+    .white_box{
+        position: absolute;
+        top: 100px;
+        left: 535px; /*1920-박스넓이(850) /2*/
+        width: 850px;
+        height: 100px;
+        z-index: 10;
+        background-color:white;
+        border-radius: 8px;
+    }
+    /*주소 입력 input 박스*/
+    .search1{
+        position: absolute;
+        top: 125px;
+        left: 560px;
+        width: 590px;
+        height: 50px;
+        z-index: 20;
+        box-sizing: border-box;
+        border-radius: 8px;
+        background-color: #F5F5F5;
+        padding-left:70px;
+        border-style:none;
+        font-size: 18px;
+        font-weight: 400px;
+        background-image: url("marker.png");
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 20px center;
+        outline: none;
+    }
+    .search_btn{
+        position: absolute;
+        top: 125px;
+        left: 1175px;
+        width:185px;
+        height: 50px;
+        background-color: #FC6E4D;
+        z-index:200;
+        box-sizing: border-box;
+        border-radius: 8px;
+        text-align: center;
+        /*검색 버튼 내 글씨를 수직 가운데정렬*/
+        line-height: 50px;
+        
+    }
+    .find_addr, i{
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        /*아이콘과 글자 사이 거리두기*/
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(13,auto);
+        grid-template-rows: 1;
+        /* border-bottom: 1px solid grey; */
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding-top:30px;
+        padding-bottom: 30px; 
+        padding-left:1%;
+        padding-right:1%;
+        column-gap: 1%;
+        row-gap: 8px;
+    }
+    .grid div{
+        margin-top: auto;
+    }
+    .category{
+        /* border: 1px solid black; */
+        font-size: 17px;
+        text-align: center;
+        font-weight: 900;
+        font-style: black;
+        /* margin-left:24px;
+        margin-right:24px; */
+    }
+    .category a{
+        text-decoration: none;
+        color: black;
+    }
+    .main {
+        width: 81.6%;
+        margin-left: 175px;
+    }
+       .tab-content {
+           width: 100%;
+       }
+       .nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
+        color: #fff;
+        cursor: default;
+        background-color: #FC6E4D;
+    }
+       .row{
+           margin: 0;
+           
+       }
+       tab-pane > row {
+           border: 1px solid grey;
+       }
+       .restaurant-star-point {
+           border-right: 1px solid grey;
+           text-align: center;
+       }
+       .restaurant-star-point:last-child {
+           border-right: none;
+       }
+       .wrapper {
+           height: 40px;
+ 
+       }
+       .sticky {
+        position: sticky;
+        top:0px
+    }
+       #onlyPhotoReview {
+       position:relative;
+       /* hidden */
+       appearance: none;
+       -webkit-appearance: none;
+       -moz-appearance: none;
+       }
+
+       .switch_label {
+       position: absolute;
+       cursor: pointer;
+       width: 58px;
+       height: 28px;
+       background: #fff;
+       border: 2px solid gray;
+       border-radius: 20px;
+       
+       }
+       .onf_btn {
+       position: absolute;
+       top: 4px;
+       left: 3px;
+       display: inline-block;
+       width: 20px;
+       height: 20px;
+       border-radius: 20px;
+       background:gray;
+       transition: 0.2s;
+       }
+       .btn-warning {
+        background-color: #FC6E4D;
+       }
+
+        .info-item-title, i {
+           color: #FC6E4D;
+           font-weight: bold;
+       }
+       .info-item-title, span {
+        	color: black;
+        	font-weight: bold;
+    	}
+    	.order-items {
+    		color:#FC6E4D;
+    		font-weight: bold;
+    	}
+    	.reviewcon {
+    		color:black;
+    	}
+	   
+	   
+       /* checking style */
+       #onlyPhotoReview:checked+.switch_label {
+       background:#FC6E4D;
+       border: 2px solid #FC6E4D;
+       }
+       /* move */
+       #onlyPhotoReview:checked+.switch_label .onf_btn {
+       left: 34px;
+       background: #fff;
+       box-shadow: 1px 2px 3px #00000020;
+       }
+       
+  
+  /* footer 그리드 */
+  .all_footer {
+      /* border: 1px solid red; */
+      margin-left: 10%;
+      margin-right: 10%;
+      column-gap: 1%;
+      row-gap: 12px;
+      padding-top: 15px;
+  }
+  
+  .hr1 {
+      clear: left;
+  }
+  
+  /* footer list */
+  .footer_list ul {
+      display: grid;
+      grid-template-columns: 2fr 202px;
+      grid-template-rows: repeat(1,auto);
+      /* border: 1px solid dodgerblue; */
+      column-gap: 1%;
+      row-gap: 12px;
+      padding: 0 0 0 7px;
+  }
+  
+  /* footer 메뉴 전체 */
+  .footer_list li {
+    display: inline;
+    text-decoration: none;
+    margin: 0 5px 0 0;
+  }
+  
+  .footer_sns {
+      width: fit-content;
+      margin-left: 120px;
+  }
+  
+  /* footer list a */
+  .footer_list a {
+      text-decoration: none;
+      color: #C4C4C4
+  }
+  
+  /* hr 효과 */
+  hr {
+     background: #C4C4C4;
+  }
+  
+  /* footer 회사설명 */
+  .fooer_script {
+      /* border: 1px solid pink; */
+      margin-top: 35px;
+  }
+  
+  .cs {
+      /* border: 1px solid orange; */
+      margin: 35px 0;
+  }
+  
+  .cs h1,p{
+      display: inline-block;
+      margin-bottom: 0;
+  }
+  
+  .fooer_script2 {
+      margin: 35px 0 50px 0;
+  }

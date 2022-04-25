@@ -190,7 +190,7 @@ $(document).ready(function() { //제이쿼리 정규식 표현
     		type: "get",
     		url: "/EatsOrder/component/Utilization.html",
     		success: function(data) {
-				$('#wrapper').append(data);
+				$('#wrapper').html(data);
 		    	$('#terms-modal').css('display', 'flex');
 			}
     	})
