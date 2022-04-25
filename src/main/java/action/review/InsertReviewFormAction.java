@@ -18,9 +18,6 @@ public class InsertReviewFormAction implements CommandAction {
 		String content=request.getParameter("content");
 		int rating=Integer.parseInt(request.getParameter("rating"));
 		
-		if(request.getParameter("review_number")!=null) {
-			review_number=Integer.parseInt(request.getParameter("review_number"));
-		}
 		request.setAttribute("review_number", review_number);
 		request.setAttribute("content", content);
 		request.setAttribute("rating", rating);
