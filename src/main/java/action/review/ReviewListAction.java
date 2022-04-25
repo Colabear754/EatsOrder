@@ -55,7 +55,7 @@ public class ReviewListAction implements CommandAction {
 		int reviewCount = reviewList.size(); // 리뷰 개수
 		int replyCount = replyList.size(); // 사장님 댓글 개수
 
-		System.out.println(onlyPhotoReview ? "전체 리뷰 개수 : " : "사진 리뷰 개수 : " + reviewCount); // 사진 리뷰만 조회하는지 여부에 따라 조회한 리뷰 개수를 콘솔에 출력
+		System.out.println(onlyPhotoReview ? "사진 리뷰 개수 : " : "전체 리뷰 개수 : " + reviewCount); // 사진 리뷰만 조회하는지 여부에 따라 조회한 리뷰 개수를 콘솔에 출력
 
 		request.setAttribute("reviewCount", reviewCount);
 		request.setAttribute("replyCount", replyCount);

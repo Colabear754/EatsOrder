@@ -27,7 +27,7 @@ public class ReplyDTO {
 		this.reply_number = reply_number;
 	}
 
-	public int getReview_umber() {
+	public int getReview_number() {
 		return review_number;
 	}
 
@@ -35,11 +35,11 @@ public class ReplyDTO {
 		this.review_number = review_number;
 	}
 
-	public Date getRegist_Date() {
+	public Date getRegist_date() {
 		return regist_date;
 	}
 
-	public void setRegist_Date(Date regist_date) {
+	public void setRegist_date(Date regist_date) {
 		this.regist_date = regist_date;
 	}
 

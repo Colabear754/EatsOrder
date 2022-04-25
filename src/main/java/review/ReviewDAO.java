@@ -392,8 +392,6 @@ public class ReviewDAO {
 			if (resultSet.next()) {
 				result = resultSet.getInt(1);
 			}
-
-			System.out.println(review_number + "번 리뷰의 좋아요 개수 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -546,12 +544,12 @@ public class ReviewDAO {
 		if (onlyPhotoReview) {
 			// 사진이 포함된 리뷰만 조회
 			sql = "select * from (select rownum r, review.* from review where photo1 is not null and review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?) order by regist_date desc) "
+					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
 					+ "where r>=? and r<=?";
 		} else {
 			// 모든 리뷰 조회
 			sql = "select * from (select rownum r, review.* from review where review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?) order by regist_date desc) "
+					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
 					+ "where r>=? and r<=?";
 		}
 
@@ -569,8 +567,6 @@ public class ReviewDAO {
 						resultSet.getString("photo2"), resultSet.getString("photo3"), resultSet.getString("photo4"),
 						resultSet.getString("photo5"), resultSet.getInt("rating")));
 			}
-
-			System.out.println("조회된 리뷰 개수 : " + resultList.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -636,11 +632,11 @@ public class ReviewDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select * from reply where review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?)");
+					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc");
 			pStatement.setInt(1, rst_id);
 			resultSet = pStatement.executeQuery();
 
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				resultList.add(new ReplyDTO(resultSet.getInt("reply_number"), resultSet.getInt("review_number"),
 						resultSet.getDate("regist_date"), resultSet.getString("content")));
 			}
@@ -699,8 +695,6 @@ public class ReviewDAO {
 			if (resultSet.next()) {
 				result = resultSet.getString(1);
 			}
-
-			System.out.println("리뷰 작성자 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
