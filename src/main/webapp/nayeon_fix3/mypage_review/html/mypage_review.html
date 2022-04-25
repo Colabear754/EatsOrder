@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- 
+    작성자: 김나연
+    작성완료일: 22/04/04
+    페이지명: 리뷰관리
+    -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰관리</title>
+    <!-- css연결 : google font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+    </style>
+    <!-- css연결 : main_style -->
+    <link rel="stylesheet" href="../css/mypage_review.css">
+    <!-- js연결 : jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- js연결 : main_script -->
+    <script type="text/javascript" src="../js/mypage_review.js"></script>
+    <!-- js연결 : font awesome -->
+    <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
+    <!-- js연결 : sweet alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <main>
+        <div class="content_box">
+            <!-- 작성 전 리뷰 컨테이너 -->
+            <div class="review_wrapper">
+                <h1>리뷰관리</h1>
+                <h2>작성 전 리뷰</h2>
+                <div class="grid_box">
+                    <!-- 리뷰 form 1 -->
+                    <form class= "review_box1" method="post" action="#" enctype="text/plain">
+                        <table class="table_box">
+                            <tbody>
+                                <!-- 가게명, 삭제 -->
+                                <tr class="shop_name">
+                                    <td>
+                                        <a href="#">
+                                            <h3 class="shop">가게명</h3>
+                                            <span>></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- 별점 -->
+                                <tr>
+                                    <td class="star_box">
+                                        <p id="star">
+                                            <button type="button" name="rating" href="#" value="1"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="2"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="3"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="4"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="5"><i class="fa-solid fa-star"></i></button>
+                                        <p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <!-- 파일 선택 1번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector1"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector2" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 2번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector3"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector5" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 3번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector4"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                <!-- 이미지, 글자수, 리뷰 -->
+                                <tr>
+                                    <td class="shop_img">
+                                        <img src="../img/review_food.jpg">
+                                    </td>
+                                    <td class="text_box">
+                                        <div class="text_all">
+                                            <span class="text_count" id="text_count1">0자</span>
+                                            <span class="text_total">/180자</span>
+                                            <textarea name="content" class="review_write" id="review_write1" cols="35"
+                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- 작성버튼 -->
+                                <tr>
+                                    <td></td>
+                                    <td class="submit_btn_box">
+                                        <input type="submit" id="submit_btn" value="작성">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!-- 리뷰 form 2 -->
+                    <form class= "review_box1" method="post" action="#" enctype="text/plain">
+                        <table class="table_box">
+                            <tbody>
+                                <!-- 가게명, 삭제 -->
+                                <tr class="shop_name">
+                                    <td>
+                                        <a href="#">
+                                            <h3 class="shop">가게명</h3>
+                                            <span>></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- 별점 -->
+                                <tr>
+                                    <td class="star_box">
+                                        <p id="star">
+                                            <button type="button" name="rating" href="#" value="1"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="2"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="3"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="4"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="5"><i class="fa-solid fa-star"></i></button>
+                                        <p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <!-- 파일 선택 1번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector1"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector2" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 2번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector3"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector5" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 3번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector4"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                <!-- 이미지, 글자수, 리뷰 -->
+                                <tr>
+                                    <td class="shop_img">
+                                        <img src="../img/review_food.jpg">
+                                    </td>
+                                    <td class="text_box">
+                                        <div class="text_all">
+                                            <span class="text_count" id="text_count2">0자</span>
+                                            <span class="text_total">/180자</span>
+                                            <textarea name="content" class="review_write" id="review_write2" cols="35"
+                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- 작성버튼 -->
+                                <tr>
+                                    <td></td>
+                                    <td class="submit_btn_box">
+                                        <input type="submit" id="submit_btn" value="작성">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!-- 리뷰 form 3 -->
+                    <form class= "review_box1" method="post" action="#" enctype="text/plain">
+                        <table class="table_box">
+                            <tbody>
+                                <!-- 가게명, 삭제 -->
+                                <tr class="shop_name">
+                                    <td>
+                                        <a href="#">
+                                            <h3 class="shop">가게명</h3>
+                                            <span>></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- 별점 -->
+                                <tr>
+                                    <td class="star_box">
+                                        <p id="star">
+                                            <button type="button" name="rating" href="#" value="1"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="2"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="3"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="4"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="5"><i class="fa-solid fa-star"></i></button>
+                                        <p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <!-- 파일 선택 1번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector1"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector2" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 2번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector3"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector5" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 3번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector4"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                <!-- 이미지, 글자수, 리뷰 -->
+                                <tr>
+                                    <td class="shop_img">
+                                        <img src="../img/review_food.jpg">
+                                    </td>
+                                    <td class="text_box">
+                                        <div class="text_all">
+                                            <span class="text_count" id="text_count3">0자</span>
+                                            <span class="text_total">/180자</span>
+                                            <textarea name="content" class="review_write" id="review_write3" cols="35"
+                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- 작성버튼 -->
+                                <tr>
+                                    <td></td>
+                                    <td class="submit_btn_box">
+                                        <input type="submit" id="submit_btn" value="작성">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!-- 리뷰 form 4 -->
+                    <form class= "review_box1" method="post" action="#" enctype="text/plain">
+                        <table class="table_box">
+                            <tbody>
+                                <!-- 가게명, 삭제 -->
+                                <tr class="shop_name">
+                                    <td>
+                                        <a href="#">
+                                            <h3 class="shop">가게명</h3>
+                                            <span>></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- 별점 -->
+                                <tr>
+                                    <td class="star_box">
+                                        <p id="star">
+                                            <button type="button" name="rating" href="#" value="1"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="2"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="3"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="4"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" name="rating" href="#" value="5"><i class="fa-solid fa-star"></i></button>
+                                        <p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <!-- 파일 선택 1번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector1"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector2" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 2번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector3"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector5" name="imageSelector"
+                                                accept="image/jpeg, image/jpg, image/png" multiple />
+                                        </td>
+                                    </tr>
+                                    <!-- 파일 선택 3번째 줄-->
+                                    <tr>
+                                        <td>
+                                            <input type="file" class="hidden_input" id="selector4"
+                                                name="imageSelector" accept="image/jpeg, image/jpg, image/png"
+                                                multiple />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                <!-- 이미지, 글자수, 리뷰 -->
+                                <tr>
+                                    <td class="shop_img">
+                                        <img src="../img/review_food.jpg">
+                                    </td>
+                                    <td class="text_box">
+                                        <div class="text_all">
+                                            <span class="text_count" id="text_count4">0자</span>
+                                            <span class="text_total">/180자</span>
+                                            <textarea name="content" class="review_write" id="review_write4" cols="35"
+                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- 작성버튼 -->
+                                <tr>
+                                    <td></td>
+                                    <td class="submit_btn_box">
+                                        <input type="submit" id="submit_btn" value="작성">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <!-- 작성완료 리뷰 컨테이너-->
+                <div class="review_wrapper" id="review_wrapper2">
+                    <hr>
+                    <h2>작성완료 리뷰</h2>
+                    <div class="grid_box2">
+                        <!-- 작성완료 리뷰1 -->
+                        <div class="review_box2">
+                            <a href="#">
+                                <h3>가게명1</h3>
+                                <span>></span>
+                            </a>
+                            <div class="star_box2">
+                                <p class="star_off" id="star_off1">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </p>
+                                <span id="star_value1" class="star_value">별점수값</span>
+                            </div>
+                            <div class="del_btn">
+                                <a href="#" id="review_del1">삭제</a>
+                            </div>
+                            <div class="review_img2">
+                                <img src="../img/review_food.jpg">
+                            </div>
+                            <div class="review_text2">
+                                <div>내용</div>
+                            </div>
+                        </div>
+                        <!-- 작성완료 리뷰2 -->
+                        <div class="review_box2">
+                            <a href="#">
+                                <h3>가게명2</h3>
+                                <span>></span>
+                            </a>
+                            <div class="star_box2">
+                                <p class="star_off" id="star_off2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </p>
+                                <span id="star_value2" class="star_value">별점수값</span>
+                            </div>
+                            <div class="del_btn">
+                                <a href="#" id="review_del2">삭제</a>
+                            </div>
+                            <div class="review_img2">
+                                <img src="../img/review_food.jpg">
+                            </div>
+                            <div class="review_text2">
+                                <div>내용</div>
+                            </div>
+                        </div>
+                        <!-- 작성완료 리뷰3 -->
+                        <div class="review_box2">
+                            <a href="#">
+                                <h3>가게명3</h3>
+                                <span>></span>
+                            </a>
+                            <div class="star_box2">
+                                <p class="star_off" id="star_off3">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </p>
+                                <span id="star_value3" class="star_value">별점수값</span>
+                            </div>
+                            <div class="del_btn">
+                                <a href="#" id="review_del3">삭제</a>
+                            </div>
+                            <div class="review_img2">
+                                <img src="../img/review_food.jpg">
+                            </div>
+                            <div class="review_text2">
+                                <div>내용</div>
+                            </div>
+                        </div>
+                        <!-- 작성완료 리뷰4 -->
+                        <div class="review_box2">
+                            <a href="#">
+                                <h3>가게명4</h3>
+                                <span>></span>
+                            </a>
+                            <div class="star_box2">
+                                <p class="star_off" id="star_off4">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </p>
+                                <span id="star_value4" class="star_value">별점수값</span>
+                            </div>
+                            <div class="del_btn">
+                                <a href="#" id="review_del4">삭제</a>
+                            </div>
+                            <div class="review_img2">
+                                <img src="../img/review_food.jpg">
+                            </div>
+                            <div class="review_text2">
+                                <div>내용</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </main>
+</body>
+
+</html>
