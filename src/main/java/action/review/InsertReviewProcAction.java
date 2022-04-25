@@ -132,6 +132,6 @@ public class InsertReviewProcAction implements CommandAction {
 			break;
 		}
 		*/
-		return "/insertReviewProc.jsp";
+		return "/review/insertReviewProc.jsp";
 	}
 }
