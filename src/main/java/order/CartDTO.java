@@ -1,7 +1,7 @@
 package order;
 
 public class CartDTO {
-	private String Orderer;
+	private String orderer;
 	private int menu_id;
 	private int option_id;
 	private int quantity;
@@ -11,18 +11,18 @@ public class CartDTO {
 	}
 
 	public CartDTO(String orderer, int menu_id, int option_id, int quantity) {
-		Orderer = orderer;
+		this.orderer = orderer;
 		this.menu_id = menu_id;
 		this.option_id = option_id;
 		this.quantity = quantity;
 	}
 
 	public String getOrderer() {
-		return Orderer;
+		return orderer;
 	}
 
 	public void setOrderer(String orderer) {
-		Orderer = orderer;
+		this.orderer = orderer;
 	}
 
 	public int getMenu_id() {

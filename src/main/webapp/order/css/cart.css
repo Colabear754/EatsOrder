@@ -7,6 +7,9 @@
     background-color: #FECB10;
     
 }
+.price {
+	text-align: right;
+}
 .container {
     padding: 0;
 }
