@@ -155,7 +155,7 @@
 	                                <button class="delete_btn">삭제</button>
 	                            </div>
 	                            <div class="review_img2">
-	                                <img src="reviewPhoto/${reviewData.review.photo5}" alt="리뷰사진">
+	                                <img src="../reviewPhoto/${reviewData.review.photo5}" alt="리뷰사진">
 	                            </div>
 	                            <div class="review_text2">
 	                                <div>내용 ${reviewData.review.content}</div>
