@@ -20,8 +20,6 @@ public class MyReviewListAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		String email=request.getParameter("account");
-		System.out.println("account: "+email);
-		System.out.println("pageNum: "+pageNum);
 		//String email = (String) request.getSession().getAttribute("account");
 		MemberDAO memberProcess = new MemberDAO();
 		CouponDAO couponProcess = new CouponDAO();
@@ -50,9 +48,6 @@ public class MyReviewListAction implements CommandAction {
 
 		MemberInfoDTO member = memberProcess.getMember(email);
 		int couponCount = couponProcess.getCouponCount(email);
-		
-		System.out.println("reviewData"+reviewData);
-		System.out.println("orderList"+orderList);
 		
 		request.setAttribute("email",email);
 		request.setAttribute("member", member);

@@ -37,7 +37,7 @@ public class InsertMyReviewAction implements CommandAction{
 				saveFiles.add(multi.getFilesystemName(name));
 			}
 			for(int i=0;i<saveFiles.size();i++) {
-				System.out.println("saveFiles.get("+i+"):"+saveFiles.get(i));
+				saveFiles.get(i);
 			}
 			
 			String email = multi.getParameter("email");
@@ -65,9 +65,9 @@ public class InsertMyReviewAction implements CommandAction{
 			reviewProcess.insertReivew(email, order_number, content, photos, rating);
 			
 		}catch(IOException ioe){
-			System.out.println("insertMyReviewAction의 ioe예외처리=>"+ioe);
+			System.out.println("insertMyReviewAction의 ioe예외처리: "+ioe);
 		}catch(Exception ex){
-			System.out.println("insertMyReviewAction의 ex=>"+ex);
+			System.out.println("insertMyReviewAction의 ex: "+ex);
 		}
 	
 		return "/myReview/insertMyReview.jsp";
