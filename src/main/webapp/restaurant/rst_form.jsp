@@ -92,6 +92,7 @@
                    </div><!-- tab-content -->
                </div><!-- restaurant-title row -->
             </div> <!-- col-sm-8 -->
+            <div class="col-sm-4" id="cart-area"></div>
         </div> <!-- row -->
     </div><!-- main -->
     <jsp:include page="../component/footer.html" />

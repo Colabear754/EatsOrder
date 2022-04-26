@@ -19,6 +19,18 @@ $(function() {
 		}
 	})
 	
+	// 페이지가 로드되면 주문표 출력
+	$.ajax({
+		type: "POST",
+		url: "/EatsOrder/order/cart.do",
+		success: function(data) {
+			$('#cart-area').html(data);
+		},
+		error: function(request) {
+			alert('오류 발생 : ' + request.statusText);
+		}
+	})
+	
 	//카카오 지도 api
 	$('#address-search').click(function() {	// 주소 검색창을 클릭하면 모달 형태로 띄움
 		new daum.Postcode({

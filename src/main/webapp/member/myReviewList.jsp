@@ -33,7 +33,7 @@
                 	<c:if test="${reviewCount > 0}">
 	                	<c:forEach var="reviewData" items="${reviewData}">
 		                    <div class="review_box">
-		                        <h3><a href="#">${reviewData.restaurant.rst_name}<span>></span></a></h3>
+		                        <h3><a href="/EatsOrder/restaurant/rst_form.do?rst_id=${reviewData.restaurant.rst_id}">${reviewData.restaurant.rst_name}<span>></span></a></h3>
 		                        <div class="star">
 		                            <span>★</span>
 		                            <span>★</span>

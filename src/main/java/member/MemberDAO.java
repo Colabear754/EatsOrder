@@ -357,8 +357,6 @@ public class MemberDAO {
 			if (resultSet.next()) {
 				result = resultSet.getString(1);
 			}
-			
-			System.out.println("조회한 닉네임 : " + result);
 		} catch (Exception e) {
 			 e.printStackTrace();
 		} finally {

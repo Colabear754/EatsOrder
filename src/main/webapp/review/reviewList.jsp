@@ -13,7 +13,7 @@
 		<ul id="review" class="list-group review-list">
 			<li class="list-group-item star-point" style="display: block;">
 				<div>
-					<span class="riview-id">${reviewData.writer}님</span> <span class="review-time">${reviewData.review.regist_date}</span> <a href="#" class="btn-report" style="position: absolute; right: 16px; color: #999">신고</a>
+					<span class="review-id">${reviewData.writer}님</span> <span class="review-time">${reviewData.review.regist_date}</span> <a href="#" class="btn-report" style="position: absolute; right: 16px; color: #999">신고</a>
 				</div>
 				<div>
 					<div class="star-point" style="display: block;">
