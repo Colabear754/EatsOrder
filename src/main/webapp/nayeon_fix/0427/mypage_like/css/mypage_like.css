@@ -1,0 +1,148 @@
+/*
+작성자: 김나연
+작성완료일: 22/04/04
+페이지명: 주문내역
+*/
+
+/* 공통설정 ################################################### */
+
+/* 모든 a 스타일 */
+.content_box a {
+    text-decoration: none;
+    color: black;
+}
+
+/* 전체 브라우저 박스 */
+main {
+    position: relative;
+    margin: 0 10%;
+    box-sizing: border-box;
+}
+
+
+/* ----------------------------------------------------------- */
+/* 메인 콘텐츠 박스 */
+.content_box {
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+/* ----------------------------------------------------------- */
+.like_wrapper hr {
+    margin: 60px 0 40px 0;
+    width: 1090px;
+}
+
+/* 주문내역 전체 박스 */
+.like_wrapper {
+    height: 1000px;
+}
+
+/* ----------------------------------------------------------- */
+/* 수정, 삭제 버튼 */
+.del_btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 15px 20px 0 0;
+    font-weight: bold;
+}
+
+/* 수정,삭제 호버 */
+.del_btn a:first-child:hover, a:last-child:hover {
+    color: #FC6E4D;
+}
+
+/* 그리드############################################ */
+.grid_box2 {
+    display: grid;
+    height: 45%;
+    grid-template-columns: repeat(2,auto);
+    grid-template-rows: repeat(2,auto);
+    margin: 0;
+    column-gap: 3%;
+    row-gap: 3%;
+    border: 1px solid red;
+}
+
+/* 주문내역 제목 */
+.like_wrapper h1 {
+    margin: 0 0 38px 0;
+}
+
+/* like_box2 : 주문내역 박스 ------------------------------------------- */
+.like_box2 {
+    width: 528px;
+    height: 200px;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #c4c4c477;
+    position: relative;
+}
+
+/* 가게명, 주문내역 이미지 마진 */
+.like_box2 h3, .like_img {
+    margin-left: 20px;
+}
+
+/* 가게명 세부설정 */
+.like_box2 h3 {
+    display: inline-block;
+}
+
+/* 가게명 클릭 > */
+.like_box2 > a span {
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: -5px;
+}
+
+/* like_img2 : 주문내역 이미지 ------------------------------------------ */
+.like_img2 {
+    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    margin: -5px 0 0 20px;
+}
+
+.like_img2 > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    border-radius: 10px;
+}
+
+/* like_text2 : 주문내역 소재목,내용 -------------------------------------------- */
+.like_text2 {
+    position: absolute;
+    top: 21%;
+    right: 4%;
+    width: 350px;
+}
+
+/* 주문내역 내용 테두리 */
+.like_text2 > div:last-child {
+    height: 120px;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 15px;
+}
+
+/* 별점 색 */
+.like_text2 span:first-child {
+    color: #FECB10;
+}
+
+/* 주문액, 주문메뉴 간격 */
+.like_text2 p {
+    margin: 5px;
+}
+
