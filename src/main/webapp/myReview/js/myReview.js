@@ -1,6 +1,6 @@
 
 //우림. 별점값 전달하기
-//#rating1을 클릭하면. rating1의 value값을 알림창으로띄우고. rating1의 value값을 input hidden의 value에 넣어서 폼으로 전송
+//name=rating1을 클릭하면. rating1의 value값을 알림창으로띄우고. rating1의 value값을 input hidden의 value에 넣어서 폼으로 전송
 
 $(document).ready(function(){
 	$("[name='rating1']").click(function(){
