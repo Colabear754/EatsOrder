@@ -8,10 +8,8 @@ import review.ReviewDAO;
 //사진첨부 때문에 추가 lib에 cos.jar 넣어야 import 가능
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import javax.servlet.ServletContext;
 import java.util.*;
 import java.io.*;
-import java.sql.Timestamp;
 
 public class InsertReviewProcAction implements CommandAction {
 

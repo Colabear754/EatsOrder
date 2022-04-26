@@ -18,7 +18,7 @@
 				</button>
 				<ul class="dropdown-menu">
 					<c:forEach var="menu" items="${menuListData.menuList}">
-					<li class="menu"><a id="menu${menu.menu_id}">
+					<li class="menu"><a data-toggle="modal" data-target="#menu-modal"><input type="hidden" class="menu_id" value="${menu.menu_id}">
 							<div class="row">
 								<img class="img-responsive col-sm-3" src="../menu/img/${menu.menu_photo}">
 								<ul class="list-unstyled col-sm-9">
@@ -32,6 +32,9 @@
 				</ul>
 			</div>
 		</c:forEach>
+	</div>
+	<div class="modal fade" id="menu-modal" role="dialog">
+		<div class="modal-dialog" id="menu-info"></div>	
 	</div>
 </body>
 </html>

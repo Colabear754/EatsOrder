@@ -1,0 +1,46 @@
+/* 모달창 css 2022.04.04 김시웅 */
+* {list-style: none; font-family: 'Nanum Gothic', sans-serif;}
+.modal-header {
+	padding-left: 180px;
+}
+.detail-image {
+	width: 100%;
+}
+.detail-image img {
+	width: 100%;
+}
+.detail-text {
+	text-align: center; 
+	border-bottom: 1px solid gray;
+}
+.detail-price {
+	border-bottom: 1px solid gray; 
+	height: 30px; 
+	margin-top: 15px;
+}
+.price {
+	float: right;
+}
+.quantity-control {
+	border-top: 1px solid gray; 
+	height: 30px; 
+	margin-top: 15px;
+}
+.modal-footer {
+	margin:0px; 
+	padding:0px; 
+	display:block; 
+	height:50px;
+}
+.btn-add-cart {
+	width:50%; 
+	float:left; border:none; 
+	height:49px; 
+	background-color:gray;
+}
+.btn-order {
+	width:50%; 
+	height:49px; 
+	border:none; 
+	background-color:#FC6E4F;
+}

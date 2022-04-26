@@ -8,4 +8,21 @@ $(function() {
 			$(this).parent().removeClass('show');
 		}
 	})
+	
+	$('.menu').children('a').click(function() {
+		var menu_id = $(this).children('.menu_id').val();
+		console.log(menu_id)
+		
+		$.ajax({
+			type: "POST",
+			url: "/EatsOrder/menu/menuInfo.do",
+			data: "menu_id=" + menu_id,
+			success: function(data) {
+				$('#menu-info').html(data);
+			},
+			error: function(request) {
+				alert('오류 발생 : ' + request.statusText);
+			}
+		})
+	})
 })

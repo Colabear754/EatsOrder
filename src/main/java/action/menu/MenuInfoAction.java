@@ -7,17 +7,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
 import menu.MenuAndOptionDAO;
+import menu.MenuDTO;
 import menu.OptionGroupDTO;
 import menu.OptionListDTO;
 
-public class OptionListAction implements CommandAction {
+public class MenuInfoAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// 옵션 리스트를 출력하는 액션클래스
-		request.setCharacterEncoding("utf-8");
+		// 메뉴 정보와 옵션들을 조회하는 액션클래스
 		int menu_id = Integer.parseInt(request.getParameter("menu_id"));
 		MenuAndOptionDAO menuProcess = new MenuAndOptionDAO();
+		MenuDTO menu = menuProcess.getMenu(menu_id);
 		ArrayList<OptionGroupDTO> optionGroupList = menuProcess.getMenuOptionGroups(menu_id);
 		ArrayList<OptionListDTO> optionList = new ArrayList<>();
 		
@@ -26,8 +27,9 @@ public class OptionListAction implements CommandAction {
 			optionList.add(groupOptionList);
 		}
 		
+		request.setAttribute("menu", menu);
 		request.setAttribute("optionList", optionList);
 		
-		return "/optionList.jsp";
+		return "/menu/menuInfo.jsp";
 	}
 }
