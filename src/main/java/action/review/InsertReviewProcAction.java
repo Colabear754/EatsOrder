@@ -54,40 +54,13 @@ public class InsertReviewProcAction implements CommandAction {
 			ReviewDAO reviewProcess = new ReviewDAO();
 
 			String[] photos = new String[5];
-			int photoCount = 0; // 사진 개수
 
 			//저장된 사진의 파일명을 photos 배열에 형변환 하여 담음
-			for (int i = 0; i < saveFiles.size(); i++) {
+			for (int i = saveFiles.size() - 1; i >= 0; i--) {
 				photos[i] = (String) saveFiles.get(i);
 			}
 
-			for (String photo : photos) { // 사진 개수 계산
-				photoCount = photo != null ? photoCount + 1 : photoCount;
-			}
-
-			switch (photoCount) { // 사진 개수에 따라 호출하는 메소드가 달라짐
-			case 0:
-				reviewProcess.insertReivew(email, order_number, content, rating);
-				break;
-			case 1:
-				reviewProcess.insertReivew(email, order_number, content, photos[0], rating);
-				break;
-			case 2:
-				reviewProcess.insertReivew(email, order_number, content, photos[0], photos[1], rating);
-				break;
-			case 3:
-				reviewProcess.insertReivew(email, order_number, content, photos[0], photos[1], photos[2], rating);
-				break;
-			case 4:
-				reviewProcess.insertReivew(email, order_number, content, photos[0], photos[1], photos[2], photos[3], rating);
-				break;
-			case 5:
-				reviewProcess.insertReivew(email, order_number, content, photos[0], photos[1], photos[2], photos[3],
-						photos[4], rating);
-				break;
-			default:
-				break;
-			}
+			reviewProcess.insertReivew(email, order_number, content, photos, rating);
 
 		} catch (IOException ioe) {
 			System.out.println(ioe);
