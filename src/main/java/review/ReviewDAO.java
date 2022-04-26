@@ -32,204 +32,34 @@ public class ReviewDAO {
 		}
 	}
 
-	// 리뷰 작성 메소드는 첨부하는 사진의 개수에 따라 6개의 메소드로 오버로딩함
-	public int insertReivew(String email, String order_number, String content, int rating) {
+	// 리뷰 작성
+	public int insertReivew(String email, String order_number, String content, String[] photos, int rating) {
 		// result가 0보다 크면 리뷰 작성 성공
-		// 사진을 첨부하지 않은 경우
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select orderer from order_history oh where order_number=?");
-			pStatement.setString(1, email);
+			pStatement.setString(1, order_number);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				pStatement = connection.prepareStatement("insert into review(review_number, order_number, content, rating) "
-						+ "values(review_index_seq.nextval, ?, ?, ?)");
-				pStatement.setString(1, order_number);
-				pStatement.setString(2, content);
-				pStatement.setInt(3, rating);
-
-				result = pStatement.executeUpdate();
+				if (resultSet.getString(1).equals(email)) {
+					pStatement = connection.prepareStatement("insert into review "
+							+ "values(review_index_seq.nextval, ?, sysdate, ?, ?, ?, ?, ?, ?, ?)");
+					pStatement.setString(1, order_number);
+					pStatement.setString(2, content);
+					pStatement.setString(3, photos[0]);
+					pStatement.setString(4, photos[1]);
+					pStatement.setString(5, photos[2]);
+					pStatement.setString(6, photos[3]);
+					pStatement.setString(7, photos[4]);
+					pStatement.setInt(8, rating);
+	
+					result = pStatement.executeUpdate();
+				}
 			}
-
-			System.out.println("리뷰 작성 결과 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
-		}
-
-		return result;
-	}
-
-	public int insertReivew(String email, String order_number, String content, String photo1, int rating) {
-		// result가 0보다 크면 리뷰 작성 성공
-		// 사진 1장을 첨부했을 경우
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select orderer from order_history oh where order_number=?");
-			pStatement.setString(1, email);
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				pStatement = connection
-						.prepareStatement("insert into review(review_number, order_number, photo1, content, rating) "
-								+ "values(review_index_seq.nextval, ?, ?, ?, ?)");
-
-				pStatement.setString(1, order_number);
-				pStatement.setString(2, content);
-				pStatement.setString(3, photo1);
-				pStatement.setInt(4, rating);
-
-				result = pStatement.executeUpdate();
-			}
-
-			System.out.println("리뷰 작성 결과 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
-		}
-
-		return result;
-	}
-
-	public int insertReivew(String email, String order_number, String content, String photo1, String photo2, int rating) {
-		// result가 0보다 크면 리뷰 작성 성공
-		// 사진 2장을 첨부했을 경우
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select orderer from order_history oh where order_number=?");
-			pStatement.setString(1, email);
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				pStatement = connection.prepareStatement("insert into review(review_number, order_number, photo1, photo2, "
-						+ "content, rating) values(review_index_seq.nextval, ?, ?, ?, ?, ?)");
-
-				pStatement.setString(1, order_number);
-				pStatement.setString(2, content);
-				pStatement.setString(3, photo1);
-				pStatement.setString(4, photo2);
-				pStatement.setInt(5, rating);
-
-				result = pStatement.executeUpdate();
-			}
-			System.out.println("리뷰 작성 결과 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
-		}
-
-		return result;
-	}
-
-	public int insertReivew(String email, String order_number, String content, String photo1, String photo2, String photo3,
-			int rating) {
-		// result가 0보다 크면 리뷰 작성 성공
-		// 사진 3장을 첨부했을 경우
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select orderer from order_history oh where order_number=?");
-			pStatement.setString(1, email);
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				pStatement = connection.prepareStatement(
-						"insert into review(review_number, order_number, photo1, photo2, photo3, content, rating) "
-								+ "values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?)");
-
-				pStatement.setString(1, order_number);
-				pStatement.setString(2, content);
-				pStatement.setString(3, photo1);
-				pStatement.setString(4, photo2);
-				pStatement.setString(5, photo3);
-				pStatement.setInt(6, rating);
-
-				result = pStatement.executeUpdate();
-			}
-			System.out.println("리뷰 작성 결과 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
-		}
-
-		return result;
-	}
-
-	public int insertReivew(String email, String order_number, String content, String photo1, String photo2, String photo3,
-			String photo4, int rating) {
-		// result가 0보다 크면 리뷰 작성 성공
-		// 사진 4장을 첨부했을 경우
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select orderer from order_history oh where order_number=?");
-			pStatement.setString(1, email);
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				pStatement = connection.prepareStatement("insert into review(review_number, order_number, photo1, photo2, "
-						+ "photo3, photo4, content, rating) values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?, ?)");
-
-				pStatement.setString(1, order_number);
-				pStatement.setString(2, content);
-				pStatement.setString(3, photo1);
-				pStatement.setString(4, photo2);
-				pStatement.setString(5, photo3);
-				pStatement.setString(6, photo4);
-				pStatement.setInt(7, rating);
-
-				result = pStatement.executeUpdate();
-			}
-			System.out.println("리뷰 작성 결과 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
-		}
-
-		return result;
-	}
-
-	public int insertReivew(String email, String order_number, String content, String photo1, String photo2, String photo3,
-			String photo4, String photo5, int rating) {
-		// result가 0보다 크면 리뷰 작성 성공
-		// 사진 5장을 첨부했을 경우
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select orderer from order_history oh where order_number=?");
-			pStatement.setString(1, email);
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				pStatement = connection
-						.prepareStatement("insert into review values(review_index_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-				pStatement.setString(1, order_number);
-				pStatement.setString(2, content);
-				pStatement.setString(3, photo1);
-				pStatement.setString(4, photo2);
-				pStatement.setString(5, photo3);
-				pStatement.setString(6, photo4);
-				pStatement.setString(7, photo5);
-				pStatement.setInt(8, rating);
-
-				result = pStatement.executeUpdate();
-			}
+			
 			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
