@@ -22,7 +22,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
     <!-- css연결 : main_style -->
-    <link rel="stylesheet" href="/css/4_mypage_review.css">
+    <link rel="stylesheet" href="./css/4_mypage_review.css?ver=1">
     <!-- js연결 : jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- js연결 : main_script -->
@@ -135,7 +135,7 @@
                     <div class="test2">
                         <!-- 작성완료 리뷰1 -->
                         <c:forEach var="reviewData" items="${reviewData}">
-	                        <div class="review_box2" id="review_done3">
+	                        <div class="review_box2">
 	                        <input type="hidden" class="email" value="${email}">
 	                        <input type="hidden" class="review_number" value="${reviewData.review.review_number}">
 	                            <a href="#">
