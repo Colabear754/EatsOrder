@@ -26,8 +26,7 @@
     <!-- js연결 : jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- js연결 : main_script -->
-    <script type="text/javascript" src="./js/4_mypage_review.js?ver=3"></script>
-    <script type="text/javascript" src="./js/myReview.js?ver=2"></script>
+    <script type="text/javascript" src="./js/myReviewList.js"></script>
     <!-- js연결 : font awesome -->
     <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
     <!-- js연결 : sweet alert -->
