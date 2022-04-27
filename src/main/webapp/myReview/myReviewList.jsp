@@ -35,12 +35,18 @@
 </head>
 <body>
     <main>
+    	<c:if test="${account == null}">
+		<jsp:include page="../component/main_header_logBefore.html" />
+		</c:if>
+		<c:if test="${account != null}">
+			<jsp:include page="../component/main_header_logAfter.html" />
+		</c:if>
         <div class="content_box">
             <!-- 작성 전 리뷰 컨테이너 -->
             <div class="review_wrapper">
                 <h1>리뷰관리</h1>
                 <h2>작성 전 리뷰</h2>
-                <div class="test">
+                <div class="grid_box">
                     <!-- 리뷰 form 1 -->
                     <c:forEach var="orderList" items="${orderList}">
                     <form id="review_form" name="review_form" method="post" action="insertMyReview.do" enctype="multipart/form-data"> 
@@ -132,7 +138,7 @@
                 <div class="review_wrapper">
                     <hr>
                     <h2>작성완료 리뷰</h2>
-                    <div class="test2">
+                    <div class="grid_box2">
                         <!-- 작성완료 리뷰1 -->
                         <c:forEach var="reviewData" items="${reviewData}">
 	                        <div class="review_box2">
@@ -148,7 +154,7 @@
 		                                    <i class="fa-solid fa-star"></i>
 	 									</c:forEach>
 	                                </p>
-	                                <span class="star_value">별 점수값 ${reviewData.review.rating}</span>
+	                                <span class="star_value">${reviewData.review.rating}</span>
 	                            </div>
 	                            <div class="del_btn">
 	                                <span>|</span>
