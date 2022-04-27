@@ -1,8 +1,12 @@
 package order;
 
+import java.util.ArrayList;
+
+import menu.OptionInfoDTO;
+
 public class CartItemDTO {
 	private String menu_name;
-	private String option_name;
+	private ArrayList<OptionInfoDTO> selectedOptions;
 	private int quantity;
 	private int price;
 
@@ -10,9 +14,9 @@ public class CartItemDTO {
 		super();
 	}
 
-	public CartItemDTO(String menu_name, String option_name, int quantity, int price) {
+	public CartItemDTO(String menu_name, ArrayList<OptionInfoDTO> selectedOptions, int quantity, int price) {
 		this.menu_name = menu_name;
-		this.option_name = option_name;
+		this.selectedOptions = selectedOptions;
 		this.quantity = quantity;
 		this.price = price;
 	}
@@ -25,12 +29,12 @@ public class CartItemDTO {
 		this.menu_name = menu_name;
 	}
 
-	public String getOption_name() {
-		return option_name;
+	public ArrayList<OptionInfoDTO> getSelectedOptions() {
+		return selectedOptions;
 	}
 
-	public void setOption_name(String option_name) {
-		this.option_name = option_name;
+	public void setSelectedOptions(ArrayList<OptionInfoDTO> selectedOptions) {
+		this.selectedOptions = selectedOptions;
 	}
 
 	public int getQuantity() {
@@ -48,5 +52,4 @@ public class CartItemDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
 }

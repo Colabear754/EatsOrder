@@ -1,10 +1,10 @@
 package order;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import connectionMgr.DBConnectionMgr;
+import menu.OptionInfoDTO;
 
 /*
  * 작성자 : 정건영
@@ -32,8 +32,8 @@ public class OrderDAO {
 		}
 	}
 
-	// 장바구니에 옵션을 선택하지 않은 메뉴 추가
-	public int insertCartItem(String orderer, int menu_id, int quantity) {
+	// 장바구니에 메뉴 추가
+	public int insertCartItem(String orderer, int menu_id, int[] options, int quantity) {
 		// result가 0보다 크면 추가 성공
 		// result가 -1이면 추가하려는 메뉴와 이미 추가된 메뉴가 서로 다른 매장인 경우 
 		int result = -1;
@@ -42,9 +42,10 @@ public class OrderDAO {
 			connection = connectionMgr.getConnection();
 			// 추가하려는 메뉴의 매장ID 추출
 			pStatement = connection.prepareStatement(
-					"select rst_id from menu m, menu_category mc " + "where menu_id=? and m.category_id=mc.category_id");
+					"select rst_id from menu m, menu_category mc where menu_id=? and m.category_id=mc.category_id");
 			pStatement.setInt(1, menu_id);
 			resultSet = pStatement.executeQuery();
+			connection.setAutoCommit(false);
 
 			if (resultSet.next()) {
 				int rst_id = resultSet.getInt(1);
@@ -57,88 +58,47 @@ public class OrderDAO {
 
 				if (!resultSet.next()) {
 					// 다른 매장ID가 없을 경우(장바구니가 비어있거나 같은 매장ID만 존재할 경우)
-					pStatement = connection.prepareStatement("select * from cart where orderer=? and menu_id=?");
+					String sql;
+
+					if (options.length == 0) {
+						sql = "insert into cart values(?, ?, null, ?)";
+					} else {
+						sql = "insert into cart values(?, ?, selected_option_seq.nextval, ?)";
+					}
+
+					pStatement = connection.prepareStatement(sql);
 					pStatement.setString(1, orderer);
 					pStatement.setInt(2, menu_id);
-					resultSet = pStatement.executeQuery();
+					pStatement.setInt(3, quantity);
 
-					if (resultSet.next()) {
-						// 같은 메뉴가 이미 등록되어 있으면 수량만 변경
-						pStatement = connection.prepareStatement("update cart set quantity=? where orderer=? and menu_id=?");
-						pStatement.setInt(1, resultSet.getInt("quantity") + quantity);
-						pStatement.setString(2, orderer);
-						pStatement.setInt(3, menu_id);
-					} else {
-						// 새로 메뉴를 추가하는 경우
+					result = pStatement.executeUpdate();
+
+					if (result > 0) {
 						pStatement = connection
-								.prepareStatement("insert into cart(orderer, menu_id, quantity) values(?, ?, ?)");
-						pStatement.setString(1, orderer);
-						pStatement.setInt(2, menu_id);
-						pStatement.setInt(3, quantity);
-					}
+								.prepareStatement("insert into selected_option values(selected_option_seq.currval, ?)");
+						for (int option_id : options) {
+							pStatement.setInt(1, option_id);
+							pStatement.addBatch();
+							pStatement.clearParameters();
+						}
 
-					result = pStatement.executeUpdate();
+						int[] array = pStatement.executeBatch();
+
+						for (int n : array) {
+							if (n == Statement.SUCCESS_NO_INFO) {
+								// excuteBatch()가 성공했을 때 -2만 반환하는 에러가 있어서 result값을 1씩 증가시키도록 함
+								result++;
+							} else if (n == Statement.EXECUTE_FAILED) {
+								// excuteBatch()가 실패하면 result를 -3으로 변경하고 반복 종료
+								result = Statement.EXECUTE_FAILED;
+								break;
+							}
+						}
+					}
 				}
-			}
 
-			System.out.println("장바구니에 메뉴 추가 결과 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
-		}
-
-		return result;
-	}
-
-	// 장바구니에 옵션을 선택한 메뉴 추가
-	public int insertCartItem(String orderer, int menu_id, int option_id, int quantity) {
-		// result가 0보다 크면 추가 성공
-		// result가 -1이면 추가하려는 메뉴와 이미 추가된 메뉴가 서로 다른 매장인 경우 
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			// 추가하려는 메뉴의 매장ID 추출
-			pStatement = connection.prepareStatement(
-					"select rst_id from menu m, menu_category mc " + "where menu_id=? and m.category_id=mc.category_id");
-			pStatement.setInt(1, menu_id);
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				int rst_id = resultSet.getInt(1);
-				// 현재 장바구니에 담긴 메뉴 중 추출된 매장ID와 다른 매장ID를 조회
-				pStatement = connection.prepareStatement("select rst_id from cart c, menu m, menu_category mc "
-						+ "where orderer=? and c.menu_id=m.menu_id and m.category_id=mc.category_id and rst_id!=?");
-				pStatement.setString(1, orderer);
-				pStatement.setInt(2, rst_id);
-				resultSet = pStatement.executeQuery();
-
-				if (!resultSet.next()) {
-					// 다른 매장ID가 없을 경우(장바구니가 비어있거나 같은 매장ID만 존재할 경우)
-					pStatement = connection.prepareStatement("select * from cart where orderer=? and menu_id=?");
-					pStatement.setString(1, orderer);
-					pStatement.setInt(2, menu_id);
-					resultSet = pStatement.executeQuery();
-
-					if (resultSet.next()) {
-						// 같은 메뉴가 이미 등록되어 있으면 수량만 변경
-						pStatement = connection.prepareStatement(
-								"update cart set quantity=? where orderer=? and menu_id=? and option_id=?");
-						pStatement.setInt(1, resultSet.getInt("quantity") + quantity);
-						pStatement.setString(2, orderer);
-						pStatement.setInt(3, menu_id);
-						pStatement.setInt(4, option_id);
-					} else {
-						// 새로 메뉴를 추가하는 경우
-						pStatement = connection.prepareStatement("insert into cart values(?, ?, ?, ?)");
-						pStatement.setString(1, orderer);
-						pStatement.setInt(2, menu_id);
-						pStatement.setInt(3, option_id);
-						pStatement.setInt(4, quantity);
-					}
-
-					result = pStatement.executeUpdate();
+				if (result > 0) {
+					connection.commit();
 				}
 			}
 
@@ -164,7 +124,7 @@ public class OrderDAO {
 
 			while (resultSet.next()) {
 				resultList.add(new CartDTO(resultSet.getString("orderer"), resultSet.getInt("menu_id"),
-						resultSet.getInt("option_id"), resultSet.getInt("quantity")));
+						resultSet.getInt("bundle_id"), resultSet.getInt("quantity")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -248,66 +208,49 @@ public class OrderDAO {
 	// 주문하기
 	public int insertOrder(String orderer, String destination, String coupon_id, int used_point, String payment_method,
 			String order_request, int payment_status) {
-		// result의 값은 주문한 메뉴의 개수 + 1
+		// result의 추가된 옵션 묶음의 개수
 		int result = -1;
-		int[] temp = {};
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MMdd-HHmmssSSS");
-		String order_number = format.format(Calendar.getInstance().getTime()); // 주문번호는 현재시간을 밀리초까지 부여
 
 		try {
 			connection = connectionMgr.getConnection();
 			connection.setAutoCommit(false);
-			pStatement = connection
-					.prepareStatement("insert into order_history values(?, ?, ?, ?, ?, ?, systimestamp, ?, ?, ?)");
-			pStatement.setString(1, order_number);
-			pStatement.setString(2, orderer);
-			pStatement.setString(3, destination);
-			pStatement.setString(4, coupon_id);
-			pStatement.setInt(5, used_point);
-			pStatement.setString(6, payment_method);
-			pStatement.setString(7, order_request);
-			pStatement.setInt(8, payment_status);
-			pStatement.setString(9, null);
+			pStatement = connection.prepareStatement("insert into order_history values("
+					+ "(select to_char(systimestamp, 'yyyy-mmdd-Hh24missff3') from dual), ?, ?, ?, ?, ?, systimestamp, ?, ?, ?)");
+			pStatement.setString(1, orderer);
+			pStatement.setString(2, destination);
+			pStatement.setString(3, coupon_id);
+			pStatement.setInt(4, used_point);
+			pStatement.setString(5, payment_method);
+			pStatement.setString(6, order_request);
+			pStatement.setInt(7, payment_status);
+			pStatement.setString(8, null);
 
 			result = pStatement.executeUpdate();
 
+			if (result > 0 && used_point > 0) {
+				// 주문정보 추가에 성공하고 사용 포인트가 있다면 포인트를 차감
+				pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
+				pStatement.setInt(1, used_point);
+				pStatement.setString(2, orderer);
+				result = pStatement.executeUpdate();
+			}
+
 			if (result > 0) {
-				// 주문정보 추가에 성공하면 장바구니에서 정보를 얻어와서 주문 상세정보에 추가
+				// 장바구니에서 정보를 얻어와서 주문 상세정보에 추가
 				result = 0;
-				pStatement = connection.prepareStatement("select * from cart where orderer=?");
+				pStatement = connection.prepareStatement("insert into order_detail "
+						+ "select (select to_char(systimestamp, 'yyyy-mmdd-Hh24missff3') from dual), menu_id, bundle_id, quantity "
+						+ "from cart where orderer=?");
 				pStatement.setString(1, orderer);
-				resultSet = pStatement.executeQuery();
+				result = pStatement.executeUpdate();
 
-				pStatement = connection.prepareStatement("insert into order_detail values(?, ?, ?, ?)");
-
-				while (resultSet.next()) {
-					pStatement.setString(1, order_number);
-					pStatement.setInt(2, resultSet.getInt("menu_id"));
-					pStatement.setInt(3, resultSet.getInt("option_id"));
-					pStatement.setInt(4, resultSet.getInt("quantity"));
-					pStatement.addBatch();
-					pStatement.clearParameters();
-				}
-
-				temp = pStatement.executeBatch();
-
-				for (int n : temp) {
-					if (n == Statement.SUCCESS_NO_INFO) {
-						// excuteBatch()가 성공했을 때 -2만 반환하는 에러가 있어서 result값을 1씩 증가시키도록 함
-						result++;
-					} else if (n == Statement.EXECUTE_FAILED) {
-						// excuteBatch()가 실패하면 result를 -3으로 변경하고 반복 종료
-						result = Statement.EXECUTE_FAILED;
-						break;
-					}
-				}
-
-				if (result > 0 && used_point > 0) {
-					// 사용 포인트가 있다면 포인트를 차감
-					pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
-					pStatement.setInt(1, used_point);
-					pStatement.setString(2, orderer);
-					result += pStatement.executeUpdate();
+				if (result > 0) {
+					// 주문 메뉴 추가에 성공하면 옵션 묶음을 추가
+					result = 0;
+					pStatement = connection.prepareStatement("insert into ordered_option "
+							+ "select * from cart c, selected option s where orderer=? and c.bundle_id=s.bundle_id");
+					pStatement.setString(1, orderer);
+					result = pStatement.executeUpdate();
 				}
 			}
 
@@ -464,6 +407,7 @@ public class OrderDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select delivery_tip from restaurant r, menu_category mc, menu m "
 					+ "where menu_id=? and m.category_id=mc.category_id and mc.rst_id=r.rst_id");
+			pStatement.setInt(1, menu_id);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -489,9 +433,32 @@ public class OrderDAO {
 					+ "where review_number=? and r.order_number=oh.order_number and oh.order_number=od.order_number and od.menu_id=m.menu_id");
 			pStatement.setInt(1, review_number);
 			resultSet = pStatement.executeQuery();
-			
+
 			while (resultSet.next()) {
 				resultList.add(resultSet.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return resultList;
+	}
+
+	public ArrayList<OptionInfoDTO> getSelectedOptions(int bundle_id) {
+		ArrayList<OptionInfoDTO> resultList = new ArrayList<>();
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement(
+					"select o.* from selected_option s, option_info o where bundle_id=? and s.option_id=o.option_id");
+			pStatement.setInt(1, bundle_id);
+			resultSet = pStatement.executeQuery();
+
+			while (resultSet.next()) {
+				resultList.add(new OptionInfoDTO(resultSet.getInt("option_id"), resultSet.getInt("group_id"),
+						resultSet.getString("option_name"), resultSet.getInt("price"), resultSet.getInt("enable")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

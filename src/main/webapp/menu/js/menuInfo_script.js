@@ -1,3 +1,9 @@
+/*
+ * 작성자 : 정건영
+ * 작성일 : 2022/04/26
+ * 내용 : 메뉴 상세정보 스크립트
+ */
+
 $(function() {
 	// 페이지 로드 시 기본 옵션 가격이 포함된 총 가격 계산
 	var defaultOptPrice = $('#price').text().replace(/,/g, '').replace('원', '');
@@ -35,11 +41,14 @@ $(function() {
 	})
 	
 	$('#add-to-cart').click(function() {
+		
+		
 		var menu_id = $('#menu_id').val();
 		var quantity = $('#quantity').text();
 		var options = [];
 		
 		$('input:checkbox:checked').each(function() {
+			console.log($(this).val())
 			options.push($(this).val());
 		})
 		
@@ -50,6 +59,7 @@ $(function() {
 		$.ajax({
 			type: "POST",
 			url: "/EatsOrder/order/insertCartItem.do",
+			traditional: true,
 			data: {
 				"menu_id": menu_id,
 				"options": options,
@@ -63,14 +73,19 @@ $(function() {
     							type: "POST",
     							url: "/EatsOrder/order/cart.do",
     							success: function(cart) {
+    								$('#cart-area').empty();
     								$('#cart-area').html(cart);
     							},
     							error: function(request) {
     								alert('오류 발생1 : ' + request.statusText);
     							}
     						})
+    						
+    						$('#menu-modal').modal('hide');
     					}
     				});
+				} else {
+					
 				}
 			},
 			error: function(request) {

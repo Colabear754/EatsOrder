@@ -14,10 +14,12 @@
     <meta name="viewport"
         content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <link href="./css/rst_form.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="./js/rst_form.js"></script>
 </head>
@@ -73,7 +75,10 @@
                     <img class="img-responsive col-sm-3" src="./img/${restaurant.rst_logo}"
                         style="border-right: 1px dotted gray; height: 110px;">
                     <ul class="list-unstyled col-sm-9">
-                        <li>${restaurant.rst_name}</li>
+                        <li>
+	                        ${restaurant.rst_name}
+	                        <button class="btn-like bi bi-hand-thumbs-up-fill"></button>
+                        </li>
                         <li>별점 : ${rating}</li>
                         <li>최소주문금액 : <fmt:formatNumber value="${restaurant.min_order}" pattern="#,###"/>원</li>
                         <li>배달시간 : ${restaurant.estimated_time}</li>

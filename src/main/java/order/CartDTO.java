@@ -3,17 +3,17 @@ package order;
 public class CartDTO {
 	private String orderer;
 	private int menu_id;
-	private int option_id;
+	private int bundle_id;
 	private int quantity;
 
 	public CartDTO() {
 		super();
 	}
 
-	public CartDTO(String orderer, int menu_id, int option_id, int quantity) {
+	public CartDTO(String orderer, int menu_id, int bundle_id, int quantity) {
 		this.orderer = orderer;
 		this.menu_id = menu_id;
-		this.option_id = option_id;
+		this.bundle_id = bundle_id;
 		this.quantity = quantity;
 	}
 
@@ -33,12 +33,12 @@ public class CartDTO {
 		this.menu_id = menu_id;
 	}
 
-	public int getOption_id() {
-		return option_id;
+	public int getBundle_id() {
+		return bundle_id;
 	}
 
-	public void setOption_id(int option_id) {
-		this.option_id = option_id;
+	public void setBundle_id(int bundle_id) {
+		this.bundle_id = bundle_id;
 	}
 
 	public int getQuantity() {

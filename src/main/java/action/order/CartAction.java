@@ -28,11 +28,18 @@ public class CartAction implements CommandAction {
 		
 		for (CartDTO item : items) {
 			MenuDTO menu = menuProcess.getMenu(item.getMenu_id());
-			OptionInfoDTO option = menuProcess.getOption(item.getOption_id());
+			ArrayList<OptionInfoDTO> selectedOptions = orderProcess.getSelectedOptions(item.getBundle_id());
+			int option_price = 0;
+			
+			for (OptionInfoDTO option : selectedOptions) {
+				option_price += option.getPrice();
+			}
+			
 			int quantity = item.getQuantity();
-			int price = (menu.getPrice() + option.getPrice()) * quantity;
+			int price = (menu.getPrice() + option_price) * quantity;
 			total_price += price;
-			cartItems.add(new CartItemDTO(menu.getMenu_name(), option.getOption_name(), quantity, price));
+			
+			cartItems.add(new CartItemDTO(menu.getMenu_name(), selectedOptions, quantity, price));
 		}
 		
 		request.setAttribute("cartItems", cartItems);

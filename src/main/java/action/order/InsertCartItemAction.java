@@ -1,5 +1,7 @@
 package action.order;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,18 +15,20 @@ public class InsertCartItemAction implements CommandAction {
 		// 장바구니에 품목을 추가하는 액션클래스
 		String orderer = (String) request.getSession().getAttribute("account");
 		int menu_id = Integer.parseInt(request.getParameter("menu_id"));
-		String temp = request.getParameter("option_id");
-		int option_id;
+		String[] selectedOptions = request.getParameterValues("options");
+		int[] options = {};
+		
+		if (selectedOptions != null) {
+			options = Arrays.stream(selectedOptions).mapToInt(Integer::parseInt).toArray();
+		}
+		
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		OrderDAO orderProcess = new OrderDAO();
 		
-		if (temp == null || temp.isBlank()) {
-			orderProcess.insertCartItem(orderer, menu_id, quantity);
-		} else {
-			option_id = Integer.parseInt(temp);
-			orderProcess.insertCartItem(orderer, menu_id, option_id, quantity);
-		}
+		int result = orderProcess.insertCartItem(orderer, menu_id, options, quantity);
 		
-		return "/insertCartItem.jsp";
+		request.setAttribute("result", result);
+		
+		return "/order/insertCartItem.jsp";
 	}
 }

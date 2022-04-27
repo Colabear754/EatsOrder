@@ -11,7 +11,6 @@ $(function() {
 	
 	$('.menu').children('a').click(function() {
 		var menu_id = $(this).children('.menu_id').val();
-		console.log(menu_id)
 		
 		$.ajax({
 			type: "POST",
