@@ -49,7 +49,8 @@ main {
 /* ----------------------------------------------- */
 /* 회원가입 제목 */
 .title_box h1 {
-    margin-bottom: 30px;
+    margin: 0 0 0 58px;
+    width: fit-content;
 }
 
 /* 인풋박스 디자인 */
