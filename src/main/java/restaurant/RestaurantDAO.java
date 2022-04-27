@@ -475,7 +475,9 @@ public class RestaurantDAO {
 	// 찜매장 등록 또는 취소
 	public int favoriteRestaurant(String email, int rst_id) {
 		// 레코드를 조회한 후 이미 존재하면 삭제, 없으면 추가
-		// result가 0보다 크면 찜매장 처리 성공
+		// result = -1이면 처리 실패
+		// result = 1이면 찜매장 추가
+		// result = 2이면 찜매장 제거
 		int result = -1;
 
 		try {
@@ -489,15 +491,15 @@ public class RestaurantDAO {
 				pStatement = connection.prepareStatement("delete from favorite_restaurant where email=? and rst_id=?");
 				pStatement.setString(1, email);
 				pStatement.setInt(2, rst_id);
-				System.out.print("매장 찜하기 취소 ");
+				result = 1;
 			} else {
 				pStatement = connection.prepareStatement("insert into favorite_restaurant values(?, ?)");
 				pStatement.setString(1, email);
 				pStatement.setInt(2, rst_id);
-				System.out.print("매장 찜하기 등록 ");
+				result = 0;
 			}
 
-			result = pStatement.executeUpdate();
+			result += pStatement.executeUpdate();
 
 			System.out.println("결과 : " + result);
 		} catch (Exception e) {
@@ -645,6 +647,27 @@ public class RestaurantDAO {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
+		return result;
+	}
+	
+	// 좋아요 여부 조회
+	public boolean isFavorite(String email, int rst_id) {
+		boolean result = false;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from favorite_restaurant where email=? and rst_id=?");
+			pStatement.setString(1, email);
+			pStatement.setInt(2, rst_id);
+			resultSet = pStatement.executeQuery();
+			
+			result = resultSet.next();
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
 		return result;
 	}
 }

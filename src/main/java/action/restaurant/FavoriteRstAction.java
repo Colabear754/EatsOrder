@@ -15,8 +15,10 @@ public class FavoriteRstAction implements CommandAction {
 		int rst_id = Integer.parseInt(request.getParameter("rst_id"));
 		RestaurantDAO rstProcess = new RestaurantDAO();
 		
-		rstProcess.favoriteRestaurant(email, rst_id);
+		int result = rstProcess.favoriteRestaurant(email, rst_id);
 		
-		return "favoriteRst.jsp";
+		request.setAttribute("result", result);
+		
+		return "/component/result.jsp";
 	}
 }

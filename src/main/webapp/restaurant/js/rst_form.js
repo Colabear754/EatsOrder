@@ -76,6 +76,39 @@ $(function() {
 		}
 	})
 	
+	// 매장 찜하기 기능
+	$('#favorite').click(function() {
+		if ($('#email').val() === '') {
+			location.href = "/EatsOrder/member/loginForm.do";
+		} else {
+			var email = $('#email').val();
+			var rst_id = $('#rst_id').val();
+			
+			$.ajax({
+				type: "POST",
+				url: "/EatsOrder/restaurant/favoriteRst.do",
+				data: {
+					"email": email,
+					"rst_id": rst_id
+				},
+				success: function(result) {
+					if (result == 1) {
+						$('#favorite').addClass('done');
+					} else if (result == 2) {
+						$('#favorite').removeClass('done');
+					} else {
+						swal("알 수 없는 오류가 발생하였습니다.", "", "warning");
+					}
+				},
+				error: function(request) {
+					alert('오류 발생 : ' + request.statusText);
+				}
+			})
+		}
+		
+		return false;
+	})
+	
 	// 메뉴 탭 클릭 시
 	$('#menu-tab').click(function() {
 		var rst_id = $('#rst_id').val();

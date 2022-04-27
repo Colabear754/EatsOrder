@@ -13,6 +13,7 @@ public class RstFormAction implements CommandAction {
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// 매장 정보 틀 액션클래스
 		request.setCharacterEncoding("utf-8");
+		String email = (String) request.getSession().getAttribute("account");
 		int rst_id = Integer.parseInt(request.getParameter("rst_id"));
 		String address = request.getParameter("address");
 		String sido = request.getParameter("sido");
@@ -21,6 +22,7 @@ public class RstFormAction implements CommandAction {
 		RestaurantDAO rstProcess = new RestaurantDAO();
 		RestaurantDTO restaurant = rstProcess.getRestaurant(rst_id);
 		double rating = rstProcess.getRating(rst_id);
+		boolean isFavorite = rstProcess.isFavorite(email, rst_id);
 		
 		request.setAttribute("restaurant", restaurant);
 		request.setAttribute("rating", rating);
@@ -28,6 +30,7 @@ public class RstFormAction implements CommandAction {
 		request.setAttribute("sido", sido);
 		request.setAttribute("sigungu", sigungu);
 		request.setAttribute("bname", bname);
+		request.setAttribute("isFavorite", isFavorite);
 		
 		return "/restaurant/rst_form.jsp";
 	}

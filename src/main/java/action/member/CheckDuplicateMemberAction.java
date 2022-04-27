@@ -19,7 +19,7 @@ public class CheckDuplicateMemberAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/member/process/result.jsp";
+		return "/component/result.jsp";
 	}
 
 }

@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>찜 목록</title>
-    <link rel="stylesheet" href="./css/myPage_like_style.css">
+    <link rel="stylesheet" href="./css/mypage_like_style.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                 	<c:forEach var="favoriteRst" items="${favoriteRstData}">
 		                <div class="review_all_box">
 		                    <div class="review_box">
-		                        <h3><a href="#">${favoriteRst.restaurant.rst_name}<span>></span></a></h3>
+		                        <h3><a href="/EatsOrder/restaurant/rst_form.do?rst_id=${favoriteRst.restaurant.rst_id}">${favoriteRst.restaurant.rst_name}<span>></span></a></h3>
 		                        <div class="del_btn">
 		                            <a href="#">삭제</a>
 		                        </div>
