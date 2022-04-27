@@ -33,6 +33,7 @@
 	<div class="container">
 		<header>
 		    <div>
+		    	<input type="hidden" id="email" value="${account}">
 				<input type="hidden" id="rst_id" value="${restaurant.rst_id}">
 	            <input type="hidden" name="address" id="address" value="${address}">
 	            <input type="hidden" name="sido" id="sido" value="${sido}">
@@ -77,7 +78,12 @@
                     <ul class="list-unstyled col-sm-9">
                         <li>
 	                        ${restaurant.rst_name}
-	                        <button class="btn-like bi bi-hand-thumbs-up-fill"></button>
+	                        <c:if test="${not isFavorite}">
+	                        	<button class="btn-like bi bi-hand-thumbs-up-fill" id="favorite"></button>
+	                        </c:if>
+	                        <c:if test="${isFavorite}">
+	                        	<button class="btn-like bi bi-hand-thumbs-up-fill done" id="favorite"></button>
+	                        </c:if>
                         </li>
                         <li>별점 : ${rating}</li>
                         <li>최소주문금액 : <fmt:formatNumber value="${restaurant.min_order}" pattern="#,###"/>원</li>

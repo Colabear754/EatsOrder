@@ -21,6 +21,6 @@ public class DeleteMemberProcAction implements CommandAction {
 
 		request.setAttribute("result", result);
 
-		return "/member/process/result.jsp";
+		return "/component/result.jsp";
 	}
 }
