@@ -36,11 +36,12 @@
 <body>
     <main>
     	<c:if test="${account == null}">
-		<jsp:include page="../component/main_header_logBefore.html" />
+			<jsp:include page="../component/main_header_logBefore.html" />
 		</c:if>
 		<c:if test="${account != null}">
 			<jsp:include page="../component/main_header_logAfter.html" />
 		</c:if>
+		<jsp:include page="../component/res_list_header.html"/>
         <div class="content_box">
             <!-- 작성 전 리뷰 컨테이너 -->
             <div class="review_wrapper">
@@ -172,6 +173,7 @@
                 </div>
             </div>
         </div>
+        <jsp:include page="../component/footer.html" />
     </main>
 </body>
 </html>
