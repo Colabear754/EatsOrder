@@ -63,14 +63,34 @@ $(document).ready(function(){
 	})
 })
 
-//삭제버튼 누르면 작성완료리뷰 삭제되게하고, 이메일 리뷰번호 deleteMyReview.do로 넘기게
-$(document).ready(function(){
-	
-	$(".delete_btn").click(function(){
-		
-		$(".reveiw_box").hide();
-		
-		//이메일,리뷰번호 넘기기
+// 리뷰 삭제 : 버튼 경고창
+
+//작성완료 리뷰박스
+$(document).ready(function () {
+  //삭제 클릭 시 작성완료 위치에 스크롤 고정
+  var offset = $(".review_wrapper").offset(); //이동할 위치
+
+  $(" .swal-button swal-button--confirm swal-button--danger").click(function () {
+    //삭제 클릭 시 작성완료 위치에 스크롤 고정
+    $("html, body").animate({ scrollTop: offset.top }, 100);
+    // sweetalert
+    swal({
+      title: "정말 삭제하시겠습니까?",
+      text: "삭제하시면 해당 리뷰는 복구가 불가능합니다.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("리뷰가 삭제되었습니다.", {
+          icon: "success",
+        })
+
+        // 리뷰 삭제 승인 시 리뷰 hide
+        $(".review_box").hide();
+        
+        /*
+        //이메일,리뷰번호 넘기기
 		var newForm=$('<form></form');
 		newForm.attr('method','post');
 		newForm.attr('action','deleteMyReview.do');
@@ -82,7 +102,12 @@ $(document).ready(function(){
 		
 		newForm.submit();
 		return false;
-	});
+		*/
+      } else {
+        swal("리뷰가 삭제되지 않았습니다.");
+      } 
+    });  
+  });
 });
 //---------------------------------------------------------------
 // 리뷰 작성 완료
