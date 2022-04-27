@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<!--  아래 부트스트랩은 슬라이드를 위한 부트스랩이라 삭제하지는 않고 주석처리로 해놓았습니다  2022.04.27 김시웅 부트스트랩충돌 수정 -->
+	<!--  link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" -->
 	<link href="../menu/css/menuInfo.css" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="../menu/js/menuInfo_script.js"></script>

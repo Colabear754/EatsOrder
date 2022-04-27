@@ -45,10 +45,10 @@ public class DBConnectionMgr {
     _url = "jdbc:mysql://127.0.0.1:3306/mydb?useUnicode=true&characterEncoding=EUC_KR",
     _user = "root",
     _password = "1234"; */
-
+    
     private String _driver = "oracle.jdbc.driver.OracleDriver";
     private String _url = "jdbc:oracle:thin:@localhost:1521:orcl";
-    private String _user = "delivery";
+    private String _user = "eatsorder";
     private String _password = "1234";
 
     private boolean _traceOn = false;
