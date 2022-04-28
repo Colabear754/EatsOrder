@@ -1,5 +1,4 @@
-   
-      /* 2022.04.04 매장상세페이지 css 김시웅 
+     /* 2022.04.04 매장상세페이지 css 김시웅 
       	  2022.04.18 css 수정 김시웅		
       */
       @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap%27');
@@ -40,10 +39,10 @@
        .restaurant-title .nav-item {  border-right:  1px solid grey; }
        .restaurant-title .nav-item:last-child { border-right: 0; }
        .nav-pills{ border-radius:  0;}
-       .orderlist {border: 1px solid grey; border-radius: 5%; padding: 0;}
+       .orderlist {border: 1px solid grey; padding: 0;}
        .orderlist li {border-bottom: 1px solid grey;}
        .orderlist li:last-child {border-bottom: 0;}
-       .aorder { height: 30px; text-align: center; background-color: gray; color:white; border: 1px solid grey; border-radius: 5%;}
+       .aorder { height: 30px; text-align: center; background-color: gray; color:white; border: 1px solid grey; }
        .aorder:last-child {border-bottom: 0; border-left: 0; border-bottom: 0; border-right: 0; }
        .border { height: 80px; font-size: 13px; }
        .corder { height: 30px; font-size: 13px;  text-align: left; justify-content: center;}
@@ -108,7 +107,7 @@
         background-position: 20px center;
         outline: none;
     }
-    .search_btn{
+    .search_btn1{
         position: absolute;
         top: 125px;
         left: 1175px;
@@ -125,7 +124,7 @@
     }
     .find_addr, i{
         color: white;
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 600;
         /*아이콘과 글자 사이 거리두기*/
         padding-left: 5px;
@@ -227,6 +226,11 @@
        background:gray;
        transition: 0.2s;
        }
+       .delete {
+		border: none;
+    	background-color:#FC6E4D;
+    	color: white;
+		}
        .btn-warning {
         background-color: #FC6E4D;
        }
@@ -246,7 +250,12 @@
     	.reviewcon {
     		color:black;
     	}
-	   
+	   .co {
+	   	padding:0;
+	   }
+	   .nav-link {
+	   	color:black;
+	   }
 	   
        /* checking style */
        #onlyPhotoReview:checked+.switch_label {

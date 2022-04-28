@@ -13,11 +13,13 @@
 				<li class="border">${cartItem.menu_name}
 					<ul>
 						<c:forEach var="option" items="${cartItem.selectedOptions}">
-							<li>${option.option_name}</li>
+						<li>${option.option_name}</li>
 						</c:forEach>
-					</ul>
+						</ul>
 					<div class="price">× ${cartItem.quantity} : <fmt:formatNumber value="${cartItem.price}" pattern="#,###" />원</div>
+					<button type="button" class="delete" onclick="deleteRow(this);">X</button>
 				</li>
+				
 			</c:forEach>
 			<c:if test="${delivery_tip > 0}">
 				<li class="corder"><span class="cart-text">배달비</span></li>

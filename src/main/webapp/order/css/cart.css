@@ -51,6 +51,12 @@
     text-align: right; 
     color: red;
 }
+
+.delete {
+	border: none;
+    background-color: #FC6E4D;
+    color: white;
+}
 .btn-warning {
     width:100%;
     background-color: #FC6E4D;
