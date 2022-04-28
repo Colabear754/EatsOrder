@@ -1,0 +1,211 @@
+main {
+    position: relative;
+    margin: 30px 20%;
+    box-sizing: border-box;
+    height: 1000px;
+}
+.z1{/*결제 하기*/
+ background-color: #ff9f00;
+ color:white;
+ padding:8px;
+}
+.z2{/*배달 정보*/
+background-color:#e5e5e5;
+padding:8px;
+}
+.z3{/*주문요청 사항*/
+background-color:#e5e5e5;
+padding:8px;
+}
+.z4{/*결제 수단*/
+background-color:#e5e5e5;
+padding:8px;
+
+}
+.z5{/*할인 방법*/
+background-color:#e5e5e5;
+padding:8px;
+}
+.x1{/*주소*/
+ padding-left:45px;
+ }
+ .x3{/*상세주소*/ 
+ padding-left:80px;
+}
+.x2{/*휴대폰*/
+ padding-left:45px;
+ margin-top:10px;
+}
+textarea {/*요청사항 글씨*/
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+.txt1{/*최대 100*/
+  float: right;
+  color: #999;
+ }
+ input[type=text]{
+  width:83.5%;
+  height:30px;
+  margin:7px;
+  padding-left:10px;
+ }
+  input[type=text3]{
+  width:87%;
+  height:30px;
+  margin:5px;
+  padding-left:10px;
+ }
+  input[type=text4]{
+  width:75%;
+  height:30px;
+  margin:5px;
+  padding-left:10px;
+ }
+.text_t{
+ width:100%;
+ margin-top:10px;
+}
+input[type="radio"]{
+ display:none;
+
+}
+  .test_obj input[type="radio"] + span {
+        display: inline-block;
+        padding: 25px;
+		margin:6px;
+        border: 1px solid #dfdfdf;
+        background-color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+		width:280px;
+		height:20px;
+    }
+ 
+    .test_obj1 input[type="radio"]:checked + span {
+        background-color:#ffffff;
+        color: #ff9f00;
+        border: 2px solid #ff9f00;
+}
+.r1{
+padding-left:150px;
+}
+.test_obj2 input[type="radio"]:checked + span {
+    background-color:#ffffff;
+        color: #ff9f00;
+        border: 2px solid #ff9f00;
+}
+.test_obj3 input[type="radio"]:checked + span {
+   background-color:#ffffff;
+          color: green;
+        border: 2px solid green;
+}
+.test_obj4 input[type="radio"]:checked + span {
+   background-color:#ffffff;
+   color: #FFD700;
+        border: 2px solid #FFD700;
+}
+input[type=text1]{/*쿠폰*/
+  width:50%;
+  height:30px;
+  margin:10px;
+ }
+ input[type=text2]{/*포인트*/
+  width:50%;
+  height:30px;
+  margin:5px;
+ }
+ul{
+list-style:none;
+}
+.tt{
+border:1px solid #e5e5e5;
+padding:10px;
+margin:10px;
+border:none;
+right:100px;
+float:right;
+position:relative;
+
+}
+.tt1{
+border:1px solid #e5e5e5;
+padding:10px;
+margin:10px;
+}
+.tt2{
+border:1px solid #e5e5e5;
+padding:10px;
+margin:10px;
+}
+.tt3{
+border:1px solid #e5e5e5;
+padding:10px;
+margin:10px;
+}
+.tt4{
+border:1px solid #e5e5e5;
+padding:10px;
+margin:10px;
+}
+.b1{/* 쿠폰 / 포인트 */
+width:90px;
+height:35px;
+margin:2px;
+border-color:#ffffff;
+color:#ffffff;
+background-color:#ff9f00;
+}
+ /*주문표 리스트*/
+#cart-area {
+ position:relative;
+ width:280px;
+ float:right;
+ margin-top: 100px;
+ height:250px;
+ left:200px;
+ list-style: none;
+ top:-900px;
+  
+}
+.aorder{
+background-color:#939393;
+border:1px solid black;
+text-align:center;
+}
+.corder{
+ border:1px solid black;
+ height:90px;
+ font-size:14px;
+}
+.dorder{
+ border:1px solid black;
+ text-align:right;
+ font-size:14px;
+}
+.eorder{
+ border:1px solid black;
+ text-align:right;
+ font-size:14px;
+}
+.ordercheck{
+border:1px solid #ffffff;
+text-align:center;
+margin-top:10px;
+width:280px;
+background-color:#ff9f00;
+height:30px;
+color:#ffffff;
+
+}
+
+input[type=button1]{
+ position:relative;
+ width:275px;
+ float:right;
+ margin-top: 46px;
+ height:40px;
+ left:520px;
+  top:-800px;
+}

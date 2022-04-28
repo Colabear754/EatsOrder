@@ -7,7 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../review/js/review.js"></script>
-	<link href="../restaurant/css/rst_form.css" rel="stylesheet" type="text/css">
+	<link href="../review/css/review.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<input type="hidden" id="review_rst" value="${rst_id}">
@@ -17,7 +17,7 @@
 				<div class="row" style="border: 1px solid gray; padding: 15px;">
 					<div class="restaurant-star-point col-sm-6" style="border-right: 1px solid gray; text-align: center;">
 						<h3>${rating}</h3>
-						<div class="rating rating-large">
+						<div class="rating rating-large" data-rate="${rating}">
 							<span class="star voted" rel="1">★</span>
 							<span class="star voted" rel="2">★</span>
 							<span class="star voted" rel="3">★</span>

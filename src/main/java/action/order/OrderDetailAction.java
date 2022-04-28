@@ -17,16 +17,16 @@ public class OrderDetailAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		String order_number = request.getParameter("order_number");
 		OrderDAO orderProcess = new OrderDAO();
-		OrderDetailInfoDTO result = orderProcess.getOrderDetailInfo(order_number);
-		ArrayList<String> menuList = result.getMenuList();
-		ArrayList<String> optionList = result.getOptionList();
-		ArrayList<Integer> quantityList = result.getQuantityList();
-		int price = result.getPrice();
-		
-		request.setAttribute("menuList", menuList);
-		request.setAttribute("optionList", optionList);
-		request.setAttribute("quantityList", quantityList);
-		request.setAttribute("price", price);
+//		OrderDetailInfoDTO result = orderProcess.getOrderDetailInfo(order_number);
+//		ArrayList<String> menuList = result.getMenuList();
+//		ArrayList<String> optionList = result.getOptionList();
+//		ArrayList<Integer> quantityList = result.getQuantityList();
+//		int price = result.getPrice();
+//		
+//		request.setAttribute("menuList", menuList);
+//		request.setAttribute("optionList", optionList);
+//		request.setAttribute("quantityList", quantityList);
+//		request.setAttribute("price", price);
 		
 		return "/orderDetail.jsp";
 	}

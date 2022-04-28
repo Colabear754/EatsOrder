@@ -15,6 +15,7 @@ public class CartAction implements CommandAction {
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// 장바구니에 추가된 품목 리스트를 조회하는 액션클래스
 		String orderer = (String) request.getSession().getAttribute("account");
+		boolean isOrderForm = Boolean.parseBoolean(request.getParameter("isOrderForm"));	// 주문 화면인지 아닌지 확인하기 위한 변수
 		OrderDAO orderProcess = new OrderDAO();
 		MenuAndOptionDAO menuProcess = new MenuAndOptionDAO();
 		ArrayList<CartDTO> items = orderProcess.getCartItems(orderer);
@@ -45,6 +46,7 @@ public class CartAction implements CommandAction {
 		request.setAttribute("cartItems", cartItems);
 		request.setAttribute("delivery_tip", delivery_tip);
 		request.setAttribute("total_price", total_price);
+		request.setAttribute("isOrderForm", isOrderForm);
 		
 		return "/order/cart.jsp";
 	}
