@@ -48,7 +48,7 @@ public class DBConnectionMgr {
     
     private String _driver = "oracle.jdbc.driver.OracleDriver";
     private String _url = "jdbc:oracle:thin:@localhost:1521:orcl";
-    private String _user = "eatsorder";
+    private String _user = "delivery";
     private String _password = "1234";
 
     private boolean _traceOn = false;
