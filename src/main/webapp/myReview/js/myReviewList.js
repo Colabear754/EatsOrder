@@ -7,7 +7,7 @@ $(document).ready(function () {
     $(this).siblings('.text_count').text(content.length + "자");
     
     // 글자수 제한
-    if (content.length =180) {
+    if (content.length==180) {
       // 180자 부터는 타이핑 되지 않도록
       $(this).val($(this).val().substring(0, 180));
       // 180자 넘으면 알림창 뜨도록
