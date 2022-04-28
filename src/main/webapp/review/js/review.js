@@ -60,4 +60,12 @@ $(function() {
 			}
 		})
 	})
+	
+	//별점 
+	$('.rating').each(function(){
+		var rate = $(this).data("rate");
+		$(this).find('.star').each(function(n) {
+			if (n >= rate) $(this).show();
+		});
+	});
 })

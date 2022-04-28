@@ -10,10 +10,10 @@ $(function() {
 	
 	$('input:radio:checked').each(function() {
 		var optPrice = Number($(this).parent().parent().children('.price').text().replace(/,/g, '').replace('원', ''));
-		defaultOptPrice = Number(defaultOptPrice) + Number(optPrice);
+		defaultOptPrice = (Number(defaultOptPrice) + Number(optPrice)).toLocaleString('ko-KR');
 	})
 	
-	$('#total_price').text(defaultOptPrice.toLocaleString('ko-KR') + '원');
+	$('#total_price').text(defaultOptPrice + '원');
 	
 	// +, - 버튼으로 수량 조절 시
 	$('#plus').click(function() {	
@@ -40,58 +40,99 @@ $(function() {
 		calcPrice();
 	})
 	
+	// 장바구니 추가
 	$('#add-to-cart').click(function() {
-		
-		
-		var menu_id = $('#menu_id').val();
-		var quantity = $('#quantity').text();
-		var options = [];
-		
-		$('input:checkbox:checked').each(function() {
-			console.log($(this).val())
-			options.push($(this).val());
-		})
-		
-		$('input:radio:checked').each(function() {
-			options.push($(this).val());
-		})
-		
-		$.ajax({
-			type: "POST",
-			url: "/EatsOrder/order/insertCartItem.do",
-			traditional: true,
-			data: {
-				"menu_id": menu_id,
-				"options": options,
-				"quantity": quantity
-			},
-			success: function(data) {
-				if (data > 0) {
-					swal("주문표에 추가되었습니다.", "", "success").then((result) => {
-    					if (result) {
-    						$.ajax({
-    							type: "POST",
-    							url: "/EatsOrder/order/cart.do",
-    							success: function(cart) {
-    								$('#cart-area').empty();
-    								$('#cart-area').html(cart);
-    							},
-    							error: function(request) {
-    								alert('오류 발생1 : ' + request.statusText);
-    							}
-    						})
-    						
-    						$('#menu-modal').modal('hide');
-    					}
-    				});
-				} else {
-					
+		if ($('#email').val() === '') {	// 로그인 되어있지 않으면 로그인 화면으로 이동
+			location.href = "/EatsOrder/member/loginForm.do";
+		} else {	// 로그인 되어있으면 장바구니 추가
+			var menu_id = $('#menu_id').val();
+			var quantity = $('#quantity').text();
+			var options = [];
+			
+			$('input:checkbox:checked').each(function() {
+				console.log($(this).val())
+				options.push($(this).val());
+			})
+			
+			$('input:radio:checked').each(function() {
+				options.push($(this).val());
+			})
+			
+			$.ajax({
+				type: "POST",
+				url: "/EatsOrder/order/insertCartItem.do",
+				traditional: true,
+				data: {
+					"menu_id": menu_id,
+					"options": options,
+					"quantity": quantity
+				},
+				success: function(data) {
+					if (data > 0) {
+						swal("주문표에 추가되었습니다.", "", "success").then((result) => {
+	    					if (result) {
+	    						$.ajax({
+	    							type: "POST",
+	    							url: "/EatsOrder/order/cart.do",
+	    							success: function(cart) {
+	    								$('#cart-area').empty();
+	    								$('#cart-area').html(cart);
+	    							},
+	    							error: function(request) {
+	    								alert('오류 발생1 : ' + request.statusText);
+	    							}
+	    						})
+	    						
+	    						$('#menu-modal').modal('hide');
+	    					}
+	    				});
+					}
+				},
+				error: function(request) {
+					alert("오류 발생2 : " + request.statusText);
 				}
-			},
-			error: function(request) {
-				alert("오류 발생2 : " + request.statusText);
-			}
-		})
+			})
+		}
+	})
+	
+	// 주문하기
+	$('#btn-order').click(function() {
+		// 메뉴 상세 화면에서 주문하기 버튼을 누르면 주문표에 메뉴를 추가한 후 주문 화면으로 이동
+		if ($('#email').val() === '') {	// 로그인 되어있지 않으면 로그인 화면으로 이동
+			location.href = "/EatsOrder/member/loginForm.do";
+		} else {	// 로그인 되어있으면 장바구니 추가
+			var menu_id = $('#menu_id').val();
+			var quantity = $('#quantity').text();
+			var options = [];
+			
+			$('input:checkbox:checked').each(function() {
+				console.log($(this).val())
+				options.push($(this).val());
+			})
+			
+			$('input:radio:checked').each(function() {
+				options.push($(this).val());
+			})
+			
+			$.ajax({
+				type: "POST",
+				url: "/EatsOrder/order/insertCartItem.do",
+				traditional: true,
+				data: {
+					"menu_id": menu_id,
+					"options": options,
+					"quantity": quantity
+				},
+				success: function(data) {
+					if (data > 0) {
+						location.href = "/EatsOrder/order/orderForm.do";
+					}
+				},
+				error: function(request) {
+					alert("오류 발생 : " + request.statusText);
+				}
+			})
+		}
 	})
 })
 

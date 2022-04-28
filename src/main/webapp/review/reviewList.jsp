@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript" src="../review/js/review_list.js"></script>
 </head>
 <body>
 	<c:set var="n" value="0" />
@@ -17,12 +18,13 @@
 				</div>
 				<div>
 					<div class="star-point" style="display: block;">
-						<span class="total"> <span class="full ">★</span>
-						</span> <span class="total"> <span class="full ">★</span>
-						</span> <span class="total"> <span class="full ">★</span>
-						</span> <span class="total"> <span class="full ">★</span>
-						</span> <span class="total"> <span class="full ">★</span>
-						</span> <span class="rating" style="display: none;">${reviewData.review.rating}</span>
+						<span class="rating" data-rate="${reviewData.review.rating}">
+                        	<span class="star ">★</span>
+							<span class="star ">★</span>
+                            <span class="star ">★</span>
+                            <span class="star ">★</span>
+                            <span class="star">★</span>
+                       	</span>
 					</div>
 				</div>
 				<table class="info-images" style="width: 100%">

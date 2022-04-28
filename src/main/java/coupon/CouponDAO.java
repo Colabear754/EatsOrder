@@ -95,36 +95,38 @@ public class CouponDAO {
 		// result = -1 : 쿠폰 조회 실패 또는 사용 완료된 쿠폰, 0 : 쿠폰 사용 실패, 그 외 값 : 할인 금액
 		int result = -1;
 
-		try {
-			connection = connectionMgr.getConnection();
-			connection.setAutoCommit(false);
-			pStatement = connection.prepareStatement("select v.* from valid_coupon v, owned_coupon o where "
-					+ "v.coupon_id=o.coupon_id and o.coupon_id=? and owner_id=? and available_count > 0");
-			pStatement.setString(1, coupon_id);
-			pStatement.setString(2, owner_id);
-
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				pStatement = connection.prepareStatement(
-						"update owned_coupon set available_count=available_count - 1 " + "where coupon_id=? and owner_id=?");
+		if (coupon_id != null) {
+			try {
+				connection = connectionMgr.getConnection();
+				connection.setAutoCommit(false);
+				pStatement = connection.prepareStatement("select v.* from valid_coupon v, owned_coupon o where "
+						+ "v.coupon_id=o.coupon_id and o.coupon_id=? and owner_id=? and available_count > 0");
 				pStatement.setString(1, coupon_id);
 				pStatement.setString(2, owner_id);
-
-				result = pStatement.executeUpdate();
-
-				if (result > 0) {
-					System.out.println("사용한 쿠폰 번호 : " + coupon_id);
-					connection.commit();
-					result = resultSet.getInt("discount_amount");
+	
+				resultSet = pStatement.executeQuery();
+	
+				if (resultSet.next()) {
+					pStatement = connection.prepareStatement(
+							"update owned_coupon set available_count=available_count - 1 " + "where coupon_id=? and owner_id=?");
+					pStatement.setString(1, coupon_id);
+					pStatement.setString(2, owner_id);
+	
+					result = pStatement.executeUpdate();
+	
+					if (result > 0) {
+						System.out.println("사용한 쿠폰 번호 : " + coupon_id);
+						connection.commit();
+						result = resultSet.getInt("discount_amount");
+					}
+				} else {
+					System.out.println("쿠폰 조회 실패");
 				}
-			} else {
-				System.out.println("쿠폰 조회 실패");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				connectionMgr.freeConnection(connection, pStatement, resultSet);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
 		return result;

@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<link rel="stylesheet" href="../order/css/cart.css">
+	<script type="text/javascript" src="../order/js/cart.js"></script>
 </head>
 <body>
 	<div class="sticky">
@@ -28,7 +30,12 @@
 			<li class="corder"><span class="cart-text">전체금액</span></li>
 			<li class="dorder" id="total_amt"><span class="cart-text"><fmt:formatNumber value="${total_price + delivery_tip}" pattern="#,###" />원</span></li>
 		</ul>
-		<button type="button" class="btn btn-warning" onclick="window.location.href='/EatsOrder/orderForm.do'">주문하기</button>
+		<c:if test="${not isOrderForm}">
+			<button type="button" class="btn btn-warning" id="order-form-btn">주문하기</button>
+		</c:if>
+		<c:if test="${isOrderForm}">
+			<button type="button" class="btn btn-warning" id="order-btn">주문하기</button>
+		</c:if>
 	</div>
 </body>
 </html>

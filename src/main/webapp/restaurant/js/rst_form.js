@@ -79,9 +79,9 @@ $(function() {
 	
 	// 매장 찜하기 기능
 	$('#favorite').click(function() {
-		if ($('#email').val() === '') {
+		if ($('#email').val() === '') {	// 로그인 되어있지 않으면 로그인 화면으로 이동
 			location.href = "/EatsOrder/member/loginForm.do";
-		} else {
+		} else {	// 로그인 되어있으면 찜하기 및 찜하기 취소
 			var email = $('#email').val();
 			var rst_id = $('#rst_id').val();
 			

@@ -190,10 +190,15 @@ public class OrderDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
+			connection.setAutoCommit(false);
 			pStatement = connection.prepareStatement("delete from cart where orderer=?");
 			pStatement.setString(1, orderer);
 
 			result = pStatement.executeUpdate();
+			
+			if (result > 0) {
+				connection.commit();
+			}
 
 			System.out.println("장바구니 비우기 결과 : " + result);
 		} catch (Exception e) {
@@ -206,24 +211,33 @@ public class OrderDAO {
 	}
 
 	// 주문하기
-	public int insertOrder(String orderer, String destination, String coupon_id, int used_point, String payment_method,
+	public String insertOrder(String orderer, String destination, String coupon_id, int used_point, String payment_method,
 			String order_request, int payment_status) {
-		// result의 추가된 옵션 묶음의 개수
+		// 주문 성공 시 주문번호를 반환, 실패하면 null을 반환
 		int result = -1;
+		String order_number = null;
 
 		try {
 			connection = connectionMgr.getConnection();
 			connection.setAutoCommit(false);
-			pStatement = connection.prepareStatement("insert into order_history values("
-					+ "(select to_char(systimestamp, 'yyyy-mmdd-Hh24missff3') from dual), ?, ?, ?, ?, ?, systimestamp, ?, ?, ?)");
-			pStatement.setString(1, orderer);
-			pStatement.setString(2, destination);
-			pStatement.setString(3, coupon_id);
-			pStatement.setInt(4, used_point);
-			pStatement.setString(5, payment_method);
-			pStatement.setString(6, order_request);
-			pStatement.setInt(7, payment_status);
-			pStatement.setString(8, null);
+			pStatement = connection.prepareStatement("select to_char(systimestamp, 'yyyy-mmdd-Hh24missff3') from dual");
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				order_number = resultSet.getString(1);
+			}
+
+			pStatement = connection
+					.prepareStatement("insert into order_history values(?, ?, ?, ?, ?, ?, systimestamp, ?, ?, ?)");
+			pStatement.setString(1, order_number);
+			pStatement.setString(2, orderer);
+			pStatement.setString(3, destination);
+			pStatement.setString(4, coupon_id);
+			pStatement.setInt(5, used_point);
+			pStatement.setString(6, payment_method);
+			pStatement.setString(7, order_request);
+			pStatement.setInt(8, payment_status);
+			pStatement.setString(9, null);
 
 			result = pStatement.executeUpdate();
 
@@ -238,19 +252,28 @@ public class OrderDAO {
 			if (result > 0) {
 				// 장바구니에서 정보를 얻어와서 주문 상세정보에 추가
 				result = 0;
-				pStatement = connection.prepareStatement("insert into order_detail "
-						+ "select (select to_char(systimestamp, 'yyyy-mmdd-Hh24missff3') from dual), menu_id, bundle_id, quantity "
-						+ "from cart where orderer=?");
-				pStatement.setString(1, orderer);
+				pStatement = connection.prepareStatement(
+						"insert into order_detail select ?, menu_id, bundle_id, quantity from cart where orderer=?");
+				pStatement.setString(1, order_number);
+				pStatement.setString(2, orderer);
 				result = pStatement.executeUpdate();
 
 				if (result > 0) {
 					// 주문 메뉴 추가에 성공하면 옵션 묶음을 추가
 					result = 0;
-					pStatement = connection.prepareStatement("insert into ordered_option "
-							+ "select * from cart c, selected option s where orderer=? and c.bundle_id=s.bundle_id");
+					pStatement = connection.prepareStatement(
+							"select s.* from cart c, selected_option s where orderer=? and c.bundle_id=s.bundle_id");
 					pStatement.setString(1, orderer);
-					result = pStatement.executeUpdate();
+					resultSet = pStatement.executeQuery();
+
+					if (resultSet.next()) {
+						pStatement = connection.prepareStatement("insert into ordered_option "
+								+ "select s.* from cart c, selected_option s where orderer=? and c.bundle_id=s.bundle_id");
+						pStatement.setString(1, orderer);
+						result = pStatement.executeUpdate();
+					} else {
+						result = 1;
+					}
 				}
 			}
 
@@ -258,14 +281,14 @@ public class OrderDAO {
 				connection.commit();
 			}
 
-			System.out.println("주문 결과 : " + result);
+			System.out.println("주문 번호 : " + order_number);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
-		return result;
+		return order_number;
 	}
 
 	// 주문취소
@@ -300,49 +323,48 @@ public class OrderDAO {
 		return result;
 	}
 
-	// 주문 상세 조회
-	public OrderDetailInfoDTO getOrderDetailInfo(String order_number) {
-		// 주문상세정보, 주문메뉴 및 옵션 리스트, 총액을 저장한 객체를 반환
-		OrderDetailInfoDTO result = null;
-		ArrayList<String> menuList = new ArrayList<>();
-		ArrayList<String> optionList = new ArrayList<>();
-		ArrayList<Integer> quantityList = new ArrayList<>();
+	// 주문한 메뉴 목록 조회
+	public ArrayList<OrderDetailDTO> getOrderedItemList(String order_number) {
+		// 주문한 메뉴들의 정보가 담긴 리스트 반환
+		ArrayList<OrderDetailDTO> resultList = new ArrayList<>();
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select oh.*, discount_amount "
-					+ "from order_history oh left join valid_coupon vc on oh.coupon_id=vc.coupon_id where order_number=?");
+			pStatement = connection.prepareStatement("select * from order_detail where order_number=?");
 			pStatement.setString(1, order_number);
+			resultSet = pStatement.executeQuery();
 
+			while (resultSet.next()) {
+				resultList.add(new OrderDetailDTO(resultSet.getString("order_number"), resultSet.getInt("menu_id"),
+						resultSet.getInt("bundle_id"), resultSet.getInt("quantity")));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return resultList;
+	}
+
+	// 주문내역 조회
+	public OrderHistoryDTO getOrderHistory(String order_number) {
+		OrderHistoryDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from order_history where order_number=?");
+			pStatement.setString(1, order_number);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				result = new OrderDetailInfoDTO();
-				result.setOrderHistory(new OrderHistoryDTO(resultSet.getString("order_number"),
-						resultSet.getString("orderer"), resultSet.getString("destination"), resultSet.getString("coupon_id"),
-						resultSet.getInt("used_point"), resultSet.getString("payment_method"),
-						resultSet.getTimestamp("pay_date"), resultSet.getString("order_request"),
-						resultSet.getInt("payment_status"), resultSet.getString("reason_cancellation")));
-				result.setUsed_point(resultSet.getInt("used_point"));
-				result.setDiscount_amount(resultSet.getInt("discount_amount"));
-
-				pStatement = connection
-						.prepareStatement("select menu_name, m.price as mp, option_name, oi.price op, quantity "
-								+ "from order_detail od join menu m on od.menu_id=m.menu_id "
-								+ "left join option_info oi on oi.option_id=od.option_id where od.order_number=?");
-				pStatement.setString(1, order_number);
-				resultSet = pStatement.executeQuery();
-
-				while (resultSet.next()) {
-					menuList.add(resultSet.getString("menu_name"));
-					optionList.add(resultSet.getString("option_name"));
-					quantityList.add(resultSet.getInt("quantity"));
-					result.setMenuList(menuList);
-					result.setOptionList(optionList);
-					result.setQuantityList(quantityList);
-					result.setPrice((resultSet.getInt("mp") + resultSet.getInt("op")) * resultSet.getInt("quantity"));
-				}
+				result = new OrderHistoryDTO(resultSet.getString("order_number"), resultSet.getString("orderer"),
+						resultSet.getString("destination"), resultSet.getString("coupon_id"), resultSet.getInt("used_point"),
+						resultSet.getString("payment_method"), resultSet.getTimestamp("pay_date"),
+						resultSet.getString("order_request"), resultSet.getInt("payment_status"),
+						resultSet.getString("reason_cancellation"));
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -352,9 +374,9 @@ public class OrderDAO {
 		return result;
 	}
 
-	// 주문내역 조회
+	// 주문내역 목록 조회
 	public ArrayList<OrderBasicInfoDTO> getOrderList(String orderer, int start, int end) {
-		// 주문번호, 매장명, 매장로고, 메뉴이름 1개, 그 외에 주문한 메뉴 종류 수, 결제일자를 저장한 객체 리스를 반환
+		// 주문번호, 매장명, 매장로고, 메뉴이름 1개, 그 외에 주문한 메뉴 종류 수, 결제일자를 저장한 객체 리스트를 반환
 		ArrayList<OrderBasicInfoDTO> resultList = new ArrayList<>();
 		String order_number = "";
 		ResultSet resultSet2 = null;
@@ -422,7 +444,7 @@ public class OrderDAO {
 		return result;
 	}
 
-	// 주문한 메뉴 이름 목록 조회
+	// 리뷰 번호로 주문한 메뉴 이름 목록 조회
 	public ArrayList<String> getOrderedItems(int review_number) {
 		ArrayList<String> resultList = new ArrayList<>();
 
@@ -446,6 +468,31 @@ public class OrderDAO {
 		return resultList;
 	}
 
+	// 주문 번호로 주문한 메뉴 이름 목록 조회
+	public ArrayList<String> getOrderedItems(String order_number) {
+		ArrayList<String> resultList = new ArrayList<>();
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection
+					.prepareStatement("select distinct menu_name " + "from menu m, order_detail od, order_history oh "
+							+ "where oh.order_number=? and oh.order_number=od.order_number and od.menu_id=m.menu_id");
+			pStatement.setString(1, order_number);
+			resultSet = pStatement.executeQuery();
+
+			while (resultSet.next()) {
+				resultList.add(resultSet.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return resultList;
+	}
+
+	// 선택한 옵션 조회
 	public ArrayList<OptionInfoDTO> getSelectedOptions(int bundle_id) {
 		ArrayList<OptionInfoDTO> resultList = new ArrayList<>();
 
@@ -453,6 +500,30 @@ public class OrderDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
 					"select o.* from selected_option s, option_info o where bundle_id=? and s.option_id=o.option_id");
+			pStatement.setInt(1, bundle_id);
+			resultSet = pStatement.executeQuery();
+
+			while (resultSet.next()) {
+				resultList.add(new OptionInfoDTO(resultSet.getInt("option_id"), resultSet.getInt("group_id"),
+						resultSet.getString("option_name"), resultSet.getInt("price"), resultSet.getInt("enable")));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return resultList;
+	}
+
+	// 주문한 옵션 조회
+	public ArrayList<OptionInfoDTO> getOrderedOptions(int bundle_id) {
+		ArrayList<OptionInfoDTO> resultList = new ArrayList<>();
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement(
+					"select o.* from ordered_option s, option_info o where bundle_id=? and s.option_id=o.option_id");
 			pStatement.setInt(1, bundle_id);
 			resultSet = pStatement.executeQuery();
 
