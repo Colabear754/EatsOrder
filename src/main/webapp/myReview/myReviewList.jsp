@@ -144,20 +144,22 @@
 	                        <div class="review_box2">
 	                        <input type="hidden" class="email" value="${email}">
 	                        <input type="hidden" class="review_number" value="${reviewData.review.review_number}">
+	                        <input type="hidden" class="star_value" value="${reviewData.review.rating}">
 	                            <a href="#">
 	                                <h3>가게명 ${reviewData.restaurant.rst_name}</h3>
 	                                <span>></span>
 	                            </a>
 	                            <div class="star_box2">
 	                                <p class="star_off">
-	                                	<c:forEach var="star" begin="1" end="${reviewData.review.rating}">
-		                                    <i class="fa-solid fa-star"></i>
-	 									</c:forEach>
+	                                	<c:forEach var="i" begin="1" end="${reviewData.review.rating }">
+										<i class="fa-solid fa-star" style="color:#FECB10"></i>
+										</c:forEach>
+										<c:forEach var="i" begin="1" end="${5-reviewData.review.rating }">
+										<i class="fa-solid fa-star"></i>
+										</c:forEach>
 	                                </p>
-	                                <span class="star_value">${reviewData.review.rating}</span>
 	                            </div>
 	                            <div class="del_btn">
-	                                <span>|</span>
 	                                <button class="delete_btn">삭제</button>
 	                            </div>
 	                            <div class="review_img2">
