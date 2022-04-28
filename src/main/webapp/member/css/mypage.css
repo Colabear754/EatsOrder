@@ -19,6 +19,11 @@
     position: relative;
     box-sizing: border-box;
 }
+/* ----------------------------------------------------------- */
+/* 마이페이지 제목 마진 */
+.mypage_head {
+    margin-top: 50px;
+}
 
 /* ----------------------------------------------------------- */
 /* 프로필 박스 전체 */
@@ -115,7 +120,7 @@
 .quick_menu {
     border: 1px solid #C4C4C4;
     width: 240px;
-    margin-top: 25px;
+    margin: 25px 0 150px 0;
 }
 
 .quick_menu ul {

@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <h2 class="mypage_head">마이페이지</h2>
     <div class="mypage_wrap">
         <div class="profile_box">
             <div class="membership_lv">

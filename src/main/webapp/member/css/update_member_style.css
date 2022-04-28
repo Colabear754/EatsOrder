@@ -2,6 +2,10 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 회원정보수정
+
+수정자 : 김나연
+수정일 : 2022/04/28
+수정내용 : input text, input placeholder 글씨크기 조절
 */
 
 /* 전체 브라우저 박스 */
@@ -49,6 +53,12 @@ main {
     width: 250px;
     height: 30px;
     box-sizing: border-box;
+    font-size: 15px;
+}
+
+/* 인풋박스 placeholder 크기 */
+.all_box input[type=text]::placeholder, [type=password]::placeholder {
+    font-size: 13px;
 }
 
 /* 인풋박스 버튼 디자인 */
