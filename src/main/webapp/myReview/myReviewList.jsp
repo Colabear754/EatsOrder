@@ -22,7 +22,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
     <!-- css연결 : main_style -->
-    <link rel="stylesheet" href="./css/4_mypage_review.css?ver=1">
+    <link rel="stylesheet" href="./css/mypage_review.css?ver=1">
     <!-- js연결 : jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- js연결 : main_script -->
@@ -115,11 +115,13 @@
                                     <td class="shop_img">
                                         <img src="../img/review_food.jpg" alt="리뷰 예시 사진">
                                     </td>
-                                    <td class="text_length_box">
-                                        <span class="text_count">0자</span>
-                                        <span class="text_total">/180자</span>
-                                        <textarea class="review_write" name="content" cols="35"
-                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
+                                    <td class="text_box">
+                                    	<div class="text_all">
+	                                        <span class="text_count" id="text_count1">0자</span>
+	                                        <span class="text_total">/180자</span>
+	                                        <textarea class="review_write" id="review_write1" name="content" cols="35"
+	                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
+                                        </div>
                                     </td>
                                 </tr>
                                 <!-- 작성버튼 -->
@@ -144,7 +146,6 @@
 	                        <div class="review_box2">
 	                        <input type="hidden" class="email" value="${email}">
 	                        <input type="hidden" class="review_number" value="${reviewData.review.review_number}">
-	                        <input type="hidden" class="star_value" value="${reviewData.review.rating}">
 	                            <a href="#">
 	                                <h3>가게명 ${reviewData.restaurant.rst_name}</h3>
 	                                <span>></span>
@@ -160,7 +161,7 @@
 	                                </p>
 	                            </div>
 	                            <div class="del_btn">
-	                                <button class="delete_btn">삭제</button>
+	                                <a class="delete_btn">삭제</a>
 	                            </div>
 	                            <div class="review_img2">
 	                                <img src="../reviewPhoto/${reviewData.review.photo5}" alt="리뷰사진">
