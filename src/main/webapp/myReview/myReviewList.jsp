@@ -70,11 +70,11 @@
                                 <tr>
                                     <td class="star_box">
                                         <p id="star">
-                                            <button type="button" href="#" value="1" name="rating1"><i class="fa-solid fa-star"></i></button>
-                                            <button type="button" href="#" value="2" name="rating2"><i class="fa-solid fa-star"></i></button>
-                                            <button type="button" href="#" value="3" name="rating3"><i class="fa-solid fa-star"></i></button>
-                                            <button type="button" href="#" value="4" name="rating4"><i class="fa-solid fa-star"></i></button>
-                                            <button type="button" href="#" value="5" name="rating5"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" value="1" name="rating1"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" value="2" name="rating2"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" value="3" name="rating3"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" value="4" name="rating4"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" value="5" name="rating5"><i class="fa-solid fa-star"></i></button>
                                         <p>
                                     </td>
                                     <td></td>
@@ -117,9 +117,9 @@
                                     </td>
                                     <td class="text_box">
                                     	<div class="text_all">
-	                                        <span class="text_count" id="text_count1">0자</span>
+	                                        <span class="text_count">0자</span>
 	                                        <span class="text_total">/180자</span>
-	                                        <textarea class="review_write" id="review_write1" name="content" cols="35"
+	                                        <textarea class="review_write" name="content" cols="35"
 	                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
                                         </div>
                                     </td>
@@ -147,7 +147,7 @@
 	                        <input type="hidden" class="email" value="${email}">
 	                        <input type="hidden" class="review_number" value="${reviewData.review.review_number}">
 	                            <a href="#">
-	                                <h3>가게명 ${reviewData.restaurant.rst_name}</h3>
+	                                <h3>${reviewData.restaurant.rst_name}</h3>
 	                                <span>></span>
 	                            </a>
 	                            <div class="star_box2">
@@ -167,7 +167,7 @@
 	                                <img src="../reviewPhoto/${reviewData.review.photo5}" alt="리뷰사진">
 	                            </div>
 	                            <div class="review_text2">
-	                                <div>내용 ${reviewData.review.content}</div>
+	                                <div>${reviewData.review.content}</div>
 	                            </div>
 	                        </div>
                         </c:forEach>
