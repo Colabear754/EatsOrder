@@ -39,10 +39,10 @@
        .restaurant-title .nav-item {  border-right:  1px solid grey; }
        .restaurant-title .nav-item:last-child { border-right: 0; }
        .nav-pills{ border-radius:  0;}
-       .orderlist {border: 1px solid grey; border-radius: 5%; padding: 0;}
+       .orderlist {border: 1px solid grey; padding: 0;}
        .orderlist li {border-bottom: 1px solid grey;}
        .orderlist li:last-child {border-bottom: 0;}
-       .aorder { height: 30px; text-align: center; background-color: gray; color:white; border: 1px solid grey; border-radius: 5%;}
+       .aorder { height: 30px; text-align: center; background-color: gray; color:white; border: 1px solid grey; }
        .aorder:last-child {border-bottom: 0; border-left: 0; border-bottom: 0; border-right: 0; }
        .border { height: 80px; font-size: 13px; }
        .corder { height: 30px; font-size: 13px;  text-align: left; justify-content: center;}
