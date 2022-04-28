@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <div class="row" >
-			<div class="col-sm-8">
+			<div class="co col-sm-12">
 				<div class="info-d" style="border: 1px solid grey; width:100%">
 					<div id="info" class="info-list">
 						<div class="info-item">

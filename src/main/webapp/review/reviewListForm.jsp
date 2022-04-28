@@ -13,7 +13,7 @@
 	<input type="hidden" id="review_rst" value="${rst_id}">
 	<div class="container">
 		<div class="row" style="padding: 0; margin: 0;">
-			<div class="col-sm-12">
+			<div class="co col-sm-12">
 				<div class="row" style="border: 1px solid gray; padding: 15px;">
 					<div class="restaurant-star-point col-sm-6" style="border-right: 1px solid gray; text-align: center;">
 						<h3>${rating}</h3>
@@ -46,7 +46,7 @@
 				</div>
 				<div class="row" style="display: block; border: 1px solid gray">
 					<input type="hidden" id="pageNum" value="1">
-					<div class="list-group-item btn-more" style="display: block; padding: 10px; text-align: center; color: #FC6E4D; border-top: 1px solid gray;">
+					<div class="list-group-item btn-more" style="display: block; padding: 0; text-align: center; color: #FC6E4D; border-top: 1px solid gray;">
 						<a ng-cilck="get_next_reviews()"> 
 							<span> <input type="button" class="btn btn-warning" id="more-review-btn" value="더보기"> <i class="arr-down"></i> </span>
 						</a>
