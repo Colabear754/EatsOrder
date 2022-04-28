@@ -1,17 +1,13 @@
 /*작성 전 리뷰 기능*/
-//1. textarea 글자수세기 : form 1
+//1. textarea 글자수세기 : review_form
 $(document).ready(function () {
   $(".review_write").keyup(function (e) {
-    let content = $(this).val();
-    // 글자수 세기
-    if (content.length == 0 || content == "") {
-      $(".text_count").text("0자");
-    } else {
-      $(".text_count").text(content.length + "자");
-    }
-
+    let content = $(this).val();     
+    //글자 입력하면 글자수 세서 넣어줌
+    $(this).siblings('.text_count').text(content.length + "자");
+    
     // 글자수 제한
-    if (content.length > 180) {
+    if (content.length =180) {
       // 180자 부터는 타이핑 되지 않도록
       $(this).val($(this).val().substring(0, 180));
       // 180자 넘으면 알림창 뜨도록
@@ -33,9 +29,9 @@ $(document).ready(function () {
     console.log($(this).attr("value"));
   });
 });
+
 //3. (우림)별점값 전달하기
 //name=rating1을 클릭하면. rating1의 value값을 input hidden의 value에 넣어서 폼으로 전송
-
 $(document).ready(function(){
 	$("[name='rating1']").click(function(){
 		var rating=$(this).attr('value');
