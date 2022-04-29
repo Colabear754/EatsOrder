@@ -38,6 +38,7 @@
     <main>
     <jsp:include page="./myPage.jsp" />
     <c:set var="reviewCount" value="${fn:length(reviewData)}" />
+    <c:set var="orderCount" value="${fn:length(orderList)}" />
         <div class="content_box">
             <!-- 작성 전 리뷰 컨테이너 -->
             <div class="review_wrapper">
@@ -45,10 +46,12 @@
                 <h2>작성 전 리뷰</h2>
                 <div class="grid_box">
                     <!-- 리뷰 form 1 -->
-
+				<c:if test="${orderCount == 0}">
+					<h3>작성 가능한 리뷰가 없습니다.</h3>
+				</c:if>
+				<c:if test="${orderCount > 0 }">
                     <c:forEach var="orderList" items="${orderList}">
                     <form id="review_form" name="review_form" method="post" action="insertMyReview.do" enctype="multipart/form-data"> 
-      				<input type="hidden"  name="email" value="${email}">
       				<input type="hidden" name="pageNum" value="${pageNum}">
                     <input type="hidden"  name="order_number" value="${orderList.order_number}">
                     <input type="hidden" id="ratings" name="rating" value="${rating}">
@@ -111,7 +114,7 @@
                                 <!-- 이미지, 글자수, 리뷰 -->
                                 <tr>
                                     <td class="shop_img">
-                                        <img src="../img/review_food.jpg" alt="리뷰 예시 사진">
+                                        <img src="./img/review_food.jpg" alt="리뷰 예시 사진">
                                     </td>
                                     <td class="text_box">
                                     	<div class="text_all">
@@ -133,6 +136,7 @@
                         </table>
                      </form>
                     </c:forEach>
+                 </c:if>
                 </div>
                 <!-- 작성완료 리뷰 컨테이너-->
                 <div class="review_wrapper">
