@@ -33,13 +33,9 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../component/main_header_logAfter.html" />
     <main>
-    	<c:if test="${account == null}">
-			<jsp:include page="../component/main_header_logBefore.html" />
-		</c:if>
-		<c:if test="${account != null}">
-			<jsp:include page="../component/main_header_logAfter.html" />
-		</c:if>
+    <jsp:include page="./myPage.jsp" />
         <div class="content_box">
             <!-- 작성 전 리뷰 컨테이너 -->
             <div class="review_wrapper">
