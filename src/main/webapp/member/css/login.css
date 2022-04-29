@@ -2,6 +2,9 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 로그인
+
+동적 웹페이지 동작 관련 수정 : 정건영
+수정일 : 2022/04/08
 */
 
 /* 전체 적용 */
@@ -127,5 +130,12 @@ main {
 .login_btn_box a:hover {
     background-color: #C4C4C4;
     border: none;
+}
+
+#login_error {
+	display: none;
+	font-weight: bold;
+	color: red;
+	margin: 10px 0;
 }
 
