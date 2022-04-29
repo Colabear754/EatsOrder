@@ -13,7 +13,7 @@ public class DeleteMyReviewAction implements CommandAction {
 		// TODO Auto-generated method stub
 
 		int review_number = Integer.parseInt(request.getParameter("review_number"));
-		String email = request.getParameter("email");
+		String email = (String) request.getSession().getAttribute("account");
 		
 		ReviewDAO reviewProcess = new ReviewDAO();
 		

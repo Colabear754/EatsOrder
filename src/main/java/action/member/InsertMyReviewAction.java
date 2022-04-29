@@ -40,7 +40,7 @@ public class InsertMyReviewAction implements CommandAction{
 				saveFiles.get(i);
 			}
 			
-			String email = multi.getParameter("email");
+			String email = (String) request.getSession().getAttribute("account");
 			String order_number = multi.getParameter("order_number");
 			String content = multi.getParameter("content");
 			int rating = Integer.parseInt(multi.getParameter("rating"));
