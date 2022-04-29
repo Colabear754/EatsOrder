@@ -35,6 +35,10 @@
     column-gap: 1%;
     row-gap: 12px;
 }
+.header_top a {
+    text-decoration: none;
+    color: #FF9F00;
+}
 
 /* 헤더버튼 하이퍼링크 */
 .header_top a, .header_top label {

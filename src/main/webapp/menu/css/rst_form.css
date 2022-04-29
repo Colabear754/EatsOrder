@@ -50,13 +50,12 @@
        .btn-group-vertical {width: 100%; border-bottom: 1px solid grey;;}
        .btn-group-vertical:last-child {border-bottom: 0;}
        .dropdown-menu {position: relative; width: 100%; padding-top: 0; padding-bottom: 0;}
-       .img-responsive {border-right: 1px soild sgrey;;}
        .btn-group-vertical button {text-align: left;}
        .dropdown-menu > li {border-bottom: 1px solid gray;}
        .dropdown-menu li {margin-top: 0; margin-bottom: 0;}
        .dropdown-menu  li:last-child {border-bottom: 0;} 
        .container-fluid {border-bottom: 1px solid grey;; padding-bottom: 15px;}
-       .img-responsive {border-right: 1px solid gray; height: 80px;}
+       .img-responsive {border-right: 1px solid gray; padding: 0;}
        
        /*
        .restaurant-title .nav-item  { width: 33.3333333333%; text-align: center; border: 1px solid gray; border-left: 0; }

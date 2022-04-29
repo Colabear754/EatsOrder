@@ -1,7 +1,7 @@
-/* 모달창 css 2022.04.04 김시웅 */
+/* 모달창 css 2022.04.04 김시웅*/
 * {list-style: none; font-family: 'Nanum Gothic', sans-serif;}
 .modal-header {
-	padding-left: 180px;
+ padding-left: 42%;
 }
 .detail-image {
 	width: 100%;
@@ -18,13 +18,17 @@
 	height: 30px; 
 	margin-top: 15px;
 }
+.op {
+	margin-top: 10px;
+}
 .price {
 	float: right;
 }
 .quantity-control {
 	border-top: 1px solid gray; 
 	height: 30px; 
-	margin-top: 15px;
+	margin-top: 7px;
+    padding-top: 7px;
 }
 .modal-footer {
 	margin:0px; 

@@ -15,7 +15,7 @@
         content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <link href="./css/rst_form.css" rel="stylesheet" type="text/css">
+    <link href="./css/rst_form.css?1" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
@@ -72,9 +72,9 @@
     <div class="main">
         <div class="row" style="border:none">
             <div class="col-sm-8">
-                <div class="row" style=" border-radius: 6px; border: 1px solid gray;">
+                <div class="row" style="border: 1px solid gray;">
                     <img class="img-responsive col-sm-3" src="./img/${restaurant.rst_logo}"
-                        style="border-right: 1px dotted gray; height: 110px;">
+                        style="border-right: 1px dotted gray;">
                     <ul class="list-unstyled col-sm-9">
                         <li>
 	                        ${restaurant.rst_name}

@@ -34,7 +34,7 @@
 
        
        * {list-style: none; font-family: 'Nanum Gothic', sans-serif;}
-       .restaurant-title { border: 1px solid grey; margin-top: 15px; border-radius: 6px;}
+       .restaurant-title { border: 1px solid grey; margin-top: 15px;}
        .restaurant-title .nav { width: 100%; border-bottom: 1px solid grey;}
        .restaurant-title .nav-item {  border-right:  1px solid grey; }
        .restaurant-title .nav-item:last-child { border-right: 0; }
@@ -51,13 +51,12 @@
        .btn-group-vertical {width: 100%; border-bottom: 1px solid grey;;}
        .btn-group-vertical:last-child {border-bottom: 0;}
        .dropdown-menu {position: relative; width: 100%; padding-top: 0; padding-bottom: 0;}
-       .img-responsive {border-right: 1px soild sgrey;;}
        .btn-group-vertical button {text-align: left;}
        .dropdown-menu > li {border-bottom: 1px solid gray;}
        .dropdown-menu li {margin-top: 0; margin-bottom: 0;}
        .dropdown-menu  li:last-child {border-bottom: 0;} 
        .container-fluid {border-bottom: 1px solid grey;; padding-bottom: 15px;}
-       .img-responsive {border-right: 1px solid gray; height: 80px;}
+       .img-responsive {border-right: 1px solid gray; padding: 0;}
        
        /*
        .restaurant-title .nav-item  { width: 33.3333333333%; text-align: center; border: 1px solid gray; border-left: 0; }
@@ -101,11 +100,16 @@
         border-style:none;
         font-size: 18px;
         font-weight: 400px;
-        background-image: url("marker.png");
+        background-image: url("../img/marker.png");
         background-size: 20px;
         background-repeat: no-repeat;
         background-position: 20px center;
         outline: none;
+    }
+    .fa {
+    text-decoration: none;
+    color: #FF9F00;
+    font-size: 16px;
     }
     .search_btn1{
         position: absolute;
@@ -124,7 +128,7 @@
     }
     .find_addr, i{
         color: white;
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 600;
         /*아이콘과 글자 사이 거리두기*/
         padding-left: 5px;
@@ -174,6 +178,7 @@
         color: #fff;
         cursor: default;
         background-color: #FC6E4D;
+        border-radius: 0;
     }
        .row{
            margin: 0;
@@ -236,8 +241,10 @@
        }
 
         .info-item-title, i {
-           color: #FC6E4D;
+           
            font-weight: bold;
+           font-synthesis: none;
+           color:#FC6E4D;
        }
        .info-item-title, .total, .review-id {
         	color: black;
