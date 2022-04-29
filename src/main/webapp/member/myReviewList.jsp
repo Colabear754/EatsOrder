@@ -23,7 +23,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
     <!-- css연결 : main_style -->
-    <link rel="stylesheet" href="./css/mypage_review_style.css?ver=1">
+    <link rel="stylesheet" href="./css/mypage_review_style.css">
     <!-- js연결 : jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- js연결 : main_script -->
@@ -62,7 +62,7 @@
                                 <tr class="shop_name">
                                     <td>
                                         <a href="/EatsOrder/restaurant/rst_form.do?rst_id=${orderList.rst_id}">
-                                            <h3 class="shop">가게명 ${orderList.rst_name}</h3>
+                                            <h3 class="shop">${orderList.rst_name}</h3>
                                             <span>></span>
                                         </a>
                                     </td>
