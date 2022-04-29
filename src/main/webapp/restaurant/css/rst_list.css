@@ -133,7 +133,7 @@ select{
     border-radius: 8px;
     padding-left: 50px;
     background-color: #F5F5F5 ;
-    background-image: url("order.png");
+    background-image: url("./img/order.png");
     background-size: 20px;
     background-repeat: no-repeat;
     background-position: 20px center;
