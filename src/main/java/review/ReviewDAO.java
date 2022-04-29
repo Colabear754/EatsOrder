@@ -578,7 +578,7 @@ public class ReviewDAO {
 					+ "where orderer=? and oh.order_number=od.order_number and od.menu_id=m.menu_id "
 					+ "and m.category_id=mc.category_id and mc.rst_id=rst.rst_id and r.order_number(+)=oh.order_number "
 					+ "and extract(day from systimestamp - pay_date)<7 and review_number is null "
-					+ "group by oh.order_number, rst_name, rst_logo, pay_date order by oh.order_number desc");
+					+ "group by oh.order_number, rst.rst_id, rst_name, rst_logo, pay_date order by oh.order_number desc");
 			pStatement.setString(1, orderer);
 			resultSet = pStatement.executeQuery();
 			
