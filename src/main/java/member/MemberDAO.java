@@ -57,8 +57,8 @@ public class MemberDAO {
 		// 이미 저장된 정보가 있으면 바로 로그인하고 없으면 새로운 레코드를 저장 후 로그인
 		// 저장된 정보가 있지만 비밀번호를 틀릴 경우엔 로그인 실패
 		boolean result = false;
-		
-		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -111,11 +111,11 @@ public class MemberDAO {
 			break;
 		case "phone":
 			sql = "select phone from member_info where phone=?";
-			
+
 			if (data.indexOf("-") < 0) {
 				data = data.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 			}
-			
+
 			break;
 		case "nickname":
 			sql = "select nickname from member_info where nickname=?";
@@ -146,8 +146,8 @@ public class MemberDAO {
 	public int insertMember(String email, String password, String phone, String nickname, int receive_marketing) {
 		// 1 : 가입 성공, 0 : 가입 실패
 		int result = 0;
-		
-		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -245,8 +245,8 @@ public class MemberDAO {
 			int receive_marketing) {
 		// result가 0보다 크면 회원수정 성공
 		int result = -1;
-		
-		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -282,7 +282,7 @@ public class MemberDAO {
 					connection.commit();
 				}
 			}
-			
+
 			System.out.println("회원정보 수정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -342,27 +342,27 @@ public class MemberDAO {
 
 		return result;
 	}
-	
+
 	// 닉네임만 조회
 	public String getNickname(String email) {
 		// 이메일에 해당하는 레코드가 없으면 null을 반환
 		String result = null;
-		
+
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select nickname from member_info where email=?");
 			pStatement.setString(1, email);
 			resultSet = pStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				result = resultSet.getString(1);
 			}
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
-		
+
 		return result;
 	}
 
@@ -370,8 +370,8 @@ public class MemberDAO {
 	public String findEmail(String phone) {
 		// 전화번호에 해당하는 email 반환. 해당 정보가 없으면 null 반환
 		String result = "";
-		
-		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -397,8 +397,8 @@ public class MemberDAO {
 	// 비밀번호 재설정을 위한 정보 화인
 	public boolean checkValidMember(String email, String phone) {
 		boolean result = false;
-		
-		if (phone.indexOf("-") < 0) {	// 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
+
+		if (phone.indexOf("-") < 0) { // 전화번호에 하이픈(-)이 없는 형식일 경우 하이픈을 넣음
 			phone = phone.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
 		}
 
@@ -440,6 +440,59 @@ public class MemberDAO {
 			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement);
+		}
+
+		return result;
+	}
+
+	// 포인트 적립
+	public int earnPoint(String email, int amount) {
+		int result = -1;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("update member_info set point=point+? where email=?");
+			pStatement.setInt(1, amount);
+			pStatement.setString(2, email);
+
+			result = pStatement.executeUpdate();
+
+			System.out.println("포인트 적립 결과 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement);
+		}
+
+		return result;
+	}
+
+	// 포인트 차감
+	public int deductPoint(String email, int amount) {
+		// 현재 포인트 보유량이 차감될 양보다 많아야 차감
+		int result = -1;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select point from member_info where email=?");
+			pStatement.setString(1, email);
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				if (resultSet.getInt(1) > amount) {
+					pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
+					pStatement.setInt(1, amount);
+					pStatement.setString(2, email);
+
+					result = pStatement.executeUpdate();
+				}
+			}
+
+			System.out.println("포인트 적립 결과 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
 		return result;

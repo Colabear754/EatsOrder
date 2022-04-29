@@ -241,13 +241,13 @@ public class OrderDAO {
 
 			result = pStatement.executeUpdate();
 
-			if (result > 0 && used_point > 0) {
-				// 주문정보 추가에 성공하고 사용 포인트가 있다면 포인트를 차감
-				pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
-				pStatement.setInt(1, used_point);
-				pStatement.setString(2, orderer);
-				result = pStatement.executeUpdate();
-			}
+//			if (result > 0 && used_point > 0) {
+//				// 주문정보 추가에 성공하고 사용 포인트가 있다면 포인트를 차감
+//				pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
+//				pStatement.setInt(1, used_point);
+//				pStatement.setString(2, orderer);
+//				result = pStatement.executeUpdate();
+//			}
 
 			if (result > 0) {
 				// 장바구니에서 정보를 얻어와서 주문 상세정보에 추가

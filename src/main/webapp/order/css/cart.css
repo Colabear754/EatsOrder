@@ -15,7 +15,6 @@
 }
 .orderlist {
     border: 1px solid grey; 
-    border-radius: 5%; 
     padding: 0;
     list-style:none;
 }
@@ -29,7 +28,6 @@
     height: 30px; text-align: center; 
     background-color: gray; 
     color:white; border: 1px solid grey; 
-    border-radius: 5%;
 }
 .aorder:last-child {
     border-bottom: 0; 
