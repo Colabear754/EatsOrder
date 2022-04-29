@@ -6,6 +6,10 @@
 모달 관련 수정 : 정건영
 수정일 : 2022/04/08
 수정내용 : 주소 검색창을 모달 형태로 띄우도록 수정
+
+alert 관련 수정 : 김나연
+수정일 : 2022/04/28
+수정내용 : alert을 sweetalert으로 수정
 */
 
 //주소, 음식점 공백 확인
@@ -13,9 +17,10 @@ $(document).ready(function(){
     $("form").submit(function(){
         //주소 공백 확인
         if($("#address").val() == ""){
-          alert("주소를 입력해주세요");
-          $("#address").focus();
-          return false;
+          swal({ icon: "info", title: "주소를 입력해주세요" }).then(function () {
+        $("#addr_search").focus();
+      });
+      return false;
         }
     });
 });
@@ -83,10 +88,13 @@ $(document).ready(function(){
 	var offset = $("header").offset(); //이동할 위치
 	$("main a").click(function(){
 		if($("#address").val() == ""){
-			alert("주소를 먼저 입력해주세요");
-			$("#address").focus();
-			$("html, body").animate({scrollTop: offset.top},100);
-        	return false;
+			swal({ icon: "info", title: "주소를 먼저 입력해주세요" }).then(
+        function () {
+          $("#addr_search").focus();
+          $("html, body").animate({ scrollTop: offset.top }, 100);
+        }
+      );
+      return false;
 		}
 	});
 });

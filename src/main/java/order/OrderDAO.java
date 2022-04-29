@@ -384,7 +384,7 @@ public class OrderDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
-					"select * from (select oh.order_number, rst_name, rst_logo, count(menu_name) as count, pay_date "
+					"select * from (select oh.order_number, rst.rst_id, rst_name, rst_logo, count(menu_name) as count, pay_date "
 							+ "from order_history oh, order_detail od, menu m, menu_category mc, restaurant rst "
 							+ "where orderer=? and oh.order_number=od.order_number and od.menu_id=m.menu_id "
 							+ "and m.category_id=mc.category_id and mc.rst_id=rst.rst_id "
@@ -403,7 +403,7 @@ public class OrderDAO {
 				resultSet2 = pStatement.executeQuery();
 
 				if (resultSet2.next()) {
-					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getString("rst_name"),
+					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getInt("rst_id"), resultSet.getString("rst_name"),
 							resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
 							resultSet.getTimestamp("pay_date")));
 				}

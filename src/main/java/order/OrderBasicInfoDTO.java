@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class OrderBasicInfoDTO {
 	private String order_number;
+	private int rst_id;
 	private String rst_name;
 	private String rst_logo;
 	private String menu_name;
@@ -14,9 +15,10 @@ public class OrderBasicInfoDTO {
 		super();
 	}
 
-	public OrderBasicInfoDTO(String order_number, String rst_name, String rst_logo, String menu_name, int count,
+	public OrderBasicInfoDTO(String order_number, int rst_id, String rst_name, String rst_logo, String menu_name, int count,
 			Timestamp pay_date) {
 		this.order_number = order_number;
+		this.rst_id = rst_id;
 		this.rst_name = rst_name;
 		this.rst_logo = rst_logo;
 		this.menu_name = menu_name;
@@ -30,6 +32,14 @@ public class OrderBasicInfoDTO {
 
 	public void setOrder_number(String order_number) {
 		this.order_number = order_number;
+	}
+
+	public int getRst_id() {
+		return rst_id;
+	}
+
+	public void setRst_id(int rst_id) {
+		this.rst_id = rst_id;
 	}
 
 	public String getRst_name() {

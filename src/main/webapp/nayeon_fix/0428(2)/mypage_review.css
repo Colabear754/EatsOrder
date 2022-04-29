@@ -5,7 +5,6 @@
 */
 
 /* 공통설정 ################################################### */
-
 /* 모든 a 스타일 */
 .content_box a {
     text-decoration: none;
@@ -14,10 +13,10 @@
 
 /* 전체 브라우저 박스 */
 main {
-    border: 1px solid red;
     position: relative;
     margin: 0 10%;
     box-sizing: border-box;
+    background-color: white;
 }
 
 
@@ -29,6 +28,7 @@ main {
     position: absolute;
     top: 0;
     right: 0;
+    /* border: 1px solid red; */
 }
 
 
@@ -55,14 +55,14 @@ main {
 }
 
 /* 수정,삭제 호버 */
-.del_btn a:first-child:hover, a:last-child:hover {
+.del_btn a:hover {
     color: #FC6E4D;
 }
 
 
 /* 그리드 : 작성 전 리뷰############################################ */
 .grid_box {
-    border: 1px solid rgb(0, 255, 136);
+    /* border: 1px solid rgb(0, 255, 136); */
     display: grid;
     height: 102%;
     grid-template-columns: repeat(2,auto);
@@ -73,20 +73,14 @@ main {
 
 }
 
-/* 리뷰페이지 대제목 */
-.review_wrapper h1 {
-    margin: 10px 0 0 0;
-}
-
 /* 작성 전 리뷰 대제목 */
 .review_wrapper h2 {
-    margin: 45px 0 20px 0;
+    margin: 33px 0 20px 0;
 }
 
 /* 테이블 전체설정----------------------------------------------- */
 /* 전체 테이블 폼 */
 .table_box {
-    width: fit-content;
     height: 490px;
     border: 1px solid #C4C4C4;
     border-radius: 10px;
@@ -112,25 +106,7 @@ main {
     font-weight: bold;
 }
 
-/* shop_name : 삭제  -------------------------------------------- */
-/* 삭제 버튼 */
-.shop_del > a {
-    display: block;
-    margin: 20px 20px 0 250px;
-    font-weight: bold;
-    width: fit-content;
-}
-
-.shop_del > a:hover {
-    color: #FC6E4D;
-}
-
 /* star_box : 별점  -------------------------------------------- */
-/* 리뷰 별점 전체 : 작성 전 리뷰 */
-.star_box {
-    margin: -27px 0 15px 20px;
-}
-
 /* 별점 주기 */
 #star button{
     text-decoration: none;
@@ -150,7 +126,7 @@ main {
 
 /* 별점 위치 */
 #star {
-    margin: 0 0 0 20px;
+    margin: 0 0 10px 20px;
 }
 
 
@@ -159,10 +135,6 @@ main {
 .table_box input[type=file] {
     margin: 1px 0 1px 20px;
     width: 200px;
-}
-
-#selector2, #selector5 {
-    margin-left: 10px;
 }
 
 /* shop_img : 리뷰 이미지  -------------------------------------------- */
@@ -223,7 +195,7 @@ main {
 
 /* 그리드 : 작성 후 리뷰############################################ */
 .grid_box2 {
-    border: 1px solid rgb(0, 255, 136);
+    /* border: 1px solid rgb(0, 255, 136); */
     display: grid;
     height: 67%;
     grid-template-columns: repeat(2,auto);
@@ -236,7 +208,6 @@ main {
 /* review_box2 : 작성 후 리뷰 ------------------------------------------- */
 /* 리뷰 박스 */
 .review_box2 {
-    width: 528px;
     height: 310px;
     border: 1px solid #C4C4C4;
     border-radius: 10px;
@@ -246,7 +217,7 @@ main {
 
 /* 가게명, 리뷰 이미지 */
 .review_box2 h3, .review_img {
-    margin-left: 20px;
+    margin: 15px 0 0 20px;
 }
 
 /* 가게명 세부설정 */
@@ -301,7 +272,7 @@ main {
 /* star_box2 : 작성 후 리뷰 ------------------------------------------ */
 /* 리뷰 별점 전체 */
 .star_box2 {
-    margin: -27px 0 15px 20px;
+    margin: 10px 0 15px 20px;
 }
 
 /* 별 기본 회색 */
@@ -310,10 +281,11 @@ main {
     color: #939393;
    }
 
-/* 별 점수값 */
-.star_value {
-    display: none;
+/* ------------------------------------------------------------------ */
+/* 퀵메뉴 footer 사이 거리 조절 */
+#quick_menu {
+    border: 1px solid #C4C4C4;
+    width: 240px;
+    margin: 25px 0 1400px 0;
 }
-
-
 

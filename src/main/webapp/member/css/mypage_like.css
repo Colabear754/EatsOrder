@@ -39,7 +39,7 @@ main {
 
 /* 주문내역 전체 박스 */
 .like_wrapper {
-    height: 1000px;
+    height: 700px;
 }
 
 /* ----------------------------------------------------------- */
@@ -60,13 +60,12 @@ main {
 /* 그리드############################################ */
 .grid_box2 {
     display: grid;
-    height: 45%;
+    height: 65%;
     grid-template-columns: repeat(2,auto);
     grid-template-rows: repeat(2,auto);
     margin: 0;
     column-gap: 3%;
     row-gap: 3%;
-    border: 1px solid red;
 }
 
 /* 주문내역 제목 */
@@ -92,6 +91,7 @@ main {
 /* 가게명 세부설정 */
 .like_box2 h3 {
     display: inline-block;
+    margin-top: 15px;
 }
 
 /* 가게명 클릭 > */
@@ -108,7 +108,7 @@ main {
     width: 120px;
     height: 120px;
     position: relative;
-    margin: -5px 0 0 20px;
+    margin: 15px 0 0 20px;
 }
 
 .like_img2 > img {

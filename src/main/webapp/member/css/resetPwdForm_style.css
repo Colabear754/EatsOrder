@@ -6,6 +6,10 @@
 수정자 : 정건영
 수정일 : 2022/04/12
 수정내용 : 동적 웹 페이지 작동을 위한 스타일 시트 추가
+
+수정자 : 김나연
+수정일 : 2022/04/28
+수정내용 : input text, input placeholder 글씨크기 조절
 */
 
 /* 전체 적용 */
@@ -76,7 +80,12 @@ main {
     margin: auto;
     margin-top: 10px;
     box-sizing: border-box;
-    
+    font-size: 15px;
+}
+
+/* 핸드폰번호 입력 박스 placeholder 크기 */
+.search_box input::placeholder {
+    font-size: 13px;
 }
 
 /* ------------------------------------------------------------------ */

@@ -49,7 +49,13 @@ main {
     width: 250px;
     height: 30px;
     box-sizing: border-box;
+    font-size: 15px;
 }
+
+/* 인풋박스 placeholder 크기 */
+.all_box input[type=text]::placeholder, [type=password]::placeholder {
+    font-size: 13px;
+  }
 
 /* 인풋박스 버튼 디자인 */
 .all_box a {

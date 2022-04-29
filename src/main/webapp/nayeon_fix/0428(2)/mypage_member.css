@@ -2,10 +2,6 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 회원정보수정
-
-수정자 : 김나연
-수정일 : 2022/04/28
-수정내용 : input text, input placeholder 글씨크기 조절
 */
 
 /* 전체 브라우저 박스 */
@@ -29,7 +25,7 @@ main {
 
 /* ----------------------------------------------- */
 .title_box h1 {
-    margin-left: 58px;
+    margin: 0 0 0 58px;
     width: fit-content;
 }
 
@@ -59,7 +55,7 @@ main {
 /* 인풋박스 placeholder 크기 */
 .all_box input[type=text]::placeholder, [type=password]::placeholder {
     font-size: 13px;
-}
+  }
 
 /* 인풋박스 버튼 디자인 */
 .all_box a {
@@ -74,10 +70,6 @@ main {
     border: 1px solid #FC6E4D;
     border-radius: 5px;
     line-height: 30px;
-}
-
-.all_box a:hover {
-	cursor: pointer;
 }
 
 /* 약관보기 버튼 */
@@ -139,7 +131,7 @@ main {
 }
 
 /* 탈퇴버튼 */
-.member_box a {
+.member_box > a {
     width: 120px;
     height: 40px;
     box-sizing: border-box;
@@ -192,21 +184,4 @@ main p {
 
 .form_helper td {
     padding: 0 0 20px 20px;
-}
-
-#form_helper3 td {
-    height: 20px;
-}
-
-/* 오류 메시지와 안내 메시지 */
-.error {
-	display: none;
-	color: red;
-	font-weight: bold;
-}
-
-.available {
-	display: none;
-	color: green;
-	font-weight: bold;
 }

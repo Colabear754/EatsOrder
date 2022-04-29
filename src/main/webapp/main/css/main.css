@@ -2,9 +2,6 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 메인페이지
-
-모달 관련 수정 : 정건영
-수정일 : 2022/04/08
 */
 
 /* 전체 적용 */
@@ -27,7 +24,6 @@ main .header_back a, h1, h3, button, p {
 .food_select_container a {
     font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
 }
 
 /* 스크롤 부드럽게 */
@@ -62,7 +58,7 @@ html { scroll-behavior: smooth; }
     color:white;
 }
 
-/* 검색바 컨테이너 */
+/* 검색바 컨테이터 */
 .search_box {
     background-color: white;
     box-sizing: border-box;
@@ -84,32 +80,6 @@ html { scroll-behavior: smooth; }
 /* 검색창 간격 */
 .search_box div {
     margin-top: 10px;
-}
-
-/* 주소 검색 모달 */
-#address-modal {
-	display: none;
-	position: absolute;
-	z-index: 20000;
-	width: 100%;
-	height: 200%;
-	background-color: #00000080;
-	backdrop-filter: blur(1px);
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding-left: 300px;
-	align-items: center;
-}
-
-#wrapper {
-	border: 5px solid #FECB10;
-	border-radius: 5px;
-	display: flex;
-	margin-bottom: 900px;
-	justify-content: center;
-	align-items: center;
 }
 
 /* 첫번째 검색바 폰트어썸 */
@@ -269,7 +239,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* 메뉴명 호버 후 */
-.food_item:hover > span {
+.food_item:hover > div {
     opacity: 0;
 }
 
@@ -288,6 +258,8 @@ html { scroll-behavior: smooth; }
     position: absolute;
     bottom:0;
     right: 0;
+    width: 332px;
+    height: 100%;
 }
 
 /* 1번째 이미지 - 전체보기 */
