@@ -43,6 +43,8 @@ $(function() {
 		
 		if (payment_method == '') {
 			swal("결제 수단을 선택하여 주세요.", "", "warning");
+		} else if (Number($('#member_point').val()) < Number(used_point)) {
+			swal("사용하려는 포인트가 사용 가능한 포인트보다 많습니다.", "", "warning");
 		} else {
 			// 폼 생성 및 속성 설정
 			var newForm = $('<form></form>');

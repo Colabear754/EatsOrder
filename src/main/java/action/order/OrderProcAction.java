@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
 import coupon.CouponDAO;
+import member.MemberDAO;
 import order.OrderDAO;
 import order.OrderHistoryDTO;
 
@@ -22,6 +23,7 @@ public class OrderProcAction implements CommandAction {
 		String payment_method = request.getParameter("payment_method");
 		String order_request = request.getParameter("order_request");
 		OrderDAO orderProcess = new OrderDAO();
+		MemberDAO memberProcess = new MemberDAO();
 		CouponDAO couponProcess = new CouponDAO();
 		int used_point;
 		
@@ -37,6 +39,7 @@ public class OrderProcAction implements CommandAction {
 		OrderHistoryDTO order = orderProcess.getOrderHistory(order_number);
 		
 		if (order != null) {
+			memberProcess.deductPoint(orderer, used_point);
 			orderProcess.cleanCart(orderer);
 			
 			if (coupon_id == null || coupon_id.isBlank()) {

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
     <!-- css연결 : main_style -->
-    <link rel="stylesheet" href="./css/mypage_review.css?ver=1">
+    <link rel="stylesheet" href="./css/mypage_review_style.css?ver=1">
     <!-- js연결 : jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- js연결 : main_script -->
@@ -36,6 +37,8 @@
 	<jsp:include page="../component/main_header_logAfter.html" />
     <main>
     <jsp:include page="./myPage.jsp" />
+    <c:set var="reviewCount" value="${fn:length(reviewData)}" />
+    <c:set var="orderCount" value="${fn:length(orderList)}" />
         <div class="content_box">
             <!-- 작성 전 리뷰 컨테이너 -->
             <div class="review_wrapper">
@@ -43,9 +46,12 @@
                 <h2>작성 전 리뷰</h2>
                 <div class="grid_box">
                     <!-- 리뷰 form 1 -->
+				<c:if test="${orderCount == 0}">
+					<h3>작성 가능한 리뷰가 없습니다.</h3>
+				</c:if>
+				<c:if test="${orderCount > 0 }">
                     <c:forEach var="orderList" items="${orderList}">
                     <form id="review_form" name="review_form" method="post" action="insertMyReview.do" enctype="multipart/form-data"> 
-      				<input type="hidden"  name="email" value="${email}">
       				<input type="hidden" name="pageNum" value="${pageNum}">
                     <input type="hidden"  name="order_number" value="${orderList.order_number}">
                     <input type="hidden" id="ratings" name="rating" value="${rating}">
@@ -108,7 +114,7 @@
                                 <!-- 이미지, 글자수, 리뷰 -->
                                 <tr>
                                     <td class="shop_img">
-                                        <img src="../img/review_food.jpg" alt="리뷰 예시 사진">
+                                        <img src="./img/review_food.jpg" alt="리뷰 예시 사진">
                                     </td>
                                     <td class="text_box">
                                     	<div class="text_all">
@@ -130,12 +136,17 @@
                         </table>
                      </form>
                     </c:forEach>
+                 </c:if>
                 </div>
                 <!-- 작성완료 리뷰 컨테이너-->
                 <div class="review_wrapper">
                     <hr>
                     <h2>작성완료 리뷰</h2>
                     <div class="grid_box2">
+                    <c:if test="${reviewCount == 0}">
+                		<h3>작성된 리뷰가 없습니다.</h3>
+	                </c:if>
+    	            <c:if test="${reviewCount > 0 }">
                         <!-- 작성완료 리뷰1 -->
                         <c:forEach var="reviewData" items="${reviewData}">
 	                        <div class="review_box2">
@@ -166,11 +177,13 @@
 	                            </div>
 	                        </div>
                         </c:forEach>
+                     </c:if>
                     </div>
                 </div>
             </div>
+        
         </div>
-        <jsp:include page="../component/footer.html" />
     </main>
+    <jsp:include page="../component/footer.html" />
 </body>
 </html>

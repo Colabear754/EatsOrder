@@ -18,9 +18,11 @@ public class OrderFormAction implements CommandAction {
 		MemberDAO memberProcess = new MemberDAO();
 		
 		String phone = memberProcess.getMember(orderer).getPhone();
+		int point = memberProcess.getMember(orderer).getPoint();
 		
 		request.setAttribute("address", address);
 		request.setAttribute("phone", phone);
+		request.setAttribute("point", point);
 		request.setAttribute("rst_id", rst_id);
 		
 		return "/order/orderForm.jsp";

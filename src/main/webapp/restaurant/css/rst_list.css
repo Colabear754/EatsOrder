@@ -1,15 +1,14 @@
 /* 작성자: 허우림. 업로드일자:2022.04.04. 페이지 이름:매장목록css */
+/* rst_list_header.css 랑 합쳐짐. 나중에 매장목록에서 헤더 분리하면 합친 부분 지워야함 */
 * {
     margin: 0;
 }
-
 .box{
     width: 100%;
     height: 300px;
     background-color: #FECB10;
     
 }
-
 .white_box{
     position: absolute;
     top: 100px;
@@ -20,7 +19,6 @@
     background-color:white;
     border-radius: 8px;
 }
-
 /*주소 입력 input 박스*/
 .search1{
     position: absolute;
@@ -43,7 +41,6 @@
     outline: none;
     cursor: pointer;
 }
-
 .search_btn1{
     position: absolute;
     top: 125px;
@@ -59,7 +56,6 @@
     line-height: 50px;
     
 }
-
 .find_addr, .search_btn1 > i{
     color: white;
     font-size: 18px;
@@ -68,7 +64,6 @@
     padding-left: 5px;
     padding-right: 5px;
 }
-
 .grid {
     display: grid;
     grid-template-columns: repeat(13,auto);
@@ -85,11 +80,9 @@
     column-gap: 1%;
     row-gap: 8px;
 }
-
 .grid div{
     margin-top: auto;
 }
-
 .category{
     /* border: 1px solid black; */
     font-size: 17px;
@@ -99,27 +92,18 @@
     /* margin-left:24px;
     margin-right:24px; */
 }
-
 .container a{
     text-decoration: none;
     color: black;
 }
-
-/*---------------*/
-
+/*----여기부터 rst_list.css-----------*/
 .search{
     position:relative;
     float:right;
     margin-right:10%;
-    /* text-align: center; */
     width:39.5%;
     height: 50px;
-    /* border: 1px solid black; */
-    
-   
-
 }
-
 .search2{
     position: relative;
     width: 50%;
@@ -130,9 +114,7 @@
     box-sizing: border-box;
     background-color: #F5F5F5 ;
     padding-left: 20px;
-
 }
-
 select{
     position: relative;
     width: 40%;
@@ -147,7 +129,6 @@ select{
     background-repeat: no-repeat;
     background-position: 20px center;
 }
-
 /*검색버튼 돋보기*/
 .search_btn2{
     position: relative;
@@ -161,21 +142,16 @@ select{
     float:right;
     border-radius: 8px;
 }
-
 .search_btn2 i{
 	color:white;
 }
-
 .search_btn2:hover {
 	cursor: pointer;
 }
-
 .title{
     margin-left:10%;
     font-weight: bold;
-
 }
-
 .outer-grid {
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -186,55 +162,47 @@ select{
     column-gap: 1%;
     row-gap: 8px;
 }
-
 .outer-grid>div>img{
     width:100%;
     height: 250px;
     object-fit:fill;
     border-radius: 10px;
 }
-
 .inner-grid>div>img{
     width:100%;
     height: 100px;
     object-fit:fill;
     border-radius: 10px;
 }
-
 .inner-grid{
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-gap:4%;
 
 }
-
 /*음식점 이름*/
 .rst_name{
     font-size: 15px;
     font-weight:500;
     padding-top:15px;
 }
-
 /*음식점 정보(별점,리뷰 등)*/
 .rst_info{
     font-size: 13px;
     font-family: 'Courier New', Courier, monospace;
     word-spacing: 1%;
 }
-
 /*별 그림*/
 .rst_info img{
     width: 15px;
     height: 15px;
 }
-
 #no-rst {
 	margin: 100px 0;
 	text-align: center;
 	font-weight: bold;
 	font-size: 18pt;
 }
-
 /* 주소 검색 모달 */
 #address-modal {
 	display: none;
@@ -251,7 +219,6 @@ select{
 	align-items: center;
 	justify-content: center;
 }
-
 #wrapper {
 	border: 5px solid #FECB10;
 	border-radius: 5px;

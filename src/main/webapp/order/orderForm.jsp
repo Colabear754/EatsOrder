@@ -63,6 +63,7 @@
 						쿠폰<input type="text1" id="coupon_id" placeholder="쿠폰 코드 입력"> <input type="button" value="적용" class="b1">
 					</li>
 					<li>
+						<div id="member_point">사용 가능 포인트 : ${point}</div>
 						포인트<input type="text2" id="point" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="포인트 입력"> <input type="button" value="적용" class="b1">
 					</li>
 				</ul>
