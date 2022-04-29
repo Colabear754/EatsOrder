@@ -2,6 +2,7 @@
 * {
     margin: 0;
 }
+
 .box{
     width: 100%;
     height: 300px;
@@ -19,6 +20,7 @@
     background-color:white;
     border-radius: 8px;
 }
+
 /*주소 입력 input 박스*/
 .search1{
     position: absolute;
@@ -41,6 +43,7 @@
     outline: none;
     cursor: pointer;
 }
+
 .search_btn1{
     position: absolute;
     top: 125px;
@@ -56,6 +59,7 @@
     line-height: 50px;
     
 }
+
 .find_addr, .search_btn1 > i{
     color: white;
     font-size: 18px;
@@ -64,6 +68,7 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+
 .grid {
     display: grid;
     grid-template-columns: repeat(13,auto);
@@ -80,9 +85,11 @@
     column-gap: 1%;
     row-gap: 8px;
 }
+
 .grid div{
     margin-top: auto;
 }
+
 .category{
     /* border: 1px solid black; */
     font-size: 17px;
@@ -92,6 +99,7 @@
     /* margin-left:24px;
     margin-right:24px; */
 }
+
 .container a{
     text-decoration: none;
     color: black;
@@ -124,6 +132,7 @@
     padding-left: 20px;
 
 }
+
 select{
     position: relative;
     width: 40%;
@@ -138,6 +147,7 @@ select{
     background-repeat: no-repeat;
     background-position: 20px center;
 }
+
 /*검색버튼 돋보기*/
 .search_btn2{
     position: relative;
@@ -151,14 +161,17 @@ select{
     float:right;
     border-radius: 8px;
 }
+
 .search_btn2:hover {
 	cursor: pointer;
 }
+
 .title{
     margin-left:10%;
     font-weight: bold;
 
 }
+
 .outer-grid {
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -168,19 +181,15 @@ select{
     margin-right: 10%;
     column-gap: 1%;
     row-gap: 8px;
-
-    
-
 }
-/* .outer-grid>div{
-    background-color: lightgreen;
-} */
+
 .outer-grid>div>img{
     width:100%;
     height: 250px;
     object-fit:fill;
     border-radius: 10px;
 }
+
 .inner-grid>div>img{
     width:100%;
     height: 100px;
@@ -192,7 +201,6 @@ select{
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-gap:4%;
-    /* border: 1px solid black; */
 
 }
 
