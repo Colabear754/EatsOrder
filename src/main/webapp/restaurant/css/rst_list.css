@@ -162,6 +162,10 @@ select{
     border-radius: 8px;
 }
 
+.search_btn2 i{
+	color:white;
+}
+
 .search_btn2:hover {
 	cursor: pointer;
 }
