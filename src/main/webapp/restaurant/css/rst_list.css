@@ -36,7 +36,7 @@
     border-style:none;
     font-size: 18px;
     font-weight: 400px;
-    background-image: url("marker.png");
+    background-image: url("../img/marker.png");
     background-size: 20px;
     background-repeat: no-repeat;
     background-position: 20px center;
@@ -142,7 +142,7 @@ select{
     border-radius: 8px;
     padding-left: 50px;
     background-color: #F5F5F5 ;
-    background-image: url("./img/order.png");
+    background-image: url("../img/order.png");
     background-size: 20px;
     background-repeat: no-repeat;
     background-position: 20px center;
