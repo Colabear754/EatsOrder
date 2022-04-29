@@ -12,7 +12,18 @@
 footer {
     background-color: #212121;
     height: 480px;
+    /* 푸터 하단에 붙이기 */
+    position : relative;
+    transform : translateY(-100%);
 }
+
+/* 푸터 하단에 붙이기 */
+.content_box {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: (480px);
+  }
+
 
 /* footer 그리드 */
 .all_footer {
