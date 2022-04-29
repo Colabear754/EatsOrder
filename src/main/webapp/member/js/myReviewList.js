@@ -94,13 +94,6 @@ $(document).ready(function () {
 	    newForm.attr("method", "post");
     	newForm.attr("action", "deleteMyReview.do");
 
-/*	    newForm.append(
-	      $("<input>", {
-		     type: "hidden",
-		     name: "email",
-		     value: $("[class='email']").val(),
-	      })
-    	);*/
    		newForm.append(
 	      $("<input>", {
 	        type: "hidden",
