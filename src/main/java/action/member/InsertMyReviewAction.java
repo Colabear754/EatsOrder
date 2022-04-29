@@ -18,7 +18,7 @@ public class InsertMyReviewAction implements CommandAction{
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		String saveFolder= "c:/webtest/4.jsp/2.back-end/sou2/EatsOrder/src/main/webapp/reviewPhoto";
+		String saveFolder= "C:/Users/liam/git/EatsOrder/src/main/webapp/reviewPhoto";
 		String encType="UTF-8";
 		int maxSize=10*1024*1024;
 		
