@@ -140,7 +140,7 @@ public class ReviewDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select orderer from review r, order_history oh"
+			pStatement = connection.prepareStatement("select orderer from review r, order_history oh "
 					+ "where review_number=" + review_number + " and r.order_number=oh.order_number");
 			connection.setAutoCommit(false);
 			resultSet = pStatement.executeQuery();
