@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import menu.OptionInfoDTO;
 
 public class CartItemDTO {
+	private int menu_id;
 	private String menu_name;
 	private ArrayList<OptionInfoDTO> selectedOptions;
 	private int quantity;
@@ -14,11 +15,20 @@ public class CartItemDTO {
 		super();
 	}
 
-	public CartItemDTO(String menu_name, ArrayList<OptionInfoDTO> selectedOptions, int quantity, int price) {
+	public CartItemDTO(int menu_id, String menu_name, ArrayList<OptionInfoDTO> selectedOptions, int quantity, int price) {
+		this.menu_id = menu_id;
 		this.menu_name = menu_name;
 		this.selectedOptions = selectedOptions;
 		this.quantity = quantity;
 		this.price = price;
+	}
+
+	public int getMenu_id() {
+		return menu_id;
+	}
+
+	public void setMenu_id(int menu_id) {
+		this.menu_id = menu_id;
 	}
 
 	public String getMenu_name() {

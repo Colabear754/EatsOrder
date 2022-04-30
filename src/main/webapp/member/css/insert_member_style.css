@@ -6,6 +6,10 @@
 수정자 : 정건영
 수정일 : 2022/04/10
 수정내용 : 동적 웹 페이지를 위한 스타일 시트 추가
+
+수정자 : 김나연
+수정일 : 2022/04/30
+수정내용 : input text, placeholder 글자 크기 조정
 */
 
 /* 전체설정 */
@@ -58,6 +62,12 @@ main {
     width: 400px;
     height: 40px;
     box-sizing: border-box;
+    font-size: 15px;
+}
+
+/* 인풋박스 placeholder 크기 */
+.join_form input[type=text]::placeholder, [type=password]::placeholder {
+    font-size: 13px;
 }
 
 /* 인풋박스 버튼 디자인 */

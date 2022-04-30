@@ -670,4 +670,33 @@ public class RestaurantDAO {
 		
 		return result;
 	}
+	
+	// 메뉴id에 해당하는 매장 정보를 조회
+	public RestaurantDTO getRestaurantOfMenu(int menu_id) {
+		RestaurantDTO result = null;
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select r.* from restaurant r, menu_category mc, menu m "
+					+ "where menu_id=? and m.category_id=mc.category_id and mc.rst_id = r.rst_id");
+			pStatement.setInt(1, menu_id);
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = new RestaurantDTO(resultSet.getInt("rst_id"), resultSet.getInt("category_id"),
+						resultSet.getString("rst_name"), resultSet.getString("phone"), resultSet.getString("address"),
+						resultSet.getInt("min_order"), resultSet.getString("origin"), resultSet.getString("hours"),
+						resultSet.getString("bussiness_number"), resultSet.getString("bussiness_name"),
+						resultSet.getString("payments"), resultSet.getInt("delivery_tip"), resultSet.getString("rst_notice"),
+						resultSet.getString("estimated_time"), resultSet.getString("rst_photo"),
+						resultSet.getString("rst_logo"), resultSet.getInt("enable"));
+			}
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
+		return result;
+	}
 }

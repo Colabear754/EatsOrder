@@ -14,8 +14,10 @@ public class CleanCartAction implements CommandAction {
 		String account = (String) request.getSession().getAttribute("account");
 		OrderDAO orderProcess = new OrderDAO();
 		
-		orderProcess.cleanCart(account);
+		int result = orderProcess.cleanCart(account);
 		
-		return "/cleanCart.jsp";
+		request.setAttribute("result", result);
+		
+		return "/component/result.jsp";
 	}
 }

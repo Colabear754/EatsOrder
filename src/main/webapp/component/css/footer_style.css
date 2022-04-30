@@ -13,8 +13,13 @@ footer {
     background-color: #212121;
     height: 480px;
     /* 푸터 하단에 붙이기 */
+<<<<<<< HEAD
     position : relative;
     
+=======
+/*     position : relative; */
+/*     transform : translateY(-100%); */
+>>>>>>> branch 'master' of https://github.com/Colabear754/EatsOrder.git
 }
 
 /* 푸터 하단에 붙이기 */
