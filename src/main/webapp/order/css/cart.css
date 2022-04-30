@@ -28,14 +28,10 @@
     height: 30px; text-align: center; 
     background-color: gray; 
     color:white; border: 1px solid grey; 
-<<<<<<< HEAD
-    
-=======
->>>>>>> branch 'master' of https://github.com/Colabear754/EatsOrder.git
 }
 .aorder:last-child {
     border-bottom: 0; 
-    border-left: 0; 
+    border-left:0; 
     border-bottom: 0; 
     border-right: 0; 
 }
