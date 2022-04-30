@@ -23,7 +23,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
     <!-- css연결 : main_style -->
-    <link rel="stylesheet" href="./css/mypage_review_style.css">
+    <link rel="stylesheet" href="./css/mypage_review_style.css?1">
     <!-- js연결 : jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- js연결 : main_script -->

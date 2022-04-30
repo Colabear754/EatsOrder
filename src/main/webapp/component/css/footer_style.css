@@ -14,7 +14,7 @@ footer {
     height: 480px;
     /* 푸터 하단에 붙이기 */
     position : relative;
-    transform : translateY(-100%);
+    
 }
 
 /* 푸터 하단에 붙이기 */
