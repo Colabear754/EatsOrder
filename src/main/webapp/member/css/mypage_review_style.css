@@ -64,7 +64,6 @@ main {
 .grid_box {
     /* border: 1px solid rgb(0, 255, 136); */
     display: grid;
-    height: 102%;
     grid-template-columns: repeat(2,auto);
     grid-template-rows: repeat(2,auto);
     margin: 0;
