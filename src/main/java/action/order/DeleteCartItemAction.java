@@ -15,8 +15,10 @@ public class DeleteCartItemAction implements CommandAction {
 		int menu_id = Integer.parseInt(request.getParameter("menu_id"));
 		OrderDAO orderProcess = new OrderDAO();
 		
-		orderProcess.deleteCartItem(orderer, menu_id);
+		int result = orderProcess.deleteCartItem(orderer, menu_id);
 		
-		return "/deleteCartItem.jsp";
+		request.setAttribute("result", result);
+		
+		return "/component/result.jsp";
 	}
 }

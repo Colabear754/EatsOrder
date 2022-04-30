@@ -368,14 +368,14 @@
 	position: absolute;
 	z-index: 20000;
 	width: 100%;
-	height: 200%;
+	height: 300%;
 	background-color: #00000080;
 	backdrop-filter: blur(1px);
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding-left: 300px;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -383,7 +383,6 @@
 	border: 5px solid #FECB10;
 	border-radius: 5px;
 	display: flex;
-	margin-bottom: 900px;
 	justify-content: center;
 	align-items: center;
 }

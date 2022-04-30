@@ -35,7 +35,7 @@ public class OrderDAO {
 	// 장바구니에 메뉴 추가
 	public int insertCartItem(String orderer, int menu_id, int[] options, int quantity) {
 		// result가 0보다 크면 추가 성공
-		// result가 -1이면 추가하려는 메뉴와 이미 추가된 메뉴가 서로 다른 매장인 경우 
+		// result가 -2면 추가하려는 메뉴와 이미 추가된 메뉴가 서로 다른 매장인 경우 
 		int result = -1;
 
 		try {
@@ -95,6 +95,8 @@ public class OrderDAO {
 							}
 						}
 					}
+				} else {
+					result = -2;
 				}
 
 				if (result > 0) {

@@ -57,7 +57,7 @@ public class OrderResultAction implements CommandAction {
 			int price = (menu.getPrice() + option_price) * quantity;
 			total_price += price;
 			
-			orderedItemList.add(new CartItemDTO(menu.getMenu_name(), orderedOptions, quantity, price));
+			orderedItemList.add(new CartItemDTO(menu.getMenu_id(), menu.getMenu_name(), orderedOptions, quantity, price));
 		}
 		
 		orderedItemString = orderedItemString.substring(0, orderedItemString.length() - 2);

@@ -1,11 +1,17 @@
 package action.order;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
 import coupon.CouponDAO;
 import member.MemberDAO;
+import menu.MenuAndOptionDAO;
+import menu.MenuDTO;
+import menu.OptionInfoDTO;
+import order.CartDTO;
 import order.OrderDAO;
 import order.OrderHistoryDTO;
 
@@ -25,7 +31,24 @@ public class OrderProcAction implements CommandAction {
 		OrderDAO orderProcess = new OrderDAO();
 		MemberDAO memberProcess = new MemberDAO();
 		CouponDAO couponProcess = new CouponDAO();
+		MenuAndOptionDAO menuProcess = new MenuAndOptionDAO();
 		int used_point;
+		ArrayList<CartDTO> items = orderProcess.getCartItems(orderer);
+		int total_price = 0;	// 포인트 적립을 위한 전체 가격(배달팁 제외)
+		
+		for (CartDTO item : items) {
+			MenuDTO menu = menuProcess.getMenu(item.getMenu_id());
+			ArrayList<OptionInfoDTO> selectedOptions = orderProcess.getSelectedOptions(item.getBundle_id());
+			int option_price = 0;
+			
+			for (OptionInfoDTO option : selectedOptions) {
+				option_price += option.getPrice();
+			}
+			
+			int quantity = item.getQuantity();
+			int price = (menu.getPrice() + option_price) * quantity;
+			total_price += price;
+		}
 		
 		if (used_point_str.isBlank() || used_point_str == null) {
 			used_point = 0;
@@ -35,12 +58,12 @@ public class OrderProcAction implements CommandAction {
 
 		String order_number = orderProcess.insertOrder(orderer, destination, coupon_id, used_point, payment_method,
 				order_request, used_point);
-		
 		OrderHistoryDTO order = orderProcess.getOrderHistory(order_number);
 		
 		if (order != null) {
 			memberProcess.deductPoint(orderer, used_point);
 			orderProcess.cleanCart(orderer);
+			memberProcess.earnPoint(orderer, total_price / 100);
 			
 			if (coupon_id == null || coupon_id.isBlank()) {
 				couponProcess.useCoupon(coupon_id, orderer);

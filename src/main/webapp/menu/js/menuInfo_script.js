@@ -9,7 +9,7 @@ $(function() {
 	var defaultOptPrice = $('#price').text().replace(/,/g, '').replace('원', '');
 	
 	$('input:radio:checked').each(function() {
-		var optPrice = Number($(this).parent().parent().children('.price').text().replace(/,/g, '').replace('원', ''));
+		var optPrice = Number($(this).parent().siblings('.price').text().replace(/,/g, '').replace('원', ''));
 		defaultOptPrice = (Number(defaultOptPrice) + Number(optPrice)).toLocaleString('ko-KR');
 	})
 	
@@ -86,10 +86,64 @@ $(function() {
 	    						$('#menu-modal').modal('hide');
 	    					}
 	    				});
+					} else if (data < -1) {
+						swal({
+							title: "주문표에 다른 매장에서 선택한 메뉴가 있습니다.",
+							text: "주문표를 비우고 메뉴를 추가하시겠습니까?",
+							icon: "warning",
+							buttons: [
+								'아니오', '예'
+							]
+						}).then((result) => {
+							if (result) {
+								$.ajax({
+									type: "POST",
+									url: "/EatsOrder/order/cleanCart.do",
+									success: function(cleanResult) {
+										if (cleanResult > 0) {
+											$.ajax({
+												type: "POST",
+												url: "/EatsOrder/order/insertCartItem.do",
+												traditional: true,
+												data: {
+													"menu_id": menu_id,
+													"options": options,
+													"quantity": quantity
+												},
+												success: function(data) {
+													if (data > 0) {
+														swal("주문표에 추가되었습니다.", "", "success").then((result2) => {
+															if (result2) {
+																$.ajax({
+																	type: "POST",
+																	url: "/EatsOrder/order/cart.do",
+																	success: function(cart) {
+																		$('#cart-area').empty();
+																		$('#cart-area').html(cart);
+																	},
+																	error: function(request) {
+																		alert('오류 발생2 : ' + request.statusText);
+																	}
+																})
+	    						
+																$('#menu-modal').modal('hide');
+															}
+														});
+													}
+												},
+												error: function(request) {
+													alert('오류 발생3 : ' + request.statusText);
+												}
+											})
+										}
+									}
+								})
+							}
+						})
 					}
 				},
 				error: function(request) {
-					alert("오류 발생2 : " + request.statusText);
+					alert("오류 발생4 : " + request.statusText);
 				}
 			})
 		}
@@ -142,12 +196,12 @@ function calcPrice() {
 	var quantity = Number($('#quantity').text());
 	
 	$('input:radio:checked').each(function() {
-		var optPrice = Number($(this).parent().parent().children('.price').text().replace(/,/g, '').replace('원', ''));
+		var optPrice = Number($(this).parent().siblings('.price').text().replace(/,/g, '').replace('원', ''));
 		defaultPrice = Number(defaultPrice) + Number(optPrice);
 	})
 	
 	$('input:checkbox:checked').each(function() {
-		var optPrice = Number($(this).parent().parent().children('.price').text().replace(/,/g, '').replace('원', ''));
+		var optPrice = Number($(this).parent().siblings('.price').text().replace(/,/g, '').replace('원', ''));
 		defaultPrice = Number(defaultPrice) + Number(optPrice);
 	})
 	

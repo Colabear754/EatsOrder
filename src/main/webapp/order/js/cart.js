@@ -64,4 +64,50 @@ $(function() {
 			newForm.submit();
 		}
 	})
+	
+	// 메뉴 삭제 버튼 클릭 시
+	$('.delete').click(function() {
+		var menu_id = $(this).siblings('.menu_id').val();
+		
+		swal({
+			title: "메뉴를 삭제하시겠습니까?",
+			icon: "warning",
+			buttons: [
+				'아니오', '예'
+			]
+		}).then((result) => {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: "/EatsOrder/order/deleteCartItem.do",
+					data: "menu_id=" + menu_id,
+					success: function(dresult) {
+						if (dresult > 0) {
+							$.ajax({
+								type: "POST",
+								url: "/EatsOrder/order/cart.do",
+								success: function(cart) {
+									$('#cart-area').empty();
+    								$('#cart-area').html(cart);
+								}
+							})
+						}
+					},
+					error: function(request) {
+						alert('오류 발생 : ' + request.statusText);
+					}
+				})
+			}
+		});
+	})
+	
+	// 주문표의 매장id와 매장상세 페이지의 매장id가 일치하지 않으면 주문하기 버튼 비활성화
+	if ($('#rst_id').val() != $('#cart-rst_id').val()) {
+		$('#order-form-btn').prop('disabled', true);
+	}
+	
+	// 주문표의 매장id와 매장상세 페이지의 매장id가 일치하면 주문하기 버튼 활성화
+	if ($('#rst_id').val() == $('#cart-rst_id').val()) {
+		$('#order-form-btn').prop('disabled', false);
+	}
 })
