@@ -87,5 +87,7 @@
   background: #fff;
   box-shadow: 1px 2px 3px #00000020;
 }
-
+.reimg, img{
+ max-width: 100%; width: 70%; height: 240px; margin-left:25%;
+}
 .rating .star { display: none; }

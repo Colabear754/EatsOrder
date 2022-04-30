@@ -73,9 +73,9 @@
         <div class="row" style="border:none">
             <div class="col-sm-8">
                 <div class="row" style="border: 1px solid gray;">
-                    <img class="img-responsive col-sm-3" src="./img/${restaurant.rst_logo}"
+                    <img class="img-responsive col-sm-2" src="./img/${restaurant.rst_logo}"
                         style="border-right: 1px dotted gray;">
-                    <ul class="list-unstyled col-sm-9">
+                    <ul class="list-unstyled col-sm-10">
                         <li>
 	                        ${restaurant.rst_name}
 	                        <c:if test="${not isFavorite}">
