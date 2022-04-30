@@ -33,7 +33,7 @@
 							<c:if test="${reviewData.review.photo1 != null}">
 								<td>
 				                    <div class="reimg">
-				                        <img src="./img/${reviewData.review.photo1}" style="max-width: 100%; width: 100%; height: 300px;">
+				                        <img src="./img/${reviewData.review.photo1}" style="max-width: 100%; width: 70%; height: 240px; margin-left:25%;">
 				                    </div>
 				                </td>
 			                </c:if>
