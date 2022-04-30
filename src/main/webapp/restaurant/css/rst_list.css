@@ -84,13 +84,10 @@
     margin-top: auto;
 }
 .category{
-    /* border: 1px solid black; */
     font-size: 17px;
     text-align: center;
     font-weight: 900;
     font-style: black;
-    /* margin-left:24px;
-    margin-right:24px; */
 }
 .container a{
     text-decoration: none;
@@ -156,7 +153,6 @@ select{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(1,auto);
-    /* border: 1px solid red; */
     margin-left: 10%;
     margin-right: 10%;
     column-gap: 1%;
@@ -179,6 +175,9 @@ select{
     grid-template-columns: 1fr 2fr;
     grid-gap:4%;
 
+}
+.rst_photo img{
+	border-radius:10px;
 }
 /*음식점 이름*/
 .rst_name{
