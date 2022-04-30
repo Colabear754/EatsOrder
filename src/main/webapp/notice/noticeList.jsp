@@ -7,23 +7,46 @@
 <!-- 작성자: 허우림. 작성일: 22-04-25. 페이지명: 공지사항/이벤트/FAQ 게시판목록 페이지  -->
 <head>
 <title>공지사항/이벤트/FAQ탭 게시판</title>
-<link href="./css/noticelist.css?ver=12" rel="stylesheet" type="text/css">
+<link href="./css/noticelist.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 /* js파일로 따로 분리해서 링크걸면 js가 적용이 안 되서 우선 합쳐둠 */
- $(document).ready(function(){
-	 alert('dd');
-	    $('.tabmenu').click(function(){
-	        $(this).css('background-color', '#FECB10');
-	    });
+ $(function(){
 	    $('.tabmenu').hover(
-	    function(event){
-	        $(this).addClass('hover');
-	    },
-	    function(){
-	        $(this).removeClass('hover');
-	    }
+		    function(event){
+		        $(this).addClass('hover');
+		    },
+		    function(){
+		        $(this).removeClass('hover');
+		    }
 	    );
+	  	$('.tab1').click(function(){
+	  		var category=$(this).val();
+	  		alert(category);
+	  	})
+	  	$('.tab2').click(function(){
+	  		var category=$(this).val();
+	  		alert(category);
+	  	})
+	  	$('.tab3').click(function(){
+	  		var category=$(this).val();
+	  		alert(category);
+	  	})
+	  	if(category=1){
+	  		$(".tab1").css('background-color', '#FECB10');
+	  		$(".tab2").css('background-color', 'white');
+	  		$(".tab3").css('background-color', 'white');
+	  	}else if(category=2){
+	  		$(".tab2").css('background-color', '#FECB10');
+	  		$(".tab1").css('background-color', 'white');
+	  		$(".tab3").css('background-color', 'white');
+	  	}else if(category=3){
+	  		$(".tab3").css('background-color', '#FECB10');
+	  		$(".tab1").css('background-color', 'white');
+	  		$(".tab2").css('background-color', 'white');
+	  	}
+	  	
+	  
 	});    		
 </script>
 </head>
@@ -31,9 +54,9 @@
     <div id="container">
  
     <ul class="tabs">
-        <li class="current tabmenu" data-tab="tab1" id="default"><a href="/EatsOrder/notice/noticeList.do?category=1">공지사항</a></li>
-        <li class="tabmenu" data-tab="tab2"><a href="/EatsOrder/notice/noticeList.do?category=2">이벤트</a></li>
-        <li class="tabmenu" data-tab="tab3"><a href="/EatsOrder/notice/noticeList.do?category=3">FAQ</a></li>
+        <li class="tab1 tabmenu" data-tab="tab1" id="default" value="1"><a href="/EatsOrder/notice/noticeList.do?category=1">공지사항</a></li>
+        <li class="tab2 tabmenu" data-tab="tab2" value="2"><a href="/EatsOrder/notice/noticeList.do?category=2">이벤트</a></li>
+        <li class="tab3 tabmenu" data-tab="tab3" value="3"><a href="/EatsOrder/notice/noticeList.do?category=3">FAQ</a></li>
     </ul>
     <br>
     <div class="search">
