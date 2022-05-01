@@ -34,6 +34,12 @@ public class OrderListAction implements CommandAction {
 		int end = currentPage * PAGESIZE;
 		
 		ArrayList<OrderBasicInfoDTO> result = orderProcess.getOrderList(orderer, start, end);
+		
+		for (OrderBasicInfoDTO order : result) {
+			long elapsed_time = (System.currentTimeMillis() - order.getPay_date().getTime()) / 1000 / 60;	// 주문으로부터 경과한 시간(분)
+			
+			order.setElapsed_time(elapsed_time);
+		}
 
 		MemberInfoDTO member = memberProcess.getMember(orderer);
 		int couponCount = couponProcess.getCouponCount(orderer);

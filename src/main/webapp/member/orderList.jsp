@@ -31,10 +31,22 @@
 										<c:forEach var="order" items="${result}">
 										<div class="order_box2">
 											<div class="order_box">
-												<h3><a href="#">${order.rst_name}<span>></span></a></h3>
-												<div class="del_btn">
-													<a href="#">삭제</a>
-												</div>
+												<h3>
+													<a href="/EatsOrder/order/cancelOrderForm.do?order_number=${order.order_number}">${order.rst_name}<span>></span></a>
+													<span class="order_status">
+														<c:choose>
+															<c:when test="${order.elapsed_time < 1}">주문 접수 대기</c:when>
+															<c:when test="${order.elapsed_time >= 1 && order.elapsed_time < 25}">메뉴 준비 중</c:when>
+															<c:when test="${order.elapsed_time >= 25 && order.elapsed_time < 35}">배달 중</c:when>
+															<c:otherwise>배달 완료</c:otherwise>
+														</c:choose>
+													</span>
+												</h3>
+												<c:if test="${order.elapsed_time < 1}">
+													<div class="del_btn">
+														<a href="#">주문 취소</a>
+													</div>
+												</c:if>
 												<div class="order_img2">
 													<img src="../restaurant/img/${order.rst_logo}">
 												</div>
