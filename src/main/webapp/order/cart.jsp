@@ -10,6 +10,7 @@
 <body>
 	<div class="sticky">
 		<input type="hidden" id="cart-rst_id" value="${rst_id}">
+		<input type="hidden" id="total_price" value="${total_price}">
 		<ul class="orderlist ">
 			<li class="aorder">주문표</li>
 			<c:if test="${rst_id != 0}">
@@ -28,6 +29,8 @@
 				</li>
 				
 			</c:forEach>
+			<li class="corder"><span class="cart-text">합계</span></li>
+			<li class="dorder"><span class="cart-text"><fmt:formatNumber value="${total_price}" pattern="#,###" />원</span></li>
 			<c:if test="${using_point > 0}">
 				<li class="corder"><span class="cart-text">포인트 할인</span></li>
 				<li class="dorder"><span class="cart-text" id="using_point"><fmt:formatNumber value="${using_point}" pattern="#,###" />P</span></li>
