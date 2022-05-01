@@ -6,14 +6,14 @@
  <head>
   <meta charset="UTF-8">
   <title>주문완료</title>
-  <link href="./css/orderResult.css?ver=1" rel="stylesheet" type="text/css">
+  <link href="./css/orderResult.css" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./js/orderResult.js"></script>
   <script type="text/javascript" src="./js/time.js"></script>
  </head>
  <body>
  	<jsp:include page="../component/main_header_logAfter.html" />
- <div class="body"> 
+ 	<main class="main">
    <div class="t1">
   <div class="a1">
       <ul>
@@ -22,8 +22,8 @@
 	</div><!--주문완료-->
 	  <div class="a2">
 	    <h3><span style="color:#FC6E4D">주문 감사합니다</span></h3>
-		   주문 요청이 완료되었으며 곧 고객님의 휴대전화 번호로 주문 확인 문자가 곧 발송됩니다.
-		   <fmt:formatNumber value="${total_price / 100}" pattern="#,###" /> 포인트가 적립되었습니다.
+		   <p>주문 요청이 완료되었으며 곧 고객님의 휴대전화 번호로 주문 확인 문자가 곧 발송됩니다.</p>
+		   <p><fmt:formatNumber value="${total_price / 100}" pattern="#,###" /> 포인트가 적립되었습니다.</p>
 	  </div>
 	<div class="a3">
 	   <ul>
@@ -45,7 +45,7 @@
 	   <ul>
 	      <li><strong>음식명 </strong>: ${orderedItems}</li>
 		  <li><strong>배달료 </strong>: <fmt:formatNumber value="${delivery_tip}" pattern="#,###"/>원</li>
-		  <li><strong>포인트 할인 </strong>: ${orderInfo.used_point}</li>
+		  <li><strong>포인트 할인 </strong>: <fmt:formatNumber value="${orderInfo.used_point}" pattern="#,###" />P</li>
 		  <li style="color:#FC6E4D"><strong>합계 </strong>: <fmt:formatNumber value="${delivery_tip + total_price - orderInfo.used_point}" pattern="#,###"/>원</li>
 		</ul>
      </div>
@@ -57,18 +57,18 @@
 
     <td class="submit">
 
-     <input id="tblbutton" type="button" value="주문 취소하기" onclick="removeCheck()">
+     <a id="tblbutton" type="button" href="/EatsOrder/member/orderList.do">주문 내역으로 이동</a>
 
     </td>
     <td>
-    	<button id="home-btn">메인으로 돌아가기</button>
+    	<a id="home-btn" href="/EatsOrder/main/main.do">메인으로 돌아가기</a>
     </td>
 
    </tr>
      </form>
 </div>
  <div class="time" id="ViewTimer"></div>
-</div>
+ </main>
   <jsp:include page="../component/footer.html" />
  </body>
 </html>

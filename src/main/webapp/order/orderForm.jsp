@@ -11,10 +11,17 @@
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript" src="./js/orderForm.js"></script>
 </head>
 <body>
+	<c:if test="${account == null}">
+		<meta http-equiv="Refresh" content="0;url=/EatsOrder/main/main.do"> 
+	</c:if>
 	<jsp:include page="../component/main_header_logAfter.html" />
+	<div id="address-modal">
+		<div id="wrapper"></div>
+	</div>
 	<main>
 		<input type="hidden" id="orderer" value="${account}">
 		<input type="hidden" id="rst_id" value="${rst_id}">
@@ -25,10 +32,11 @@
 					<li class="z2">배달정보</li>
 				</ul>
 				<div class="x1">
-					주소<input type="text" id="address1" placeholder="배달 주소" value="${address}"><br>
+					주소<input type="text" class="address" id="address1" placeholder="배달 주소" value="${address}" readonly="readonly"><br>
 				</div>
 				<div class="x3">
-					<input type="text3" id="address2" placeholder="(필수)상세주소 입력">
+					<input type="text3" class="address" id="address2" placeholder="(필수)상세주소 입력">
+					<div class="address_error">주소를 입력하세요.</div>
 				</div>
 				<div class="x2">
 					휴대전화번호<input type="text4" id="phone" name="phone" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="(필수)휴대전화 번호 입력" value="${phone}">

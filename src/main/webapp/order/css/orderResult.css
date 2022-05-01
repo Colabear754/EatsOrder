@@ -1,5 +1,4 @@
-/*header footer 넣는 것 때문에 바디태그 대신 클래스 바디로 바꿨습니다-우림*/
-.body {
+.main {
     position: relative;
     margin: 0 10%;
     box-sizing: border-box;
@@ -52,7 +51,8 @@ line-height:2
 .b3{
 line-height:2
 }
-input[type=button]{
+a[type=button]{
+	text-decoration: none;
 padding:10px;
 margin-left:70px;
 width:30%;
@@ -65,6 +65,7 @@ padding-left:70px;
 padding-top:10px;
 }
 #home-btn {
+	text-decoration: none;
 	padding:10px;
 margin-left:70px;
 width:30%;

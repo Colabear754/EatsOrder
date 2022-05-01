@@ -445,54 +445,29 @@ public class MemberDAO {
 		return result;
 	}
 
-	// 포인트 적립
-	public int earnPoint(String email, int amount) {
+	// 포인트 적립 및 차감
+	public int updatePoint(String email, int used_point, int earned_point) {
 		int result = -1;
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("update member_info set point=point+? where email=?");
-			pStatement.setInt(1, amount);
-			pStatement.setString(2, email);
+			connection.setAutoCommit(false);
+			pStatement = connection.prepareStatement("update member_info set point=point-?+? where email=?");
+			pStatement.setInt(1, used_point);
+			pStatement.setInt(2, earned_point);
+			pStatement.setString(3, email);
 
 			result = pStatement.executeUpdate();
+			
+			if (result > 0) {
+				connection.commit();
+			}
 
 			System.out.println("포인트 적립 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement);
-		}
-
-		return result;
-	}
-
-	// 포인트 차감
-	public int deductPoint(String email, int amount) {
-		// 현재 포인트 보유량이 차감될 양보다 많아야 차감
-		int result = -1;
-
-		try {
-			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select point from member_info where email=?");
-			pStatement.setString(1, email);
-			resultSet = pStatement.executeQuery();
-
-			if (resultSet.next()) {
-				if (resultSet.getInt(1) > amount) {
-					pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
-					pStatement.setInt(1, amount);
-					pStatement.setString(2, email);
-
-					result = pStatement.executeUpdate();
-				}
-			}
-
-			System.out.println("포인트 차감 결과 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
 
 		return result;

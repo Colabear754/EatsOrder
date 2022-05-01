@@ -61,9 +61,8 @@ public class OrderProcAction implements CommandAction {
 		OrderHistoryDTO order = orderProcess.getOrderHistory(order_number);
 		
 		if (order != null) {
-			memberProcess.deductPoint(orderer, used_point);
+			memberProcess.updatePoint(orderer, used_point, total_price / 100);
 			orderProcess.cleanCart(orderer);
-			memberProcess.earnPoint(orderer, total_price / 100);
 			
 			if (coupon_id == null || coupon_id.isBlank()) {
 				couponProcess.useCoupon(coupon_id, orderer);
