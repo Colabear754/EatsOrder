@@ -12,10 +12,6 @@
 <script>
 /* js파일로 따로 분리해서 링크걸면 js가 적용이 안 되서 우선 합쳐둠 */
  $(document).ready(function(){
-	 alert('dd');
-	    $('.tabmenu').click(function(){
-	        $(this).css('background-color', '#FECB10');
-	    });
 	    $('.tabmenu').hover(
 	    function(event){
 	        $(this).addClass('hover');

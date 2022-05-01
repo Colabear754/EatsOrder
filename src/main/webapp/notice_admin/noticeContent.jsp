@@ -6,7 +6,9 @@
 <html>
 <head>
 <title>게시판</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="./css/noticewrite.css?ver=5" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./js/noticeContent.js"></script>
 </head>
 <body>  
 <div class="outer-grid">

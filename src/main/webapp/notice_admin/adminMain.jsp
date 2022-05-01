@@ -16,7 +16,7 @@
     <header>
         <div class="header_top">
             <div class="header_box">
-                <a href="/notice_admin/adminMain.do" class="logo"><img src="./img/logo_white.png" alt="로고-아이콘"></a>
+                <a href="/EatsOrder/notice_admin/adminMain.do" class="logo"><img src="./img/logo_white.png" alt="로고-아이콘"></a>
             </div>
         </div>
     </header>
@@ -26,7 +26,7 @@
                 <h1>관리자 페이지</h1>
             </div>
             <ul>
-                <li><a href="#">이벤트/공지사항/FAQ 게시판관리</a></li>
+                <li><a href="/EatsOrder/notice_admin/noticeList.do?category=1">이벤트/공지사항/FAQ 게시판관리</a></li>
 <!--                 <li><a href="#">공지사항 관리</a></li>
                 <li><a href="#">FAQ게시판 관리</a></li> -->
             </ul>

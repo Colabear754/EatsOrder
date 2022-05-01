@@ -10,7 +10,6 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="./css/noticewrite.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="./js/noticeContent.js"></script>
-
 </head>
 <body>  
 <div class="outer-grid">
