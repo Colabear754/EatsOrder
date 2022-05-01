@@ -17,7 +17,7 @@
 				<jsp:include page="../component/main_header_logAfter.html" />
 				<main>
 					<jsp:include page="./myPage.jsp" />
-					<c:set var="orderCount" value="${fn:length(result)}" />
+					<c:set var="orderCount" value="${fn:length(orderList)}" />
 					<div class="content_box">
 						<div class="order_wrapper" id="order_wrapper2">
 							<h1>주문내역</h1>
@@ -28,13 +28,14 @@
 										<h3>주문내역이 없습니다.</h3>
 									</c:if>
 									<c:if test="${orderCount > 0}">
-										<c:forEach var="order" items="${result}">
+										<c:forEach var="order" items="${orderList}">
 										<div class="order_box2">
 											<div class="order_box">
 												<h3>
-													<a href="/EatsOrder/order/cancelOrderForm.do?order_number=${order.order_number}">${order.rst_name}<span>></span></a>
+													<a href="/EatsOrder/restaurant/rst_form.do?rst_id=${order.rst_id}">${order.rst_name}<span>></span></a>
 													<span class="order_status">
 														<c:choose>
+															<c:when test="${order.payment_status == 0}">주문 취소</c:when>
 															<c:when test="${order.elapsed_time < 1}">주문 접수 대기</c:when>
 															<c:when test="${order.elapsed_time >= 1 && order.elapsed_time < 25}">메뉴 준비 중</c:when>
 															<c:when test="${order.elapsed_time >= 25 && order.elapsed_time < 35}">배달 중</c:when>
@@ -42,9 +43,9 @@
 														</c:choose>
 													</span>
 												</h3>
-												<c:if test="${order.elapsed_time < 1}">
+												<c:if test="${order.elapsed_time < 1 && order.payment_status != 0}">
 													<div class="del_btn">
-														<a href="#">주문 취소</a>
+														<a href="/EatsOrder/order/cancelOrderForm.do?order_number=${order.order_number}">주문 취소</a>
 													</div>
 												</c:if>
 												<div class="order_img2">

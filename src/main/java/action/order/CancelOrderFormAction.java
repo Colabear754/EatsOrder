@@ -6,46 +6,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import member.MemberDAO;
 import menu.MenuAndOptionDAO;
 import menu.MenuDTO;
 import menu.OptionInfoDTO;
 import order.OrderDAO;
 import order.OrderDetailDTO;
 
-public class CancelOrderAction implements CommandAction {
+public class CancelOrderFormAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// 주문을 취소하는 액션클래스
+		// 주문 취소 폼
 		String order_number = request.getParameter("order_number");
-		String orderer = (String) request.getSession().getAttribute("account");
-		String reason_cancellation = request.getParameter("reason_cancellation");
 		OrderDAO orderProcess = new OrderDAO();
 		MenuAndOptionDAO menuProcess = new MenuAndOptionDAO();
-		MemberDAO memberDAO = new MemberDAO();
 		ArrayList<OrderDetailDTO> items = orderProcess.getOrderedItemList(order_number);
-		int total_price = 0;
+		String orderedItemString = "";
 		
 		for (OrderDetailDTO item : items) {
 			MenuDTO menu = menuProcess.getMenu(item.getMenu_id());
 			ArrayList<OptionInfoDTO> orderedOptions = orderProcess.getOrderedOptions(item.getBundle_id());
-			int option_price = 0;
+			
+			orderedItemString += menu.getMenu_name();
 			
 			for (OptionInfoDTO option : orderedOptions) {
-				option_price += option.getPrice();
+				if (orderedOptions.indexOf(option) == 0) {
+					orderedItemString += "(" + option.getOption_name() + ", ";
+				} else if (orderedOptions.indexOf(option) == orderedOptions.size() - 1) {
+					orderedItemString += option.getOption_name() + "), ";
+				} else {
+					orderedItemString += option.getOption_name() + ", ";
+				}
 			}
 			
-			int quantity = item.getQuantity();
-			int price = (menu.getPrice() + option_price) * quantity;
-			total_price += price;
+			orderedItemString += ", ";
 		}
 		
-		memberDAO.updatePoint(orderer, total_price / 100, 0);
-		int result = orderProcess.cancelOrder(order_number, orderer, reason_cancellation);
+		orderedItemString = orderedItemString.substring(0, orderedItemString.length() - 2);
 		
-		request.setAttribute("result", result);
+		request.setAttribute("order_number", order_number);
+		request.setAttribute("order_item_list", orderedItemString);
 		
-		return "/component/result.jsp";
+		return "/order/cancelOrderForm.jsp";
 	}
 }

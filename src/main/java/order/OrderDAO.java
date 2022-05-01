@@ -144,11 +144,16 @@ public class OrderDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
+			connection.setAutoCommit(false);
 			pStatement = connection.prepareStatement("delete from cart where orderer=? and menu_id=?");
 			pStatement.setString(1, orderer);
 			pStatement.setInt(2, menu_id);
 
 			result = pStatement.executeUpdate();
+			
+			if (result > 0) {
+				connection.commit();
+			}
 
 			System.out.println("장바구니에서 메뉴 삭제 결과 : " + result);
 		} catch (Exception e) {
@@ -300,12 +305,13 @@ public class OrderDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select orderer from order_history where order_number=?");
+			connection.setAutoCommit(false);
+			pStatement = connection.prepareStatement("select orderer, pay_date from order_history where order_number=?");
 			pStatement.setString(1, order_number);
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				if (orderer.equals(resultSet.getString(1))) {
+				if (orderer.equals(resultSet.getString(1)) && (System.currentTimeMillis() - resultSet.getTimestamp(2).getTime()) / 1000 / 60 < 1) {
 					pStatement = connection.prepareStatement(
 							"update order_history set payment_status=0, reason_cancellation=? where order_number=?");
 					pStatement.setString(1, resaon_cancellation);
@@ -313,6 +319,10 @@ public class OrderDAO {
 
 					result = pStatement.executeUpdate();
 				}
+			}
+			
+			if (result > 0) {
+				connection.commit();
 			}
 
 			System.out.println("주문취소 결과 : " + result);
@@ -386,11 +396,11 @@ public class OrderDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
-					"select * from (select oh.order_number, rst.rst_id, rst_name, rst_logo, count(menu_name) as count, pay_date "
+					"select * from (select oh.order_number, payment_status, rst.rst_id, rst_name, rst_logo, count(menu_name) as count, pay_date "
 							+ "from order_history oh, order_detail od, menu m, menu_category mc, restaurant rst "
 							+ "where orderer=? and oh.order_number=od.order_number and od.menu_id=m.menu_id "
 							+ "and m.category_id=mc.category_id and mc.rst_id=rst.rst_id "
-							+ "group by oh.order_number, rst.rst_id, rst_name, rst_logo, pay_date order by oh.order_number desc) "
+							+ "group by oh.order_number, payment_status, rst.rst_id, rst_name, rst_logo, pay_date order by oh.order_number desc) "
 							+ "where rownum>=? and rownum<=?");
 			pStatement.setString(1, orderer);
 			pStatement.setInt(2, start);
@@ -407,7 +417,7 @@ public class OrderDAO {
 				if (resultSet2.next()) {
 					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getInt("rst_id"), resultSet.getString("rst_name"),
 							resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
-							resultSet.getTimestamp("pay_date")));
+							resultSet.getTimestamp("pay_date"), resultSet.getInt("payment_status")));
 				}
 			}
 
