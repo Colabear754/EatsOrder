@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>매장목록</title>
-    <link rel="stylesheet" type="text/css" href="./css/rst_list.css?ver=1">
+    <link rel="stylesheet" type="text/css" href="./css/rst_list.css?1">
     <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
