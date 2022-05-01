@@ -117,12 +117,10 @@
                                         <img src="./img/review_food.jpg" alt="리뷰 예시 사진">
                                     </td>
                                     <td class="text_box">
-                                    	<div class="text_all">
 	                                        <span class="text_count">0자</span>
 	                                        <span class="text_total">/180자</span>
 	                                        <textarea class="review_write" name="content" cols="35"
 	                                            rows="6" maxlength="180" minlength="1" placeholder="리뷰를 작성해주세요"></textarea>
-                                        </div>
                                     </td>
                                 </tr>
                                 <!-- 작성버튼 -->
