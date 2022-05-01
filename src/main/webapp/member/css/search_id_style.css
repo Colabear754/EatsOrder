@@ -12,6 +12,7 @@
 수정내용 : 
 1. input text, input placeholder 글씨크기 조절
 2. 전체 마진 삭제 후 html 여백 삭제를 위한 body 마진,패딩값 추가
+3. 틀어진 정렬 조정
 */
 
 /* 전체 적용 */
@@ -49,19 +50,24 @@ main {
 /* ------------------------------------------------------------------ */
 /* 이메일 찾기 제목 */
 .search_box h1 {
-    margin-bottom: 35px;
+    margin-bottom: 70px;
 }
 
-.search_box > p {
-    margin: 60px 0 0 75px;
-    text-align: left;
-    font-weight: bold;
-}
-
-/* 인풋 로그인 박스 */
+/* search_box */
 .search_box {
     text-align: center;
-    width: 500px;
+    margin-top: 10%;
+    position: relative;
+}
+
+/* ------------------------------------------------------------------ */
+/* 휴대폰 번호 제목 */
+.search_box > p {
+    text-align: left;
+    font-weight: bold;
+    position: absolute;
+    top: 65px;
+    left: 0;
 }
 
 /* 핸드폰번호 입력 박스 */
