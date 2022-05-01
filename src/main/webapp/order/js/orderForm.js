@@ -19,7 +19,7 @@ $(function() {
 	
 	// 포인트 입력 시 자동 콤마
 	$('#point').keyup(function() {
-		$(this).val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		$(this).val($(this).val().replace(',', '').toLocaleString('ko-KR'));
 	})
 	
 	// 전화번호를 입력하면 자동으로 하이픈 추가
