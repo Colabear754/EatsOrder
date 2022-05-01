@@ -6,13 +6,14 @@
  <head>
   <meta charset="UTF-8">
   <title>주문완료</title>
-  <link href="./css/orderResult.css" rel="stylesheet" type="text/css">
+  <link href="./css/orderResult.css?ver=1" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./js/orderResult.js"></script>
   <script type="text/javascript" src="./js/time.js"></script>
  </head>
  <body>
  	<jsp:include page="../component/main_header_logAfter.html" />
+ <div class="body"> 
    <div class="t1">
   <div class="a1">
       <ul>
@@ -67,6 +68,7 @@
      </form>
 </div>
  <div class="time" id="ViewTimer"></div>
+</div>
   <jsp:include page="../component/footer.html" />
  </body>
 </html>
