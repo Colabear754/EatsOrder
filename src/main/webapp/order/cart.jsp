@@ -13,7 +13,7 @@
 		<ul class="orderlist ">
 			<li class="aorder">주문표</li>
 			<c:if test="${rst_id != 0}">
-				<li><h5><a ${rst_id}>${rst_name}</a></h5></li>
+				<li><h5><a href="/EatsOrder/restaurant/rst_form?rst_id=${rst_id}">${rst_name}</a></h5></li>
 			</c:if>
 			<c:forEach var="cartItem" items="${cartItems}">
 				<li class="border">${cartItem.menu_name}
@@ -30,7 +30,7 @@
 			</c:forEach>
 			<c:if test="${using_point > 0}">
 				<li class="corder"><span class="cart-text">포인트 할인</span></li>
-				<li class="dorder"><span class="cart-text"><fmt:formatNumber value="${using_point}" pattern="#,###" /></span></li>
+				<li class="dorder"><span class="cart-text" id="using_point"><fmt:formatNumber value="${using_point}" pattern="#,###" />P</span></li>
 			</c:if>
 			<c:if test="${delivery_tip > 0}">
 				<li class="corder"><span class="cart-text">배달비</span></li>

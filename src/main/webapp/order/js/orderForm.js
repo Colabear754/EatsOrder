@@ -1,3 +1,8 @@
+/*
+ * 작성자 : 정건영
+ * 작성일 : 2022/04/28
+ * 내용 : 주문하기 화면 스크립트
+ */
 $(function() {
 	// 페이지가 로드되면 주문표 출력
 	$.ajax({
@@ -10,6 +15,11 @@ $(function() {
 		error: function(request) {
 			alert('오류 발생 : ' + request.statusText);
 		}
+	})
+	
+	// 포인트 입력 시 자동 콤마
+	$('#point').keyup(function() {
+		$(this).val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	})
 	
 	// 전화번호를 입력하면 자동으로 하이픈 추가
@@ -26,6 +36,36 @@ $(function() {
     	if ($(this).val().length > 100) {
     		swal("요청 사항은 100자 이하로 입력해주세요.", "", "warning");
     		$(this).val($(this).val().substr(0, 100));
+    	}
+    })
+    
+    // 포인트 사용
+    $('#use-point').click(function(e) {
+    	e.preventDefault();
+    	
+    	var member_point = $('#member_point').text().replace(',', '');
+    	var using_point = $('#point').val();
+    	
+    	if (member_point < using_point) {
+    		swal("사용 가능한 포인트가 부족합니다.", "", "error");
+    	} else {
+    		$.ajax({
+    			type: "POST",
+    			url: "/EatsOrder/order/cart.do",
+    			data: {
+    				"isOrderForm": true,
+    				"using_point": using_point
+    			},
+    			success: function(result) {
+    				$('#cart-area').empty();
+					$('#cart-area').html(result);
+				},
+				error: function(request) {
+					alert('오류 발생 : ' + request.statusText)
+				}
+    		})
+    		
+    		$('#using_point').val(using_point);
     	}
     })
 })

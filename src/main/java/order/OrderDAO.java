@@ -390,7 +390,7 @@ public class OrderDAO {
 							+ "from order_history oh, order_detail od, menu m, menu_category mc, restaurant rst "
 							+ "where orderer=? and oh.order_number=od.order_number and od.menu_id=m.menu_id "
 							+ "and m.category_id=mc.category_id and mc.rst_id=rst.rst_id "
-							+ "group by oh.order_number, rst_name, rst_logo, pay_date order by oh.order_number desc) "
+							+ "group by oh.order_number, rst.rst_id, rst_name, rst_logo, pay_date order by oh.order_number desc) "
 							+ "where rownum>=? and rownum<=?");
 			pStatement.setString(1, orderer);
 			pStatement.setInt(2, start);

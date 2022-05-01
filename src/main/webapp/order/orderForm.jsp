@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -63,8 +64,9 @@
 						쿠폰<input type="text1" id="coupon_id" placeholder="쿠폰 코드 입력"> <input type="button" value="적용" class="b1">
 					</li>
 					<li>
-						<div id="member_point">사용 가능 포인트 : ${point}</div>
-						포인트<input type="text2" id="point" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="포인트 입력"> <input type="button" value="적용" class="b1">
+						<div id="able_point">사용 가능 포인트 : <span id="member_point"><fmt:formatNumber value="${point}" pattern="#,###" />P</span></div>
+						포인트<input type="text2" id="point" oninput="this.value = this.value.replaceAll(/\D/g, '')" placeholder="포인트 입력"> <input type="button" id="use-point" value="적용" class="b1">
+						<input type="hidden" id="using_point">
 					</li>
 				</ul>
 			</div>

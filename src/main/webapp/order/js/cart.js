@@ -32,19 +32,22 @@ $(function() {
 		var used_point = 0;
 		var payment_method = $('input:radio[name="c1"]:checked').siblings('span').text();
 		var order_request = $('#order-request').val();
+		var member_point = $('#member_point').text().replace(',', '').replace('P', '');
 		
 		if ($('#coupon_id').val() != '') {
 			var coupon_id = $('#coupon_id').val();
 		}
 		
-		if ($('#point').val() != '') {
-			var used_point = $('#point').val();
+		if ($('#using_point').val() != '') {
+			used_point = $('#using_point').val();
 		}
 		
 		if (payment_method == '') {
 			swal("결제 수단을 선택하여 주세요.", "", "warning");
-		} else if (Number($('#member_point').val()) < Number(used_point)) {
+		} else if (member_point < used_point) {
 			swal("사용하려는 포인트가 사용 가능한 포인트보다 많습니다.", "", "warning");
+			console.log(member_point);
+			console.log(used_point);
 		} else {
 			// 폼 생성 및 속성 설정
 			var newForm = $('<form></form>');
@@ -71,7 +74,7 @@ $(function() {
 		
 		swal({
 			title: "메뉴를 삭제하시겠습니까?",
-			icon: "warning",
+			icon: "question",
 			buttons: [
 				'아니오', '예'
 			]

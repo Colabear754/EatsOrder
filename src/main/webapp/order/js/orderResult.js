@@ -10,3 +10,9 @@ function removeCheck() {
  }
 
 }
+
+$(function() {
+	$('#home-btn').click(function() {
+		location.href = '/EatsOrder/main/main.do';
+	})
+})
