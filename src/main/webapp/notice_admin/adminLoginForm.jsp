@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 로그인</title>
     <link rel="stylesheet" href="./css/login_style.css">
+    <link rel="stylesheet" href="./css/admin_main.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
@@ -25,6 +26,13 @@
 </head>
 
 <body>
+    <header>
+        <div class="header_top">
+            <div class="header_box">
+                <a href="/EatsOrder/notice_admin/adminLoginForm.do" class="logo"><img src="./img/logo_white.png" alt="로고-아이콘"></a>
+            </div>
+        </div>
+    </header>
     <main>
         <div class="login_wrapper">
             <div class="login_box">
