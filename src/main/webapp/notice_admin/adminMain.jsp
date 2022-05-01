@@ -16,7 +16,7 @@
     <header>
         <div class="header_top">
             <div class="header_box">
-                <a href="/notice_admin/adminMain.do" class="logo"><img src="./img/Logo_white.png" alt="로고-아이콘"></a>
+                <a href="/notice_admin/adminMain.do" class="logo"><img src="./img/logo_white.png" alt="로고-아이콘"></a>
             </div>
         </div>
     </header>
