@@ -8,6 +8,7 @@
 <head>
 <title>공지사항/이벤트/FAQ탭 게시판(관리자)</title>
 <link href="./css/noticelist.css?ver=12" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="./css/admin_main.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 /* js파일로 따로 분리해서 링크걸면 js가 적용이 안 되서 우선 합쳐둠 */
@@ -24,6 +25,13 @@
 </script>
 </head>
 <body>
+    <header>
+        <div class="header_top">
+            <div class="header_box">
+                <a href="/EatsOrder/notice_admin/noticeList.do?pageNum=1&category=1" class="logo"><img src="./img/logo_white.png" alt="로고-아이콘"></a>
+            </div>
+        </div>
+    </header>
     <div id="container">
  
     <ul class="tabs">
