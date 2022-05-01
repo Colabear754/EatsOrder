@@ -1,0 +1,141 @@
+/* 
+작성자: 김나연
+작성완료일: 22/04/04
+페이지명: 로그인
+
+동적 웹페이지 동작 관련 수정 : 정건영
+수정일 : 2022/04/08
+*/
+
+/* 전체 적용 */
+/* 위에 뜸 해결*/
+*{
+    margin: 0;
+}
+
+/* 전체배경색 */
+.login_wrapper {
+    background-color: white;
+}
+
+/* 전체 글씨체 적용 */
+.login_wrapper a, h1, h3, button, p {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* 메인 그리드 */
+main {
+    display: grid;
+    height: 720px;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(1,auto);
+    margin: 0 10%;
+    column-gap: 1%;
+    row-gap: 12px;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 전체 로그인 박스 */
+.login_wrapper {
+    margin: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* 로그인 텍스트 */
+.login_box h1 {
+    margin-bottom: 35px;
+}
+
+/* 인풋 로그인 박스 */
+.login_box {
+    text-align: center;
+    width: 500px;
+}
+
+/* 로그인 인풋 박스 */
+.login_box input {
+    display: block;
+    width: 350px;
+    height: 45px;
+    margin: auto;
+    margin-top: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 아이디/비밀번호 박스 */
+.id_pw_search {
+    width: 350px;
+    text-align: right;
+    margin: auto;
+    padding-top: 3px;
+    padding-bottom: 20px;
+}
+
+/* 아이디/비밀번호 찾기 */
+.id_pw_search a {
+    text-decoration: none;
+    color: black;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 로그인/회원가입 버튼 */
+.login_btn_box {
+    text-align: center;
+}
+
+.login_btn_box input {
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 10px;
+    width: 350px;
+    height: 45px;
+    background-color: #FC6E4D;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.login_btn_box input:hover {
+    background-color: #d44424;
+}
+
+/* 회원가입버튼 */
+.login_btn_box a {
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 10px;
+    width: 350px;
+    height: 45px;
+    border: 2px solid #C4C4C4;
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.login_btn_box a:hover {
+    background-color: #C4C4C4;
+    border: none;
+}
+
+#login_error {
+	display: none;
+	font-weight: bold;
+	color: red;
+	margin: 10px 0;
+}
+

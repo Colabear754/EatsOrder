@@ -5,6 +5,9 @@
 
 동적 웹페이지 동작 관련 수정 : 정건영
 수정일 : 2022/04/08
+
+input text, placeholder 글자크기 수정 : 김나연
+수정일 : 2022/05/01
 */
 
 /* 전체 적용 */
@@ -62,6 +65,11 @@ main {
     margin: auto;
     margin-top: 10px;
     box-sizing: border-box;
+    font-size: 17px;
+}
+
+/* 로그인 placeholder 글자크기 */
+.login_box input::placeholder {
     font-size: 15px;
 }
 

@@ -40,7 +40,7 @@
 		                            <a href="#">삭제</a>
 		                        </div>
 		                        <div class="review_img">
-		                            <img src="./img/review_food.jpg">
+		                            <img src="../restaurant/img/${favoriteRst.restaurant.rst_logo }" width="100px" height="100px">
 		                        </div>
 		                        <div class="review_text">
 		                            <span>★</span><span>${favoriteRst.rating}</span>

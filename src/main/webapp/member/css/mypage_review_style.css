@@ -2,6 +2,12 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 리뷰관리
+
+수정자 : 김나연
+수정완료일 : 2022/05/01
+수정내용 : 
+1. html 여백 삭제를 위한 body 마진,패딩값 추가
+2. textarea width값 수정, text_all 스타일 삭제
 */
 
 /* 공통설정 ################################################### */
@@ -19,6 +25,11 @@ main {
     background-color: white;
 }
 
+/* body 여백 삭제 */
+body {
+    padding: 0;
+    margin: 0;
+}
 
 /* ----------------------------------------------------------- */
 /* 메인 콘텐츠 박스 */
@@ -152,16 +163,11 @@ main {
 .text_box textarea {   
     resize: none;
     height: 155px;
-    width: 268px;
+    width: 320px;
     border: 1px solid #C4C4C4;
     border-radius: 5px;
     margin: 18px 20px 0 0;
     
-}
-
-.text_all {
-    margin-left: 10px;
-    position: relative;
 }
 
 /* submit_btn_box : 작성버튼  -------------------------------------------- */

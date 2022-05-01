@@ -57,13 +57,12 @@ public class OrderProcAction implements CommandAction {
 		}
 
 		String order_number = orderProcess.insertOrder(orderer, destination, coupon_id, used_point, payment_method,
-				order_request, used_point);
+				order_request, 1);
 		OrderHistoryDTO order = orderProcess.getOrderHistory(order_number);
 		
 		if (order != null) {
-			memberProcess.deductPoint(orderer, used_point);
+			memberProcess.updatePoint(orderer, used_point, total_price / 100);
 			orderProcess.cleanCart(orderer);
-			memberProcess.earnPoint(orderer, total_price / 100);
 			
 			if (coupon_id == null || coupon_id.isBlank()) {
 				couponProcess.useCoupon(coupon_id, orderer);

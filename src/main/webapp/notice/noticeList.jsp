@@ -8,6 +8,7 @@
 <head>
 <title>공지사항/이벤트/FAQ탭 게시판</title>
 <link href="./css/noticelist.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="./css/admin_main.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 /* js파일로 따로 분리해서 링크걸면 js가 적용이 안 되서 우선 합쳐둠 */
@@ -20,41 +21,22 @@
 		        $(this).removeClass('hover');
 		    }
 	    );
-	  	$('.tab1').click(function(){
-	  		var category=$(this).val();
-	  		alert(category);
-	  	})
-	  	$('.tab2').click(function(){
-	  		var category=$(this).val();
-	  		alert(category);
-	  	})
-	  	$('.tab3').click(function(){
-	  		var category=$(this).val();
-	  		alert(category);
-	  	})
-	  	if(category=1){
-	  		$(".tab1").css('background-color', '#FECB10');
-	  		$(".tab2").css('background-color', 'white');
-	  		$(".tab3").css('background-color', 'white');
-	  	}else if(category=2){
-	  		$(".tab2").css('background-color', '#FECB10');
-	  		$(".tab1").css('background-color', 'white');
-	  		$(".tab3").css('background-color', 'white');
-	  	}else if(category=3){
-	  		$(".tab3").css('background-color', '#FECB10');
-	  		$(".tab1").css('background-color', 'white');
-	  		$(".tab2").css('background-color', 'white');
-	  	}
-	  	
-	  
-	});    		
+	});   
+
 </script>
 </head>
 <body>
+    <header>
+        <div class="header_top">
+            <div class="header_box">
+                <a href="/EatsOrder/notice/noticeList.do?pageNum=1&category=1" class="logo"><img src="./img/logo_white.png" alt="로고-아이콘"></a>
+            </div>
+        </div>
+    </header>
     <div id="container">
  
     <ul class="tabs">
-        <li class="tab1 tabmenu" data-tab="tab1" id="default" value="1"><a href="/EatsOrder/notice/noticeList.do?category=1">공지사항</a></li>
+        <li class="tab1 tabmenu" data-tab="tab1" id="default" value="1"><a class="tab11" href="/EatsOrder/notice/noticeList.do?category=1">공지사항</a></li>
         <li class="tab2 tabmenu" data-tab="tab2" value="2"><a href="/EatsOrder/notice/noticeList.do?category=2">이벤트</a></li>
         <li class="tab3 tabmenu" data-tab="tab3" value="3"><a href="/EatsOrder/notice/noticeList.do?category=3">FAQ</a></li>
     </ul>
@@ -87,8 +69,8 @@
     </c:if>
 
     <c:if test="${pgList.count>0 }">
-    <div class="outer-grid">
-        <table>
+    <div class="outer-grid"> 
+        <table class="table">
             <tr>
                 <th class="td1">글번호</th>
                 <th class="td2">글제목</th>

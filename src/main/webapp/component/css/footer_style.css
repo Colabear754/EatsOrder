@@ -3,9 +3,13 @@
 작성완료일: 22/04/04
 페이지명: 푸터
 
-수정 : 전체마진 삭제
 수정자 : 김나연
 수정완료일 : 2022/04/29
+수정내용 : 전체마진 삭제
+
+수정자 : 김나연
+수정완료일 : 2022/05/01
+수정내용 : hr width조정, .hr 스타일 삭제, li a/footer sns 마진 조정
 */
 
 /* footer 배경*/
@@ -13,12 +17,16 @@ footer {
     background-color: #212121;
     height: 480px;
     /* 푸터 하단에 붙이기 */
+<<<<<<< HEAD
     position : relative;    
 
 /*     position : relative; */
 /*     transform : translateY(-100%); */
 
 
+=======
+    position : relative; 
+>>>>>>> branch 'master' of https://github.com/Colabear754/EatsOrder.git
 }
 
 /* 푸터 하단에 붙이기 */
@@ -37,16 +45,11 @@ footer {
     margin-left: 10%;
     margin-right: 10%;
     column-gap: 1%;
-    /* row-gap: 12px; */
     padding-top: 50px;
 }
 
 footer div, footer p {
     color: #C4C4C4;
-}
-
-.hr1 {
-    clear: left;
 }
 
 /* footer list */
@@ -67,21 +70,24 @@ footer div, footer p {
     margin: 0 5px 0 0;
 }
 
+/* sns 아이콘 */
 .footer_sns {
     width: fit-content;
-    margin-left: 120px;
+    margin-left: 105px;
 }
 
 /* footer list a */
 .footer_list a {
     text-decoration: none;
-    color: #C4C4C4
+    color: #C4C4C4;
+    font-weight:bold;
+    margin-right: 5px;
 }
 
 /* hr 효과 */
 footer hr {
     background: #C4C4C4;
-    width: 1400px;
+    width: 1600px;
 }
 
 /* 회사설명 p 마진 */

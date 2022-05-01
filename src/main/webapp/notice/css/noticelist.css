@@ -4,6 +4,7 @@
 	background:#FECB10;
 	color:white;
 	cursor:pointer;
+	font-weight:bold;
 }
 a:link{
     color:black;
@@ -20,21 +21,13 @@ ul.tabs{
     text-align: center;
     cursor: pointer;
 } 
-.tab-content{
-    display: none;
-    padding-top: 50px;
-    height: 200px;
-}  
-.tab-content.current{
-    display: inherit;
-} 
 #container {
     width: 70%;
     margin-right: 15%;
     margin-left: 15%;
 }
 a{
-    display: inline-block;
+/*     display: inline-block; */
     text-align: center;
     text-decoration: none;
     padding: 14px 16px;
@@ -44,7 +37,7 @@ a{
 }
 li {
     width: 10%;
-    display: inline-block;
+    display: inline-block; 
     text-align: center;
     text-decoration: none;
     padding: 14px 16px;

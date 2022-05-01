@@ -10,6 +10,10 @@
     jsp변환 : 정건영
     변환일 : 2022/04/09
     추가수정내용 : 동적 웹 페이지 작동을 위한 태그 추가
+
+    수정자 : 김나연
+    수정일 : 2022/05/01
+    수정내용 : 이용약관 동의 정렬, 도움말 available, error 스타일 추가
     --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -123,7 +127,12 @@
 		                            </label>
 		                            <a id="terms">약관보기></a>
 	                            </div>
-	                            <div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td class="check_box">
+                                <div>
 	                                <label>
 	                                    <input type="checkbox" id="receive_marketing">
 	                                    <span>마케팅 정보 수신동의(선택)</span>
@@ -132,7 +141,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="form_helper">
                         	<th></th>
                         	<td>
                         		<div class="error" id="terms_error">이용약관에 동의해주세요.</div>

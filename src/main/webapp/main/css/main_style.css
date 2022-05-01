@@ -5,14 +5,12 @@
 
 모달 관련 수정 : 정건영
 수정일 : 2022/04/08
+
+input text, placeholder 글자 크기 수정 : 김나연
+수정일 : 2022/05/01
 */
 
 /* 전체 적용 */
-/* 위에 뜸 해결*/
-*{
-    margin: 0;
-}
-
 /* 전체배경색 */
 main {
     background-color: white;
@@ -31,6 +29,12 @@ main .header_back a, h1, h3, button, p {
 
 /* 스크롤 부드럽게 */
 html { scroll-behavior: smooth; }
+
+/* 화면 여백 없애기 */
+body {
+    margin: 0;
+    padding: 0;
+}
 
 /* ------------------------------------------------------------------ */
 /* 2번째 헤더 */
@@ -109,6 +113,12 @@ html { scroll-behavior: smooth; }
     padding: 0 40px;
     outline-color: #FC6E4D;
     border-radius: 10px;
+    font-size: 17px;
+}
+
+/* 검색바 placeholder 글자크기 */
+.search_box input[type=text]::placeholder {
+    font-size: 15px;
 }
 
 .search_box div:first-child > input {
@@ -185,7 +195,7 @@ html { scroll-behavior: smooth; }
 
 
 /* 카테고리 상자 */
-.food_item {
+.food_item, .notice {
     display: inline-block;
     width:100%;
     height: 250px;
@@ -199,7 +209,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* 카테고리 이미지 전체효과 */
-.food_item img {
+.food_item img, .notice img {
     border-radius: 10px;
     transition: 0.5s;
 
@@ -233,21 +243,21 @@ html { scroll-behavior: smooth; }
 
 
 /* 음식 카테고리 호버 후 */
-.food_item:hover {
+.food_item:hover, .notice:hover {
     border: none;
 }
 
-.food_item:hover .caption {
+.food_item:hover .caption, .notice:hover .caption {
     opacity: 1;
 }
 
 /* 메뉴명 호버 후 */
-.food_item:hover > div {
+.food_item:hover > div, .notice:hover > div {
     opacity: 0;
 }
 
 /* 음식 카테고리 이미지 호버 후 */
-.food_item:hover img {
+.food_item:hover img, .notice:hover img {
     opacity: 0;
 }
 
@@ -261,7 +271,7 @@ html { scroll-behavior: smooth; }
     position: absolute;
     bottom:0;
     right: 0;
-    width: 332px;
+    width: 370px;
     height: 100%;
 }
 

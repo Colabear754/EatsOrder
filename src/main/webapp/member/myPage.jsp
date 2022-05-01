@@ -19,6 +19,9 @@
 </head>
 
 <body>
+	<c:if test="${account == null}">
+		<meta http-equiv="Refresh" content="0;url=/EatsOrder/main/main.do"> 
+	</c:if>
     <h2 class="mypage_head">마이페이지</h2>
     <div class="mypage_wrap">
         <div class="profile_box">
@@ -33,7 +36,7 @@
                 <li><a href="/EatsOrder/member/orderList.do"><strong>주문내역</strong></a></li>
             </ul>
         </div>
-        <div class="quick_menu">
+        <div class="quick_menu" id="quick_menu">
             <div>
                 <h3>quick menu</h3>
             </div>

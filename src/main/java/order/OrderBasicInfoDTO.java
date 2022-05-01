@@ -10,6 +10,7 @@ public class OrderBasicInfoDTO {
 	private String menu_name;
 	private int count;
 	private Timestamp pay_date;
+	private long elapsed_time;
 
 	public OrderBasicInfoDTO() {
 		super();
@@ -80,5 +81,13 @@ public class OrderBasicInfoDTO {
 
 	public void setPay_date(Timestamp pay_date) {
 		this.pay_date = pay_date;
+	}
+
+	public long getElapsed_time() {
+		return elapsed_time;
+	}
+
+	public void setElapsed_time(long elapsed_time) {
+		this.elapsed_time = elapsed_time;
 	}
 }

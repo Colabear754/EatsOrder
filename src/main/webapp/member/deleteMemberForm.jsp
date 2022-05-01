@@ -15,6 +15,9 @@ jsp변환 : 정건영
 <script type="text/javascript" src="./js/delete_member_script.js"></script>
 </head>
 <body>
+	<c:if test="${account == null}">
+		<meta http-equiv="Refresh" content="0;url=/EatsOrder/main/main.do"> 
+	</c:if>
 	<jsp:include page="../component/main_header_logAfter.html" />
 	<main>
 	<input type="hidden" id="email" value="${email}">

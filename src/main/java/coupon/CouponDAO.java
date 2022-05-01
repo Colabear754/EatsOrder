@@ -141,7 +141,7 @@ public class CouponDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection
 					.prepareStatement("select v.*, o.available_count from valid_coupon v, owned_coupon o where "
-							+ "v.coupon_id=o.coupon_id and o.owner_id=? and o.available_count > 0");
+							+ "v.coupon_id=o.coupon_id and o.owner_id=? and o.available_count > 0 and expiration_date > sysdate");
 			pStatement.setString(1, owner_id);
 			resultSet = pStatement.executeQuery();
 

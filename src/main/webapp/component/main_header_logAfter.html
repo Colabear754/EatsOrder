@@ -5,7 +5,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     </style>
     <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="../component/css/main_header_logAfter_style.css">
+    <script type="text/javascript" src="../component/js/main_header_script.js"></script>
 </head>
 <body>
     <header>
@@ -21,7 +23,7 @@
 	                    <li><a href="/EatsOrder/member/updateMemberForm.do">내 정보 수정</a></li>
 	                </ul>
 	            </li>
-	            <li><a href="#"><i class="fa-solid fa-cart-shopping fa"> Cart</i></a></li>
+	            <li><a href="/EatsOrder/member/cart.do" id="cart"><i class="fa-solid fa-cart-shopping fa"> Cart</i></a></li>
 	            <li><a href="/EatsOrder/member/logout.do"><i class="fa-solid fa-power-off fa"> Logout</i></a></li>
 	        </ul>
         </div>

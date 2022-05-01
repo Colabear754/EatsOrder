@@ -7,22 +7,25 @@
 <html>
 <head>
 <title>게시판</title>
-<link href="./css/noticewrite.css?ver=5" rel="stylesheet" type="text/css">
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="./css/noticewrite.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./js/noticeContent.js"></script>
 </head>
 <body>  
 <div class="outer-grid">
 <b>글 상세보기</b>
 <br>
 <form>
-<table id="table"> 
+<input type="hidden" name="category" value="${article.category }">
+<table> 
   <tr>
     <td class="td1 subject">글번호</td>
     <td class="td2">${article.notice_number}</td>
   </tr>
   
   <tr>
-  	<td class="td1 subject">카테고리(말머리)</td>
-  	<td class="td2">${article.category}</td>
+  	<td class="td1 subject">말머리</td>
+  	<td class="td2" id="category">${article.category}</td>
   </tr>
   
   <tr>
@@ -41,17 +44,17 @@
     	<pre>${article.content}</pre>
     </td>
   </tr>
-  
+  <c:if test="${article.filename != null}"> 
   <tr>
-  	<td colspan="2" class="td2 center">
-  		<img src="filestorage/${article.filename}" alt="예시1" width="300px" height="300px">
+  	<td colspan="2" class="td2 center" style="text-align:center;">
+  		<img src="../filestorage/${article.filename}" alt="예시1">
   	</td>
   </tr>
-  
   <tr>
 	  <td class="td1 subject">파일명</td>
 	  <td class="td2">${article.filename}</td>
   </tr>
+  </c:if>
   </table> 
   <br>
   <div class="btn">

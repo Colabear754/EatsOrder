@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ page import="notice.*" %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
 <center><b>글수정</b>
 <br>
         <div class="outer-grid">
-            <form method="post" name="writeform" action="/EatsOrder/notice_admin/noticeUpdatePro.do?pageNum=${pageNum}&category=${article.category}" 
+            <form method="post" name="writeform" enctype="multipart/form-data" action="/EatsOrder/notice_admin/noticeUpdatePro.do?pageNum=${pageNum}&category=${article.category}" 
             			onsubmit="return writeSave()">
                 <input type="hidden" name="notice_number" value="${article.notice_number}">
                 <input type="hidden" name="pageNum" value="${pageNum}">
@@ -48,8 +49,10 @@
                         <tr>
                             <td class="td2"><textarea class="write_cont" name="content">${article.content}</textarea></td>
                         </tr>
+                        <c:if test="${article.filename != null}">
                         <tr><td class="td1 subject">기존 첨부 사진</td></tr>
-                        <tr><td class="td2 center"><img src="filestorage/${article.filename}"></td></tr>
+                        <tr><td class="td2 center"><img src="../filestorage/${article.filename}"></td></tr>
+                        </c:if>
                         <tr><td class="td1 subject">새로 첨부할 사진</td></tr>
                         <tr>
                             <td class="td1 td2"><input type="file" name="fileName"></td>

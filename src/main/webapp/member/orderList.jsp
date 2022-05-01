@@ -23,19 +23,32 @@
 							<h1>주문내역</h1>
 							<div class="grid_box2">
 								<!-- 주문내역 박스1 -->
-								<div class="order_box2">
+								
 									<c:if test="${orderCount == 0}">
 										<h3>주문내역이 없습니다.</h3>
 									</c:if>
 									<c:if test="${orderCount > 0}">
 										<c:forEach var="order" items="${result}">
+										<div class="order_box2">
 											<div class="order_box">
-												<h3><a href="#">${order.rst_name}<span>></span></a></h3>
-												<div class="del_btn">
-													<a href="#">삭제</a>
-												</div>
-												<div class="order_img">
-													<img src="${order.rst_logo}">
+												<h3>
+													<a href="/EatsOrder/order/cancelOrderForm.do?order_number=${order.order_number}">${order.rst_name}<span>></span></a>
+													<span class="order_status">
+														<c:choose>
+															<c:when test="${order.elapsed_time < 1}">주문 접수 대기</c:when>
+															<c:when test="${order.elapsed_time >= 1 && order.elapsed_time < 25}">메뉴 준비 중</c:when>
+															<c:when test="${order.elapsed_time >= 25 && order.elapsed_time < 35}">배달 중</c:when>
+															<c:otherwise>배달 완료</c:otherwise>
+														</c:choose>
+													</span>
+												</h3>
+												<c:if test="${order.elapsed_time < 1}">
+													<div class="del_btn">
+														<a href="#">주문 취소</a>
+													</div>
+												</c:if>
+												<div class="order_img2">
+													<img src="../restaurant/img/${order.rst_logo}">
 												</div>
 												<div class="order_text2">
 													<c:if test="${order.count == 0}">
@@ -45,6 +58,7 @@
 														<p>${order.menu_name} 외 ${order.count}개</p>
 													</c:if>
 												</div>
+											</div>
 											</div>
 										</c:forEach>
 									</c:if>

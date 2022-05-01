@@ -29,6 +29,6 @@ public class InsertCartItemAction implements CommandAction {
 		
 		request.setAttribute("result", result);
 		
-		return "/order/insertCartItem.jsp";
+		return "/component/result.jsp";
 	}
 }

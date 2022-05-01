@@ -7,8 +7,13 @@
 $(function() {
 	// 매장 상세 페이지에서 주문하기 버튼 클릭 시
 	$('#order-form-btn').click(function() {
+		var min_order = $('#min_order').text().replace(',', '');
+		var total_price = $('#total_price').val();
+		
 		if ($('#email').val() === '') {	// 로그인 되어있지 않으면 로그인 화면으로 이동
 			location.href = "/EatsOrder/member/loginForm.do";
+		} else if (min_order > total_price) {
+			swal("주문 금액이 부족합니다.", (Number(min_order) - Number(total_price)).toLocaleString('ko-KR') + "원 이상 메뉴를 추가해야 주문할 수 있습니다.", "warning");
 		} else {	// 로그인 되어있으면 주문하기 화면으로 이동
 			var newForm = $('<form></form>');
 			newForm.attr('method', 'post');
@@ -32,19 +37,25 @@ $(function() {
 		var used_point = 0;
 		var payment_method = $('input:radio[name="c1"]:checked').siblings('span').text();
 		var order_request = $('#order-request').val();
+		var member_point = $('#member_point').text().replace(',', '').replace('P', '');
 		
 		if ($('#coupon_id').val() != '') {
 			var coupon_id = $('#coupon_id').val();
 		}
 		
-		if ($('#point').val() != '') {
-			var used_point = $('#point').val();
+		if ($('#using_point').val() != '') {
+			used_point = $('#using_point').val();
 		}
 		
-		if (payment_method == '') {
+		if ($('#address1').val() === '' || $('#address2').val() === '') {
+			$('.address_error').css('display', 'block');
+			$('.address').css("outline", "2px solid red");
+		} else if (payment_method == '') {
 			swal("결제 수단을 선택하여 주세요.", "", "warning");
-		} else if (Number($('#member_point').val()) < Number(used_point)) {
+		} else if (member_point < used_point) {
 			swal("사용하려는 포인트가 사용 가능한 포인트보다 많습니다.", "", "warning");
+			console.log(member_point);
+			console.log(used_point);
 		} else {
 			// 폼 생성 및 속성 설정
 			var newForm = $('<form></form>');

@@ -33,35 +33,35 @@
 							<c:if test="${reviewData.review.photo1 != null}">
 								<td>
 				                    <div class="reimg" style="text-align:center;">
-				                        <img src="./img/${reviewData.review.photo1}" style="max-width: 80%; width: 80%; height: 400px;" >
+				                        <img src="../reviewPhoto/${reviewData.review.photo1}" style="max-width: 80%; width: 80%; height: 400px;" >
 				                    </div>
 				                </td>
 			                </c:if>
 							<c:if test="${reviewData.review.photo2 != null}">
 								<td>
 				                    <div class="reimg" style="text-align:center;">
-				                        <img src="./img/${reviewData.review.photo2}" style="max-width: 80%; width: 80%; height: 400px;" >
+				                        <img src="../reviewPhoto/${reviewData.review.photo2}" style="max-width: 80%; width: 80%; height: 400px;" >
 				                    </div>
 				                </td>
 			                </c:if>
 							<c:if test="${reviewData.review.photo3 != null}">
 								<td>
 				                    <div class="reimg" style="text-align:center;">
-				                        <img src="./img/${reviewData.review.photo3}" style="max-width: 80%; width: 80%; height: 400px;">
+				                        <img src="../reviewPhoto/${reviewData.review.photo3}" style="max-width: 80%; width: 80%; height: 400px;">
 				                    </div>
 				                </td>
 			                </c:if>
 							<c:if test="${reviewData.review.photo4 != null}">
 								<td>
 				                    <div class="reimg" style="text-align:center;">
-				                        <img src="./img/${reviewData.review.photo4}" style="max-width: 80%; width: 80%; height: 400px;">
+				                        <img src="../reviewPhoto/${reviewData.review.photo4}" style="max-width: 80%; width: 80%; height: 400px;">
 				                    </div>
 				                </td>
 			                </c:if>
 							<c:if test="${reviewData.review.photo5 != null}">
 								<td>
 				                    <div class="reimg" style="text-align:center;">
-				                        <img src="./img/${reviewData.review.photo5}" style="max-width: 80%; width: 80%; height: 400px;">
+				                        <img src="../reviewPhoto/${reviewData.review.photo5}" style="max-width: 80%; width: 80%; height: 400px;">
 				                    </div>
 				                </td>
 			                </c:if>
