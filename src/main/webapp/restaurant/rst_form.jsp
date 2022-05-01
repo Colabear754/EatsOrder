@@ -86,8 +86,9 @@
 	                        </c:if>
                         </li>
                         <li>별점 : ${rating}</li>
-                        <li>최소주문금액 : <fmt:formatNumber value="${restaurant.min_order}" pattern="#,###"/>원</li>
+                        <li>최소주문금액 : <span id="min_order"><fmt:formatNumber value="${restaurant.min_order}" pattern="#,###"/></span>원</li>
                         <li>배달시간 : ${restaurant.estimated_time}</li>
+                        <li>배달팁 : <fmt:formatNumber value="${restaurant.delivery_tip}" pattern="#,###" />원</li>
                     </ul>
                 </div>
                 <div class="restaurant-title row">
