@@ -12,9 +12,9 @@ input text, placeholder 글자 크기 수정 : 김나연
 
 /* 전체 적용 */
 /* 위에 뜸 해결*/
-*{
+/* *{
     margin: 0;
-}
+} */
 
 /* 전체배경색 */
 main {
@@ -34,6 +34,12 @@ main .header_back a, h1, h3, button, p {
 
 /* 스크롤 부드럽게 */
 html { scroll-behavior: smooth; }
+
+/* 화면 여백 없애기 */
+body {
+    margin: 0;
+    padding: 0;
+}
 
 /* ------------------------------------------------------------------ */
 /* 2번째 헤더 */
@@ -270,7 +276,7 @@ html { scroll-behavior: smooth; }
     position: absolute;
     bottom:0;
     right: 0;
-    width: 332px;
+    width: 370px;
     height: 100%;
 }
 
