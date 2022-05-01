@@ -22,7 +22,7 @@
   </tr>
   
   <tr>
-  	<td class="td1 subject">카테고리(말머리)</td>
+  	<td class="td1 subject">말머리</td>
   	<td class="td2">${article.category}</td>
   </tr>
   
