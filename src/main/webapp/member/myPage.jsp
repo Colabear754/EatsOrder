@@ -19,6 +19,9 @@
 </head>
 
 <body>
+	<c:if test="${account == null}">
+		<meta http-equiv="Refresh" content="0;url=/EatsOrder/main/main.do"> 
+	</c:if>
     <h2 class="mypage_head">마이페이지</h2>
     <div class="mypage_wrap">
         <div class="profile_box">
