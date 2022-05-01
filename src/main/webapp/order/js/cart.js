@@ -42,7 +42,10 @@ $(function() {
 			used_point = $('#using_point').val();
 		}
 		
-		if (payment_method == '') {
+		if ($('#address1').val() === '' || $('#address2').val() === '') {
+			$('.address_error').css('display', 'block');
+			$('.address').css("outline", "2px solid red");
+		} else if (payment_method == '') {
 			swal("결제 수단을 선택하여 주세요.", "", "warning");
 		} else if (member_point < used_point) {
 			swal("사용하려는 포인트가 사용 가능한 포인트보다 많습니다.", "", "warning");

@@ -68,4 +68,27 @@ $(function() {
     		$('#using_point').val(using_point);
     	}
     })
+    
+    //카카오 지도 api
+	$('#address1').click(function() {	// 주소 검색창을 클릭하면 모달 형태로 띄움
+		new daum.Postcode({
+			oncomplete : function(data) {	// 선택한 주소값을 세팅
+				$('#address1').val(data.address)
+				$('#address-modal').css('display', 'none')
+			},
+			useBannerLink: false
+		}).embed(document.getElementById('wrapper'))
+
+		$('#address-modal').css('display', 'flex')
+	})
+
+	$(document).mouseup(function(e) {
+		if ($('#wrapper').has(e.target).length === 0) {
+			$('#address-modal').css('display', 'none')
+		}
+	})
+    
+    $('.address').keyup(function() {
+    	$(this).css('outline', '');
+    })
 })
