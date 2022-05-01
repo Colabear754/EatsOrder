@@ -35,7 +35,7 @@
 												<div class="del_btn">
 													<a href="#">삭제</a>
 												</div>
-												<div class="order_img">
+												<div class="order_img2">
 													<img src="../restaurant/img/${order.rst_logo}">
 												</div>
 												<div class="order_text2">
