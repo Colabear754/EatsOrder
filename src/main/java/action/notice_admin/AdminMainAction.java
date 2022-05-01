@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.CommandAction;
 
 public class AdminMainAction implements CommandAction{
+	
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
