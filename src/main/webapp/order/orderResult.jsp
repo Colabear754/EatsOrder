@@ -7,10 +7,12 @@
   <meta charset="UTF-8">
   <title>주문완료</title>
   <link href="./css/orderResult.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./js/orderResult.js"></script>
   <script type="text/javascript" src="./js/time.js"></script>
  </head>
  <body>
+ 	<jsp:include page="../component/main_header_logAfter.html" />
    <div class="t1">
   <div class="a1">
       <ul>
@@ -20,6 +22,7 @@
 	  <div class="a2">
 	    <h3><span style="color:#FC6E4D">주문 감사합니다</span></h3>
 		   주문 요청이 완료되었으며 곧 고객님의 휴대전화 번호로 주문 확인 문자가 곧 발송됩니다.
+		   <fmt:formatNumber value="${total_price / 100}" pattern="#,###" /> 포인트가 적립되었습니다.
 	  </div>
 	<div class="a3">
 	   <ul>
@@ -42,7 +45,7 @@
 	      <li><strong>음식명 </strong>: ${orderedItems}</li>
 		  <li><strong>배달료 </strong>: <fmt:formatNumber value="${delivery_tip}" pattern="#,###"/>원</li>
 		  <li><strong>포인트 할인 </strong>: ${orderInfo.used_point}</li>
-		  <li style="color:#FC6E4D"><strong>합계 </strong>: <fmt:formatNumber value="${delivery_tip + total_price}" pattern="#,###"/>원</li>
+		  <li style="color:#FC6E4D"><strong>합계 </strong>: <fmt:formatNumber value="${delivery_tip + total_price - orderInfo.used_point}" pattern="#,###"/>원</li>
 		</ul>
      </div>
   </div><!--전체 텍스트-->
@@ -57,14 +60,14 @@
 
     </td>
     <td>
-    	<button id="home-btn" onclick="location.href='/EatsOrder/main/main.do'">메인으로 돌아가기</button>
+    	<button id="home-btn">메인으로 돌아가기</button>
     </td>
 
    </tr>
      </form>
 </div>
  <div class="time" id="ViewTimer"></div>
-  
+  <jsp:include page="../component/footer.html" />
  </body>
 </html>
 

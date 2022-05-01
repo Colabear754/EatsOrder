@@ -73,4 +73,5 @@ color:#000;
 }
 #home-btn:hover {
 	background-color:#fff;
+	cursor: pointer;
 }

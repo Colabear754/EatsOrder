@@ -57,7 +57,7 @@ public class OrderProcAction implements CommandAction {
 		}
 
 		String order_number = orderProcess.insertOrder(orderer, destination, coupon_id, used_point, payment_method,
-				order_request, used_point);
+				order_request, 1);
 		OrderHistoryDTO order = orderProcess.getOrderHistory(order_number);
 		
 		if (order != null) {
