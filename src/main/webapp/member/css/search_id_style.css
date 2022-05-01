@@ -9,12 +9,15 @@
 
 수정자 : 김나연
 수정일 : 2022/04/28, 2022/05/01
-수정내용 : input text, input placeholder 글씨크기 조절
+수정내용 : 
+1. input text, input placeholder 글씨크기 조절
+2. 전체 마진 삭제 후 html 여백 삭제를 위한 body 마진,패딩값 추가
 */
 
 /* 전체 적용 */
-/* 위에 뜸 해결*/
-*{
+/* body 여백 삭제 */
+body {
+    padding: 0;
     margin: 0;
 }
 
