@@ -1,4 +1,4 @@
-body {
+.main {
     position: relative;
     margin: 0 10%;
     box-sizing: border-box;
@@ -51,7 +51,8 @@ line-height:2
 .b3{
 line-height:2
 }
-input[type=button]{
+a[type=button]{
+	text-decoration: none;
 padding:10px;
 margin-left:70px;
 width:30%;
@@ -64,6 +65,7 @@ padding-left:70px;
 padding-top:10px;
 }
 #home-btn {
+	text-decoration: none;
 	padding:10px;
 margin-left:70px;
 width:30%;
