@@ -23,7 +23,7 @@ public class NoticeUpdateProAction implements CommandAction{
 
 		request.setCharacterEncoding("utf-8");
 		//사진 첨부
-	 	String saveFolder= "c:/webtest/4.jsp/2.back-end/sou2/EatsOrder/src/main/webapp/filestorage";
+	 	String saveFolder= "C:/Users/liam/git/webapp/filestorage";
 		String encType="UTF-8";
 		
 		int maxSize=100*1024*1024;
