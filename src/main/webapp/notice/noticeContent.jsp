@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>게시판</title>
-<link href="./css/noticewrite.css?ver=5" rel="stylesheet" type="text/css">
+<link href="./css/noticewrite.css" rel="stylesheet" type="text/css">
 </head>
 <body>  
 <div class="outer-grid">
@@ -41,17 +41,17 @@
     	<pre>${article.content}</pre>
     </td>
   </tr>
-  
+  <c:if test="${article.filename != null}"> 
   <tr>
-  	<td colspan="2" class="td2 center">
-  		<img src="filestorage/${article.filename}" alt="예시1" width="300px" height="300px">
+  	<td colspan="2" class="td2 center" style="text-align:center;">
+  		<img src="../filestorage/${article.filename}" alt="예시1">
   	</td>
   </tr>
-  
   <tr>
 	  <td class="td1 subject">파일명</td>
 	  <td class="td2">${article.filename}</td>
   </tr>
+  </c:if>
   </table> 
   <br>
   <div class="btn">
