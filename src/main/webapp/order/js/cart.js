@@ -77,7 +77,7 @@ $(function() {
 		
 		swal({
 			title: "메뉴를 삭제하시겠습니까?",
-			icon: "question",
+			icon: "warning",
 			buttons: [
 				'아니오', '예'
 			]
