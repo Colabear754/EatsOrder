@@ -72,8 +72,8 @@
     <div class="main">
         <div class="row" style="border:none">
             <div class="col-sm-8">
-                <div class="row" style="border: 1px solid gray;">
-                    <img class="img-responsive col-sm-2" src="./img/${restaurant.rst_logo}"
+                <div class="row" style="border: 1px solid gray; ">
+                    <img class="img-responsive col-sm-2" style="margin:0;" src="./img/${restaurant.rst_logo}"
                         style="border-right: 1px dotted gray;">
                     <ul class="list-unstyled col-sm-10">
                         <li>
