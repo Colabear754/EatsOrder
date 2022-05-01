@@ -8,8 +8,8 @@
 수정내용 : 동적 웹 페이지를 위한 스타일 시트 추가
 
 수정자 : 김나연
-수정일 : 2022/04/30
-수정내용 : input text, placeholder 글자 크기 조정
+수정일 : 2022/04/30, 2022/05/01
+수정내용 : input text, placeholder 글자 크기 조정, 제목 마진 조정
 */
 
 /* 전체설정 */
@@ -53,8 +53,7 @@ main {
 /* ----------------------------------------------- */
 /* 회원가입 제목 */
 .title_box h1 {
-    margin: 0 0 0 58px;
-    width: fit-content;
+    margin-bottom: 30px;
 }
 
 /* 인풋박스 디자인 */
@@ -62,12 +61,12 @@ main {
     width: 400px;
     height: 40px;
     box-sizing: border-box;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 /* 인풋박스 placeholder 크기 */
 .join_form input[type=text]::placeholder, [type=password]::placeholder {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 /* 인풋박스 버튼 디자인 */
@@ -89,11 +88,6 @@ main {
 	cursor: pointer;
 }
 
-/* 인증번호 버튼 */
-/* tr:nth-child(7) a {
-    width: 120px;
-} */
-
 /* 약관보기 버튼 */
 .check_box a {
     border: none;
@@ -103,7 +97,7 @@ main {
 }
 
 /* ----------------------------------------------- */
-/* 수신동의 체크박스 전체*/
+/* 마케팅 수신동의 체크박스 전체*/
 .join_form input[type=checkbox] {
     display: inline-block;
 }
@@ -123,13 +117,24 @@ main {
     text-align: left;
 }
 
-/* 이용약관동의 정렬 */
-tr:nth-child(11) label {
+/* ----------------------------------------------- */
+
+/* 이용약관 정렬 */
+tr:nth-child(11) td {
+    padding-left: 20px;
+}
+
+/* 마케팅동의 정렬 */
+tr:nth-child(12) label {
     display: inline-block;
 }
 
-tr:nth-child(11) > th {
-    padding-bottom: 25px;
+tr:nth-child(12) td {
+    padding: 0 20px;
+}
+
+tr:nth-child(12) span {
+    padding: 0;
 }
 
 /* ----------------------------------------------- */
@@ -150,14 +155,33 @@ tr:nth-child(11) > th {
 /* ----------------------------------------------- */
 /* 양식 도움말 체크 완료 전 */
 .form_helper p {
-    font-size: 14px
+    font-size: 15px
 }
 
+/* 일반도움말 특문 유니코드 */
 .form_helper p:before {
-    content: '\2022';
+    content: '\2022'; 
     display: inline-block;
     padding: 0 4px 0 2px;
-    font-size: 12px;
+    font-size: 13px;
+    vertical-align: 0;
+}
+
+/* 도움말 available 특문 유니코드 */
+.available:before {
+    content: '\2713'; 
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 13px;
+    vertical-align: 0;
+}
+
+/* 도움말 error 특문 유니코드 */
+.error:before {
+    content: '\2717'; 
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 13px;
     vertical-align: 0;
 }
 
@@ -170,12 +194,14 @@ tr:nth-child(11) > th {
 	display: none;
 	color: red;
 	font-weight: bold;
+    font-size: 15px
 }
 
 .available {
 	display: none;
-	color: green;
+	color: rgb(0, 149, 74);
 	font-weight: bold;
+    font-size: 15px
 }
 
 /* 이용약관 모달 */
