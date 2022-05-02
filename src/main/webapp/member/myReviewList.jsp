@@ -51,7 +51,7 @@
 				</c:if>
 				<c:if test="${orderCount > 0 }">
                     <c:forEach var="orderList" items="${orderList}">
-                    <c:if test="${orderList.elapsed_time >= 35}">
+                    <c:if test="${orderList.elapsed_time >= 35 && orderList.elapsed_time < 10080}">
                     <form id="review_form" name="review_form" method="post" action="insertMyReview.do" enctype="multipart/form-data"> 
       				<input type="hidden" name="pageNum" value="${pageNum}">
                     <input type="hidden"  name="order_number" value="${orderList.order_number}">
