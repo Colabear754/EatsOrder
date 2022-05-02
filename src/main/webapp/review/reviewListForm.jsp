@@ -30,7 +30,7 @@
 				<div class="row" style="border: 1px solid grey; height: 50px;">
 					<div class="review-count" style="top: 10px; width: 100%; margin-top: 10px;">
 						<div class="review-c">
-							리뷰 <strong class="ng-binding"><fmt:formatNumber value="${review_count}" pattern="#,###"/></strong> 개. 사장님댓글 <strong class="ng-binding"><fmt:formatNumber value="${reply_count}" pattern="#,###"/></strong> 개
+							리뷰 <strong class="ng-binding"><span id="review_count"><fmt:formatNumber value="${review_count}" pattern="#,###"/></span></strong> 개. 사장님댓글 <strong class="ng-binding"><fmt:formatNumber value="${reply_count}" pattern="#,###"/></strong> 개
 							<div class="opt-btn" style="float: right; position: relative; right: 65px;">
 								<span class="reviewbar" style="float: left;"> 사진리뷰만</span> <input type="checkbox" id="onlyPhotoReview"> <label for="onlyPhotoReview" class="switch_label"> <span class="onf_btn"></span>
 								</label>

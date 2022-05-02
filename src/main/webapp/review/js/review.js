@@ -53,7 +53,7 @@ $(function() {
 			data: "rst_id=" + rst_id + "&pageNum=" + pageNum + "&onlyPhotoReview=" + onlyPhotoReview,
 			dataType: "text",
 			success: function(data) {
-				$('#form-review-list').html(data);
+				$('#form-review-list').append(data);
 			},
 			error: function(request) {
 				alert('오류 발생 : ' + request.statusText);
