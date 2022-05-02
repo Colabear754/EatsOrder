@@ -51,6 +51,7 @@
 				</c:if>
 				<c:if test="${orderCount > 0 }">
                     <c:forEach var="orderList" items="${orderList}">
+                    <c:if test="${orderList.elapsed_time >= 35}">
                     <form id="review_form" name="review_form" method="post" action="insertMyReview.do" enctype="multipart/form-data"> 
       				<input type="hidden" name="pageNum" value="${pageNum}">
                     <input type="hidden"  name="order_number" value="${orderList.order_number}">
@@ -61,10 +62,12 @@
                                 <!-- 가게명, 삭제 -->
                                 <tr class="shop_name">
                                     <td>
-                                        <a href="/EatsOrder/restaurant/rst_form.do?rst_id=${orderList.rst_id}">
-                                            <h3 class="shop">${orderList.rst_name}</h3>
+                                        <h3 class="shop">
+                                        	<a href="/EatsOrder/restaurant/rst_form.do?rst_id=${orderList.rst_id}">
+                                            ${orderList.rst_name}
                                             <span>></span>
-                                        </a>
+                                        	</a>
+                                        </h3>
                                     </td>
                                 </tr>
                                 <!-- 별점 -->
@@ -133,6 +136,7 @@
                             </tbody>
                         </table>
                      </form>
+                     </c:if>
                     </c:forEach>
                  </c:if>
                 </div>

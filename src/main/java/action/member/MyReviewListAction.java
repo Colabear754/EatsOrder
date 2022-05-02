@@ -44,6 +44,12 @@ public class MyReviewListAction implements CommandAction {
 			reviewData.add(new ReviewDetailDTO(review, null, reviewProcess.getLikeCount(review.getReview_number()),
 					reviewProcess.getReviewRst(review.getReview_number()), overDate, null));
 		}
+		
+		for (OrderBasicInfoDTO order : orderList) {
+			long elapsed_time = (System.currentTimeMillis() - order.getPay_date().getTime()) / 1000 / 60;	// 주문으로부터 경과한 시간(분)
+			
+			order.setElapsed_time(elapsed_time);
+		}
 
 		MemberInfoDTO member = memberProcess.getMember(email);
 		int couponCount = couponProcess.getCouponCount(email);
