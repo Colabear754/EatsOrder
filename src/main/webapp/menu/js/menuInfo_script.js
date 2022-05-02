@@ -71,7 +71,6 @@ $(function() {
 					if (data > 0) {
 						swal("주문표에 추가되었습니다.", "", "success").then(() => {
 							$.ajax({
-    							type: "POST",
     							url: "/EatsOrder/order/cart.do",
     							success: function(cart) {
     								$('#cart-area').empty();
@@ -81,8 +80,6 @@ $(function() {
     								alert('오류 발생1 : ' + request.statusText);
     							}
     						})
-    						
-    						$('#menu-modal').modal('hide');
 	    				});
 					} else if (data < -1) {
 						swal({
@@ -113,18 +110,15 @@ $(function() {
 														swal("주문표에 추가되었습니다.", "", "success").then((result2) => {
 															if (result2) {
 																$.ajax({
-																	type: "POST",
 																	url: "/EatsOrder/order/cart.do",
-																	success: function(cart) {
+																	success: function(cart2) {
 																		$('#cart-area').empty();
-																		$('#cart-area').html(cart);
+																		$('#cart-area').html(cart2);
 																	},
 																	error: function(request) {
 																		alert('오류 발생2 : ' + request.statusText);
 																	}
 																})
-	    						
-																$('#menu-modal').modal('hide');
 															}
 														});
 													}

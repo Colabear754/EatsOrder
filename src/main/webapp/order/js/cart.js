@@ -8,7 +8,7 @@ $(function() {
 	// 매장 상세 페이지에서 주문하기 버튼 클릭 시
 	$('#order-form-btn').click(function() {
 		var min_order = Number($('#min_order').text().replace(',', ''));
-		var total_price = Number($('#total_price').val());
+		var total_price = Number($('#order_price').val());
 		
 		if ($('#email').val() === '') {	// 로그인 되어있지 않으면 로그인 화면으로 이동
 			location.href = "/EatsOrder/member/loginForm.do";
@@ -93,7 +93,6 @@ $(function() {
 					success: function(dresult) {
 						if (dresult > 0) {
 							$.ajax({
-								type: "POST",
 								url: "/EatsOrder/order/cart.do",
 								success: function(cart) {
 									$('#cart-area').empty();
