@@ -35,7 +35,7 @@ body {
 
 /* ----------------------------------------------- */
 .title_box h1 {
-    margin-left: 58px;
+    margin: 0 0 0 58px;
     width: fit-content;
 }
 
