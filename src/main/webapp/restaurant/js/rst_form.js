@@ -50,7 +50,9 @@ $(function() {
 	})
 	
 	// 매장 카테고리를 클릭하면 해당 카테고리 매장 목록으로 이동
-	$('.category').click(function() {
+	$('.category').click(function(e) {
+		e.preventDefault();
+		
 		if ($('#address').val() != '') {
 			// 폼 생성 및 속성 설정
 			var newForm = $('<form></form>');
@@ -68,6 +70,8 @@ $(function() {
 			
 			newForm.submit();
 			return false;
+		} else {
+			swal("배달받을 주소를 입력해주세요.", "", "warning");
 		}
 	})
 	
