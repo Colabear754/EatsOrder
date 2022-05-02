@@ -52,19 +52,19 @@
 		        </div>
 		    </div>
 		    <div class="grid">
-		        <div class="category" id="0"><a href="#0" class="food_category">전체보기</a></div>
-		        <div class="category" id="1"><a href="#1" class="food_category">1인분 주문</a></div>
-		        <div class="category" id="2"><a href="#2" class="food_category">프랜차이즈</a></div>
-		        <div class="category" id="3"><a href="#3" class="food_category">치킨</a></div>
-		        <div class="category" id="4"><a href="#4" class="food_category">피자/양식</a></div>
-		        <div class="category" id="5"><a href="#5" class="food_category">중국집</a></div>
-		        <div class="category" id="6"><a href="#6" class="food_category">한식</a></div>
-		        <div class="category" id="7"><a href="#7" class="food_category">일식/돈까스</a></div>
-		        <div class="category" id="8"><a href="#8" class="food_category">족발/보쌈</a></div>
-		        <div class="category" id="9"><a href="#9" class="food_category">야식</a></div>
-		        <div class="category" id="10"><a href="#10" class="food_category">분식</a></div>
-		        <div class="category" id="11"><a href="#11" class="food_category">카페/디저트</a></div>
-		        <div class="category" id="12"><a href="#12" class="food_category">편의점/마트</a></div>
+		        <div class="category" id="0"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">전체보기</a></div>
+		        <div class="category" id="1"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">1인분 주문</a></div>
+		        <div class="category" id="2"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">프랜차이즈</a></div>
+		        <div class="category" id="3"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">치킨</a></div>
+		        <div class="category" id="4"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">피자/양식</a></div>
+		        <div class="category" id="5"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">중국집</a></div>
+		        <div class="category" id="6"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">한식</a></div>
+		        <div class="category" id="7"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">일식/돈까스</a></div>
+		        <div class="category" id="8"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">족발/보쌈</a></div>
+		        <div class="category" id="9"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">야식</a></div>
+		        <div class="category" id="10"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">분식</a></div>
+		        <div class="category" id="11"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">카페/디저트</a></div>
+		        <div class="category" id="12"><a href="/EatsOrder/restaurant/rstList.do" class="food_category">편의점/마트</a></div>
 		    </div>
 		    <hr style="border:1px color= silver;" width="100%">
 		</header>
