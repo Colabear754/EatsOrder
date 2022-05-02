@@ -6,6 +6,7 @@
 <html>
 <head>
 	<script type="text/javascript" src="../review/js/review_list.js"></script>
+	<link href="../review/css/review.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<c:set var="n" value="0" />

@@ -96,3 +96,7 @@
     text-decoration: none;
     color: black;
 }
+hr {
+     background: #C4C4C4;
+     margin:0;
+  }

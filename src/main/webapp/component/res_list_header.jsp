@@ -44,7 +44,7 @@
         <div class="category" id="11"><a href="#" class="food_category">카페/디저트</a></div>
         <div class="category" id="12"><a href="#" class="food_category">편의점/마트</a></div>
     </div>
-    <hr style="border:1px color= silver;" width="100%">
+    <hr>
 </header>
 <!-- </div> -->
 </body>
