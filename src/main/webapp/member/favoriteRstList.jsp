@@ -12,6 +12,9 @@
     
     jsp변환 : 정건영
     변환일 : 2022/04/06
+
+    찜목록 제목 위 div class,id 명 변경, 추가 : 김나연
+    수정일 : 2022/05/01
     --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +29,7 @@
 		<jsp:include page="./myPage.jsp" />
     	<c:set var="favoriteRstCount" value="${fn:length(favoriteRstData)}" />
         <div class="content_box">
-            <div class="review_wrapper">
+            <div class="like_wrapper" id="like_wrapper2">
                 <h1>찜 목록</h1>
                 <c:if test="${favoriteRstCount == 0}">
                 	<h3>찜 매장이 없습니다.</h3>

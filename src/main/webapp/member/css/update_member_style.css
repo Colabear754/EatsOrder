@@ -16,6 +16,12 @@ main {
     height: 850px;
 }
 
+/* body 여백 삭제 */
+body {
+    padding: 0;
+    margin: 0;
+}
+
 /* ----------------------------------------------------------- */
 /* 메인 콘텐츠 박스 */
 .all_box {
@@ -53,12 +59,12 @@ main {
     width: 250px;
     height: 30px;
     box-sizing: border-box;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 /* 인풋박스 placeholder 크기 */
 .all_box input[type=text]::placeholder, [type=password]::placeholder {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 /* 인풋박스 버튼 디자인 */
