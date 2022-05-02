@@ -7,8 +7,11 @@
 <html>
 <head>
 <title>게시판</title>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+</style>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link href="./css/noticewrite.css" rel="stylesheet" type="text/css">
+<link href="./css/noticewrite.css?ver=1" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="./js/noticeContent.js"></script>
 </head>
 <body>  

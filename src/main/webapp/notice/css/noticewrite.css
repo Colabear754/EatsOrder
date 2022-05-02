@@ -3,6 +3,10 @@
     font-size:18px;
     border-spacing: 0;
     /* border: 1px solid green; */
+    
+}
+body b, .td1, .td2, .btn{
+	font-family: 'Nanum Gothic', sans-serif;
 }
 .title{
     margin-left:15%;
