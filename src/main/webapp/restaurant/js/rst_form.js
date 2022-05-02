@@ -69,7 +69,6 @@ $(function() {
 			newForm.appendTo('body');
 			
 			newForm.submit();
-			return false;
 		} else {
 			swal("배달받을 주소를 입력해주세요.", "", "warning");
 		}

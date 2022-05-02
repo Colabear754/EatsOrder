@@ -11,17 +11,16 @@ import restaurant.RestaurantDTO;
 import restaurant.RestaurantDetailDTO;
 import review.ReviewDAO;
 
-public class RstListAction implements CommandAction {
+public class MoreRstListAction implements CommandAction {
 	private static final int PAGESIZE = 12;
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// 카테고리별 매장 목록을 조회하는 액션클래스
+		// 매장 정보를 추가로 가져오는 액션클래스
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		int category_id = request.getParameter("category_id") == null ? 0 :Integer.parseInt(request.getParameter("category_id"));
 		int orderBy = request.getParameter("orderBy") == null ? 1 : Integer.parseInt(request.getParameter("orderBy"));
-		String address = request.getParameter("address");
 		String sido = request.getParameter("sido");
 		String sigungu = request.getParameter("sigungu");
 		String bname = request.getParameter("bname");
@@ -50,18 +49,8 @@ public class RstListAction implements CommandAction {
 					reviewProcess.getReplyCount(rst.getRst_id()), rstProcess.getRating(rst.getRst_id())));
 		}
 		
-		int rst_count = rstProcess.getRestaurantCount(category_id, sido, sigungu, bname, searchText);
-		
-		request.setAttribute("category_id", category_id);
-		request.setAttribute("orderBy", orderBy);
-		request.setAttribute("address", address);
-		request.setAttribute("sido", sido);
-		request.setAttribute("sigungu", sigungu);
-		request.setAttribute("bname", bname);
-		request.setAttribute("searchText", searchText);
 		request.setAttribute("rstData", rstData);
-		request.setAttribute("rst_count", rst_count);
-
-		return "/restaurant/rstList.jsp";
+		
+		return "/restaurant/more_rst_list.jsp";
 	}
 }

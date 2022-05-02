@@ -5,6 +5,13 @@
  */
 
 $(function() {
+	
+	if ($('#rst_count').val() <= $('#pageNum').val() * 12) {
+		$('.row').hide();
+	} else {
+		$('.row').show();
+	}
+	
 	$('.rst-link').click(function() {
 		// 폼 생성 및 속성 설정
 		var newForm = $('<form></form>');
@@ -33,6 +40,7 @@ $(function() {
 				$('#sigungu').val(data.sigungu)
 				$('#bname').val(data.bname)
 				$('#address-modal').css('display', 'none')
+				$('#wrapper').empty()
 			},
 			useBannerLink: false
 		}).embed(document.getElementById('wrapper'))
@@ -49,6 +57,7 @@ $(function() {
 	// 카테고리 변경
 	$('.category').click(function() {
 		if ($('#address').val() != '') {
+			$('#pageNum').val('1');
 			// 폼 생성 및 속성 설정
 			var newForm = $('<form></form>');
 			newForm.attr('method', 'post');
@@ -71,5 +80,32 @@ $(function() {
 	// 정렬 순서 변경
 	$('#orderBy').change(function() {
 		$('#rstForm').submit();
+	})
+	
+	// 매장 더보기
+	$('#more-rst-btn').click(function() {
+		$('#pageNum').val(Number($('#pageNum').val()) + 1);
+		$.ajax({
+			type: "POST",
+			url: "/EatsOrder/restaurant/more_rst_list.do",
+			data: {
+				"sido": $('#sido').val(),
+				"sigungu": $('#sigungu').val(),
+				"bname": $('#bname').val(),
+				"pageNum": $('#pageNum').val()
+			},
+			success: function(data) {
+				$('.outer-grid').append(data);
+				
+				if ($('#rst_count').val() <= $('#pageNum').val() * 12) {
+					$('.row').hide();
+				} else {
+					$('.row').show();
+				}
+			},
+			error: function(request) {
+				alert('오류 발생 : ' + request.statusText);
+			}
+		})
 	})
 })

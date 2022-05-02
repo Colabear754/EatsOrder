@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/rst_list.css?1">
     <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="./js/rstList_script.js"></script>
 </head>
@@ -72,7 +73,10 @@
 	        </form>
 	    </div>
 	    <br><br><br><br>
-	    <c:set var="rstDataLength" value="${fn:length(rstData)}"></c:set>
+	    <c:set var="rstDataLength" value="${fn:length(rstData)}" />
+	    <div>
+		    <input type="hidden" id="rst_count" value="${rst_count}">
+	    </div>
 	    <c:if test="${rstDataLength == 0}">
 	    	<div id="no-rst">찾으시는 가게가 없습니다.</div>
 	    </c:if>
@@ -96,6 +100,14 @@
 	         </c:forEach>
 	     </c:if>
 	     </div>
+	     <div class="row" id="btn-wrapper" style="display: block; border: 1px solid gray">
+			<input type="hidden" id="pageNum" value="1" onchange="hideButton()">
+			<div class="list-group-item btn-more" style="display: block; padding: 0; text-align: center; color: #FC6E4D; border-top: 1px solid gray;">
+				<a ng-cilck="get_next_rsts()"> 
+					<span> <input type="button" class="btn btn-warning" id="more-rst-btn" value="더보기"> <i class="arr-down"></i> </span>
+				</a>
+			</div>
+		</div>
 	    <br>
 	</div>
 	<jsp:include page="../component/footer.html" />

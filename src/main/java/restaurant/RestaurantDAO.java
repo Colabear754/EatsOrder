@@ -708,4 +708,48 @@ public class RestaurantDAO {
 		
 		return result;
 	}
+	
+	// 해당 지역의 전체 매장 개수 조회
+	public int getRestaurantCount(int category_id, String sido, String sigungu, String bname, String searchText) {
+		int result = -1;
+		String sql;
+		
+		if (category_id == 0) {
+			sql = "select count(r.rst_id) from restaurant r, delivery_zone d "
+					+ "where r.rst_id=d.rst_id and sido=? and sigungu=? and bname=? and rst_name like ?";
+		} else {
+			sql = "select count(r.rst_id) from restaurant r, delivery_zone d "
+					+ "where r.rst_id=d.rst_id and sido=? and sigungu=? and bname=? and rst_name like ? and category_id=?";
+		}
+		
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement(sql);
+			pStatement.setString(1, sido);
+			pStatement.setString(2, sigungu);
+			pStatement.setString(3, bname);
+			
+			if (searchText == null) {
+				pStatement.setString(4, "%%");
+			} else {
+				pStatement.setString(4, "%" + searchText + "%");
+			}
+			
+			if (category_id != 0) {
+				pStatement.setInt(5, category_id);
+			}
+			
+			resultSet = pStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				result = resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			 e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+		
+		return result;
+	}
 }
