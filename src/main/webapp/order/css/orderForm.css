@@ -27,13 +27,13 @@ background-color:#e5e5e5;
 padding:8px;
 }
 .x1{/*주소*/
- padding-left:45px;
+ /*padding-left:45px;*/
  }
  .x3{/*상세주소*/ 
- padding-left:80px;
+ padding-left:34px;
 }
 .x2{/*휴대폰*/
- padding-left:45px;
+ /*padding-left:45px;*/
  margin-top:10px;
 }
 textarea {/*요청사항 글씨*/
@@ -46,7 +46,7 @@ textarea {/*요청사항 글씨*/
   color: #999;
  }
  input[type=text]{
-  width:83.5%;
+  width:84.1%;
   height:30px;
   margin:7px;
   padding-left:10px;
@@ -58,7 +58,7 @@ textarea {/*요청사항 글씨*/
   padding-left:10px;
  }
   input[type=text4]{
-  width:75%;
+  width:78.4%;
   height:30px;
   margin:5px;
   padding-left:10px;
@@ -107,7 +107,7 @@ padding-left:150px;
         border: 2px solid #FFD700;
 }
 input[type=text1]{/*쿠폰*/
-  width:50%;
+  width:51%;
   height:30px;
   margin:10px;
  }
@@ -118,13 +118,14 @@ input[type=text1]{/*쿠폰*/
  }
 ul{
 list-style:none;
+padding:0;
 }
 .tt{
 border:1px solid #e5e5e5;
 padding:10px;
 margin:10px;
 border:none;
-right:100px;
+right:225px;
 float:right;
 position:relative;
 
@@ -160,11 +161,11 @@ background-color:#ff9f00;
  /*주문표 리스트*/
 #cart-area {
  position:relative;
- width:280px;
+ width:395px;
  float:right;
- margin-top: 100px;
+ margin-top: 41px;
  height:250px;
- left:200px;
+ left:185px;
  list-style: none;
  top:-900px;
   
