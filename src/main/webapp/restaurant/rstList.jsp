@@ -100,9 +100,9 @@
 	         </c:forEach>
 	     </c:if>
 	     </div>
-	     <div class="row" id="btn-wrapper" style="display: block; border: 1px solid gray">
+	     <div class="row" id="btn-wrapper" style="display: block;">
 			<input type="hidden" id="pageNum" value="1" onchange="hideButton()">
-			<div class="list-group-item btn-more" style="display: block; padding: 0; text-align: center; color: #FC6E4D; border-top: 1px solid gray;">
+			<div class="list-group-item btn-more" style="display: block; padding: 0; text-align: center; ">
 				<a ng-cilck="get_next_rsts()"> 
 					<span> <input type="button" class="btn btn-warning" id="more-rst-btn" value="더보기"> <i class="arr-down"></i> </span>
 				</a>

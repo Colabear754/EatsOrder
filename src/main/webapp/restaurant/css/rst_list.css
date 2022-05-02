@@ -244,4 +244,11 @@ select{
 	justify-content: center;
 	align-items: center;
 }
-.btn-warning {width:30%}
+.btn-warning {
+	width:20%;
+	height:48px;
+	background-color:#FC6E4D;
+	border-radius:12px;
+	
+
+}
