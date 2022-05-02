@@ -17,16 +17,10 @@ footer {
     background-color: #212121;
     height: 480px;
     /* 푸터 하단에 붙이기 */
-<<<<<<< HEAD
-    position : relative;    
+
 
 /*     position : relative; */
 /*     transform : translateY(-100%); */
-
-
-=======
-    position : relative; 
->>>>>>> branch 'master' of https://github.com/Colabear754/EatsOrder.git
 }
 
 /* 푸터 하단에 붙이기 */
@@ -73,7 +67,7 @@ footer div, footer p {
 /* sns 아이콘 */
 .footer_sns {
     width: fit-content;
-    margin-left: 105px;
+    margin-left: 80px;
 }
 
 /* footer list a */
@@ -106,6 +100,6 @@ footer hr {
 
 /* 통신판매중개자 안내문구 */
 .fooer_script2 p {
-   margin: 10px 0;
+   margin: 5px 0;
 }
 

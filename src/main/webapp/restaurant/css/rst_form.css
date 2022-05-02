@@ -1,8 +1,8 @@
      /* 2022.04.04 매장상세페이지 css 김시웅 
       	  2022.04.18 css 수정 김시웅		
       */
-      @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap%27');
-       @media (min-width: 768px) {
+      /*@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap%27');*/
+      /* @media (min-width: 768px) {
            .carousel-inner .active,
            .carousel-inner .active + .carousel-item,
            .carousel-inner .active + .carousel-item + .carousel-item,
@@ -26,14 +26,14 @@
            .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
            .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
            .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item { position: relative; transform: translate3d(100%, 0, 0); display: block; visibility: visible; }
-       }
+       }*/
        
 		.btn-like {float: right; color: transparent; text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000; border: none; background-color: white; font-size: 25px;}
        .btn-like:hover {text-shadow: 0 0 0 #FC6E4F;}
 	   .btn-like.done { color: #FC6E4F;text-shadow: 0;}
 
        
-       * {list-style: none; font-family: 'Nanum Gothic', sans-serif;}
+       * {list-style: none; font-family: 'Nanum Gothic', sans-serif; margin:0;}
        .restaurant-title { border: 1px solid grey; margin-top: 15px;}
        .restaurant-title .nav { width: 100%; border-bottom: 1px solid grey;}
        .restaurant-title .nav-item {  border-right:  1px solid grey; }
@@ -282,6 +282,7 @@
        
   
   /* footer 그리드 */
+  
   .all_footer {
       /* border: 1px solid red; */
       margin-left: 10%;
@@ -292,6 +293,7 @@
   
   .hr1 {
       clear: left;
+      margin:0;
   }
   
   /* footer list */
@@ -332,7 +334,12 @@
   /* footer 회사설명 */
   .fooer_script {
       /* border: 1px solid pink; */
-      /*margin-top: 35px;*/
+      margin-top: 25px;
+  }
+  .fooer_script h3 {
+      /* border: 1px solid pink; */
+     font-size:19px;
+     font-weight: bold;
   }
   
   .cs {
@@ -343,7 +350,8 @@
   .cs h1,p{
       display: inline-block;
       margin-bottom: 0;
-  }
+      font-weight: revert;
+}
   
 .fooer_script2 p {
     margin: 0;
