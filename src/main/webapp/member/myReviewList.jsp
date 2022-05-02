@@ -172,7 +172,12 @@
 	                                <a class="delete_btn">삭제</a>
 	                            </div>
 	                            <div class="review_img2">
+	                            	<c:if test="${reviewData.review.photo5 !=null }">
 	                                <img src="../reviewPhoto/${reviewData.review.photo5}" alt="리뷰사진">
+	                                </c:if>
+	                                <c:if test="${reviewData.review.photo5 ==null }">
+	                                <img src="./img/review_food.jpg" alt="리뷰 예시 사진">
+	                                </c:if>
 	                            </div>
 	                            <div class="review_text2">
 	                                <div>${reviewData.review.content}</div>
