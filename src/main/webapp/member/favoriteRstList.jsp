@@ -45,7 +45,6 @@
 		                        <div class="review_text">
 		                            <span>★</span><span>${favoriteRst.rating}</span>
 		                            <p>최소주문 <fmt:formatNumber value="${favoriteRst.restaurant.min_order}" pattern="#,###" />원</p>
-		                            <p>주문메뉴 내역</p>
 		                        </div>
 		                    </div>
 		                </div>
