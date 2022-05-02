@@ -58,19 +58,17 @@
     <br><br>
     <b class="board_count">총 ${pgList.count}건 [ ${pgList.currentPage} / ${pgList.pageCount} ]</b>
     <br><br>
-    <c:if test="${pgList.count==0}">   
-        <div class="outer-grid">
+    
+    <div class="outer-grid">
+    <c:if test="${pgList.count==0}"> 
             <table>
                 <tr>
                     <td>게시판에 저장된 글이 없습니다.</td>
                 </tr>
             </table>
-        </div>
-    </c:if>
-
-    <c:if test="${pgList.count>0 }">
-    <div class="outer-grid"> 
-        <table class="table">
+	</c:if>
+	<c:if test="${pgList.count>0 }">
+		<table>
             <tr>
                 <th class="td1">글번호</th>
                 <th class="td2">글제목</th>
@@ -94,8 +92,8 @@
 	            </tr>
             </c:forEach>
         </table>
-    </div> 
-    </c:if>
+    </c:if>           
+    </div>
 	
 	<div class="numbering">
 	    <c:if test="${pgList.startPage > pgList.blockSize}">

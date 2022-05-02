@@ -7,7 +7,7 @@
 <!-- 작성자: 허우림. 작성일: 22-04-18. 페이지명: 공지사항/이벤트/FAQ 게시판목록 페이지(관리자)  -->
 <head>
 <title>공지사항/이벤트/FAQ탭 게시판(관리자)</title>
-<link href="./css/noticelist.css?ver=12" rel="stylesheet" type="text/css">
+<link href="./css/noticelist.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="./css/admin_main.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
@@ -57,19 +57,17 @@
     <br><br>
     <b class="board_count">총 ${pgList.count}건 [ ${pgList.currentPage} / ${pgList.pageCount} ]</b>
     <br><br>
-    <c:if test="${pgList.count==0}">   
-        <div class="outer-grid">
+      
+    <div class="outer-grid">
+    <c:if test="${pgList.count==0}"> 
             <table>
                 <tr>
                     <td>게시판에 저장된 글이 없습니다.</td>
                 </tr>
             </table>
-        </div>
-    </c:if>
-
-    <c:if test="${pgList.count>0 }">
-    <div class="outer-grid">
-        <table>
+	</c:if>
+	<c:if test="${pgList.count>0 }">
+		<table>
             <tr>
                 <th class="td1">글번호</th>
                 <th class="td2">글제목</th>
@@ -93,8 +91,8 @@
 	            </tr>
             </c:forEach>
         </table>
-    </div> 
-    </c:if>
+    </c:if>           
+    </div>
 	
 	<div class="numbering">
 	    <c:if test="${pgList.startPage > pgList.blockSize}">
