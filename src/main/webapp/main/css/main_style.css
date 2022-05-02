@@ -268,7 +268,7 @@ body {
 /* 카테고리 이미지 각각 크기,위치 */
 /* 1번째 이미지 - 이벤트 */
 .notice {
-    background-image: url("/main/img/event.png");
+    background-image: url("./img/event.png");
 }
 
 .food_select_container a:nth-child(1) {
