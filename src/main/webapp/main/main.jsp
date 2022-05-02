@@ -69,7 +69,7 @@
         <div class="main_food_text" id="main_food_text"><h1>원하시는 음식 카테고리를 선택하세요</h1></div>
         <div class="food_select_container">
             <a href="#" class="notice">
-                <!-- <img src="./img/event.png" class="first_img" alt="이벤트-사진"><label></label> -->
+                <img src="./img/event.png" class="first_img" alt="이벤트-사진"><label></label>
                 <span class="caption">이벤트/공지</span>
             </a>
             <a href="#" class="food_item" id="0">

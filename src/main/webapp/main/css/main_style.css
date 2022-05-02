@@ -267,9 +267,9 @@ body {
 
 /* 카테고리 이미지 각각 크기,위치 */
 /* 1번째 이미지 - 이벤트 */
-.notice {
+/*.notice {
     background-image: url("./img/event.png");
-}
+}*/
 
 .food_select_container a:nth-child(1) {
     position: relative;
@@ -278,7 +278,7 @@ body {
     position: absolute;
     bottom:0;
     right: 0;
-    width: 370px;
+    width: 355px;
     height: 100%;
 }
 
