@@ -7,6 +7,7 @@
   <link href="./css/cancelOrderForm.css" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="./js/cancelOrderForm.js"></script>
   <title>주문취소</title>
  </head>

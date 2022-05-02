@@ -45,8 +45,8 @@ public class ReviewDAO {
 
 			if (resultSet.next()) {
 				if (resultSet.getString(1).equals(email)) {
-					pStatement = connection.prepareStatement("insert into review "
-							+ "values(review_index_seq.nextval, ?, sysdate, ?, ?, ?, ?, ?, ?, ?)");
+					pStatement = connection.prepareStatement(
+							"insert into review " + "values(review_index_seq.nextval, ?, sysdate, ?, ?, ?, ?, ?, ?, ?)");
 					pStatement.setString(1, order_number);
 					pStatement.setString(2, content);
 					pStatement.setString(3, photos[0]);
@@ -55,11 +55,11 @@ public class ReviewDAO {
 					pStatement.setString(6, photos[3]);
 					pStatement.setString(7, photos[4]);
 					pStatement.setInt(8, rating);
-	
+
 					result = pStatement.executeUpdate();
 				}
 			}
-			
+
 			System.out.println("리뷰 작성 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -373,14 +373,14 @@ public class ReviewDAO {
 
 		if (onlyPhotoReview) {
 			// 사진이 포함된 리뷰만 조회
-			sql = "select * from (select rownum r, review.* from review where photo1 is not null and review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
-					+ "where r>=? and r<=?";
+			sql = "select a.* from (select rownum r, b.* from (select review.* from review where photo1 is not null and review_number in "
+					+ "(select review_number from v_review_to_rst where rst_id=? and review_number is not null) "
+					+ "order by review_number desc) b) a where r>=? and r<=?";
 		} else {
 			// 모든 리뷰 조회
-			sql = "select * from (select rownum r, review.* from review where review_number in "
-					+ "(select review_number from v_review_to_rst where rst_id=?) order by review_number desc) "
-					+ "where r>=? and r<=?";
+			sql = "select a.* from (select rownum r, b.* from (select review.* from review where review_number in "
+					+ "(select review_number from v_review_to_rst where rst_id=? and review_number is not null) "
+					+ "order by review_number desc) b) a where r>=? and r<=?";
 		}
 
 		try {
@@ -545,7 +545,7 @@ public class ReviewDAO {
 					"select r.* from restaurant r, v_review_to_rst vrr where review_number=? and vrr.rst_id=r.rst_id");
 			pStatement.setInt(1, review_number);
 			resultSet = pStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				result = new RestaurantDTO(resultSet.getInt("rst_id"), resultSet.getInt("category_id"),
 						resultSet.getString("rst_name"), resultSet.getString("phone"), resultSet.getString("address"),
@@ -563,25 +563,26 @@ public class ReviewDAO {
 
 		return result;
 	}
-	
+
 	// 리뷰를 작성할 수 있는 주문 목록 조회
 	public ArrayList<OrderBasicInfoDTO> getReviewToWrite(String orderer) {
 		// 주문한지 7일 이내면서 리뷰를 작성하지 않은 주문만 조회
 		ArrayList<OrderBasicInfoDTO> resultList = new ArrayList<>();
 		String order_number = "";
 		ResultSet resultSet2 = null;
-		
+
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("select oh.order_number, payment_status, rst.rst_id, rst_name, rst_logo, count(menu_name) as count, pay_date "
-					+ "from review r, order_history oh, order_detail od, menu m, menu_category mc, restaurant rst "
-					+ "where orderer=? and oh.order_number=od.order_number and od.menu_id=m.menu_id "
-					+ "and m.category_id=mc.category_id and mc.rst_id=rst.rst_id and r.order_number(+)=oh.order_number "
-					+ "and extract(day from systimestamp - pay_date)<7 and review_number is null "
-					+ "group by oh.order_number, payment_status, rst.rst_id, rst_name, rst_logo, pay_date order by oh.order_number desc");
+			pStatement = connection.prepareStatement(
+					"select oh.order_number, payment_status, rst.rst_id, rst_name, rst_logo, count(menu_name) as count, pay_date "
+							+ "from review r, order_history oh, order_detail od, menu m, menu_category mc, restaurant rst "
+							+ "where orderer=? and oh.order_number=od.order_number and od.menu_id=m.menu_id "
+							+ "and m.category_id=mc.category_id and mc.rst_id=rst.rst_id and r.order_number(+)=oh.order_number "
+							+ "and extract(day from systimestamp - pay_date)<7 and review_number is null "
+							+ "group by oh.order_number, payment_status, rst.rst_id, rst_name, rst_logo, pay_date order by oh.order_number desc");
 			pStatement.setString(1, orderer);
 			resultSet = pStatement.executeQuery();
-			
+
 			while (resultSet.next()) {
 				order_number = resultSet.getString("order_number");
 				pStatement = connection.prepareStatement(
@@ -590,21 +591,25 @@ public class ReviewDAO {
 				resultSet2 = pStatement.executeQuery();
 
 				if (resultSet2.next()) {
-					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getInt("rst_id"), resultSet.getString("rst_name"),
-							resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
-							resultSet.getTimestamp("pay_date"), resultSet.getInt("payment_status")));
+					if ((System.currentTimeMillis() - resultSet.getTimestamp("pay_date").getTime()) / 1000 / 60 / 60
+							/ 24 < 7) {
+						resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getInt("rst_id"),
+								resultSet.getString("rst_name"), resultSet.getString("rst_logo"), resultSet2.getString(1),
+								resultSet.getInt("count") - 1, resultSet.getTimestamp("pay_date"),
+								resultSet.getInt("payment_status")));
+					}
 				}
 			}
-			
+
 			if (resultSet2 != null) {
 				resultSet2.close();
 			}
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
 		}
-		
+
 		return resultList;
 	}
 }
