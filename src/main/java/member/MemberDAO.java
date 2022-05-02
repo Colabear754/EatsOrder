@@ -468,7 +468,7 @@ public class MemberDAO {
 				connection.commit();
 			}
 
-			System.out.println("포인트 적립 결과 : " + result);
+			System.out.println("포인트 적립 및 차감 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

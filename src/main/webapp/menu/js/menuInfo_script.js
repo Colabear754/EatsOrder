@@ -10,10 +10,10 @@ $(function() {
 	
 	$('input:radio:checked').each(function() {
 		var optPrice = Number($(this).parent().siblings('.price').text().replace(/,/g, '').replace('원', ''));
-		defaultOptPrice = (Number(defaultOptPrice) + Number(optPrice)).toLocaleString('ko-KR');
+		defaultOptPrice = (Number(defaultOptPrice) + Number(optPrice));
 	})
 	
-	$('#total_price').text(defaultOptPrice + '원');
+	$('#total_price').text(defaultOptPrice.toLocaleString('ko-KR') + '원');
 	
 	// +, - 버튼으로 수량 조절 시
 	$('#plus').click(function() {	
@@ -50,7 +50,6 @@ $(function() {
 			var options = [];
 			
 			$('input:checkbox:checked').each(function() {
-				console.log($(this).val())
 				options.push($(this).val());
 			})
 			
@@ -70,21 +69,11 @@ $(function() {
 				success: function(data) {
 					if (data > 0) {
 						swal("주문표에 추가되었습니다.", "", "success").then(() => {
-							$.ajax({
-    							url: "/EatsOrder/order/cart.do",
-    							success: function(cart) {
-    								$('#cart-area').empty();
-    								$('#cart-area').html(cart);
-    							},
-    							error: function(request) {
-    								alert('오류 발생1 : ' + request.statusText);
-    							}
-    						})
-    						
+							reloadCart();
     						$('#menu-info').empty();
 							$('.modal-backdrop').remove();
 	    				});
-					} else if (data < -1) {
+					} else if (data == -1) {
 						swal({
 							title: "주문표에 다른 매장에서 선택한 메뉴가 있습니다.",
 							text: "주문표를 비우고 메뉴를 추가하시겠습니까?",
@@ -110,27 +99,15 @@ $(function() {
 												},
 												success: function(data) {
 													if (data > 0) {
-														swal("주문표에 추가되었습니다.", "", "success").then((result2) => {
-															if (result2) {
-																$.ajax({
-																	url: "/EatsOrder/order/cart.do",
-																	success: function(cart2) {
-																		$('#cart-area').empty();
-																		$('#cart-area').html(cart2);
-																	},
-																	error: function(request) {
-																		alert('오류 발생2 : ' + request.statusText);
-																	}
-																})
-
-									    						$('#menu-info').empty();
-																$('.modal-backdrop').remove();
-															}
+														swal("주문표에 추가되었습니다.", "", "success").then(() => {
+															reloadCart();
+									    					$('#menu-info').empty();
+															$('.modal-backdrop').remove();
 														});
 													}
 												},
 												error: function(request) {
-													alert('오류 발생3 : ' + request.statusText);
+													alert('오류 발생1 : ' + request.statusText);
 												}
 											})
 										}
@@ -138,10 +115,32 @@ $(function() {
 								})
 							}
 						})
+					} else if (data == -4) {
+						$.ajax({
+							type: "POST",
+							url: "/EatsOrder/order/updateCartItem.do",
+							data: {
+								"menu_id": menu_id,
+								"options": options,
+								"quantity": quantity
+							},
+							success: function(data) {
+								if (data > 0) {
+									swal("주문표에 추가되었습니다.", "", "success").then(() => {
+										reloadCart();
+				    					$('#menu-info').empty();
+										$('.modal-backdrop').remove();
+									});
+								}
+							},
+							error: function(request) {
+								alert('오류 발생2 : ' + request.statusText);
+							}
+						})
 					}
 				},
 				error: function(request) {
-					alert("오류 발생4 : " + request.statusText);
+					alert("오류 발생3 : " + request.statusText);
 				}
 			})
 		}
@@ -204,4 +203,18 @@ function calcPrice() {
 	})
 	
 	$('#total_price').text((defaultPrice * quantity).toLocaleString('ko-KR') + '원');
+}
+
+function reloadCart() {
+	// 주문표 리로드 함수 
+	$.ajax({
+		url: "/EatsOrder/order/cart.do",
+		success: function(cart) {
+			$('#cart-area').empty();
+			$('#cart-area').html(cart);
+		},
+		error: function(request) {
+			alert('주문표 로드 오류 발생 : ' + request.statusText);
+		}
+	})
 }

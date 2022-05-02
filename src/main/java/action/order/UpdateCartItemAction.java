@@ -16,8 +16,10 @@ public class UpdateCartItemAction implements CommandAction {
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		OrderDAO orderProcess = new OrderDAO();
 		
-		orderProcess.updateCartItem(orderer, menu_id, quantity);
+		int result = orderProcess.updateCartItem(orderer, menu_id, quantity);
 		
-		return "/updateCartItem.jsp";
+		request.setAttribute("result", result);
+		
+		return "/component/result.jsp";
 	}
 }

@@ -38,6 +38,7 @@ public class CouponDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
+			connection.setAutoCommit(false);
 			pStatement = connection
 					.prepareStatement("select * from administrator where admin_id=? and password=pkg_crypto.encrypt(?)");
 			pStatement.setString(1, admin_id);
@@ -54,6 +55,10 @@ public class CouponDAO {
 				pStatement.setDate(6, expiration_date);
 
 				result = pStatement.executeUpdate();
+			}
+			
+			if (result > 0) {
+				connection.commit();
 			}
 
 			System.out.println("유효쿠폰 추가 결과 : " + result);
@@ -73,6 +78,7 @@ public class CouponDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
+			connection.setAutoCommit(false);
 			pStatement = connection.prepareStatement("insert into owned_coupon values(?, ?, ?)");
 			pStatement.setString(1, coupon_id);
 			pStatement.setString(2, owner_id);
@@ -80,6 +86,10 @@ public class CouponDAO {
 
 			result = pStatement.executeUpdate();
 
+			if (result > 0) {
+				connection.commit();
+			}
+			
 			System.out.println("사용자 쿠폰 등록 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();

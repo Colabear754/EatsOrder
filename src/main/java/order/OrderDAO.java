@@ -35,7 +35,8 @@ public class OrderDAO {
 	// 장바구니에 메뉴 추가
 	public int insertCartItem(String orderer, int menu_id, int[] options, int quantity) {
 		// result가 0보다 크면 추가 성공
-		// result가 -2면 추가하려는 메뉴와 이미 추가된 메뉴가 서로 다른 매장인 경우 
+		// result가 -2면 추가하려는 메뉴와 이미 추가된 메뉴가 서로 다른 매장인 경우
+		// result가 -4면 이미 같은 메뉴가 추가되어 있는 경우
 		int result = -1;
 
 		try {
@@ -59,39 +60,49 @@ public class OrderDAO {
 				if (!resultSet.next()) {
 					// 다른 매장ID가 없을 경우(장바구니가 비어있거나 같은 매장ID만 존재할 경우)
 					String sql;
-
-					if (options.length == 0) {
-						sql = "insert into cart values(?, ?, null, ?)";
-					} else {
-						sql = "insert into cart values(?, ?, selected_option_seq.nextval, ?)";
-					}
-
-					pStatement = connection.prepareStatement(sql);
+					// 장바구니에 추가하려는 메뉴와 같은 메뉴가 있는지 조회
+					pStatement = connection
+							.prepareStatement("select orderer, menu_id from cart where orderer=? and menu_id=?");
 					pStatement.setString(1, orderer);
 					pStatement.setInt(2, menu_id);
-					pStatement.setInt(3, quantity);
+					resultSet = pStatement.executeQuery();
 
-					result = pStatement.executeUpdate();
-
-					if (result > 0) {
-						pStatement = connection
-								.prepareStatement("insert into selected_option values(selected_option_seq.currval, ?)");
-						for (int option_id : options) {
-							pStatement.setInt(1, option_id);
-							pStatement.addBatch();
-							pStatement.clearParameters();
+					if (resultSet.next()) {
+						result = -4;
+					} else {
+						if (options.length == 0) {
+							sql = "insert into cart values(?, ?, null, ?)";
+						} else {
+							sql = "insert into cart values(?, ?, selected_option_seq.nextval, ?)";
 						}
 
-						int[] array = pStatement.executeBatch();
+						pStatement = connection.prepareStatement(sql);
+						pStatement.setString(1, orderer);
+						pStatement.setInt(2, menu_id);
+						pStatement.setInt(3, quantity);
 
-						for (int n : array) {
-							if (n == Statement.SUCCESS_NO_INFO) {
-								// excuteBatch()가 성공했을 때 -2만 반환하는 에러가 있어서 result값을 1씩 증가시키도록 함
-								result++;
-							} else if (n == Statement.EXECUTE_FAILED) {
-								// excuteBatch()가 실패하면 result를 -3으로 변경하고 반복 종료
-								result = Statement.EXECUTE_FAILED;
-								break;
+						result = pStatement.executeUpdate();
+
+						if (result > 0) {
+							pStatement = connection
+									.prepareStatement("insert into selected_option values(selected_option_seq.currval, ?)");
+							for (int option_id : options) {
+								pStatement.setInt(1, option_id);
+								pStatement.addBatch();
+								pStatement.clearParameters();
+							}
+
+							int[] array = pStatement.executeBatch();
+
+							for (int n : array) {
+								if (n == Statement.SUCCESS_NO_INFO) {
+									// excuteBatch()가 성공했을 때 -2만 반환하는 에러가 있어서 result값을 1씩 증가시키도록 함
+									result++;
+								} else if (n == Statement.EXECUTE_FAILED) {
+									// excuteBatch()가 실패하면 result를 -3으로 변경하고 반복 종료
+									result = Statement.EXECUTE_FAILED;
+									break;
+								}
 							}
 						}
 					}
@@ -150,7 +161,7 @@ public class OrderDAO {
 			pStatement.setInt(2, menu_id);
 
 			result = pStatement.executeUpdate();
-			
+
 			if (result > 0) {
 				connection.commit();
 			}
@@ -172,13 +183,18 @@ public class OrderDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement("update cart set quantity=? where orderer=? and menu_id=?");
+			connection.setAutoCommit(false);
+			pStatement = connection.prepareStatement("update cart set quantity=quantity+? where orderer=? and menu_id=?");
 			pStatement.setInt(1, quantity);
 			pStatement.setString(2, orderer);
 			pStatement.setInt(3, menu_id);
 
 			result = pStatement.executeUpdate();
 
+			if (result > 0 ) {
+				connection.commit();
+			}
+			
 			System.out.println("장바구니에 추가된 메뉴 수량 변경 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -202,7 +218,7 @@ public class OrderDAO {
 			pStatement.setString(1, orderer);
 
 			result = pStatement.executeUpdate();
-			
+
 			if (result > 0) {
 				connection.commit();
 			}
@@ -248,13 +264,13 @@ public class OrderDAO {
 
 			result = pStatement.executeUpdate();
 
-//			if (result > 0 && used_point > 0) {
-//				// 주문정보 추가에 성공하고 사용 포인트가 있다면 포인트를 차감
-//				pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
-//				pStatement.setInt(1, used_point);
-//				pStatement.setString(2, orderer);
-//				result = pStatement.executeUpdate();
-//			}
+			//			if (result > 0 && used_point > 0) {
+			//				// 주문정보 추가에 성공하고 사용 포인트가 있다면 포인트를 차감
+			//				pStatement = connection.prepareStatement("update member_info set point=point-? where email=?");
+			//				pStatement.setInt(1, used_point);
+			//				pStatement.setString(2, orderer);
+			//				result = pStatement.executeUpdate();
+			//			}
 
 			if (result > 0) {
 				// 장바구니에서 정보를 얻어와서 주문 상세정보에 추가
@@ -311,7 +327,8 @@ public class OrderDAO {
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
-				if (orderer.equals(resultSet.getString(1)) && (System.currentTimeMillis() - resultSet.getTimestamp(2).getTime()) / 1000 / 60 < 1) {
+				if (orderer.equals(resultSet.getString(1))
+						&& (System.currentTimeMillis() - resultSet.getTimestamp(2).getTime()) / 1000 / 60 < 1) {
 					pStatement = connection.prepareStatement(
 							"update order_history set payment_status=0, reason_cancellation=? where order_number=?");
 					pStatement.setString(1, resaon_cancellation);
@@ -320,7 +337,7 @@ public class OrderDAO {
 					result = pStatement.executeUpdate();
 				}
 			}
-			
+
 			if (result > 0) {
 				connection.commit();
 			}
@@ -415,9 +432,10 @@ public class OrderDAO {
 				resultSet2 = pStatement.executeQuery();
 
 				if (resultSet2.next()) {
-					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getInt("rst_id"), resultSet.getString("rst_name"),
-							resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
-							resultSet.getTimestamp("pay_date"), resultSet.getInt("payment_status")));
+					resultList.add(
+							new OrderBasicInfoDTO(order_number, resultSet.getInt("rst_id"), resultSet.getString("rst_name"),
+									resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
+									resultSet.getTimestamp("pay_date"), resultSet.getInt("payment_status")));
 				}
 			}
 
