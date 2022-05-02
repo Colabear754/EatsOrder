@@ -109,7 +109,7 @@ $(document).ready(function () {
           // alert("비밀번호를 성공적으로 재설정하였습니다. 로그인 화면으로 돌아갑니다.");
           swal({
             title: "비밀번호 재설정 완료",
-            text: "비밀번호를 성공적으로 재설정하였습니다. 로그인 화면으로 돌아갑니다.",
+            text: "로그인 화면으로 돌아갑니다.",
             icon: "info",
             button: "확인",
           }).then(function () {
