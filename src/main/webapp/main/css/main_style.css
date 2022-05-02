@@ -8,6 +8,9 @@
 
 input text, placeholder 글자 크기 수정 : 김나연
 수정일 : 2022/05/01
+
+event 사진 html 삭제, css background로 추가 수정 : 김나연
+수정일 : 2022/05/01
 */
 
 /* 전체 적용 */
@@ -264,6 +267,10 @@ body {
 
 /* 카테고리 이미지 각각 크기,위치 */
 /* 1번째 이미지 - 이벤트 */
+.notice {
+    background-image: url("/main/img/event.png");
+}
+
 .food_select_container a:nth-child(1) {
     position: relative;
 }

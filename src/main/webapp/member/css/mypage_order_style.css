@@ -144,13 +144,6 @@ body {
     margin: 3px 0;
 }
 
-/* 퀵메뉴 footer 사이 거리 조절 */
-#quick_menu {
-    border: 1px solid #C4C4C4;
-    width: 240px;
-    margin: 25px 0 300px 0;
-}
-
 .order_status {
 	margin: 30px 0;
 	color: #FC6E4D;

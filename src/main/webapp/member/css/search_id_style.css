@@ -66,8 +66,8 @@ main {
     text-align: left;
     font-weight: bold;
     position: absolute;
-    top: 65px;
-    left: 0;
+    top: 75px; 
+    left: 595px; 
 }
 
 /* 핸드폰번호 입력 박스 */

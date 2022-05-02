@@ -2,21 +2,22 @@
 작성자: 김나연
 작성완료일: 22/04/04
 페이지명: 로그인 헤더
+
+수정자 : 김나연
+수정완료일 : 2022/05/01
+수정내용 : html 여백 삭제를 위한 body 마진,패딩값 추가
 */
 
 /* 전체 적용 */
-/* 위에 뜸 해결*/
-*{
-    margin: 0;
-}
-
-/* 전체배경색 */
+/* body 여백 삭제 */
 body {
+    padding: 0;
+    margin: 0;
     background-color: white;
 }
 
 /* 전체 글씨체 적용 */
-a, h1, h3, button, p {
+.header_top a, h1, h3, button, p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -39,6 +40,7 @@ a, h1, h3, button, p {
 .header_top a {
     text-decoration: none;
     color: #FF9F00;
+    margin-top: -25px;
 }
 
 /* ------------------------------------------------------------------ */
@@ -46,6 +48,7 @@ a, h1, h3, button, p {
 /* 찜,마이페이지,로그인 */
 .icon_menu {
     display: inline-block;
+    margin: 0;
 }
 
 

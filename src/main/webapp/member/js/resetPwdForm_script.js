@@ -106,23 +106,28 @@ $(document).ready(function () {
       dataType: "text",
       success: function (data) {
         if (data > 0) {
+          // alert("비밀번호를 성공적으로 재설정하였습니다. 로그인 화면으로 돌아갑니다.");
           swal({
             icon: "info",
             title:
               "비밀번호를 성공적으로 재설정하였습니다. 로그인 화면으로 돌아갑니다.",
+          }).then(function () {
+            window.location.href = "/EatsOrder/member/loginForm.do";
           });
-          // alert("비밀번호를 성공적으로 재설정하였습니다. 로그인 화면으로 돌아갑니다.");
-          window.location.href = "/EatsOrder/member/loginForm.do";
         } else {
+          // alert("알 수 없는 오류로 비밀번호 재설정에 실패하였습니다.");
           swal({
             icon: "info",
             title: "알 수 없는 오류로 비밀번호 재설정에 실패하였습니다.",
           });
-          // alert("알 수 없는 오류로 비밀번호 재설정에 실패하였습니다.");
         }
       },
       error: function (request) {
-        alert("오류 발생 : " + request.statusText);
+        // alert("오류 발생 : " + request.statusText);
+        swal({
+          icon: "info",
+          title: "오류 발생 : " + request.statusText,
+        });
       },
     });
   });
