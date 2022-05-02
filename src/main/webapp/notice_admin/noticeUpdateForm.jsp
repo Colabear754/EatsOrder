@@ -12,6 +12,9 @@
 <link href="./css/noticewrite.css" rel="stylesheet" type="text/css">
 </head>
 <body>  
+	<c:if test="${admin_id == null}">
+		<meta http-equiv="Refresh" content="0;url=/EatsOrder/main/main.do"> 
+	</c:if>
 <center><b>글수정</b>
 <br>
         <div class="outer-grid">
