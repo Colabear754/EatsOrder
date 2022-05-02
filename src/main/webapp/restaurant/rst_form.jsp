@@ -42,13 +42,13 @@
 		    </div>
 		    <div class="box">
 		    </div>
-		    <div id="address-modal">
-				<div id="wrapper"></div>
+		    <div class="modal fade" id="address-modal" role="dialog">
+				<div class="modal-dialog" id="wrapper"></div>
 			</div>
 		    <div class="search_addr">
 		        <div class="white_box"></div>
 		        <div class="search_input">
-		            <input class="search1" type="text" id="address-search" value="${address}" placeholder="주소를 입력하세요." readonly="readonly"><div class="search_btn1"><i class="fa-solid fa-magnifying-glass fa-lg"></i><b class="find_addr">검색 하기</b></div>
+		            <input data-toggle="modal" data-target="#address-modal" class="search1" type="text" id="address-search" value="${address}" placeholder="주소를 입력하세요." readonly="readonly"><div class="search_btn1"><i class="fa-solid fa-magnifying-glass fa-lg"></i><b class="find_addr">검색 하기</b></div>
 		        </div>
 		    </div>
 		    <div class="grid">

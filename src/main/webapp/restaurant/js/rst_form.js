@@ -41,18 +41,12 @@ $(function() {
 				$('#sido').val(data.sido)
 				$('#sigungu').val(data.sigungu)
 				$('#bname').val(data.bname)
-				$('#address-modal').css('display', 'none')
+				$('.modal-backdrop').remove();
+				$('#address-modal').css('display', 'none');
+				$('#wrapper').empty();
 			},
 			useBannerLink: false
 		}).embed(document.getElementById('wrapper'))
-
-		$('#address-modal').css('display', 'flex')
-	})
-
-	$(document).mouseup(function(e) {
-		if ($('#wrapper').has(e.target).length === 0) {
-			$('#address-modal').css('display', 'none')
-		}
 	})
 	
 	// 매장 카테고리를 클릭하면 해당 카테고리 매장 목록으로 이동
