@@ -2,7 +2,7 @@
 
 .hover{
 	background:#FECB10;
-	color:white;
+	color:red;
 	cursor:pointer;
 	font-weight:bold;
 }
@@ -16,7 +16,7 @@ ul.tabs{
     list-style: none;
 } 
  ul.tabs li{
-
+	font-size:20px;
     width: 120px; 
     text-align: center;
     cursor: pointer;
@@ -43,6 +43,9 @@ li {
     padding: 14px 16px;
     font-size: 18px;
     font-weight: bold;
+}
+li a{
+	font-size:20px;
 }
 .write_btn{
     width:50px;

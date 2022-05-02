@@ -20,7 +20,7 @@
 <center><b>글삭제</b>
 <br>
 <form method="POST" name="delForm"  
-   action="/EatsOrder/notice/noticeDeletePro.do?pageNum=${pageNum}&notice_number=${notice_number}&category=${category}" > 
+   action="/EatsOrder/notice_admin/noticeDeletePro.do?pageNum=${pageNum}&notice_number=${notice_number}&category=${category}" > 
    
  <table border="1" align="center" cellspacing="0" cellpadding="0" width="360">
   <tr height="30">
@@ -31,7 +31,7 @@
     <td align=center>
       <input type="submit" value="삭제" >
       <input type="button" value="취소" 
-       onclick="document.location.href='/EatsOrder/notice/noticeList.do?pageNum=${pageNum}&category=${category}'">     
+       onclick="document.location.href='/EatsOrder/notice_admin/noticeList.do?pageNum=${pageNum}&category=${category}'">     
    </td>
  </tr>  
 </table> 

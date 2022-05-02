@@ -13,7 +13,8 @@
 </head>
 <body>  
 <div class="outer-grid">
-<b>글 상세보기</b>
+<br>
+<b style="text-align:center;">글 상세보기</b>
 <br>
 <form>
 <input type="hidden" name="category" value="${article.category }">

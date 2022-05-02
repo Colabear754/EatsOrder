@@ -17,6 +17,7 @@
         <div class="outer-grid">
             <form method="post" name="writeform" enctype="multipart/form-data" action="/EatsOrder/notice_admin/noticeWritePro.do">
                 <input type="hidden" name="notice_number" value="${notice_number}">
+                <%-- <input type="hidden" name="pageNum" value="${pageNum}"> --%>
                 <table>
                     <thead>
                         <tr>

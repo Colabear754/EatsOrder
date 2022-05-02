@@ -2,8 +2,9 @@
 
 .hover{
 	background:#FECB10;
-	color:white;
+	color:red;
 	cursor:pointer;
+	font-weight:bold;
 }
 a:link{
     color:black;
@@ -15,18 +16,10 @@ ul.tabs{
     list-style: none;
 } 
  ul.tabs li{
-
+	font-size:20px;
     width: 120px; 
     text-align: center;
     cursor: pointer;
-} 
-.tab-content{
-    display: none;
-    padding-top: 50px;
-    height: 200px;
-}  
-.tab-content.current{
-    display: inherit;
 } 
 #container {
     width: 70%;
@@ -34,7 +27,7 @@ ul.tabs{
     margin-left: 15%;
 }
 a{
-    display: inline-block;
+/*     display: inline-block; */
     text-align: center;
     text-decoration: none;
     padding: 14px 16px;
@@ -44,12 +37,15 @@ a{
 }
 li {
     width: 10%;
-    display: inline-block;
+    display: inline-block; 
     text-align: center;
     text-decoration: none;
     padding: 14px 16px;
     font-size: 18px;
     font-weight: bold;
+}
+li a{
+	font-size:20px;
 }
 .write_btn{
     width:50px;

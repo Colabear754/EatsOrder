@@ -18,6 +18,7 @@ public class NoticeUpdateFormAction implements CommandAction {
 		NoticeDAO dbPro=new NoticeDAO();
 		NoticeDTO article=dbPro.updateGetArticle(notice_number);
 		
+		System.out.println("notice넘버=>"+notice_number);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("article", article);
 

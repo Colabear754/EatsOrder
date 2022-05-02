@@ -7,7 +7,7 @@
 <!-- 작성자: 허우림. 작성일: 22-04-25. 페이지명: 공지사항/이벤트/FAQ 게시판목록 페이지  -->
 <head>
 <title>공지사항/이벤트/FAQ탭 게시판</title>
-<link href="./css/noticelist.css" rel="stylesheet" type="text/css">
+<link href="./css/noticelist.css?ver=1" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="./css/admin_main.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script>

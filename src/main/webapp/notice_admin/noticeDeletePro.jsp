@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <meta http-equiv="Refresh"
-	           content="0;url=/EatsOrder/notice/noticeList.do?pageNum=${pageNum}&category=${category}">
+	           content="0;url=/EatsOrder/notice_admin/noticeList.do?pageNum=${pageNum}&category=${category}">
 
  
  

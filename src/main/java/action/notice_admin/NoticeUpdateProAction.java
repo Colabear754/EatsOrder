@@ -36,11 +36,12 @@ public class NoticeUpdateProAction implements CommandAction{
 				String name=(String)files.nextElement();
 				NoticeUpdateProAction.filename=multi.getFilesystemName(name);
 			}
+			
 			NoticeDTO article=new NoticeDTO();
-			article.setNotice_number(Integer.parseInt(request.getParameter("notice_number")));		  
-			article.setTitle(request.getParameter("title"));
-			article.setCategory(Integer.parseInt(request.getParameter("category")));
-			article.setContent(request.getParameter("content"));
+			article.setNotice_number(Integer.parseInt(multi.getParameter("notice_number")));		
+			article.setTitle(multi.getParameter("title"));
+			article.setCategory(Integer.parseInt(multi.getParameter("category")));
+			article.setContent(multi.getParameter("content"));
 			article.setFilename(NoticeUpdateProAction.filename);
 			
 			NoticeDAO dbPro=new NoticeDAO();
