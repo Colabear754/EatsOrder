@@ -27,7 +27,6 @@ public class InsertMyReviewAction implements CommandAction{
 		
 		try{
 			MultipartRequest multi=new MultipartRequest(request,saveFolder,maxSize,encType,new DefaultFileRenamePolicy());
-			
 			Enumeration files=multi.getFileNames();
 			
 			//hasMoreElements()는 Enumeration에 요소가 있는지 없는지 체크. 하나가 있으면 그 다음 요소가 있는지 없는지 체크.
@@ -40,29 +39,27 @@ public class InsertMyReviewAction implements CommandAction{
 				saveFiles.get(i);
 			}
 			
-			String email = (String) request.getSession().getAttribute("account");
-			String order_number = multi.getParameter("order_number");
-			String content = multi.getParameter("content");
-			int rating = Integer.parseInt(multi.getParameter("rating"));
-			System.out.println("rating: "+rating);
-			ReviewDAO reviewProcess = new ReviewDAO();
-			
-			request.setCharacterEncoding("UTF-8");
-			
-			request.setAttribute("email", email);
-			request.setAttribute("order_number", order_number);
-			request.setAttribute("content", content);
-			request.setAttribute("rating", rating);
-						
 			String[] photos = new String[5];
-				
+			
 			//저장된 사진의 파일명을 photos 배열에 형변환 하여 담음
 			for (int i = saveFiles.size() - 1; i >= 0; i--) {
 				photos[i] = (String) saveFiles.get(i);
 				System.out.println("photos["+i+"]=>"+photos[i]);
 			}
-
+			
+			String email = (String) request.getSession().getAttribute("account");
+			String order_number = multi.getParameter("order_number");
+			String content = multi.getParameter("content");
+			int rating = Integer.parseInt(multi.getParameter("rating"));
+			ReviewDAO reviewProcess = new ReviewDAO();
+						
 			reviewProcess.insertReivew(email, order_number, content, photos, rating);
+			
+			request.setCharacterEncoding("UTF-8");
+			request.setAttribute("email", email);
+			request.setAttribute("order_number", order_number);
+			request.setAttribute("content", content);
+			request.setAttribute("rating", rating);
 			
 		}catch(IOException ioe){
 			System.out.println("insertMyReviewAction의 ioe예외처리: "+ioe);
