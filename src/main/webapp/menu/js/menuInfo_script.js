@@ -80,6 +80,9 @@ $(function() {
     								alert('오류 발생1 : ' + request.statusText);
     							}
     						})
+    						
+    						$('#menu-info').empty();
+							$('.modal-backdrop').remove();
 	    				});
 					} else if (data < -1) {
 						swal({
@@ -119,6 +122,9 @@ $(function() {
 																		alert('오류 발생2 : ' + request.statusText);
 																	}
 																})
+
+									    						$('#menu-info').empty();
+																$('.modal-backdrop').remove();
 															}
 														});
 													}
