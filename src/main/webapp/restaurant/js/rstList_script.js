@@ -12,7 +12,8 @@ $(function() {
 		$('.row').show();
 	}
 	
-	$('.rst-link').click(function() {
+	$('.rst-link').click(function(e) {
+		e.preventDefault();
 		// 폼 생성 및 속성 설정
 		var newForm = $('<form></form>');
 		newForm.attr('method', 'post');
@@ -27,7 +28,6 @@ $(function() {
 		newForm.appendTo('body');
 		
 		newForm.submit();
-		return false;
 	})
 	
 	//카카오 지도 api
