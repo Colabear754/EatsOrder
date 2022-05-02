@@ -10,6 +10,9 @@
 <script language="JavaScript" src="./js/noticeWriteForm.js"></script>
 </head>
 <body>  
+	<c:if test="${admin_id == null}">
+		<meta http-equiv="Refresh" content="0;url=/EatsOrder/main/main.do"> 
+	</c:if>
        <br>
         <div class="outer-grid">
             <form method="post" name="writeform" enctype="multipart/form-data" action="/EatsOrder/notice_admin/noticeWritePro.do">

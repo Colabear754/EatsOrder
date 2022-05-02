@@ -592,7 +592,7 @@ public class ReviewDAO {
 				if (resultSet2.next()) {
 					resultList.add(new OrderBasicInfoDTO(order_number, resultSet.getInt("rst_id"), resultSet.getString("rst_name"),
 							resultSet.getString("rst_logo"), resultSet2.getString(1), resultSet.getInt("count") - 1,
-							resultSet.getTimestamp("pay_date")));
+							resultSet.getTimestamp("pay_date"), resultSet.getInt("payment_status")));
 				}
 			}
 			

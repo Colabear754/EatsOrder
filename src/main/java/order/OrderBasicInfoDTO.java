@@ -10,6 +10,7 @@ public class OrderBasicInfoDTO {
 	private String menu_name;
 	private int count;
 	private Timestamp pay_date;
+	private int payment_status;
 	private long elapsed_time;
 
 	public OrderBasicInfoDTO() {
@@ -17,7 +18,7 @@ public class OrderBasicInfoDTO {
 	}
 
 	public OrderBasicInfoDTO(String order_number, int rst_id, String rst_name, String rst_logo, String menu_name, int count,
-			Timestamp pay_date) {
+			Timestamp pay_date, int payment_status) {
 		this.order_number = order_number;
 		this.rst_id = rst_id;
 		this.rst_name = rst_name;
@@ -25,6 +26,7 @@ public class OrderBasicInfoDTO {
 		this.menu_name = menu_name;
 		this.count = count;
 		this.pay_date = pay_date;
+		this.payment_status = payment_status;
 	}
 
 	public String getOrder_number() {
@@ -81,6 +83,14 @@ public class OrderBasicInfoDTO {
 
 	public void setPay_date(Timestamp pay_date) {
 		this.pay_date = pay_date;
+	}
+
+	public int getPayment_status() {
+		return payment_status;
+	}
+
+	public void setPayment_status(int payment_status) {
+		this.payment_status = payment_status;
 	}
 
 	public long getElapsed_time() {

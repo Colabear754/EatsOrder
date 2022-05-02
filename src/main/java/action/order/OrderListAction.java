@@ -33,9 +33,9 @@ public class OrderListAction implements CommandAction {
 		int start = (currentPage - 1) * PAGESIZE + 1;
 		int end = currentPage * PAGESIZE;
 		
-		ArrayList<OrderBasicInfoDTO> result = orderProcess.getOrderList(orderer, start, end);
+		ArrayList<OrderBasicInfoDTO> orderList = orderProcess.getOrderList(orderer, start, end);
 		
-		for (OrderBasicInfoDTO order : result) {
+		for (OrderBasicInfoDTO order : orderList) {
 			long elapsed_time = (System.currentTimeMillis() - order.getPay_date().getTime()) / 1000 / 60;	// 주문으로부터 경과한 시간(분)
 			
 			order.setElapsed_time(elapsed_time);
@@ -46,7 +46,7 @@ public class OrderListAction implements CommandAction {
 
 		request.setAttribute("member", member);
 		request.setAttribute("couponCount", couponCount);
-		request.setAttribute("result", result);
+		request.setAttribute("orderList", orderList);
 		
 		return "/member/orderList.jsp";
 	}

@@ -69,22 +69,20 @@ $(function() {
 				},
 				success: function(data) {
 					if (data > 0) {
-						swal("주문표에 추가되었습니다.", "", "success").then((result) => {
-	    					if (result) {
-	    						$.ajax({
-	    							type: "POST",
-	    							url: "/EatsOrder/order/cart.do",
-	    							success: function(cart) {
-	    								$('#cart-area').empty();
-	    								$('#cart-area').html(cart);
-	    							},
-	    							error: function(request) {
-	    								alert('오류 발생1 : ' + request.statusText);
-	    							}
-	    						})
-	    						
-	    						$('#menu-modal').modal('hide');
-	    					}
+						swal("주문표에 추가되었습니다.", "", "success").then(() => {
+							$.ajax({
+    							url: "/EatsOrder/order/cart.do",
+    							success: function(cart) {
+    								$('#cart-area').empty();
+    								$('#cart-area').html(cart);
+    							},
+    							error: function(request) {
+    								alert('오류 발생1 : ' + request.statusText);
+    							}
+    						})
+    						
+    						$('#menu-info').empty();
+							$('.modal-backdrop').remove();
 	    				});
 					} else if (data < -1) {
 						swal({
@@ -115,18 +113,18 @@ $(function() {
 														swal("주문표에 추가되었습니다.", "", "success").then((result2) => {
 															if (result2) {
 																$.ajax({
-																	type: "POST",
 																	url: "/EatsOrder/order/cart.do",
-																	success: function(cart) {
+																	success: function(cart2) {
 																		$('#cart-area').empty();
-																		$('#cart-area').html(cart);
+																		$('#cart-area').html(cart2);
 																	},
 																	error: function(request) {
 																		alert('오류 발생2 : ' + request.statusText);
 																	}
 																})
-	    						
-																$('#menu-modal').modal('hide');
+
+									    						$('#menu-info').empty();
+																$('.modal-backdrop').remove();
 															}
 														});
 													}

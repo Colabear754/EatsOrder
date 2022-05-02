@@ -1,0 +1,72 @@
+main {
+    position: relative;
+    margin: 0 15%;
+    box-sizing: border-box;
+    height: 1000px;
+	
+}
+ul{
+ list-style:none;
+}
+
+.order_cc{
+background-color: #ff9f00;
+ color:white;
+ padding:8px;
+}
+textarea {/*요청사항 글씨*/
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+.text_cnt{/*최대 150*/
+  float: right;
+  color: #999;
+ }
+.cc1{/*이메일*/
+ margin:7px;
+ }
+.cc2{/*주문취소 날짜*/
+ margin:7px;
+}
+cc3{/*주문취소 사유*/
+ margin:7px;
+}
+.cc4{/*텍스트 상자*/
+ width:100%;
+ margin-top:10px
+}
+.cc5{
+float:right;
+}
+input[type=date]{
+  padding:10px;
+  margin:10px;
+  padding-left:15px;
+ }
+ input[type=button]{
+  padding:13px;
+  margin:10px;
+  background-color: #ff9f00;
+  color:#ffffff;
+  border:#ffffff;
+ }
+ .order_cell2 {/*중간 테두리*/
+  border:1px solid #ffffff;
+  padding:5px;
+  margin:3px;
+  
+  }
+  .order_cell1 {/*전체 테두리*/
+  border:1px solid #e5e5e5;
+  padding:5px;
+  margin:3px;
+ }
+.pay{
+ position:   fixed;
+}
+.error {
+	display: none;
+	color: red;
+	font-weight: bold;
+}

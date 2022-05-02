@@ -10,7 +10,7 @@
 <body>
 	<div class="sticky">
 		<input type="hidden" id="cart-rst_id" value="${rst_id}">
-		<input type="hidden" id="total_price" value="${total_price}">
+		<input type="hidden" id="order_price" value="${total_price}">
 		<ul class="orderlist ">
 			<li class="aorder">주문표</li>
 			<c:if test="${rst_id != 0}">

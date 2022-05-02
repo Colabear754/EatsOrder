@@ -429,12 +429,17 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
+			connection.setAutoCommit(false);
 			pStatement = connection.prepareStatement("update member_login set password=pkg_crypto.encrypt(?) where email=?");
 			pStatement.setString(1, password);
 			pStatement.setString(2, email);
 
 			result = pStatement.executeUpdate();
 
+			if (result > 0) {
+				connection.commit();
+			}
+			
 			System.out.println("비밀번호 재설정 결과 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
