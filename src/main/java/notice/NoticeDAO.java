@@ -164,7 +164,7 @@ public class NoticeDAO {
 		//페이징 처리결과를 저장할 Hashtable 객체를 선언
 		Hashtable<String,Integer> pgList=new Hashtable<String,Integer>();
 		
-		int pageSize=20;//numPerPage=>페이지당 보여주는 게시물수(=레코드수) 
+		int pageSize=40;//numPerPage=>페이지당 보여주는 게시물수(=레코드수) 
 	    int blockSize=5;//pagePerBlock=>블럭당 보여주는 페이지수 
 	      
 	    //게시판을 처음 실행시키면 가장 최신글을 보여주기 위해 무조건 1페이지부터 출력 
