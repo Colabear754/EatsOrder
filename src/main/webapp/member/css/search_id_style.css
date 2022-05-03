@@ -66,8 +66,9 @@ main {
     text-align: left;
     font-weight: bold;
     position: absolute;
-    top: 65px;
-    left: 545px;
+    /*우림 화면에 보이는대로 수정 */
+    top: 75px;
+    left: 565px;
 }
 
 /* 핸드폰번호 입력 박스 */

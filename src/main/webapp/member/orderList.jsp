@@ -36,9 +36,9 @@
 													<span class="order_status">
 														<c:choose>
 															<c:when test="${order.payment_status == 0}">주문 취소</c:when>
-															<c:when test="${order.elapsed_time < 1}">주문 접수 대기</c:when>
-															<c:when test="${order.elapsed_time >= 1 && order.elapsed_time < 25}">메뉴 준비 중</c:when>
-															<c:when test="${order.elapsed_time >= 25 && order.elapsed_time < 35}">배달 중</c:when>
+															<c:when test="${order.elapsed_time < (1 / 60) * 5}">주문 접수 대기</c:when>
+															<c:when test="${order.elapsed_time >= (1 / 60) * 5 && order.elapsed_time < (1 / 60) * 15 }">메뉴 준비 중</c:when>
+															<c:when test="${order.elapsed_time >= (1 / 60) * 15 && order.elapsed_time < (1 / 60) * 25}">배달 중</c:when>
 															<c:otherwise>배달 완료</c:otherwise>
 														</c:choose>
 													</span>

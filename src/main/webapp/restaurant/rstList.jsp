@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>매장목록</title>
-    <link rel="stylesheet" type="text/css" href="./css/rst_list.css?1">
+    <link rel="stylesheet" type="text/css" href="./css/rst_list.css">
     <script src="https://kit.fontawesome.com/6cc0f3db28.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
@@ -102,7 +102,7 @@
 	     </div>
 	     <div class="row" id="btn-wrapper" style="display: block;">
 			<input type="hidden" id="pageNum" value="1" onchange="hideButton()">
-			<div class="list-group-item btn-more" style="display: block; padding: 0; text-align: center; ">
+			<div class="list-group-item btn-more" style="display: block; padding: 30px 0px; text-align: center; ">
 				<a ng-cilck="get_next_rsts()"> 
 					<span> <input type="button" class="btn btn-warning" id="more-rst-btn" value="더보기"> <i class="arr-down"></i> </span>
 				</a>

@@ -249,6 +249,8 @@ select{
 	height:48px;
 	background-color:#FC6E4D;
 	border-radius:12px;
+	border:none;
+	font-size:18px;
 	
 
 }
