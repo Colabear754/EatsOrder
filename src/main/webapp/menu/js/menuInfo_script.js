@@ -73,7 +73,7 @@ $(function() {
     						$('#menu-info').empty();
 							$('.modal-backdrop').remove();
 	    				});
-					} else if (data == -1) {
+					} else if (data == -2) {
 						swal({
 							title: "주문표에 다른 매장에서 선택한 메뉴가 있습니다.",
 							text: "주문표를 비우고 메뉴를 추가하시겠습니까?",
