@@ -5,14 +5,21 @@
  */
 
 $(function() {
+	var total_list;
 	
-	if ($('#rst_count').val() <= $('#pageNum').val() * 12) {
-		$('.row').hide();
-	} else {
-		$('.row').show();
+	if (location.hash) {
+		var data = history.state;
+		if (data) {
+			$('.outer-grid').append(data.list);
+			$('#pageNum').val(data.page)
+		}
 	}
+
+	toggleMoreBtn();
 	
 	$('.rst-link').click(function(e) {
+		$('#pageNum').val(localStorage.getItem('pageNum'));
+		
 		e.preventDefault();
 		// 폼 생성 및 속성 설정
 		var newForm = $('<form></form>');
@@ -85,6 +92,7 @@ $(function() {
 	// 매장 더보기
 	$('#more-rst-btn').click(function() {
 		$('#pageNum').val(Number($('#pageNum').val()) + 1);
+		
 		$.ajax({
 			type: "POST",
 			url: "/EatsOrder/restaurant/more_rst_list.do",
@@ -96,12 +104,9 @@ $(function() {
 			},
 			success: function(data) {
 				$('.outer-grid').append(data);
-				
-				if ($('#rst_count').val() <= $('#pageNum').val() * 12) {
-					$('.row').hide();
-				} else {
-					$('.row').show();
-				}
+				total_list += data;
+				history.replaceState({list: total_list, page: $('#pageNum').val()}, 'page ' + $('#pageNum').val(), '/EatsOrder/restaurant/rst_list##')
+				toggleMoreBtn();
 			},
 			error: function(request) {
 				alert('오류 발생 : ' + request.statusText);
@@ -109,3 +114,11 @@ $(function() {
 		})
 	})
 })
+
+function toggleMoreBtn() {
+	if ($('#rst_count').val() <= $('#pageNum').val() * 12) {
+		$('.row').hide();
+	} else {
+		$('.row').show();
+	}
+}
