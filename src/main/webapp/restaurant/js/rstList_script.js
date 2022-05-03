@@ -105,7 +105,7 @@ $(function() {
 			success: function(data) {
 				$('.outer-grid').append(data);
 				total_list += data;
-				history.replaceState({list: total_list, page: $('#pageNum').val()}, 'page ' + $('#pageNum').val(), '/EatsOrder/restaurant/rst_list##')
+				history.replaceState({list: total_list, page: $('#pageNum').val()}, 'page ' + $('#pageNum').val(), '/EatsOrder/restaurant/rst_list.do##')
 				toggleMoreBtn();
 			},
 			error: function(request) {
