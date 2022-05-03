@@ -5,15 +5,20 @@
  */
 
 $(function() {
-	var total_list;
-	
-	if (location.hash) {
-		var data = history.state;
-		if (data) {
-			$('.outer-grid').append(data.list);
-			$('#pageNum').val(data.page)
-		}
-	}
+//	var total_list;
+//	
+//	if (location.hash) {
+//		var data = history.state;
+//		if (data) {
+//			$('.outer-grid').append(data.list);
+//			$('#address-search').val(data.address);
+//			$('#address').val(data.address);
+//			$('#sido').val(data.sido);
+//			$('#sigungu').val(data.sigungu);
+//			$('#bname').val(data.bname);
+//			$('#pageNum').val(data.page);
+//		}
+//	}
 
 	toggleMoreBtn();
 	
@@ -102,8 +107,18 @@ $(function() {
 			},
 			success: function(data) {
 				$('.outer-grid').append(data);
-				total_list += data;
-				history.replaceState({list: total_list, page: $('#pageNum').val()}, 'page ' + $('#pageNum').val(), '/EatsOrder/restaurant/rstList.do##')
+//				total_list += data;
+//				history.replaceState(
+//						{
+//							list: total_list, 
+//							page: $('#pageNum').val(),
+//							address: $('#address').val(),
+//							sido: $('#sido').val(),
+//							sigungu: $('#sigungu').val(),
+//							bname: $('#bname').val()
+//						}, 
+//						'page ' + $('#pageNum').val(), 
+//						'/EatsOrder/restaurant/rstList.do##');
 				toggleMoreBtn();
 			},
 			error: function(request) {
