@@ -18,8 +18,6 @@ $(function() {
 	toggleMoreBtn();
 	
 	$('.rst-link').click(function(e) {
-		$('#pageNum').val(localStorage.getItem('pageNum'));
-		
 		e.preventDefault();
 		// 폼 생성 및 속성 설정
 		var newForm = $('<form></form>');
@@ -105,7 +103,7 @@ $(function() {
 			success: function(data) {
 				$('.outer-grid').append(data);
 				total_list += data;
-				history.replaceState({list: total_list, page: $('#pageNum').val()}, 'page ' + $('#pageNum').val(), '/EatsOrder/restaurant/rst_list.do##')
+				history.replaceState({list: total_list, page: $('#pageNum').val()}, 'page ' + $('#pageNum').val(), '/EatsOrder/restaurant/rstList.do##')
 				toggleMoreBtn();
 			},
 			error: function(request) {
