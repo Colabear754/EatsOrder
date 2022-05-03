@@ -170,10 +170,6 @@ background-color:#ff9f00;
  list-style: none;
  top:-900px;
 }
-/*주문표 마진*/
-#orderlist_id {
-	margin-top: -120px;
-}
 .aorder{
 background-color:#939393;
 border:1px solid black;
