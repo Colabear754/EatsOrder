@@ -50,7 +50,7 @@ public class OrderDAO {
 
 			if (resultSet.next()) {
 				int rst_id = resultSet.getInt(1);
-				// 현재 장바구니에 담긴 메뉴 중 추출된 매장ID와 다른 매장ID를 조회
+				// 현재 장바구니에 담긴 메뉴 중 추출된 매장ID와 다른 매장ID가 존재하는지 조회
 				pStatement = connection.prepareStatement("select rst_id from cart c, menu m, menu_category mc "
 						+ "where orderer=? and c.menu_id=m.menu_id and m.category_id=mc.category_id and rst_id!=?");
 				pStatement.setString(1, orderer);
@@ -68,11 +68,15 @@ public class OrderDAO {
 					resultSet = pStatement.executeQuery();
 
 					if (resultSet.next()) {
+						// 장바구니에 추가하려는 메뉴와 같은 메뉴가 있을 경우
 						result = -4;
 					} else {
+						// 그 외의 경우
 						if (options.length == 0) {
+							// 선택된 옵션이 없는 경우
 							sql = "insert into cart values(?, ?, null, ?)";
 						} else {
+							// 선택된 옵션이 있는 경우
 							sql = "insert into cart values(?, ?, selected_option_seq.nextval, ?)";
 						}
 
@@ -83,9 +87,10 @@ public class OrderDAO {
 
 						result = pStatement.executeUpdate();
 
-						if (result > 0) {
-							pStatement = connection
-									.prepareStatement("insert into selected_option values(selected_option_seq.currval, ?)");
+						if (result > 0 && options.length > 0) {
+							pStatement = connection.prepareStatement(
+									"insert into selected_option values(selected_option_seq.currval, ?)");
+							
 							for (int option_id : options) {
 								pStatement.setInt(1, option_id);
 								pStatement.addBatch();
@@ -107,6 +112,7 @@ public class OrderDAO {
 						}
 					}
 				} else {
+					// 이미 추가된 메뉴의 매장ID가 추가하려는 메뉴의 매장ID와 다를 경우 
 					result = -2;
 				}
 
