@@ -18,11 +18,15 @@
 					<div class="restaurant-star-point col-sm-6" style="border-right: 1px solid gray; text-align: center;">
 						<h3>${rating}</h3>
 						<div class="rating rating-large" data-rate="${rating}">
+						<c:forEach begin="1" end="${rating}">
+							<span class="star voted">★</span>
+						</c:forEach>
+						<!-- 						
 							<span class="star voted" rel="1">★</span>
 							<span class="star voted" rel="2">★</span>
 							<span class="star voted" rel="3">★</span>
 							<span class="star voted" rel="4">★</span> 
-							<span class="star" rel="5"></span>
+							<span class="star" rel="5"></span> -->
 						</div>
 					</div>
 				</div>
