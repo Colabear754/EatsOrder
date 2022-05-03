@@ -14,6 +14,9 @@
     수정자 : 김나연
     수정일 : 2022/05/01
     수정내용 : 이용약관 동의 정렬, 도움말 available, error 스타일 추가
+    
+    수정내용 : 마케팅 이용약관 id 추가 김나연
+	수정일 : 2022/05/03
     --%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -137,7 +140,7 @@
 	                                    <input type="checkbox" id="receive_marketing">
 	                                    <span>마케팅 정보 수신동의(선택)</span>
 	                                </label>
-	                                <a>약관보기></a>
+	                                <a id="terms">약관보기></a>
                                 </div>
                             </td>
                         </tr>

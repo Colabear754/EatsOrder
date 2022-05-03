@@ -1,3 +1,14 @@
+/*
+전체여백처리 : 김나연 
+수정일 : 2022/05/03
+*/
+
+/*전체 여백처리*/ 
+body {
+    padding: 0;
+    margin: 0;
+}
+
 .p1{
 border:1px solid black;
 height:1000px;
