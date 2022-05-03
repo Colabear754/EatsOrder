@@ -64,7 +64,7 @@ textarea {/*요청사항 글씨*/
   padding-left:10px;
  }
 .text_t{
- width:100%;
+ width: 1060px;
  margin-top:10px;
 }
 input[type="radio"]{
@@ -136,9 +136,10 @@ padding:10px;
 margin:10px;
 }
 .tt2{
-border:1px solid #e5e5e5;
-padding:10px;
-margin:10px;
+border: 1px solid #e5e5e5;
+    padding: 10px;
+    margin: 10px;
+    height: 145px;
 }
 .tt3{
 border:1px solid #e5e5e5;
