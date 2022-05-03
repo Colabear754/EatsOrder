@@ -29,6 +29,10 @@
     background-color: gray; 
     color:white; border: 1px solid grey; 
 }
+
+.order1 {
+	color:black;
+}
 .aorder:last-child {
     border-bottom: 0; 
     border-left:0; 

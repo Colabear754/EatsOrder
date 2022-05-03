@@ -14,7 +14,7 @@
 		<ul class="orderlist ">
 			<li class="aorder">주문표</li>
 			<c:if test="${rst_id != 0}">
-				<li><h5><a href="/EatsOrder/restaurant/rst_form?rst_id=${rst_id}">${rst_name}</a></h5></li>
+				<li><h5><a class="order1"  href="/EatsOrder/restaurant/rst_form?rst_id=${rst_id}">${rst_name}</a></h5></li>
 			</c:if>
 			<c:forEach var="cartItem" items="${cartItems}">
 				<li class="border">${cartItem.menu_name}
