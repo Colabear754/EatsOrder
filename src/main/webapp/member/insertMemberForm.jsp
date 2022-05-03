@@ -140,7 +140,6 @@
 	                                    <input type="checkbox" id="receive_marketing">
 	                                    <span>마케팅 정보 수신동의(선택)</span>
 	                                </label>
-	                                <a id="terms">약관보기></a>
                                 </div>
                             </td>
                         </tr>
