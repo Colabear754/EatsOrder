@@ -11,7 +11,7 @@
 	<div class="sticky">
 		<input type="hidden" id="cart-rst_id" value="${rst_id}">
 		<input type="hidden" id="order_price" value="${total_price}">
-		<ul class="orderlist">
+		<ul class="orderlist" id="orderlist_id">
 			<li class="aorder">주문표</li>
 			<c:if test="${rst_id != 0}">
 				<li><h5><a class="order1"  href="/EatsOrder/restaurant/rst_form?rst_id=${rst_id}">${rst_name}</a></h5></li>
