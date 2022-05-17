@@ -13,7 +13,7 @@ $(function() {
 		defaultOptPrice = (Number(defaultOptPrice) + Number(optPrice));
 	})
 	
-	$('#total_price').text(defaultOptPrice.toLocaleString('ko-KR') + '원');
+	$('#total_price').text((defaultOptPrice * 1).toLocaleString('ko-KR') + '원');
 	
 	// +, - 버튼으로 수량 조절 시
 	$('#plus').click(function() {	
