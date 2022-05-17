@@ -178,8 +178,8 @@ public class CouponDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection
-					.prepareStatement("select count(*) from owned_coupon where owner_id=? and available_count > 0");
+			pStatement = connection.prepareStatement("select count(o.coupon_id) "
+					+ "from owned_coupon o, valid_coupon v where owner_id=? and available_count > 0 and o.coupon_id=v.coupon_id and expiration_date>sysdate");
 			pStatement.setString(1, owner_id);
 			resultSet = pStatement.executeQuery();
 
