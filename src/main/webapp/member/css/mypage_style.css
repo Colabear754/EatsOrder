@@ -21,7 +21,7 @@
 
 /* 전체 브라우저 박스 */
 .mypage_wrap {
-    position: relative;
+    position: absolute;
     box-sizing: border-box;
 }
 

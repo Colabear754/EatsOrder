@@ -16,6 +16,7 @@
 footer {
     background-color: #212121;
     height: 480px;
+    bottom: 0;
     /* 푸터 하단에 붙이기 */
 
 
@@ -27,7 +28,7 @@ footer {
 .content_box {
     height: auto;
     min-height: 100%;
-    padding-bottom: (480px);
+    padding-bottom: 320px;
   }
 
 
@@ -99,7 +100,7 @@ footer hr {
 }
 
 /* 통신판매중개자 안내문구 */
-.fooer_script2 p {
+.footer_script2 p {
    margin: 5px 0;
 }
 
