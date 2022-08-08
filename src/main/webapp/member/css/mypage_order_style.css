@@ -90,12 +90,12 @@ body {
 }
 
 /* 가게명, 주문내역 이미지 마진 */
-.order_box2 h3, .order_img {
+.order_box2 h3, .order_box2 h4, .order_img {
     margin-left: 20px;
 }
 
 /* 가게명 세부설정 */
-.order_box2 h3 {
+.order_box2 h3, .order_box2 h4 {
     display: inline-block;
 }
 
@@ -112,7 +112,7 @@ body {
     border-radius: 10px;
     width: 200px;
     height: 200px;
-    position: relative;
+    position: absolute;
     margin-left: 20px;
 }
 

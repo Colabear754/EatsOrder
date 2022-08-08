@@ -29,8 +29,8 @@
 									</c:if>
 									<c:if test="${orderCount > 0}">
 										<c:forEach var="order" items="${orderList}">
-										<div class="order_box2">
 											<div class="order_box">
+												<h4>${order.order_number}</h4>
 												<h3>
 													<a href="/EatsOrder/restaurant/rst_form.do?rst_id=${order.rst_id}">${order.rst_name}<span>></span></a>
 													<span class="order_status">
@@ -59,7 +59,6 @@
 														<p>${order.menu_name} 외 ${order.count}개</p>
 													</c:if>
 												</div>
-											</div>
 											</div>
 										</c:forEach>
 									</c:if>
