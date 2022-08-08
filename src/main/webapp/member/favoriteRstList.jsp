@@ -35,23 +35,23 @@
                 	<h3>찜 매장이 없습니다.</h3>
                 </c:if>
                 <c:if test="${favoriteRstCount > 0}">
+		            <div class="grid_box2">
                 	<c:forEach var="favoriteRst" items="${favoriteRstData}">
-		                <div class="review_all_box">
-		                    <div class="review_box">
+		                    <div class="like_box2">
 		                        <h3><a href="/EatsOrder/restaurant/rst_form.do?rst_id=${favoriteRst.restaurant.rst_id}">${favoriteRst.restaurant.rst_name}<span>></span></a></h3>
 		                        <div class="del_btn">
 		                            <a href="#">삭제</a>
 		                        </div>
-		                        <div class="review_img">
+		                        <div class="like_img2">
 		                            <img src="../restaurant/img/${favoriteRst.restaurant.rst_logo }" width="100px" height="100px">
 		                        </div>
-		                        <div class="review_text">
+		                        <div class="like_text2">
 		                            <span>★</span><span>${favoriteRst.rating}</span>
 		                            <p>최소주문 <fmt:formatNumber value="${favoriteRst.restaurant.min_order}" pattern="#,###" />원</p>
 		                        </div>
 		                    </div>
-		                </div>
 	                </c:forEach>
+		            </div>
                 </c:if>
             </div>
         </div>

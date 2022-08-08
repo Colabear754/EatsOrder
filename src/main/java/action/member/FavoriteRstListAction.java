@@ -23,7 +23,6 @@ public class FavoriteRstListAction implements CommandAction {
 		RestaurantDAO rstProcess = new RestaurantDAO();
 		MemberDAO memberProcess = new MemberDAO();
 		CouponDAO couponProcess = new CouponDAO();
-		ReviewDAO reviewProcess = new ReviewDAO();
 		ArrayList<RestaurantDetailDTO> favoriteRstData = new ArrayList<>();
 
 		if (pageNum == null || pageNum.isBlank()) {
@@ -38,14 +37,12 @@ public class FavoriteRstListAction implements CommandAction {
 		ArrayList<RestaurantDTO> favoriteRstList = rstProcess.getFavoriteRestaurants(email, start, end);
 
 		for (RestaurantDTO rst : favoriteRstList) {
-			favoriteRstData.add(new RestaurantDetailDTO(rst, reviewProcess.getReplyCount(rst.getRst_id()),
-					reviewProcess.getReplyCount(rst.getRst_id()), rstProcess.getRating(rst.getRst_id())));
+			favoriteRstData.add(new RestaurantDetailDTO(rst, 0, 0, rstProcess.getRating(rst.getRst_id())));
 		}
 
 		MemberInfoDTO member = memberProcess.getMember(email);
 		int couponCount = couponProcess.getCouponCount(email);
 		
-		request.setAttribute("email", email);
 		request.setAttribute("member", member);
 		request.setAttribute("couponCount", couponCount);
 		request.setAttribute("favoriteRstData", favoriteRstData);
